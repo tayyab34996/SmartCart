@@ -1,0 +1,7 @@
+{
+  "instacart_archive": "data/raw/archive_3.zip",
+  "foodcom_archive": "data/raw/archive_4.zip",
+  "output_directory": "data/interim/audit",
+  "report_path": "docs/data_audit.md",
+  "recipe_shortlist_size": 50
+}

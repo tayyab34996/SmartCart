@@ -1,0 +1,975 @@
+{
+  "schema_version": 1,
+  "purpose": "offline_simulation",
+  "currency": "PKR",
+  "minor_units_per_major": 100,
+  "sources": [
+    {
+      "id": "foodcom_3978",
+      "title": "Chicken Quesadillas",
+      "locator": "https://www.food.com/recipe/chicken-quesadillas-3978",
+      "kind": "recipe_page",
+      "checked_on": "2026-10-20",
+      "notes": "Servings and all four listed ingredient quantities/units checked against the original ingredient section. Optional serving suggestions are outside the required list."
+    },
+    {
+      "id": "foodcom_3474",
+      "title": "Homemade Pasta",
+      "locator": "https://www.food.com/recipe/homemade-pasta-3474",
+      "kind": "recipe_page",
+      "checked_on": "2026-10-20",
+      "notes": "Servings and all four listed ingredient quantities/units checked. This is pasta dough, not a complete dinner; flour volume uses a documented reference estimate."
+    },
+    {
+      "id": "foodcom_19090",
+      "title": "Honey Lime Chicken",
+      "locator": "https://www.food.com/recipe/honey-lime-chicken-19090",
+      "kind": "recipe_page",
+      "checked_on": "2026-10-20",
+      "notes": "Servings and four ingredient quantities/units checked in the original page Recipe JSON-LD. Chicken is specified by piece count, without an inferred mass."
+    },
+    {
+      "id": "nist_units",
+      "title": "NIST SP 811 Appendix B.9",
+      "locator": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+      "kind": "metrology_reference",
+      "checked_on": "2026-10-20",
+      "notes": "Use 453.59237 g per avoirdupois pound; U.S. cup 236.5882 ml and tablespoon 14.78676 ml are published rounded factors. A 16-ounce mass package is one pound."
+    },
+    {
+      "id": "ka_flour",
+      "title": "King Arthur ingredient weight chart",
+      "locator": "https://www.kingarthurbaking.com/learn/ingredient-weight-chart",
+      "kind": "ingredient_reference",
+      "checked_on": "2026-10-20",
+      "notes": "All-purpose flour: reference estimate 120 g per cup. This is ingredient-specific and is not a universal mass/volume conversion."
+    },
+    {
+      "id": "simulation_v1",
+      "title": "SmartCart pilot simulation policy",
+      "locator": "docs/pilot_data.md#simulation-policy",
+      "kind": "design_policy",
+      "checked_on": "2026-10-20",
+      "notes": "All product names, pack options, prices, availability, and dietary states are designed examples. No store prices, brand products, or Instacart SKU matches are claimed."
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "chicken_breast",
+      "name": "Boneless skinless chicken breast",
+      "aliases": [
+        "boneless chicken breast",
+        "boneless skinless chicken breasts"
+      ],
+      "supported_units": [
+        "g",
+        "piece"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "salsa",
+      "name": "Salsa",
+      "aliases": [
+        "tomato salsa"
+      ],
+      "supported_units": [
+        "g"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "cheddar",
+      "name": "Cheddar cheese",
+      "aliases": [
+        "cheddar"
+      ],
+      "supported_units": [
+        "g"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "flour_tortilla",
+      "name": "8-inch flour tortilla",
+      "aliases": [
+        "flour tortillas"
+      ],
+      "supported_units": [
+        "piece"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "white_flour",
+      "name": "All-purpose white flour",
+      "aliases": [
+        "general purpose white flour",
+        "all-purpose flour"
+      ],
+      "supported_units": [
+        "g"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "egg",
+      "name": "Egg",
+      "aliases": [
+        "eggs",
+        "whole eggs"
+      ],
+      "supported_units": [
+        "piece"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive oil",
+      "aliases": [
+        "extra virgin olive oil"
+      ],
+      "supported_units": [
+        "ml"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "aliases": [
+        "drinking water"
+      ],
+      "supported_units": [
+        "ml"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "honey",
+      "name": "Honey",
+      "aliases": [
+        "liquid honey"
+      ],
+      "supported_units": [
+        "ml"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "soy_sauce",
+      "name": "Soy sauce",
+      "aliases": [
+        "regular soy sauce"
+      ],
+      "supported_units": [
+        "ml"
+      ],
+      "mapping_status": "seed_reviewed"
+    },
+    {
+      "id": "lime_juice",
+      "name": "Lime juice",
+      "aliases": [
+        "fresh lime juice"
+      ],
+      "supported_units": [
+        "ml"
+      ],
+      "mapping_status": "seed_reviewed"
+    }
+  ],
+  "conversions": [
+    {
+      "id": "lb_g",
+      "from_unit": "lb",
+      "to_unit": "g",
+      "factor": "453.59237",
+      "ingredient_id": null,
+      "kind": "unit_conversion",
+      "evidence_ids": [
+        "nist_units"
+      ]
+    },
+    {
+      "id": "salsa_jar16oz_g",
+      "from_unit": "jar_16_oz",
+      "to_unit": "g",
+      "factor": "453.59237",
+      "ingredient_id": "salsa",
+      "kind": "package_definition",
+      "evidence_ids": [
+        "foodcom_3978",
+        "nist_units"
+      ]
+    },
+    {
+      "id": "piece",
+      "from_unit": "piece",
+      "to_unit": "piece",
+      "factor": "1",
+      "ingredient_id": null,
+      "kind": "identity",
+      "evidence_ids": [
+        "simulation_v1"
+      ]
+    },
+    {
+      "id": "flour_cup_g",
+      "from_unit": "us_cup",
+      "to_unit": "g",
+      "factor": "120",
+      "ingredient_id": "white_flour",
+      "kind": "ingredient_specific_reference_estimate",
+      "evidence_ids": [
+        "ka_flour"
+      ]
+    },
+    {
+      "id": "tbsp_ml",
+      "from_unit": "us_tbsp",
+      "to_unit": "ml",
+      "factor": "14.78676",
+      "ingredient_id": null,
+      "kind": "unit_conversion",
+      "evidence_ids": [
+        "nist_units"
+      ]
+    },
+    {
+      "id": "cup_ml",
+      "from_unit": "us_cup",
+      "to_unit": "ml",
+      "factor": "236.5882",
+      "ingredient_id": null,
+      "kind": "unit_conversion",
+      "evidence_ids": [
+        "nist_units"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "sim_chicken_250g",
+      "name": "SIMULATED Boneless skinless chicken breast 250 g",
+      "ingredient_id": "chicken_breast",
+      "pack_amount": "250",
+      "pack_unit": "g",
+      "price_minor": 45000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_chicken_500g",
+      "name": "SIMULATED Boneless skinless chicken breast 500 g",
+      "ingredient_id": "chicken_breast",
+      "pack_amount": "500",
+      "pack_unit": "g",
+      "price_minor": 80000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_chicken_2piece",
+      "name": "SIMULATED Boneless skinless chicken breast 2 piece",
+      "ingredient_id": "chicken_breast",
+      "pack_amount": "2",
+      "pack_unit": "piece",
+      "price_minor": 70000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_salsa_250g",
+      "name": "SIMULATED Salsa 250 g",
+      "ingredient_id": "salsa",
+      "pack_amount": "250",
+      "pack_unit": "g",
+      "price_minor": 25000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_salsa_500g",
+      "name": "SIMULATED Salsa 500 g",
+      "ingredient_id": "salsa",
+      "pack_amount": "500",
+      "pack_unit": "g",
+      "price_minor": 45000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_cheddar_100g",
+      "name": "SIMULATED Cheddar cheese 100 g",
+      "ingredient_id": "cheddar",
+      "pack_amount": "100",
+      "pack_unit": "g",
+      "price_minor": 30000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_cheddar_250g",
+      "name": "SIMULATED Cheddar cheese 250 g",
+      "ingredient_id": "cheddar",
+      "pack_amount": "250",
+      "pack_unit": "g",
+      "price_minor": 65000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_tortilla_6piece",
+      "name": "SIMULATED 8-inch flour tortilla 6 piece",
+      "ingredient_id": "flour_tortilla",
+      "pack_amount": "6",
+      "pack_unit": "piece",
+      "price_minor": 20000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_tortilla_12piece",
+      "name": "SIMULATED 8-inch flour tortilla 12 piece",
+      "ingredient_id": "flour_tortilla",
+      "pack_amount": "12",
+      "pack_unit": "piece",
+      "price_minor": 36000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_flour_500g",
+      "name": "SIMULATED All-purpose white flour 500 g",
+      "ingredient_id": "white_flour",
+      "pack_amount": "500",
+      "pack_unit": "g",
+      "price_minor": 9000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_flour_1000g",
+      "name": "SIMULATED All-purpose white flour 1000 g",
+      "ingredient_id": "white_flour",
+      "pack_amount": "1000",
+      "pack_unit": "g",
+      "price_minor": 16000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_egg_6piece",
+      "name": "SIMULATED Egg 6 piece",
+      "ingredient_id": "egg",
+      "pack_amount": "6",
+      "pack_unit": "piece",
+      "price_minor": 18000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_egg_12piece",
+      "name": "SIMULATED Egg 12 piece",
+      "ingredient_id": "egg",
+      "pack_amount": "12",
+      "pack_unit": "piece",
+      "price_minor": 33000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_olive_oil_100ml",
+      "name": "SIMULATED Olive oil 100 ml",
+      "ingredient_id": "olive_oil",
+      "pack_amount": "100",
+      "pack_unit": "ml",
+      "price_minor": 18000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_olive_oil_250ml",
+      "name": "SIMULATED Olive oil 250 ml",
+      "ingredient_id": "olive_oil",
+      "pack_amount": "250",
+      "pack_unit": "ml",
+      "price_minor": 40000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_water_500ml",
+      "name": "SIMULATED Water 500 ml",
+      "ingredient_id": "water",
+      "pack_amount": "500",
+      "pack_unit": "ml",
+      "price_minor": 5000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_water_1000ml",
+      "name": "SIMULATED Water 1000 ml",
+      "ingredient_id": "water",
+      "pack_amount": "1000",
+      "pack_unit": "ml",
+      "price_minor": 8000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_honey_250ml",
+      "name": "SIMULATED Honey 250 ml",
+      "ingredient_id": "honey",
+      "pack_amount": "250",
+      "pack_unit": "ml",
+      "price_minor": 55000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_soy_150ml",
+      "name": "SIMULATED Soy sauce 150 ml",
+      "ingredient_id": "soy_sauce",
+      "pack_amount": "150",
+      "pack_unit": "ml",
+      "price_minor": 22000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    },
+    {
+      "id": "sim_lime_100ml",
+      "name": "SIMULATED Lime juice 100 ml",
+      "ingredient_id": "lime_juice",
+      "pack_amount": "100",
+      "pack_unit": "ml",
+      "price_minor": 12000,
+      "currency": "PKR",
+      "available": true,
+      "dietary": {
+        "vegetarian": "unknown",
+        "vegan": "unknown",
+        "gluten_free": "unknown",
+        "dairy_free": "unknown",
+        "nut_free": "unknown"
+      },
+      "attribute_source_id": "simulation_v1",
+      "simulated_fields": [
+        "name",
+        "pack_amount",
+        "pack_unit",
+        "price_minor",
+        "currency",
+        "available",
+        "dietary"
+      ],
+      "external_ids": {}
+    }
+  ],
+  "recipes": [
+    {
+      "id": "foodcom_3978",
+      "name": "Chicken Quesadillas",
+      "source_recipe_id": "3978",
+      "source_id": "foodcom_3978",
+      "base_servings": 10,
+      "review": {
+        "status": "source_checked",
+        "reviewer": "codex_source_check",
+        "checked_on": "2026-10-20",
+        "independent_review_status": "pending"
+      },
+      "scaling_policy": "linear_source_amount_round_up_0.001",
+      "scope_notes": "Listed ingredient basket only; excludes optional dipping sauces, side dishes, and process supplies. Tortillas refer to the source 8-inch type; size is a reviewed identity assumption, not a count-to-weight conversion.",
+      "ingredients": [
+        {
+          "ingredient_id": "chicken_breast",
+          "source_ingredient": "boneless chicken breast",
+          "source_amount": "1",
+          "source_unit": "lb",
+          "conversion_id": "lb_g",
+          "unit": "g",
+          "amount": "453.593"
+        },
+        {
+          "ingredient_id": "salsa",
+          "source_ingredient": "salsa, one 16-ounce jar",
+          "source_amount": "1",
+          "source_unit": "jar_16_oz",
+          "conversion_id": "salsa_jar16oz_g",
+          "unit": "g",
+          "amount": "453.593"
+        },
+        {
+          "ingredient_id": "cheddar",
+          "source_ingredient": "cheddar cheese",
+          "source_amount": "1/2",
+          "source_unit": "lb",
+          "conversion_id": "lb_g",
+          "unit": "g",
+          "amount": "226.797"
+        },
+        {
+          "ingredient_id": "flour_tortilla",
+          "source_ingredient": "8-inch flour tortillas",
+          "source_amount": "10",
+          "source_unit": "piece",
+          "conversion_id": "piece",
+          "unit": "piece",
+          "amount": "10.000"
+        }
+      ]
+    },
+    {
+      "id": "foodcom_3474",
+      "name": "Homemade Pasta",
+      "source_recipe_id": "3474",
+      "source_id": "foodcom_3474",
+      "base_servings": 4,
+      "review": {
+        "status": "source_checked",
+        "reviewer": "codex_source_check",
+        "checked_on": "2026-10-20",
+        "independent_review_status": "pending"
+      },
+      "scaling_policy": "linear_source_amount_round_up_0.001",
+      "scope_notes": "Pasta dough ingredients, not a complete dinner. Uses the nominal listed water amount. Flour mass is an explicitly adopted reference estimate; no measured Food.com flour density is claimed.",
+      "ingredients": [
+        {
+          "ingredient_id": "white_flour",
+          "source_ingredient": "general purpose white flour",
+          "source_amount": "2",
+          "source_unit": "us_cup",
+          "conversion_id": "flour_cup_g",
+          "unit": "g",
+          "amount": "240.000"
+        },
+        {
+          "ingredient_id": "egg",
+          "source_ingredient": "eggs",
+          "source_amount": "2",
+          "source_unit": "piece",
+          "conversion_id": "piece",
+          "unit": "piece",
+          "amount": "2.000"
+        },
+        {
+          "ingredient_id": "olive_oil",
+          "source_ingredient": "olive oil",
+          "source_amount": "1",
+          "source_unit": "us_tbsp",
+          "conversion_id": "tbsp_ml",
+          "unit": "ml",
+          "amount": "14.787"
+        },
+        {
+          "ingredient_id": "water",
+          "source_ingredient": "water",
+          "source_amount": "4",
+          "source_unit": "us_tbsp",
+          "conversion_id": "tbsp_ml",
+          "unit": "ml",
+          "amount": "59.148"
+        }
+      ]
+    },
+    {
+      "id": "foodcom_19090",
+      "name": "Honey Lime Chicken",
+      "source_recipe_id": "19090",
+      "source_id": "foodcom_19090",
+      "base_servings": 4,
+      "review": {
+        "status": "source_checked",
+        "reviewer": "codex_source_check",
+        "checked_on": "2026-10-20",
+        "independent_review_status": "pending"
+      },
+      "scaling_policy": "linear_source_amount_round_up_0.001",
+      "scope_notes": "Listed main-dish ingredients only; no sides. Four chicken breasts remain four pieces. The count-based chicken option has no inferred gram weight.",
+      "ingredients": [
+        {
+          "ingredient_id": "honey",
+          "source_ingredient": "honey",
+          "source_amount": "1/2",
+          "source_unit": "us_cup",
+          "conversion_id": "cup_ml",
+          "unit": "ml",
+          "amount": "118.295"
+        },
+        {
+          "ingredient_id": "soy_sauce",
+          "source_ingredient": "soy sauce",
+          "source_amount": "1/3",
+          "source_unit": "us_cup",
+          "conversion_id": "cup_ml",
+          "unit": "ml",
+          "amount": "78.863"
+        },
+        {
+          "ingredient_id": "lime_juice",
+          "source_ingredient": "lime juice",
+          "source_amount": "1/4",
+          "source_unit": "us_cup",
+          "conversion_id": "cup_ml",
+          "unit": "ml",
+          "amount": "59.148"
+        },
+        {
+          "ingredient_id": "chicken_breast",
+          "source_ingredient": "boneless skinless chicken breasts",
+          "source_amount": "4",
+          "source_unit": "piece",
+          "conversion_id": "piece",
+          "unit": "piece",
+          "amount": "4.000"
+        }
+      ]
+    }
+  ]
+}
