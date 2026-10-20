@@ -69,3 +69,17 @@ units, consistent with the validated data contracts.
 
 Next student exercise: calculate line cost in integer currency minor units,
 then connect quantities and costs to eligible product options.
+
+## Student line-cost helper
+
+Reviewed `line_cost_minor()` and added runtime integer validation before numeric
+comparisons. Both booleans and other noninteger values now raise `TypeError`;
+negative integers raise `ValueError`. Zero demand and zero prices are valid.
+
+The combined suite has **31 passing tests**, including six new cost tests.
+Coverage includes integer output, large-integer precision, and the complete
+helper flow: 600 g required minus 200 g pantry stock, with 250 g packs priced
+at 18000 minor units each, produces a line cost of 36000 minor units.
+
+Next: connect the helpers to one compatible catalog product, including its
+ingredient identity, unit, pack amount, price, and surplus quantity.

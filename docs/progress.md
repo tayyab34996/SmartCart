@@ -21,6 +21,10 @@
   their boundary and decimal-arithmetic checks on 21 October 2026.
 - Added seven regression tests covering those helpers and their composition.
   The combined suite now contains 25 passing tests.
+- The student implemented `line_cost_minor()`; review added explicit integer-type
+  validation before comparisons, including rejection of booleans. Six cost tests
+  cover boundaries, types, precision, and pantry-to-pack-to-cost composition.
+  The combined suite now contains 31 passing tests.
 
 ## Initial audit findings
 
@@ -70,8 +74,9 @@ ready while its required quantities or units remain unresolved.
 Continue in coaching mode: briefly explain each function's purpose, inputs,
 outputs, and place in the pipeline; the student writes application code and the
 assistant reviews and tests it. Pantry subtraction and whole-pack counts are
-complete. Next, calculate a selected product option's line cost from its integer
-minor-unit pack price and the required number of packs.
+complete, and line-cost calculation is implemented. Next, connect these helpers
+to one compatible catalog product and return its required packs, line cost, and
+surplus quantity. Product selection among alternatives follows that step.
 
 Build the simple basket baseline from structured requests: scale original quantities,
 subtract explicit pantry stock, select whole product packs in compatible units,
