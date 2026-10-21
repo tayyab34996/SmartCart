@@ -83,3 +83,23 @@ at 18000 minor units each, produces a line cost of 36000 minor units.
 
 Next: connect the helpers to one compatible catalog product, including its
 ingredient identity, unit, pack amount, price, and surplus quantity.
+
+## Student product-option evaluator
+
+Verified the corrected `evaluate_product_option()` implementation without changing
+its application logic. It checks ingredient identity, pack-unit compatibility, and
+availability before combining pantry subtraction, pack counts, and line cost.
+It returns a new result dictionary and leaves the original product unchanged.
+
+The combined suite now has **38 passing tests**, including seven new option tests.
+Coverage includes the worked example, exact/excess pantry stock, zero demand,
+wrong ingredients, incompatible units, unavailable products, negative quantities,
+output types/keys, and unchanged inputs on successful and rejected evaluations.
+The evaluator expects product records from the validated catalog.
+
+Actual seed examples for 400 g of missing chicken: the 250 g option needs two packs
+and costs 90000 minor units; the 500 g option needs one pack and costs 80000 minor
+units. Both leave 100 g of extra purchased quantity. These are simulated prices.
+
+Next: select the cheapest eligible product option for one ingredient, then
+assemble and independently validate the basket.
