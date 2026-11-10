@@ -31,9 +31,12 @@ Thumbs.db
 !/data/**/.gitkeep
 !/data/README.md
 !/data/processed/pilot/catalog.json
+!/data/processed/*.csv
 /models/**/*
 !/models/**/
 !/models/**/.gitkeep
 /results/**/*
 !/results/**/
 !/results/**/.gitkeep
+!/results/figures/**
+!/results/figures/*
