@@ -40,3 +40,5 @@ Thumbs.db
 !/results/**/.gitkeep
 !/results/figures/**
 !/results/figures/*
+!/results/predictions/**
+!/results/predictions/*

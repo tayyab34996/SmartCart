@@ -1,0 +1,230 @@
+{
+  "total_scenarios": 5,
+  "passed": 5,
+  "failed": 0,
+  "total_cost_minor": 298000,
+  "results": [
+    {
+      "scenario_id": "d3_ref_01_feasible_recipe",
+      "status": "valid",
+      "matches_expected_status": true,
+      "within_expected_cost": true,
+      "success": true,
+      "total_cost_minor": 50000,
+      "budget_remaining_minor": 50000,
+      "item_count": 4,
+      "lines": [
+        {
+          "product_id": "sim_flour_500g",
+          "missing_amount": "120.000",
+          "pack_count": 1,
+          "line_cost_minor": 9000,
+          "surplus_amount": "380.000",
+          "unit": "g",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_egg_6piece",
+          "missing_amount": "1.000",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "5.000",
+          "unit": "piece",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_olive_oil_100ml",
+          "missing_amount": "7.394",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "92.606",
+          "unit": "ml",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_water_500ml",
+          "missing_amount": "29.574",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "surplus_amount": "470.426",
+          "unit": "ml",
+          "currency": "PKR"
+        }
+      ]
+    },
+    {
+      "scenario_id": "d3_ref_02_pantry_deduction",
+      "status": "valid",
+      "matches_expected_status": true,
+      "within_expected_cost": true,
+      "success": true,
+      "total_cost_minor": 50000,
+      "budget_remaining_minor": 50000,
+      "item_count": 4,
+      "lines": [
+        {
+          "product_id": "sim_flour_500g",
+          "missing_amount": "120.000",
+          "pack_count": 1,
+          "line_cost_minor": 9000,
+          "surplus_amount": "380.000",
+          "unit": "g",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_egg_6piece",
+          "missing_amount": "1.000",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "5.000",
+          "unit": "piece",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_olive_oil_100ml",
+          "missing_amount": "7.394",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "92.606",
+          "unit": "ml",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_water_500ml",
+          "missing_amount": "29.574",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "surplus_amount": "470.426",
+          "unit": "ml",
+          "currency": "PKR"
+        }
+      ]
+    },
+    {
+      "scenario_id": "d3_ref_03_budget_exceeded",
+      "status": "over_budget",
+      "matches_expected_status": true,
+      "within_expected_cost": true,
+      "success": true,
+      "total_cost_minor": 50000,
+      "budget_remaining_minor": -30000,
+      "item_count": 4,
+      "lines": [
+        {
+          "product_id": "sim_flour_500g",
+          "missing_amount": "120.000",
+          "pack_count": 1,
+          "line_cost_minor": 9000,
+          "surplus_amount": "380.000",
+          "unit": "g",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_egg_6piece",
+          "missing_amount": "1.000",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "5.000",
+          "unit": "piece",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_olive_oil_100ml",
+          "missing_amount": "7.394",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "92.606",
+          "unit": "ml",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_water_500ml",
+          "missing_amount": "29.574",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "surplus_amount": "470.426",
+          "unit": "ml",
+          "currency": "PKR"
+        }
+      ]
+    },
+    {
+      "scenario_id": "d3_ref_04_direct_grocery_list",
+      "status": "valid",
+      "matches_expected_status": true,
+      "within_expected_cost": true,
+      "success": true,
+      "total_cost_minor": 98000,
+      "budget_remaining_minor": 52000,
+      "item_count": 2,
+      "lines": [
+        {
+          "product_id": "sim_chicken_500g",
+          "missing_amount": "500",
+          "pack_count": 1,
+          "line_cost_minor": 80000,
+          "surplus_amount": "0",
+          "unit": "g",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_olive_oil_100ml",
+          "missing_amount": "100",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "0",
+          "unit": "ml",
+          "currency": "PKR"
+        }
+      ]
+    },
+    {
+      "scenario_id": "d3_ref_05_scaled_servings",
+      "status": "valid",
+      "matches_expected_status": true,
+      "within_expected_cost": true,
+      "success": true,
+      "total_cost_minor": 50000,
+      "budget_remaining_minor": 150000,
+      "item_count": 4,
+      "lines": [
+        {
+          "product_id": "sim_flour_500g",
+          "missing_amount": "360.000",
+          "pack_count": 1,
+          "line_cost_minor": 9000,
+          "surplus_amount": "140.000",
+          "unit": "g",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_egg_6piece",
+          "missing_amount": "3.000",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "3.000",
+          "unit": "piece",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_olive_oil_100ml",
+          "missing_amount": "22.181",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "surplus_amount": "77.819",
+          "unit": "ml",
+          "currency": "PKR"
+        },
+        {
+          "product_id": "sim_water_500ml",
+          "missing_amount": "88.721",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "surplus_amount": "411.279",
+          "unit": "ml",
+          "currency": "PKR"
+        }
+      ]
+    }
+  ]
+}
