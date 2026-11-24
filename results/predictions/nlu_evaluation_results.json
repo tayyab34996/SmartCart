@@ -1,0 +1,44 @@
+{
+  "intent_metrics": {
+    "accuracy": 0.2,
+    "macro_f1": 0.125,
+    "labels": [
+      "build_grocery_list",
+      "plan_meal",
+      "revise_basket",
+      "unsupported"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        3,
+        0,
+        3
+      ],
+      [
+        0,
+        6,
+        0,
+        0
+      ],
+      [
+        2,
+        1,
+        0,
+        3
+      ],
+      [
+        2,
+        8,
+        2,
+        0
+      ]
+    ]
+  },
+  "slot_metrics": {
+    "budget_accuracy": 1.0,
+    "servings_accuracy": 0.9333333333333333
+  },
+  "num_validation_samples": 30,
+  "num_failures_analyzed": 30
+}

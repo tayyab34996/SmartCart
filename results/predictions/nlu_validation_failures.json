@@ -1,0 +1,272 @@
+[
+  {
+    "query": "cook\tpasta\tfor\t4",
+    "true_intent": "plan_meal",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.34608766431215654,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Triggered_uncertainty_clarification"
+  },
+  {
+    "query": "recipe\tfor\tsalad\tunder\t500",
+    "true_intent": "plan_meal",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.3743707458682096,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Triggered_uncertainty_clarification"
+  },
+  {
+    "query": "buy\tmilk\tand\tbread",
+    "true_intent": "build_grocery_list",
+    "predicted_intent": "unsupported",
+    "confidence": 0.3674174716596539,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "need\t2\tkg\tflour",
+    "true_intent": "build_grocery_list",
+    "predicted_intent": "unsupported",
+    "confidence": 0.5074925540885821,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "change\tbudget\tto\t3000",
+    "true_intent": "revise_basket",
+    "predicted_intent": "build_grocery_list",
+    "confidence": 0.3971084653847352,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "drop\teggs\tfrom\tcart",
+    "true_intent": "revise_basket",
+    "predicted_intent": "unsupported",
+    "confidence": 0.4159653254710215,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "weather\ttoday",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "play\tsome\tmusic",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "cok\tpasta\tfast",
+    "true_intent": "plan_meal",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.32347246093246795,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Triggered_uncertainty_clarification"
+  },
+  {
+    "query": "dinner\tfor\tsix\tpeople",
+    "true_intent": "plan_meal",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.3831653769756478,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Triggered_uncertainty_clarification"
+  },
+  {
+    "query": "make\tcurry\tunder\t$25",
+    "true_intent": "plan_meal",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.3297575576776921,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Triggered_uncertainty_clarification"
+  },
+  {
+    "query": "find\tcheap\tbreakfast",
+    "true_intent": "plan_meal",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Triggered_uncertainty_clarification"
+  },
+  {
+    "query": "bue\teggz\tnow",
+    "true_intent": "build_grocery_list",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "add\tcheddar\tand\tbutter",
+    "true_intent": "build_grocery_list",
+    "predicted_intent": "unsupported",
+    "confidence": 0.35413885213083574,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "get\t5\tapples",
+    "true_intent": "build_grocery_list",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "shopping\tlist\tfor\tbaking",
+    "true_intent": "build_grocery_list",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.39888293415341236,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "remove\tflour\tand\tsalt",
+    "true_intent": "revise_basket",
+    "predicted_intent": "unsupported",
+    "confidence": 0.46331243978826436,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "swap\tmilk\twith\talmond\tmilk",
+    "true_intent": "revise_basket",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "update\tbudget\t$100",
+    "true_intent": "revise_basket",
+    "predicted_intent": "unsupported",
+    "confidence": 0.37453735672762256,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "clear\teverything\tin\tcart",
+    "true_intent": "revise_basket",
+    "predicted_intent": "build_grocery_list",
+    "confidence": 0.3745391795123231,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "what\tis\tthe\ttime",
+    "true_intent": "unsupported",
+    "predicted_intent": "revise_basket",
+    "confidence": 0.3891138519227121,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "who\twon\tthe\tworld\tcup",
+    "true_intent": "unsupported",
+    "predicted_intent": "revise_basket",
+    "confidence": 0.35958531926529674,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "write\tpython\tscript",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "translate\tbonjour\tto\tenglish",
+    "true_intent": "unsupported",
+    "predicted_intent": "build_grocery_list",
+    "confidence": 0.4340510827655666,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "tell\tme\ta\tjoke",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "search\tgoogle\tfor\tshoes",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.39888293415341236,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "send\tan\temail\tto\tjohn",
+    "true_intent": "unsupported",
+    "predicted_intent": "build_grocery_list",
+    "confidence": 0.4340510827655666,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "open\tyoutube\tvideo",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "call\tmom\ton\tphone",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.26967432505988653,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  },
+  {
+    "query": "set\talarm\tfor\t7\tam",
+    "true_intent": "unsupported",
+    "predicted_intent": "plan_meal",
+    "confidence": 0.39888293415341236,
+    "needs_clarification": true,
+    "clarification_type": "low_confidence_intent",
+    "reason": "Intent_mismatch_or_low_confidence_ambiguity"
+  }
+]
