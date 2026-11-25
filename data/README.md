@@ -77,3 +77,15 @@ artifact. No generic gram/millilitre/piece conversion is assumed.
 
 Next milestone: build and check the structured-request basket baseline; add two
 more source-checked meal recipes before expanding to the larger catalog and benchmark.
+
+## Rebuild the catalog and the transaction sample
+
+```powershell
+.venv\Scripts\python scripts\prepare_data.py            # full catalog (Phase 2)
+.venv\Scripts\python scripts\prepare_transactions.py    # Instacart sample, Track B split, mapping (Phase 3)
+.venv\Scripts\python scripts\prepare_transactions.py --check
+```
+
+`prepare_transactions.py` needs `raw/archive_3.zip`. It writes the tracked ID-only
+manifests in `splits/` and `processed/`, and the ignored item rows and readable
+mapping in `interim/instacart/`. See [the data card](../docs/data_card.md).

@@ -10,7 +10,74 @@ Each phase starts only with the project owner's permission.
 | 0 | Repo prep, raw data, D1 scope | **Complete — 2026-11-25** (one external input outstanding: the team literature matrix) |
 | 1 | Fix inherited defects (D3, D4, D5) | **Complete — 2026-11-25** |
 | 2 | D2 full catalog and recipes | **Complete — 2026-11-25** (independent recipe review pending) |
-| 3–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 3 is next) |
+| 3 | D2 transaction sample and Track B splits | **Complete — 2026-11-25** (mapping review by a single reviewer) |
+| 4–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 4 is next) |
+
+## Phase 3 — D2 transaction sample and Track B splits (complete, 2026-11-25)
+
+**What changed**
+
+- **Code:**
+  - `src/smartcart/data/instacart.py`: hash-based user sampling, the Track B split,
+    chunked order-product streaming, ordered mapping rules, and review scoring with
+    Wilson intervals.
+  - `scripts/prepare_transactions.py`: builds everything, profiles time and memory,
+    and writes the checks. `--check` verifies reproducibility.
+  - `configs/instacart_sample.json`: seed 20261125, 10,000 users, at least 5 usable orders.
+- **User sample:** `data/splits/instacart_users.json`.
+  - Usable orders are prior or train orders; the 75,000 test orders have no product rows.
+  - 175,072 users are eligible; 31,137 are excluded for having 3–4 usable orders.
+  - 10,000 users are taken in ascending `sha256(seed:user_id)` order, with no RNG library involved.
+- **Track B manifest:** `data/splits/instacart_trackb.json`. For each user the last
+  usable order is test, the one before is validation, and the rest are training:
+  163,626 / 10,000 / 10,000 orders. Baskets are product sets; cart position and the
+  reorder flag are dropped.
+- **Ingredient mapping:**
+  - `configs/instacart_ingredient_map.csv` holds 119 ordered rules, each with aisles,
+    an include pattern and an exclude pattern.
+  - `data/processed/instacart_ingredient_map.csv` maps **3,288 Instacart products to
+    all 118 catalog ingredients**, covering all 98 recipe ingredients.
+  - Mapped products are 21.4% of sampled item rows, and about 74% of sampled orders
+    contain one. No catalog product is matched to Instacart, because catalog products
+    are simulated.
+- **Mapping review** (`data/processed/instacart_mapping_review.csv`): after two
+  development rounds the rules were frozen. Held-out results:
+  - precision 134/150 = **89.3%** (95% CI 83.4–93.3%);
+  - 3/150 unmapped products are misses, which implies about 90% recall within the rule aisles.
+- **Redistribution:** Instacart product names and basket contents are not committed.
+  The tracked files hold IDs only. A readable mapping and the sampled item rows are
+  written to the ignored `data/interim/instacart/`.
+- **Docs:** `docs/data_card.md` has a new section with the sampling, split, exclusions,
+  mapping policy, coverage and review.
+
+**Verification evidence**
+
+- `prepare_transactions.py`: all 6 checks pass (`results/metrics/transaction_checks.json`).
+  Runtime is about 17 s, with process RSS at most 266 MB at the sampled steps. The
+  32.4 M prior rows are streamed in 17 chunks.
+- `prepare_transactions.py --check`: the user manifest, the Track B manifest and the
+  mapping all rebuild byte-for-byte.
+- `pytest`: **92 passed, 95 subtests** (76 before, plus 16 in `tests/unit/test_instacart.py`).
+  The new tests cover:
+  - sampling determinism, order independence and the too-few-users error;
+  - split boundaries and test-set exclusion;
+  - chunked streaming, de-duplication and dropped columns;
+  - rule order, aisle restrictions and near-miss exclusions;
+  - Wilson intervals;
+  - consistency of the committed manifests (hash, coverage, no order in two splits);
+  - the review matching the current mapping;
+  - a rebuild from the archive (skipped when the archive is absent).
+
+**Open limitations**
+
+- The mapping review was done by **one reviewer** (the build agent). A teammate should
+  re-judge the 300 held-out rows. The 16 known errors and 3 misses are deliberately left
+  unfixed; any rule change needs a new held-out review.
+- Recall was estimated only in the aisles that rules name, and products are not weighted
+  by purchase frequency.
+- Some ingredients have very few Instacart products (beef tenderloin and onion salt 1
+  each; chicken cutlet and cooked brown rice 3 each), so their history signal will be sparse.
+- 31,137 users with fewer than 5 usable orders are outside the sample by design.
 
 ## Phase 2 — D2 full catalog and recipes (complete, 2026-11-25)
 
@@ -251,15 +318,15 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 3 — D2 transaction sample and Track B splits.**
+**Phase 4 — D2 benchmarks and gold feasibility checker.**
 
-- A deterministic sample of ~10,000 Instacart users with at least 5 usable orders,
-  drawn from `archive_3.zip`.
-- The Track B split per user: final order for test, previous order for validation,
-  earlier orders for training.
-- Ingredient-level mapping of Instacart products to the catalog, with coverage reported.
+- `data/annotations/nlu.jsonl` (900 examples) with a grouped 600/150/150 split by `seed_id`.
+- A second-person check of at least 20% of the annotations, or a disclosed delayed self-review.
+- `src/smartcart/validation/feasibility.py`: an exhaustive gold feasibility checker
+  over the full catalog.
+- Basket scenarios (`basket_dev.json`, `basket_test.json`) and a grouped retrieval benchmark.
 
-Phase 4 (benchmarks) can start in parallel, because it depends only on Phase 2.
+With Phase 3 done, Phase 8 (associations and Track B) needs only Phase 7.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open
