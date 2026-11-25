@@ -1,6 +1,6 @@
 # SmartCart initial data audit
 
-Generated: 2026-10-20T17:18:50.047805+00:00
+Generated: 2026-11-25T15:52:08.470987+00:00
 
 This report describes source data, not model performance. Raw archives were read in place and not modified.
 
