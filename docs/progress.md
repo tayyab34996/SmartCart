@@ -3,69 +3,6 @@
 The build is organised in phases defined in [BUILD_PHASES.md](BUILD_PHASES.md).
 Each phase starts only with the project owner's permission.
 
-## Start here (handover for a new session)
-
-**State on 2026-11-25:** Phases 0–4 are complete, committed and pushed to `origin/main`
-(`github.com/tayyab34996/SmartCart`; tip `10f9a45`). Phase 5 is next and **waits for the
-owner's explicit permission**.
-
-**How the owner works**
-
-- **One phase at a time.** Never start the next phase without explicit permission.
-- **Keep this file updated** after every phase: what changed, verification evidence,
-  open limitations and the next task.
-- **The owner commits and pushes.** The agent gives copy-paste commands (PowerShell,
-  from the repo root) and never commits or pushes itself.
-- **No `Co-Authored-By` line** or any agent attribution in commit messages.
-- **Full scope.** There is an extension, and nothing from the project plan is descoped.
-
-**Environment**
-
-- Windows. The repo lives at `D:\Vscode_projects\SmartCart`; keep it at this short path,
-  because a long path breaks the torch install.
-- Python 3.11 is in `.venv`. Run tests with `.venv\Scripts\python -m pytest`; the expected
-  result is **121 passed, 95 subtests**.
-- The raw archives `data/raw/archive_3.zip` (Instacart) and `archive_4.zip` (Food.com)
-  are present and git-ignored.
-- The generated, git-ignored files in `data/interim/instacart/` are needed by
-  `build_benchmarks.py`. Rebuild them with `scripts/prepare_transactions.py` (about 17 s).
-- If PowerShell fails to print a "⁄" character, set `PYTHONIOENCODING=utf-8`.
-
-**Reproduce everything**
-
-| Script | Phase | Builds |
-| --- | --- | --- |
-| `scripts/prepare_data.py` | 2 | the catalog |
-| `scripts/prepare_transactions.py` | 3 | the Instacart sample, the Track B split and the mapping |
-| `scripts/build_benchmarks.py` | 4 | NLU, basket and retrieval benchmarks |
-
-Each script also accepts `--check`, which verifies that the committed files rebuild
-byte-for-byte.
-
-**Locked test files** (`docs/benchmark_lock.md`). Do not modify them. Tune on train and
-dev only, and evaluate on test once, with frozen configurations.
-
-**Open items carried forward**
-
-- **History rewrite (2026-11-25).** `Co-Authored-By: Claude` lines were removed from the
-  8 Phase 0–1 commits with `git filter-branch` and force-pushed. The rewrite was verified:
-  no such lines remain locally or on origin, the file trees are identical, and the
-  messages, authors and dates are unchanged. Still pending:
-  - The repo owner (`tayyab34996`) must re-sync with
-    `git fetch origin; git reset --hard origin/main`, or, if they have local commits,
-    `git rebase --onto origin/main 5c74590 main`. They must not run `git pull` on their
-    old clone.
-  - If they turned off branch protection for the force push, they need to turn it back on.
-  - After they confirm, delete the local backups:
-    `Remove-Item -Recurse -Force .git\refs\original` and
-    `git branch -D backup-before-rewrite`.
-- **Second-person review** of the 180 NLU annotations (`docs/annotation_review.md`) and
-  of the Instacart mapping (300 rows).
-- **Independent review** of the 42 recipes.
-- **The team literature-matrix spreadsheet**, to be added to `docs/literature/`.
-- **The rubric's missing 10%**, to be confirmed with the instructor.
-- **Known bug for Phase 7:** `retrieval/filtering.py` checks dietary values with `is True`.
-
 ## Phase status
 
 | Phase | Scope | Status |
