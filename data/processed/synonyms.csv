@@ -1,0 +1,170 @@
+alias,ingredient_id,origin,status
+boneless chicken breast,chicken_breast,pilot,reviewed
+boneless skinless chicken breasts,chicken_breast,pilot,reviewed
+boneless chicken breast halves,chicken_breast,recipe_page,reviewed
+chicken breast fillet,chicken_breast,common_name,reviewed
+tomato salsa,salsa,pilot,reviewed
+chunky salsa,salsa,recipe_page,reviewed
+cheddar,cheddar,pilot,reviewed
+sharp cheddar cheese,cheddar,recipe_page,reviewed
+flour tortillas,flour_tortilla,pilot,reviewed
+general purpose white flour,white_flour,pilot,reviewed
+all-purpose flour,white_flour,pilot,reviewed
+plain flour,white_flour,common_name,reviewed
+maida,white_flour,common_name_transliteration,reviewed
+eggs,egg,pilot,reviewed
+whole eggs,egg,pilot,reviewed
+anda,egg,common_name_transliteration,reviewed
+extra virgin olive oil,olive_oil,pilot,reviewed
+light olive oil,olive_oil,recipe_page,reviewed
+drinking water,water,pilot,reviewed
+liquid honey,honey,pilot,reviewed
+shehad,honey,common_name_transliteration,reviewed
+regular soy sauce,soy_sauce,pilot,reviewed
+low sodium soy sauce,soy_sauce,recipe_page,reviewed
+fresh lime juice,lime_juice,pilot,reviewed
+unsalted butter,butter,recipe_page,reviewed
+makhan,butter,common_name_transliteration,reviewed
+salt,salt,recipe_page,reviewed
+kosher salt,salt,recipe_page,reviewed
+sea salt,salt,recipe_page,reviewed
+namak,salt,common_name_transliteration,reviewed
+black pepper,black_pepper,recipe_page,reviewed
+cracked black pepper,black_pepper,recipe_page,reviewed
+kali mirch,black_pepper,common_name_transliteration,reviewed
+whole milk,milk,common_name,reviewed
+doodh,milk,common_name_transliteration,reviewed
+heavy whipping cream,heavy_cream,recipe_page,reviewed
+double cream,heavy_cream,common_name,reviewed
+nutmeg,nutmeg,recipe_page,reviewed
+jaiphal,nutmeg,common_name_transliteration,reviewed
+parmigiano-reggiano cheese,parmesan,recipe_page,reviewed
+parmesan,parmesan,common_name,reviewed
+macaroni,elbow_macaroni,common_name,reviewed
+fettuccine,fettuccine,common_name,reviewed
+nonfat plain yogurt,plain_yogurt,recipe_page,reviewed
+plain low-fat yogurt,plain_yogurt,recipe_page,reviewed
+dahi,plain_yogurt,common_name_transliteration,reviewed
+fat-free mayonnaise,mayonnaise,recipe_page,reviewed
+mayo,mayonnaise,common_name,reviewed
+onions,onion,recipe_page,reviewed
+yellow onion,onion,recipe_page,reviewed
+sweet onion,onion,recipe_page,reviewed
+pyaz,onion,common_name_transliteration,reviewed
+ginger powder,ground_ginger,common_name,reviewed
+sonth,ground_ginger,common_name_transliteration,reviewed
+curry powder,curry_powder,recipe_page,reviewed
+paprika powder,paprika,common_name,reviewed
+cooked brown rice,cooked_brown_rice,recipe_page,reviewed
+chicken thighs,chicken_thigh,recipe_page,reviewed
+prepared mustard,mustard,common_name,reviewed
+dijon,dijon_mustard,common_name,reviewed
+chicken stock,chicken_broth,common_name,reviewed
+chicken bouillon,chicken_bouillon,recipe_page,reviewed
+chicken stock powder,chicken_bouillon,common_name,reviewed
+cornflour,cornstarch,common_name,reviewed
+scallion,green_onion,recipe_page,reviewed
+scallions,green_onion,common_name,reviewed
+spring onions,green_onion,common_name,reviewed
+potatoes,potato,recipe_page,reviewed
+red potatoes,potato,recipe_page,reviewed
+aloo,potato,common_name_transliteration,reviewed
+soured cream,sour_cream,common_name,reviewed
+white sugar,sugar,common_name,reviewed
+cheeni,sugar,common_name_transliteration,reviewed
+white vinegar,white_vinegar,common_name,reviewed
+sirka,white_vinegar,common_name_transliteration,reviewed
+dill,dill_weed,common_name,reviewed
+cucumbers,cucumber,recipe_page,reviewed
+kheera,cucumber,common_name_transliteration,reviewed
+salmon fillets,salmon,recipe_page,reviewed
+salmon steaks,salmon,recipe_page,reviewed
+cumin,ground_cumin,recipe_page,reviewed
+zeera powder,ground_cumin,common_name_transliteration,reviewed
+red chili powder,chili_powder,common_name,reviewed
+limes,lime,recipe_page,reviewed
+rotel tomatoes,diced_tomatoes_green_chilies,recipe_page,reviewed
+coriander leaves,cilantro,common_name,reviewed
+dhania,cilantro,common_name_transliteration,reviewed
+beef mince,ground_beef,common_name,reviewed
+qeema,ground_beef,common_name_transliteration,reviewed
+corn tortillas,corn_tortilla,recipe_page,reviewed
+tomato soup,condensed_tomato_soup,recipe_page,reviewed
+canola oil,vegetable_oil,recipe_page,reviewed
+cooking oil,vegetable_oil,common_name,reviewed
+white basmati rice,basmati_rice,recipe_page,reviewed
+basmati chawal,basmati_rice,common_name_transliteration,reviewed
+long grain rice,long_grain_rice,recipe_page,reviewed
+monterey jack,monterey_jack,common_name,reviewed
+green peppers,green_bell_pepper,recipe_page,reviewed
+capsicum,green_bell_pepper,common_name,reviewed
+shimla mirch,green_bell_pepper,common_name_transliteration,reviewed
+mushrooms,mushroom,recipe_page,reviewed
+cayenne pepper,cayenne,recipe_page,reviewed
+oatmeal,rolled_oats,recipe_page,reviewed
+old fashioned oats,rolled_oats,common_name,reviewed
+apple sauce,applesauce,common_name,reviewed
+light brown sugar,brown_sugar,common_name,reviewed
+seasoned salt,seasoning_salt,common_name,reviewed
+lehsan powder,garlic_powder,common_name_transliteration,reviewed
+bread crumbs,breadcrumbs,common_name,reviewed
+fresh parsley,parsley,recipe_page,reviewed
+garlic cloves,garlic,recipe_page,reviewed
+garlic clove,garlic,recipe_page,reviewed
+minced garlic,garlic,recipe_page,reviewed
+lehsan,garlic,common_name_transliteration,reviewed
+cut up chicken,chicken_pieces,recipe_page,reviewed
+sesame seeds,sesame_seeds,common_name,reviewed
+til,sesame_seeds,common_name_transliteration,reviewed
+canned tomatoes,canned_diced_tomatoes,common_name,reviewed
+worcestershire,worcestershire_sauce,common_name,reviewed
+filet of beef,beef_tenderloin,recipe_page,reviewed
+beef fillet,beef_tenderloin,common_name,reviewed
+basil,dried_basil,common_name,reviewed
+cod fish fillet,cod,recipe_page,reviewed
+fresh lemon juice,lemon_juice,recipe_page,reviewed
+chickpeas,chickpeas_canned,recipe_page,reviewed
+garbanzo beans,chickpeas_canned,common_name,reviewed
+chanay,chickpeas_canned,common_name_transliteration,reviewed
+pinto beans,pinto_beans_canned,recipe_page,reviewed
+sweet potatoes,sweet_potato,recipe_page,reviewed
+shakarkandi,sweet_potato,common_name_transliteration,reviewed
+green chilies,green_chilies_canned,recipe_page,reviewed
+courgette,zucchini,common_name,reviewed
+gobhi,cauliflower,common_name_transliteration,reviewed
+string beans,green_beans,common_name,reviewed
+turkey mince,ground_turkey,common_name,reviewed
+thyme,dried_thyme,common_name,reviewed
+thyme leaves,dried_thyme,recipe_page,reviewed
+rosemary,dried_rosemary,recipe_page,reviewed
+ricotta,ricotta,common_name,reviewed
+lamb chops,lamb_chop,recipe_page,reviewed
+mutton chops,lamb_chop,common_name,reviewed
+black beans,black_beans_canned,recipe_page,reviewed
+sweet corn,canned_corn,common_name,reviewed
+philadelphia cream cheese,cream_cheese,common_name,reviewed
+wings,chicken_wings,common_name,reviewed
+tomato sauce ketchup,ketchup,common_name,reviewed
+brussels sprouts,brussels_sprouts,recipe_page,reviewed
+sage,dried_sage,common_name,reviewed
+cajun spice,cajun_seasoning,common_name,reviewed
+lemon pepper,lemon_pepper_seasoning,common_name,reviewed
+chicken cutlets,chicken_cutlet,recipe_page,reviewed
+thin asparagus,asparagus,recipe_page,reviewed
+onion granules,onion_powder,common_name,reviewed
+peanut paste,peanut_butter,common_name,reviewed
+groundnuts,peanuts,common_name,reviewed
+coconut cream,coconut_milk,common_name,reviewed
+almond drink,almond_milk,common_name,reviewed
+lassi buttermilk,buttermilk,common_name,reviewed
+mozzarella,mozzarella,common_name,reviewed
+tofu,firm_tofu,common_name,reviewed
+tomato puree concentrate,tomato_paste,common_name,reviewed
+chawal ka atta,rice_flour,common_name_transliteration,reviewed
+polenta,cornmeal,common_name,reviewed
+chili garlic sauce,chili_sauce,common_name,reviewed
+vegetable stock,vegetable_broth,common_name,reviewed
+beef stock,beef_broth,common_name,reviewed
+atta,whole_wheat_flour,common_name_transliteration,reviewed
+red chili flakes,red_pepper_flakes,common_name,reviewed
+cream of chicken,cream_of_chicken_soup,common_name,reviewed

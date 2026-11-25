@@ -1,0 +1,43 @@
+recipe_id,source_recipe_id,name,meal_family,base_servings,locator,origin,scope_notes
+foodcom_3474,3474,Homemade Pasta,pasta,4,https://www.food.com/recipe/homemade-pasta-3474,pilot,Pilot recipe (unchanged). Pasta dough rather than a complete dinner.
+foodcom_3978,3978,Chicken Quesadillas,tacos_quesadillas,10,https://www.food.com/recipe/chicken-quesadillas-3978,pilot,Pilot recipe (unchanged).
+foodcom_19090,19090,Honey Lime Chicken,glazed_chicken,4,https://www.food.com/recipe/honey-lime-chicken-19090,pilot,Pilot recipe (unchanged).
+foodcom_60350,60350,Easy Stove-Top Macaroni & Cheese,pasta,6,https://www.food.com/recipe/easy-stove-top-macaroni-cheese-60350,phase2,Cheddar line lists two alternatives; the first (2 cups shredded) is used.
+foodcom_40837,40837,Mean Chef's Fettuccine Alfredo,pasta,2,https://www.food.com/recipe/mean-chef-s-fettuccine-alfredo-40837,phase2,Pinch quantities resolved by the measure policy.
+foodcom_37040,37040,Chicken Curry In A Hurry,curry,4,https://www.food.com/recipe/chicken-curry-in-a-hurry-37040,phase2,Fat-free mayonnaise and nonfat yogurt are mapped to the general mayonnaise and plain-yogurt ingredients. Cooked brown rice is bought ready-cooked.
+foodcom_97838,97838,Super Easy Honey Curry Chicken,curry,6,https://www.food.com/recipe/super-easy-honey-curry-chicken-97838,phase2,Mustard is prepared yellow mustard.
+foodcom_22330,22330,Egg Drop Soup,soup,2,https://www.food.com/recipe/egg-drop-soup-22330,phase2,One scallion requires one green-onion stalk; the catalog sells bunches.
+foodcom_3596,3596,Potato Soup,soup,4,https://www.food.com/recipe/potato-soup-3596,phase2,Potato range 6-8 resolved to the upper bound (8). Flour assumed all-purpose.
+foodcom_116236,116236,Creamy Cucumber Salad,salad,6,https://www.food.com/recipe/creamy-cucumber-salad-116236,phase2,Kosher salt mapped to salt (volume measure).
+foodcom_133959,133959,Amazing Salmon Tacos,tacos_quesadillas,4,https://www.food.com/recipe/amazing-salmon-tacos-133959,phase2,Ingredient list as published contains no tortillas; none are added. Two 8-ounce cans multiplied to 16 oz.
+foodcom_33257,33257,Cheesy Beef Taco Skillet,one_pan_skillet,4,https://www.food.com/recipe/cheesy-beef-taco-skillet-33257,phase2,Tortilla line lists corn or flour; the first (corn) is used.
+foodcom_147335,147335,Chipotle Copycat Lime Rice,rice,4,https://www.food.com/recipe/chipotle-copycat-lime-rice-recipe-147335,phase2,Oil line lists vegetable oil or butter; the first is used. Basmati uses the long-grain dry rice weight.
+foodcom_139989,139989,Ruhrei Mennonite Scrambled Eggs,scrambled_eggs,3,https://www.food.com/recipe/ruhrei-mennonite-scrambled-eggs-139989,phase2,Flour assumed all-purpose.
+foodcom_110496,110496,Salsa Omelet Pie,egg_bake_quiche,4,https://www.food.com/recipe/salsa-omelet-pie-110496,phase2,Monterey Jack assumed shredded (uses grated-cheese weight).
+foodcom_28042,28042,Vegetable Quiche,egg_bake_quiche,4,https://www.food.com/recipe/vegetable-quiche-28042,phase2,Crustless as published. Dash resolved by the measure policy.
+foodcom_58309,58309,Baked Old-Fashioned Oatmeal,oatmeal_porridge,4,https://www.food.com/recipe/baked-old-fastioned-oatmeal-58309,phase2,Brown sugar uses the packed weight (page does not say packed). Vanilla yogurt topping is included.
+foodcom_43143,43143,Waffles,waffles_pancakes,6,https://www.food.com/recipe/waffles-43143,phase2,Flour assumed all-purpose.
+foodcom_37336,37336,Melt-In-Your-Mouth Chicken Breasts,baked_chicken,4,https://www.food.com/recipe/melt-in-your-mouth-chicken-breasts-37336,phase2,Mayonnaise line lists mayonnaise or Greek yogurt; the first is used.
+foodcom_83561,83561,Oven-Fried Garlic Chicken,baked_chicken,4,https://www.food.com/recipe/oven-fried-garlic-chicken-83561,phase2,Butter line lists butter or margarine; the first is used. Cut-up chicken is bone-in chicken pieces.
+foodcom_44321,44321,Sesame Chicken,glazed_chicken,6,https://www.food.com/recipe/sesame-chicken-44321,phase2,Ginger range resolved to the upper bound. Red pepper flakes are marked optional on the page and excluded.
+foodcom_1356,1356,Ground Beef Stuffed Green Bell Peppers With Cheese,stuffed_vegetables,3,https://www.food.com/recipe/ground-beef-stuffed-green-bell-peppers-with-cheese-1356,phase2,One 16-ounce can of diced tomatoes.
+foodcom_57685,57685,Fillet of Beef (Beef Tenderloin Whole),roast_beef,4,https://www.food.com/recipe/fillet-of-beef-beef-tenderloin-whole-57685,phase2,Unsalted butter mapped to butter.
+foodcom_28199,28199,Baked Salmon,baked_fish,2,https://www.food.com/recipe/baked-salmon-28199,phase2,Two 6-ounce fillets multiplied to 12 oz. Light olive oil mapped to olive oil.
+foodcom_185430,185430,Cod Fish Grilled in Foil,baked_fish,4,https://www.food.com/recipe/cod-fish-grilled-in-foil-185430,phase2,As published.
+foodcom_90086,90086,Super Healthy Hummus,legumes,6,https://www.food.com/recipe/super-healthy-hummus-90086,phase2,Canned chickpeas by stated net mass.
+foodcom_149952,149952,Smoky Refried Beans,legumes,6,https://www.food.com/recipe/smoky-refried-beans-149952,phase2,Two 15-ounce cans multiplied to 30 oz. Canola oil mapped to vegetable oil.
+foodcom_29286,29286,Au Gratin Potatoes,potato_bake,8,https://www.food.com/recipe/au-gratin-potatoes-29286,phase2,Potato line lists red potatoes or potatoes; mapped to potatoes by mass. Cheddar assumed shredded.
+foodcom_176192,176192,Spicy Baked Sweet Potato Fries,oven_fries,4,https://www.food.com/recipe/spicy-baked-sweet-potato-fries-176192,phase2,As published.
+foodcom_24361,24361,Chile Relleno Casserole,casserole,8,https://www.food.com/recipe/chile-relleno-casserole-24361,phase2,Grated cheese mapped to cheddar (an option the page names).
+foodcom_44833,44833,Parmesan Zucchini,vegetable_side,4,https://www.food.com/recipe/parmesan-zucchini-44833,phase2,Parmesan range resolved to the upper bound (1/2 cup).
+foodcom_19710,19710,Grilled Cauliflower,vegetable_side,4,https://www.food.com/recipe/grilled-cauliflower-19710,phase2,Butter range resolved to the upper bound (1/2 cup).
+foodcom_43390,43390,Garlic Green Beans,vegetable_side,4,https://www.food.com/recipe/garlic-green-beans-43390,phase2,As published.
+foodcom_247934,247934,World's Best Turkey Burger,burger,6,https://www.food.com/recipe/world-s-best-turkey-burger-247934,phase2,Patties only; no buns are listed. Ricotta is stocked by volume.
+foodcom_114602,114602,Grilled Rosemary Lamb Chops,grilled_lamb,4,https://www.food.com/recipe/grilled-rosemary-lamb-chops-114602,phase2,Rosemary and thyme leaves assumed dried. Sea salt mapped to salt.
+foodcom_89204,89204,Crock-Pot Chicken With Black Beans & Cream Cheese,slow_cooker,4,https://www.food.com/recipe/crock-pot-chicken-with-black-beans-cream-cheese-89204,phase2,Chicken range 4-5 resolved to the upper bound (5). Salsa jar by stated net mass.
+foodcom_44888,44888,Caramelized Chicken Wings,chicken_wings,4,https://www.food.com/recipe/caramelized-chicken-wings-44888,phase2,Pinch quantities resolved by the measure policy.
+foodcom_330304,330304,Teriyaki Wingettes,chicken_wings,6,https://www.food.com/recipe/teriyaki-wingettes-330304,phase2,As published.
+foodcom_201073,201073,Roasted Brussels Sprouts,vegetable_side,4,https://www.food.com/recipe/roasted-brussels-sprouts-201073,phase2,As published.
+foodcom_115954,115954,Grilled Salmon,grilled_fish,4,https://www.food.com/recipe/grilled-salmon-115954,phase2,Salmon line lists steaks or fillets; mapped to salmon by mass.
+foodcom_1591,1591,Grilled Lemon Chicken,grilled_chicken,4,https://www.food.com/recipe/grilled-lemon-chicken-1591,phase2,As published.
+foodcom_84345,84345,Pan-Roasted Asparagus,vegetable_side,4,https://www.food.com/recipe/pan-roasted-asparagus-84345,phase2,As published.

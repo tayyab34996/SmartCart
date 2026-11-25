@@ -1,0 +1,119 @@
+ingredient_id,name,role,category,packs,price_pkr_per_unit,vegetarian,vegan,gluten_free,dairy_free,nut_free
+chicken_breast,Boneless skinless chicken breast,pilot,meat,g:250|500|1000;piece:2|4,g:1.6;piece:350,D,D,A,A,A
+salsa,Salsa,pilot,sauce,g:250|500;ml:250|500,g:0.9;ml:0.9,A,A,U,A,U
+cheddar,Cheddar cheese,pilot,dairy,g:100|250|500,g:2.6,U,D,A,D,A
+flour_tortilla,Flour tortilla (8 inch),pilot,bakery,piece:6|12,piece:30,A,U,D,U,U
+white_flour,All-purpose white flour,pilot,grain,g:500|1000|2000,g:0.16,A,A,D,A,A
+egg,Egg,pilot,egg,piece:6|12|30,piece:28,A,D,A,A,A
+olive_oil,Olive oil,pilot,oil,ml:100|250|500|1000,ml:1.6,A,A,A,A,A
+water,Drinking water,pilot,beverage,ml:500|1000|1500,ml:0.08,A,A,A,A,A
+honey,Honey,pilot,pantry,ml:250|500,ml:2.2,A,D,A,A,A
+soy_sauce,Soy sauce,pilot,sauce,ml:150|300|500,ml:1.4,A,A,D,A,A
+lime_juice,Lime juice,pilot,produce,ml:100|250,ml:1.2,A,A,A,A,A
+butter,Butter,recipe,dairy,g:100|200|500,g:2.4,A,D,A,D,A
+salt,Table salt,recipe,spice,ml:250|750,ml:0.12,A,A,A,A,A
+black_pepper,Ground black pepper,recipe,spice,ml:50|100|250,ml:3.0,A,A,A,A,A
+milk,Milk,recipe,dairy,ml:500|1000|1500,ml:0.22,A,D,A,D,A
+heavy_cream,Heavy cream,recipe,dairy,ml:200|500,ml:1.1,A,D,A,D,A
+nutmeg,Ground nutmeg,recipe,spice,ml:50|100,ml:6.0,A,A,A,A,A
+parmesan,Parmesan cheese (grated),recipe,dairy,g:100|200|400,g:6.0,D,D,A,D,A
+elbow_macaroni,Elbow macaroni,recipe,grain,g:400|500|1000,g:0.6,A,A,D,A,A
+fettuccine,Fettuccine pasta,recipe,grain,g:400|500,g:0.7,A,U,D,A,A
+plain_yogurt,Plain yogurt,recipe,dairy,g:250|500|1000,g:0.35,A,D,A,D,A
+mayonnaise,Mayonnaise,recipe,sauce,g:250|500|1000,g:1.1,A,D,U,A,A
+onion,Onion,recipe,produce,piece:1|3|6;g:1000|2000,piece:30;g:0.15,A,A,A,A,A
+ground_ginger,Ground ginger,recipe,spice,ml:50|100,ml:4.0,A,A,A,A,A
+curry_powder,Curry powder,recipe,spice,ml:50|100|200,ml:3.0,A,A,U,A,U
+paprika,Paprika,recipe,spice,ml:50|100,ml:3.5,A,A,A,A,A
+cooked_brown_rice,Cooked brown rice (ready pouch),recipe,grain,g:250|500,g:0.9,A,A,A,A,A
+chicken_thigh,Chicken thigh (bone-in),recipe,meat,piece:4|6|8,piece:120,D,D,A,A,A
+mustard,Yellow mustard,recipe,sauce,ml:200|400,ml:1.2,A,A,U,A,A
+dijon_mustard,Dijon mustard,recipe,sauce,ml:200,ml:2.5,A,A,U,A,A
+chicken_broth,Chicken broth,recipe,canned,ml:500|1000,ml:0.5,D,D,U,A,A
+chicken_bouillon,Chicken bouillon granules,recipe,spice,ml:50|100,ml:4.0,D,D,U,U,U
+cornstarch,Cornstarch (corn flour),recipe,pantry,g:200|500,g:0.5,A,A,A,A,A
+green_onion,Green onion (spring onion),recipe,produce,piece:6|12,piece:12,A,A,A,A,A
+potato,Potato,recipe,produce,piece:1|6;g:1000|2500|5000,piece:25;g:0.12,A,A,A,A,A
+sour_cream,Sour cream,recipe,dairy,g:200|400,g:1.3,A,D,A,D,A
+sugar,Granulated white sugar,recipe,pantry,g:500|1000|2000,g:0.16,A,A,A,A,A
+white_vinegar,Distilled white vinegar,recipe,pantry,ml:500|1000,ml:0.25,A,A,A,A,A
+dill_weed,Dried dill weed,recipe,spice,ml:50,ml:5.0,A,A,A,A,A
+cucumber,Cucumber,recipe,produce,piece:1|4,piece:35,A,A,A,A,A
+salmon,Salmon fillet,recipe,fish,g:250|500|1000,g:6.0,D,D,A,A,A
+ground_cumin,Ground cumin,recipe,spice,ml:50|100|200,ml:2.5,A,A,A,A,A
+chili_powder,Chili powder,recipe,spice,ml:50|100|200,ml:2.5,A,A,U,A,U
+lime,Lime,recipe,produce,piece:1|4|10,piece:20,A,A,A,A,A
+diced_tomatoes_green_chilies,Diced tomatoes with green chilies (canned),recipe,canned,g:283|400,g:0.9,A,A,U,A,A
+cilantro,Fresh cilantro,recipe,produce,piece:1|2;ml:50|100,piece:40;ml:1.0,A,A,A,A,A
+ground_beef,Ground beef (beef mince),recipe,meat,g:250|500|1000,g:2.0,D,D,A,A,A
+corn_tortilla,Corn tortilla (6 inch),recipe,bakery,piece:10|20|30,piece:25,A,A,A,A,U
+condensed_tomato_soup,Condensed tomato soup (canned),recipe,canned,g:298|400,g:1.0,A,U,U,U,U
+vegetable_oil,Vegetable oil (canola),recipe,oil,ml:500|1000|3000,ml:0.55,A,A,A,A,A
+basmati_rice,Basmati rice,recipe,grain,g:1000|2000|5000,g:0.35,A,A,A,A,A
+long_grain_rice,Long-grain white rice,recipe,grain,g:1000|2000|5000,g:0.28,A,A,A,A,A
+monterey_jack,Monterey Jack cheese,recipe,dairy,g:200|400,g:3.0,U,D,A,D,A
+green_bell_pepper,Green bell pepper,recipe,produce,piece:1|3|6,piece:45,A,A,A,A,A
+mushroom,White mushroom,recipe,produce,piece:6|12|24,piece:15,A,A,A,A,A
+cayenne,Ground cayenne pepper,recipe,spice,ml:50|100,ml:3.0,A,A,A,A,A
+rolled_oats,Rolled oats,recipe,grain,g:500|1000,g:0.6,A,A,U,A,A
+baking_powder,Baking powder,recipe,pantry,g:100|250,g:1.5,A,A,U,A,A
+applesauce,Applesauce,recipe,pantry,ml:250|500|700,ml:0.7,A,A,A,A,A
+brown_sugar,Brown sugar,recipe,pantry,g:500|1000,g:0.25,A,A,A,A,A
+vanilla_yogurt,Vanilla yogurt,recipe,dairy,g:250|500,g:0.5,A,D,U,D,A
+seasoning_salt,Seasoning salt,recipe,spice,ml:100|250,ml:1.5,A,A,U,A,U
+garlic_powder,Garlic powder,recipe,spice,ml:50|100|200,ml:2.5,A,A,A,A,A
+breadcrumbs,Dried breadcrumbs,recipe,bakery,g:250|500,g:0.6,A,U,D,U,U
+parsley,Fresh parsley (chopped),recipe,produce,ml:50|100|250,ml:1.2,A,A,A,A,A
+garlic,Garlic,recipe,produce,piece:10|30;g:100|200,piece:4;g:1.8,A,A,A,A,A
+chicken_pieces,Chicken pieces (bone-in),recipe,meat,g:1000|1500|2000,g:0.85,D,D,A,A,A
+sesame_seeds,Toasted sesame seeds,recipe,spice,ml:50|100,ml:2.0,A,A,A,A,A
+canned_diced_tomatoes,Diced tomatoes (canned),recipe,canned,g:400|800,g:0.5,A,A,A,A,A
+worcestershire_sauce,Worcestershire sauce,recipe,sauce,ml:150|300,ml:2.0,D,D,U,A,A
+beef_tenderloin,Beef tenderloin,recipe,meat,g:500|1000|2000,g:5.5,D,D,A,A,A
+dried_basil,Dried basil,recipe,spice,ml:50|100,ml:3.0,A,A,A,A,A
+cod,Cod fillet,recipe,fish,g:250|500,g:4.5,D,D,A,A,A
+lemon_juice,Lemon juice,recipe,produce,ml:100|250|500,ml:1.0,A,A,A,A,A
+chickpeas_canned,Chickpeas (canned),recipe,canned,g:400|540|800,g:0.45,A,A,A,A,A
+pinto_beans_canned,Pinto beans (canned),recipe,canned,g:400|800,g:0.5,A,A,A,A,A
+sweet_potato,Sweet potato,recipe,produce,piece:1|3|6,piece:40,A,A,A,A,A
+green_chilies_canned,Whole green chilies (canned),recipe,canned,g:113|227,g:1.6,A,A,A,A,A
+zucchini,Zucchini,recipe,produce,piece:1|3,piece:40,A,A,A,A,A
+cauliflower,Cauliflower,recipe,produce,piece:1|2,piece:150,A,A,A,A,A
+green_beans,Green beans,recipe,produce,g:250|500|1000,g:0.5,A,A,A,A,A
+ground_turkey,Ground turkey,recipe,meat,g:500|1000,g:2.4,D,D,A,A,A
+dried_thyme,Dried thyme,recipe,spice,ml:50|100,ml:3.0,A,A,A,A,A
+dried_rosemary,Dried rosemary,recipe,spice,ml:50|100,ml:3.0,A,A,A,A,A
+ricotta,Ricotta cheese,recipe,dairy,ml:250|500,ml:1.6,U,D,A,D,A
+lamb_chop,Lamb chop,recipe,meat,piece:2|4|8,piece:450,D,D,A,A,A
+black_beans_canned,Black beans (canned),recipe,canned,g:400|800,g:0.55,A,A,A,A,A
+canned_corn,Sweet corn kernels (canned),recipe,canned,g:340|425|800,g:0.55,A,A,A,A,A
+cream_cheese,Cream cheese,recipe,dairy,g:200|400,g:2.0,U,D,A,D,A
+chicken_wings,Chicken wings,recipe,meat,g:500|1000|2000,g:1.0,D,D,A,A,A
+ketchup,Tomato ketchup,recipe,sauce,ml:300|500|1000,ml:0.6,A,A,U,A,A
+brussels_sprouts,Brussels sprouts,recipe,produce,g:250|500|1000,g:1.2,A,A,A,A,A
+dried_sage,Dried sage,recipe,spice,ml:50,ml:3.5,A,A,A,A,A
+cajun_seasoning,Cajun seasoning,recipe,spice,ml:50|100,ml:3.0,A,A,U,A,U
+lemon_pepper_seasoning,Lemon pepper seasoning,recipe,spice,ml:50|100,ml:3.0,A,A,U,A,U
+chicken_cutlet,Chicken cutlet,recipe,meat,piece:4|6|8,piece:150,D,D,A,A,A
+asparagus,Asparagus,recipe,produce,g:250|500,g:2.5,A,A,A,A,A
+onion_powder,Onion powder,recipe,spice,ml:50|100,ml:2.5,A,A,A,A,A
+peanut_butter,Peanut butter,distractor,pantry,g:340|500|1000,g:1.5,A,A,A,A,D
+peanuts,Roasted peanuts,distractor,pantry,g:200|500,g:1.4,A,A,A,A,D
+coconut_milk,Coconut milk (canned),distractor,canned,ml:400|800,ml:0.8,A,A,A,A,U
+almond_milk,Almond milk,distractor,dairy_alternative,ml:1000,ml:0.9,A,A,U,A,D
+buttermilk,Buttermilk,distractor,dairy,ml:500|1000,ml:0.3,A,D,A,D,A
+mozzarella,Mozzarella cheese,distractor,dairy,g:200|400,g:2.4,U,D,A,D,A
+firm_tofu,Firm tofu,distractor,protein,g:400,g:0.9,A,A,A,A,A
+garlic_salt,Garlic salt,distractor,spice,ml:100|250,ml:1.3,A,A,A,A,A
+onion_salt,Onion salt,distractor,spice,ml:100,ml:1.3,A,A,A,A,A
+tomato_paste,Tomato paste,distractor,canned,g:70|140,g:1.0,A,A,A,A,A
+rice_flour,Rice flour,distractor,grain,g:500|1000,g:0.3,A,A,A,A,A
+cornmeal,Yellow cornmeal,distractor,grain,g:500|1000,g:0.3,A,A,U,A,A
+egg_noodles,Egg noodles,distractor,grain,g:400,g:0.7,A,D,D,A,A
+chili_sauce,Chili sauce,distractor,sauce,ml:300,ml:1.0,A,A,U,A,A
+vegetable_broth,Vegetable broth,distractor,canned,ml:500|1000,ml:0.45,A,A,U,A,A
+beef_broth,Beef broth,distractor,canned,ml:500|1000,ml:0.55,D,D,U,A,A
+whole_wheat_flour,Whole wheat flour,distractor,grain,g:1000|2000|5000,g:0.16,A,A,D,A,A
+margarine,Margarine,distractor,dairy_alternative,g:250|500,g:1.2,A,U,A,U,A
+red_pepper_flakes,Crushed red pepper flakes,distractor,spice,ml:50|100,ml:2.5,A,A,A,A,A
+cream_of_chicken_soup,Condensed cream of chicken soup,distractor,canned,g:298,g:1.1,D,D,U,D,U
