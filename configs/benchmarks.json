@@ -1,0 +1,42 @@
+{
+  "seed": 20261125,
+  "catalog": "data/processed/catalog.json",
+  "recipe_aliases": "data/processed/recipe_aliases.csv",
+  "ingredients": "data/processed/ingredients.csv",
+  "retrieval_queries": "configs/retrieval_queries.csv",
+  "recipe_split_targets": {"train": 16, "dev": 8, "test": 18},
+  "list_families": {"train": 10, "dev": 4, "test": 6},
+  "nlu_seeds": {
+    "train": {"plan_meal": 80, "build_grocery_list": 50, "revise_basket": 40, "unsupported": 30},
+    "dev": {"plan_meal": 20, "build_grocery_list": 12, "revise_basket": 10, "unsupported": 8},
+    "test": {"plan_meal": 20, "build_grocery_list": 12, "revise_basket": 10, "unsupported": 8}
+  },
+  "paraphrases_per_seed": 3,
+  "nlu_design_weights": {"feasible": 0.6, "infeasible": 0.15, "clarification": 0.25},
+  "basket_targets": {
+    "dev": {"feasible": 30, "infeasible": 10, "clarification": 10},
+    "test": {"feasible": 120, "infeasible": 40, "clarification": 40}
+  },
+  "history_scenarios": {"dev": 10, "test": 40},
+  "history_min_shared_ingredients": 2,
+  "retrieval_dev_ingredients": 40,
+  "retrieval_counts": {"dev": 50, "test": 100},
+  "review_fraction": 0.2,
+  "instacart": {
+    "trackb": "data/splits/instacart_trackb.json",
+    "mapping": "data/processed/instacart_ingredient_map.csv",
+    "baskets": "data/interim/instacart/sample_order_products.csv.gz"
+  },
+  "outputs": {
+    "nlu": "data/annotations/nlu.jsonl",
+    "review_sample": "data/annotations/review_sample.jsonl",
+    "nlu_split": "data/splits/nlu_split.json",
+    "groups": "data/splits/benchmark_groups.json",
+    "basket_dev": "data/benchmarks/basket_dev.json",
+    "basket_test": "data/benchmarks/basket_test.json",
+    "retrieval_dev": "data/benchmarks/retrieval_dev.json",
+    "retrieval_test": "data/benchmarks/retrieval_test.json",
+    "checks": "results/metrics/benchmark_checks.json"
+  },
+  "locked_outputs": ["nlu", "nlu_split", "groups", "basket_test", "retrieval_test"]
+}
