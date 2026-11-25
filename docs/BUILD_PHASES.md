@@ -99,7 +99,8 @@ py -3.11 -m venv .venv
   - Same schema as the pilot; must pass `validate_pilot()`.
   - Keep all pilot product and recipe IDs.
   - Units are `g`, `ml` or `piece`. Money is integer `price_minor` (paisa; 100 per PKR).
-  - Dietary values are `true`, `false` or `"unknown"`, for `vegetarian`, `vegan`, `gluten_free`, `dairy_free` and `nut_free`.
+  - Dietary values are `"allowed"`, `"disallowed"` or `"unknown"` (the existing `validate_pilot()` contract), for `vegetarian`, `vegan`, `gluten_free`, `dairy_free` and `nut_free`.
+  - Recipes also carry a `meal_family`; validated by `validate_catalog()`.
 - **StructuredRequest** — parser output and solver input:
   ```json
   {"request_id": "s012", "intent": "plan_meal", "recipe_id": "foodcom_3474", "servings": 4,
@@ -292,7 +293,7 @@ py -3.11 -m venv .venv
 2. Search per required ingredient, not per whole request.
 3. Retrieve the initial top 10, then apply eligibility checks for ingredient identity, unit and diet in the solver. Similarity never proves a dietary rule.
 4. Tune the candidate count on development queries only.
-5. Implement `retrieve_candidates`.
+5. Implement `retrieve_candidates`. Fix `filter_eligible_candidates()`: it checks dietary values with `is True`, but the catalog uses `"allowed"`, so no product can currently pass a dietary filter (found in Phase 2).
 6. Evaluate Recall@5, Recall@10 and MRR for TF-IDF and MiniLM under the same catalog and eligibility rules. Regenerate figure `11_` and `results/predictions/retrieval_benchmark_results.json`.
 
 **Completion check:** dev and test results exist for both methods; test queries are evaluated once, with frozen settings; the leak-regression test passes.

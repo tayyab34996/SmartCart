@@ -9,7 +9,80 @@ Each phase starts only with the project owner's permission.
 | --- | --- | --- |
 | 0 | Repo prep, raw data, D1 scope | **Complete — 2026-11-25** (one external input outstanding: the team literature matrix) |
 | 1 | Fix inherited defects (D3, D4, D5) | **Complete — 2026-11-25** |
-| 2–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 2 is next) |
+| 2 | D2 full catalog and recipes | **Complete — 2026-11-25** (independent recipe review pending) |
+| 3–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 3 is next) |
+
+## Phase 2 — D2 full catalog and recipes (complete, 2026-11-25)
+
+**What changed**
+
+- **New catalog** `data/processed/catalog.json`, built by `scripts/prepare_data.py` from
+  reviewed inputs:
+  - `data/processed/recipes.csv`
+  - `data/processed/recipe_lines.csv`
+  - `data/processed/ingredients.csv`
+  - `data/processed/synonyms.csv`
+  - `configs/catalog_build.json`
+
+  The pilot catalog is unchanged, and all 20 pilot products and 3 pilot recipes carry
+  over into the full catalog unchanged.
+- **Recipes: 42 across 27 meal families.**
+  - Food.com candidates were filtered for structure and popularity, with pork and
+    alcohol excluded (a reversible design choice for the PKR context).
+  - **51 recipe pages were checked on food.com:** 39 accepted, 12 rejected for lines
+    that could not be converted without inventing amounts.
+  - Units come from the pages, because the dataset has none and its quantity lists are
+    misaligned for "X or Y" lines. Servings come from the dataset.
+- **Ingredients:** 118 canonical ingredients (98 used in recipes, 20 distractors for
+  retrieval near-misses) with **167 reviewed aliases**. These include British and
+  Urdu-transliteration aliases such as dahi, aloo, pyaz, chanay and atta.
+- **Products: 466 simulated options.**
+  - Fictional house brands (Basics, Select, Organic), several pack sizes per ingredient,
+    PKR prices in minor units.
+  - 12 dietary variants: vegetarian cheddar, gluten-free tamari, vegan mayonnaise and others.
+  - 4 deterministic unavailable products.
+- **Conversions:** NIST lb, oz, cup, tbsp and tsp, plus 24 ingredient-specific
+  King Arthur weight-chart estimates. The project policy for dash and pinch is documented.
+- **Code:**
+  - `validate_catalog()` and `load_catalog()` in `data/contracts.py` (pilot contract plus `meal_family`);
+  - `data/catalog_build.py` (deterministic build);
+  - `data/catalog_checks.py` (coverage, duplicate, missing-field and target checks);
+  - `scripts/prepare_data.py` (`--check` verifies the catalog is reproducible).
+- **Docs:**
+  - `docs/data_card.md`: sources and terms, selection, the full line-resolution policy,
+    the simulation and dietary policies, and known gaps.
+  - `BUILD_PHASES.md`: corrected the dietary-value wording to `allowed` / `disallowed` / `unknown`.
+
+**Verification evidence**
+
+- `scripts/prepare_data.py`: all checks pass. The results are in `results/metrics/catalog_checks.json`:
+  - recipes ≥ 38, meal families ≥ 20, products within 300–500;
+  - every recipe line is covered by an available product;
+  - no duplicate product names and no missing fields.
+- `prepare_data.py --check`: the committed catalog rebuilds byte-for-byte.
+- `pytest`: **76 passed, 95 subtests** (63 before, plus 13 catalog tests). The new tests cover:
+  - reproducibility and the scope targets;
+  - pilot preservation and line coverage;
+  - exact converted amounts (2 cups cheddar = 226 g; 16 oz = 453.593 g; 1 bunch = 6 stalks; 2 pinches = 0.617 ml);
+  - serving scaling;
+  - distractors, dietary variants and labels;
+  - Basics availability and simulation labelling;
+  - the meal-family contract;
+  - the price helper.
+- The cheapest complete basket at base servings ranges from PKR 500 (pasta dough) to
+  PKR 9,990 (4 lb beef tenderloin). Every recipe is purchasable.
+
+**Open limitations**
+
+- **Independent review is pending** for all 42 recipes and for the `agent_reviewed`
+  ingredient mappings. A teammate should spot-check lines against the pages.
+- Lines were checked against fetched page text; servings are from the dataset.
+- There is no stew or stir-fry family: those candidates needed volume-to-mass conversions
+  for chopped vegetables, which no cited source covers.
+- Spices, condiments and purées are stocked by volume, a simulation simplification.
+- **Bug found for Phase 7:** `retrieval/filtering.py` checks dietary values with `is True`,
+  but the catalog uses `"allowed"`, so no product can pass a dietary filter.
+- Pilot products keep all-`unknown` dietary labels, so they never satisfy a hard diet request.
 
 ## Phase 0 — Repo prep, raw data, D1 scope (complete, 2026-11-25)
 
@@ -178,15 +251,15 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 2 — D2 full catalog and recipes.**
+**Phase 3 — D2 transaction sample and Track B splits.**
 
-- ~40 Food.com recipes across at least 20 meal families, from `archive_4.zip`, manually normalized.
-- Canonical ingredients and `data/processed/synonyms.csv`.
-- A 300–500 option catalog in `data/processed/catalog.json`.
-- Coverage, duplicate and missing-field checks.
-- `docs/data_card.md`.
+- A deterministic sample of ~10,000 Instacart users with at least 5 usable orders,
+  drawn from `archive_3.zip`.
+- The Track B split per user: final order for test, previous order for validation,
+  earlier orders for training.
+- Ingredient-level mapping of Instacart products to the catalog, with coverage reported.
 
-Phase 3 (the Instacart sample and Track B splits) can run alongside Phase 2.
+Phase 4 (benchmarks) can start in parallel, because it depends only on Phase 2.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open
