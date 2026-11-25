@@ -12,6 +12,8 @@ def	build_baseline_basket_from_request(request:dict,catalog_data:dict)->dict:
 	else:
 		requirements=[{'ingredient_id':r['ingredient_id'],'required_amount':Decimal(str(r['required_amount'])),'unit':r['unit'],'pantry_amount':Decimal(str(pantry_dict.get(r['ingredient_id'],r.get('pantry_amount','0'))))}	for	r	in	request.get('requirements',[])]
 	basket=assemble_independent_basket(requirements,catalog_data.get('products',[]),budget_minor=request.get('budget_minor'))
+	required_ids={r['ingredient_id']	for	r	in	requirements}
+	basket['ignored_pantry_keys']=sorted(k	for	k	in	pantry_dict	if	k	not	in	required_ids)
 	return	{'request':request,'basket':basket}
 
 def	run_baseline_pipeline(text:str,catalog_data:dict)->dict:
