@@ -1,0 +1,236 @@
+{
+  "nlu_examples": 900,
+  "nlu_examples_per_split": {
+    "train": 600,
+    "dev": 150,
+    "test": 150
+  },
+  "nlu_seeds_per_split": {
+    "train": 200,
+    "dev": 50,
+    "test": 50
+  },
+  "nlu_intents_per_split": {
+    "train": {
+      "plan_meal": 240,
+      "build_grocery_list": 150,
+      "revise_basket": 120,
+      "unsupported": 90
+    },
+    "dev": {
+      "plan_meal": 60,
+      "build_grocery_list": 36,
+      "revise_basket": 30,
+      "unsupported": 24
+    },
+    "test": {
+      "plan_meal": 60,
+      "build_grocery_list": 36,
+      "revise_basket": 30,
+      "unsupported": 24
+    }
+  },
+  "nlu_clarification_types": {
+    "train": {
+      "missing_budget": 54,
+      "missing_pantry_quantity": 15,
+      "ambiguous_diet": 15,
+      "missing_recipe": 24,
+      "missing_item_quantity": 24
+    },
+    "dev": {
+      "missing_budget": 6,
+      "missing_pantry_quantity": 3,
+      "ambiguous_diet": 3,
+      "missing_item_quantity": 3
+    },
+    "test": {
+      "missing_budget": 9,
+      "missing_pantry_quantity": 3,
+      "ambiguous_diet": 3,
+      "missing_recipe": 6,
+      "missing_item_quantity": 6
+    }
+  },
+  "nlu_slot_label_counts": {
+    "MEAL": 345,
+    "BUDGET": 489,
+    "SERVINGS": 342,
+    "CURRENCY": 381,
+    "PANTRY": 87,
+    "QUANTITY": 789,
+    "UNIT": 612,
+    "DIET": 96,
+    "EXCLUSION": 66,
+    "PRODUCT": 756
+  },
+  "nlu_span_problems": {},
+  "review_sample": {
+    "size": 180,
+    "per_split": {
+      "train": 120,
+      "dev": 30,
+      "test": 30
+    }
+  },
+  "baskets": {
+    "dev": {
+      "labels": {
+        "feasible": 30,
+        "infeasible": 10,
+        "clarification": 10
+      },
+      "designs": {
+        "ambiguous_diet": 2,
+        "broad": 2,
+        "budget_low": 3,
+        "diet_conflict": 2,
+        "diet_ok": 1,
+        "exact": 2,
+        "exclusion": 3,
+        "exclusion_outside": 2,
+        "generous": 5,
+        "list_diet_conflict": 2,
+        "list_exact": 1,
+        "list_generous": 3,
+        "list_missing_quantity": 1,
+        "list_no_budget": 2,
+        "list_vague_budget": 1,
+        "multipack": 4,
+        "one_short": 3,
+        "pantry_full": 4,
+        "pantry_partial": 3,
+        "pantry_unknown": 1,
+        "unknown_meal": 2,
+        "vague_budget": 1
+      },
+      "clarification_types": {
+        "ambiguous_diet": 2,
+        "missing_pantry_quantity": 1,
+        "missing_recipe": 4,
+        "missing_budget": 2,
+        "missing_item_quantity": 1
+      },
+      "infeasible_reasons": {
+        "budget_below_minimum_cost": 6,
+        "no_eligible_option": 4
+      },
+      "exact_budget": 7,
+      "multi_pack_lines": 22,
+      "pantry_covers_a_line": 4,
+      "has_history": 10,
+      "grocery_list": 10,
+      "resolved_labels": {
+        "feasible": 10
+      },
+      "families": 12
+    },
+    "test": {
+      "labels": {
+        "feasible": 120,
+        "infeasible": 40,
+        "clarification": 40
+      },
+      "designs": {
+        "ambiguous_diet": 12,
+        "broad": 4,
+        "budget_low": 10,
+        "diet_conflict": 12,
+        "diet_ok": 10,
+        "exact": 10,
+        "exclusion": 11,
+        "exclusion_outside": 14,
+        "generous": 14,
+        "list_budget_low": 3,
+        "list_diet_conflict": 3,
+        "list_exact": 5,
+        "list_generous": 5,
+        "list_missing_quantity": 1,
+        "list_no_budget": 1,
+        "list_vague_budget": 2,
+        "multipack": 13,
+        "no_budget": 14,
+        "one_short": 12,
+        "pantry_full": 11,
+        "pantry_partial": 12,
+        "pantry_unknown": 7,
+        "unknown_meal": 9,
+        "vague_budget": 5
+      },
+      "clarification_types": {
+        "ambiguous_diet": 12,
+        "missing_recipe": 13,
+        "missing_pantry_quantity": 7,
+        "missing_budget": 7,
+        "missing_item_quantity": 1
+      },
+      "infeasible_reasons": {
+        "budget_below_minimum_cost": 25,
+        "no_eligible_option": 15
+      },
+      "exact_budget": 26,
+      "multi_pack_lines": 66,
+      "pantry_covers_a_line": 11,
+      "has_history": 40,
+      "grocery_list": 20,
+      "resolved_labels": {
+        "infeasible": 2,
+        "feasible": 38
+      },
+      "families": 24
+    }
+  },
+  "basket_discarded_candidates": {
+    "dev": {},
+    "test": {
+      "design_not_applicable": 4,
+      "duplicate_request": 3
+    }
+  },
+  "basket_labels_reproduced_by_checker": true,
+  "retrieval": {
+    "dev": {
+      "queries": 50,
+      "ingredients": 35,
+      "query_types": {
+        "synonym": 18,
+        "misspelling": 7,
+        "brand": 9,
+        "constrained": 1,
+        "near_match": 5,
+        "transliteration": 10
+      }
+    },
+    "test": {
+      "queries": 100,
+      "ingredients": 77,
+      "query_types": {
+        "synonym": 34,
+        "misspelling": 11,
+        "brand": 13,
+        "transliteration": 18,
+        "near_match": 17,
+        "constrained": 7
+      }
+    }
+  },
+  "checks": {
+    "nlu_900_examples": true,
+    "nlu_split_600_150_150": true,
+    "no_seed_overlap": true,
+    "no_family_overlap_nlu": true,
+    "basket_test_families_not_in_dev_or_nlu_train": true,
+    "basket_dev_families_not_in_nlu_train": true,
+    "no_identical_text_across_splits": true,
+    "no_duplicate_paraphrase_within_seed": true,
+    "spans_consistent_with_gold": true,
+    "basket_counts_match": true,
+    "basket_labels_reproduced_by_checker": true,
+    "history_counts_match": true,
+    "retrieval_counts_match": true,
+    "retrieval_ingredients_disjoint": true,
+    "review_sample_at_least_20_percent": true,
+    "seed_counts_match": true
+  },
+  "all_checks_pass": true
+}

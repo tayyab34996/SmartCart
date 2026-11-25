@@ -1,0 +1,5238 @@
+{
+  "benchmark": "basket",
+  "split": "dev",
+  "policy": "docs/benchmark_policy.md",
+  "label_source": "smartcart.validation.feasibility.check_feasibility",
+  "scenarios": [
+    {
+      "scenario_id": "dev_b000",
+      "family_id": "foodcom_147335",
+      "label": "feasible",
+      "design": "pantry_partial",
+      "text": "Get the ingredients for cilantro lime rice, no more than 1,100 PKR, 5 portions, I have one lime left",
+      "gold_request": {
+        "request_id": "dev_b000",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_147335",
+        "servings": 5,
+        "items": [],
+        "pantry": {
+          "lime": "1.000"
+        },
+        "budget_minor": 110000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 77500,
+        "budget_minor": 110000,
+        "basket": [
+          {
+            "ingredient_id": "vegetable_oil",
+            "product_id": "bas_vegetable_oil_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 27500,
+            "surplus": "493.838",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cilantro",
+            "product_id": "bas_cilantro_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "37.677",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "basmati_rice",
+            "product_id": "bas_basmati_rice_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 35000,
+            "surplus": "835.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "204.264",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "246.919",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lime",
+            "product_id": "bas_lime_1piece",
+            "pack_count": 1,
+            "line_cost_minor": 2000,
+            "surplus": "0.750",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          3,
+          5,
+          4,
+          3,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "basmati_rice",
+          "cilantro",
+          "lime",
+          "salt",
+          "vegetable_oil",
+          "water"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b001",
+      "family_id": "foodcom_22330",
+      "label": "feasible",
+      "design": "exclusion_outside",
+      "text": "Thinking of making egg drop soup and 5 portions. hold the white mushroom and spend up to 1650",
+      "gold_request": {
+        "request_id": "dev_b001",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_22330",
+        "servings": 5,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 165000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [
+          "mushroom"
+        ],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 136200,
+        "budget_minor": 165000,
+        "basket": [
+          {
+            "ingredient_id": "chicken_broth",
+            "product_id": "bas_chicken_broth_1000ml",
+            "pack_count": 2,
+            "line_cost_minor": 93000,
+            "surplus": "225.588",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "243.838",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "426.066",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cornstarch",
+            "product_id": "bas_cornstarch_200g",
+            "pack_count": 1,
+            "line_cost_minor": 10000,
+            "surplus": "182.500",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "egg",
+            "product_id": "sim_egg_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "3.500",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "green_onion",
+            "product_id": "bas_green_onion_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 7200,
+            "surplus": "3.500",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          3,
+          3,
+          4,
+          3,
+          5,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_broth",
+          "cornstarch",
+          "egg",
+          "green_onion",
+          "salt",
+          "water"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b002",
+      "family_id": "foodcom_176192",
+      "label": "feasible",
+      "design": "generous",
+      "text": "Get the ingredients for baked sweet potato fries, no more than rupees 1200/-, feeding 8",
+      "gold_request": {
+        "request_id": "dev_b002",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_176192",
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 120000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 74500,
+        "budget_minor": 120000,
+        "basket": [
+          {
+            "ingredient_id": "sweet_potato",
+            "product_id": "bas_sweet_potato_1piece",
+            "pack_count": 4,
+            "line_cost_minor": 16000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "55.639",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ground_cumin",
+            "product_id": "bas_ground_cumin_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "40.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chili_powder",
+            "product_id": "bas_chili_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "247.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "onion_powder",
+            "product_id": "bas_onion_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "45.071",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          4,
+          4,
+          3,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chili_powder",
+          "ground_cumin",
+          "olive_oil",
+          "onion_powder",
+          "salt",
+          "sweet_potato"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b003",
+      "family_id": "foodcom_147335",
+      "label": "feasible",
+      "design": "exclusion",
+      "text": "Thinking of making cilantro lime rice, without any drinking water, spend up to 850 rupees and feeding six",
+      "gold_request": {
+        "request_id": "dev_b003",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_147335",
+        "servings": 6,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 85000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [
+          "water"
+        ],
+        "user_id": 41389,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 74500,
+        "budget_minor": 85000,
+        "basket": [
+          {
+            "ingredient_id": "vegetable_oil",
+            "product_id": "bas_vegetable_oil_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 27500,
+            "surplus": "492.606",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cilantro",
+            "product_id": "bas_cilantro_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "35.213",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "basmati_rice",
+            "product_id": "bas_basmati_rice_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 35000,
+            "surplus": "802.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "246.303",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lime",
+            "product_id": "bas_lime_1piece",
+            "pack_count": 2,
+            "line_cost_minor": 4000,
+            "surplus": "0.500",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          3,
+          5,
+          3,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [
+          "water"
+        ],
+        "required_ingredients": [
+          "basmati_rice",
+          "cilantro",
+          "lime",
+          "salt",
+          "vegetable_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": true,
+      "history_shared_ingredients": [
+        "salt",
+        "vegetable_oil"
+      ]
+    },
+    {
+      "scenario_id": "dev_b004",
+      "family_id": "foodcom_3596",
+      "label": "feasible",
+      "design": "exclusion",
+      "text": "Thinking of making potato soup. no more than 1,950 PKR, without any kosher salt, 2 portions",
+      "gold_request": {
+        "request_id": "dev_b004",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3596",
+        "servings": 2,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 195000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [
+          "salt"
+        ],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 158500,
+        "budget_minor": 195000,
+        "basket": [
+          {
+            "ingredient_id": "potato",
+            "product_id": "bas_potato_1piece",
+            "pack_count": 4,
+            "line_cost_minor": 10000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_100g",
+            "pack_count": 1,
+            "line_cost_minor": 24000,
+            "surplus": "71.750",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_flour",
+            "product_id": "sim_flour_500g",
+            "pack_count": 1,
+            "line_cost_minor": 9000,
+            "surplus": "470.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "product_id": "bas_milk_1000ml",
+            "pack_count": 1,
+            "line_cost_minor": 20500,
+            "surplus": "290.235",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_bouillon",
+            "product_id": "bas_chicken_bouillon_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 20000,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "49.383",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "sim_cheddar_100g",
+            "pack_count": 2,
+            "line_cost_minor": 60000,
+            "surplus": "86.601",
+            "unit": "g"
+          }
+        ],
+        "options_per_line": [
+          4,
+          6,
+          4,
+          5,
+          4,
+          4,
+          6
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [
+          "salt"
+        ],
+        "required_ingredients": [
+          "black_pepper",
+          "butter",
+          "cheddar",
+          "chicken_bouillon",
+          "milk",
+          "potato",
+          "white_flour"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b005",
+      "family_id": "foodcom_176192",
+      "label": "feasible",
+      "design": "multipack",
+      "text": "Get the ingredients for sweet potato fries. no more than PKR 850, eight portions",
+      "gold_request": {
+        "request_id": "dev_b005",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_176192",
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 85000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 74500,
+        "budget_minor": 85000,
+        "basket": [
+          {
+            "ingredient_id": "sweet_potato",
+            "product_id": "bas_sweet_potato_1piece",
+            "pack_count": 4,
+            "line_cost_minor": 16000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "55.639",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ground_cumin",
+            "product_id": "bas_ground_cumin_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "40.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chili_powder",
+            "product_id": "bas_chili_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "247.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "onion_powder",
+            "product_id": "bas_onion_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "45.071",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          4,
+          4,
+          3,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chili_powder",
+          "ground_cumin",
+          "olive_oil",
+          "onion_powder",
+          "salt",
+          "sweet_potato"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b006",
+      "family_id": "foodcom_176192",
+      "label": "feasible",
+      "design": "pantry_partial",
+      "text": "Get the ingredients for baked sweet potato fries, no more than rs 700, I have 1 teaspoon extra virgin olive oil left and feeding two",
+      "gold_request": {
+        "request_id": "dev_b006",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_176192",
+        "servings": 2,
+        "items": [],
+        "pantry": {
+          "olive_oil": "4.929"
+        },
+        "budget_minor": 70000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 62500,
+        "budget_minor": 70000,
+        "basket": [
+          {
+            "ingredient_id": "sweet_potato",
+            "product_id": "bas_sweet_potato_1piece",
+            "pack_count": 1,
+            "line_cost_minor": 4000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "93.838",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ground_cumin",
+            "product_id": "bas_ground_cumin_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "47.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chili_powder",
+            "product_id": "bas_chili_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "48.767",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "249.383",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "onion_powder",
+            "product_id": "bas_onion_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "48.767",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          4,
+          4,
+          3,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chili_powder",
+          "ground_cumin",
+          "olive_oil",
+          "onion_powder",
+          "salt",
+          "sweet_potato"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b007",
+      "family_id": "foodcom_147335",
+      "label": "feasible",
+      "design": "multipack",
+      "text": "Thinking of making cilantro lime rice. feeding 8 and spend up to PKR twelve hundred",
+      "gold_request": {
+        "request_id": "dev_b007",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_147335",
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 120000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 168332,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 79500,
+        "budget_minor": 120000,
+        "basket": [
+          {
+            "ingredient_id": "vegetable_oil",
+            "product_id": "bas_vegetable_oil_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 27500,
+            "surplus": "490.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cilantro",
+            "product_id": "bas_cilantro_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "30.284",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "basmati_rice",
+            "product_id": "bas_basmati_rice_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 35000,
+            "surplus": "736.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "26.823",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "245.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lime",
+            "product_id": "bas_lime_1piece",
+            "pack_count": 2,
+            "line_cost_minor": 4000,
+            "surplus": "0.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          3,
+          5,
+          4,
+          3,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "basmati_rice",
+          "cilantro",
+          "lime",
+          "salt",
+          "vegetable_oil",
+          "water"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": true,
+      "history_shared_ingredients": [
+        "lime",
+        "water"
+      ]
+    },
+    {
+      "scenario_id": "dev_b008",
+      "family_id": "foodcom_3596",
+      "label": "feasible",
+      "design": "generous",
+      "text": "Get the ingredients for potato soup and two portions, spend up to 2.5k rupees",
+      "gold_request": {
+        "request_id": "dev_b008",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3596",
+        "servings": 2,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 250000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 161500,
+        "budget_minor": 250000,
+        "basket": [
+          {
+            "ingredient_id": "potato",
+            "product_id": "bas_potato_1piece",
+            "pack_count": 4,
+            "line_cost_minor": 10000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_100g",
+            "pack_count": 1,
+            "line_cost_minor": 24000,
+            "surplus": "71.750",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_flour",
+            "product_id": "sim_flour_500g",
+            "pack_count": 1,
+            "line_cost_minor": 9000,
+            "surplus": "470.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "product_id": "bas_milk_1000ml",
+            "pack_count": 1,
+            "line_cost_minor": 20500,
+            "surplus": "290.235",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_bouillon",
+            "product_id": "bas_chicken_bouillon_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 20000,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "248.767",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "49.383",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "sim_cheddar_100g",
+            "pack_count": 2,
+            "line_cost_minor": 60000,
+            "surplus": "86.601",
+            "unit": "g"
+          }
+        ],
+        "options_per_line": [
+          4,
+          6,
+          4,
+          5,
+          4,
+          3,
+          4,
+          6
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "butter",
+          "cheddar",
+          "chicken_bouillon",
+          "milk",
+          "potato",
+          "salt",
+          "white_flour"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b009",
+      "family_id": "foodcom_116236",
+      "label": "feasible",
+      "design": "generous",
+      "text": "Get the ingredients for creamy cucumber salad, feeding 5. no more than PKR 1,650",
+      "gold_request": {
+        "request_id": "dev_b009",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_116236",
+        "servings": 5,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 165000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 105500,
+        "budget_minor": 165000,
+        "basket": [
+          {
+            "ingredient_id": "sour_cream",
+            "product_id": "bas_sour_cream_200g",
+            "pack_count": 1,
+            "line_cost_minor": 26000,
+            "surplus": "10.833",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "sugar",
+            "product_id": "bas_sugar_500g",
+            "pack_count": 1,
+            "line_cost_minor": 8000,
+            "surplus": "458.750",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_vinegar",
+            "product_id": "bas_white_vinegar_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "475.355",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dill_weed",
+            "product_id": "bas_dill_weed_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 25000,
+            "surplus": "37.677",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "245.892",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.946",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cucumber",
+            "product_id": "bas_cucumber_4piece",
+            "pack_count": 1,
+            "line_cost_minor": 13000,
+            "surplus": "0.666",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "onion",
+            "product_id": "bas_onion_1piece",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "0.166",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          4,
+          3,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "cucumber",
+          "dill_weed",
+          "onion",
+          "salt",
+          "sour_cream",
+          "sugar",
+          "white_vinegar"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b010",
+      "family_id": "foodcom_176192",
+      "label": "feasible",
+      "design": "exclusion_outside",
+      "text": "Thinking of making sweet potato fries and spend up to rs 850/-, feeding 5 and without any peanut butter",
+      "gold_request": {
+        "request_id": "dev_b010",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_176192",
+        "servings": 5,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 85000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [
+          "peanut_butter"
+        ],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 69700,
+        "budget_minor": 85000,
+        "basket": [
+          {
+            "ingredient_id": "sweet_potato",
+            "product_id": "bas_sweet_potato_3piece",
+            "pack_count": 1,
+            "line_cost_minor": 11200,
+            "surplus": "0.500",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "72.274",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ground_cumin",
+            "product_id": "bas_ground_cumin_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "43.838",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chili_powder",
+            "product_id": "bas_chili_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "46.919",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "248.459",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "onion_powder",
+            "product_id": "bas_onion_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "46.919",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          4,
+          4,
+          3,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chili_powder",
+          "ground_cumin",
+          "olive_oil",
+          "onion_powder",
+          "salt",
+          "sweet_potato"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b011",
+      "family_id": "foodcom_147335",
+      "label": "feasible",
+      "design": "pantry_full",
+      "text": "I feel like lime rice and no more than 755 rupees, feeding 6. there's two limes in my pantry",
+      "gold_request": {
+        "request_id": "dev_b011",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_147335",
+        "servings": 6,
+        "items": [],
+        "pantry": {
+          "lime": "2.000"
+        },
+        "budget_minor": 75500,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 75500,
+        "budget_minor": 75500,
+        "basket": [
+          {
+            "ingredient_id": "vegetable_oil",
+            "product_id": "bas_vegetable_oil_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 27500,
+            "surplus": "492.606",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cilantro",
+            "product_id": "bas_cilantro_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "35.213",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "basmati_rice",
+            "product_id": "bas_basmati_rice_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 35000,
+            "surplus": "802.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "145.117",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "246.303",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          4,
+          3,
+          5,
+          4,
+          3
+        ],
+        "covered_by_pantry": [
+          "lime"
+        ],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "basmati_rice",
+          "cilantro",
+          "salt",
+          "vegetable_oil",
+          "water"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b012",
+      "family_id": "foodcom_1591",
+      "label": "feasible",
+      "design": "pantry_partial",
+      "text": "Thinking of making grilled lemon chicken, there's 2 tsp light olive oil in my pantry. feeding 2. no more than 1,350 rupees",
+      "gold_request": {
+        "request_id": "dev_b012",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1591",
+        "servings": 2,
+        "items": [],
+        "pantry": {
+          "olive_oil": "9.858"
+        },
+        "budget_minor": 135000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 103000,
+        "budget_minor": 135000,
+        "basket": [
+          {
+            "ingredient_id": "lemon_juice",
+            "product_id": "bas_lemon_juice_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 10000,
+            "surplus": "70.426",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "80.284",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lemon_pepper_seasoning",
+            "product_id": "bas_lemon_pepper_seasoning_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_cutlet",
+            "product_id": "bas_chicken_cutlet_4piece",
+            "pack_count": 1,
+            "line_cost_minor": 60000,
+            "surplus": "1.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_cutlet",
+          "lemon_juice",
+          "lemon_pepper_seasoning",
+          "olive_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b013",
+      "family_id": "foodcom_247934",
+      "label": "feasible",
+      "design": "pantry_full",
+      "text": "I feel like turkey burgers, I have one tsp table salt left and no more than Rs. 4,007",
+      "gold_request": {
+        "request_id": "dev_b013",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_247934",
+        "servings": null,
+        "items": [],
+        "pantry": {
+          "salt": "4.929"
+        },
+        "budget_minor": 400700,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 400700,
+        "budget_minor": 400700,
+        "basket": [
+          {
+            "ingredient_id": "ground_turkey",
+            "product_id": "bas_ground_turkey_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 223200,
+            "surplus": "92.815",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_150ml",
+            "pack_count": 1,
+            "line_cost_minor": 30000,
+            "surplus": "130.284",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "garlic_powder",
+            "product_id": "bas_garlic_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_thyme",
+            "product_id": "bas_dried_thyme_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_rosemary",
+            "product_id": "bas_dried_rosemary_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dijon_mustard",
+            "product_id": "bas_dijon_mustard_200ml",
+            "pack_count": 1,
+            "line_cost_minor": 50000,
+            "surplus": "180.284",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "product_id": "bas_ricotta_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 40000,
+            "surplus": "92.274",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          3,
+          4,
+          4,
+          4,
+          3,
+          3,
+          2,
+          4
+        ],
+        "covered_by_pantry": [
+          "salt"
+        ],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "dijon_mustard",
+          "dried_rosemary",
+          "dried_thyme",
+          "garlic_powder",
+          "ground_turkey",
+          "ricotta",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b014",
+      "family_id": "foodcom_1356",
+      "label": "feasible",
+      "design": "diet_ok",
+      "text": "Get the ingredients for nut free stuffed bell peppers, no more than 3,200 rupees and feeding two",
+      "gold_request": {
+        "request_id": "dev_b014",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1356",
+        "servings": 2,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 320000,
+        "currency": "PKR",
+        "diet": [
+          "nut_free"
+        ],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 253800,
+        "budget_minor": 320000,
+        "basket": [
+          {
+            "ingredient_id": "green_bell_pepper",
+            "product_id": "bas_green_bell_pepper_1piece",
+            "pack_count": 4,
+            "line_cost_minor": 18000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "ground_beef",
+            "product_id": "bas_ground_beef_500g",
+            "pack_count": 1,
+            "line_cost_minor": 93000,
+            "surplus": "197.605",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "onion",
+            "product_id": "bas_onion_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "952.666",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "canned_diced_tomatoes",
+            "product_id": "bas_canned_diced_tomatoes_400g",
+            "pack_count": 1,
+            "line_cost_minor": 20000,
+            "surplus": "97.605",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "long_grain_rice",
+            "product_id": "bas_long_grain_rice_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 28000,
+            "surplus": "934.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "bas_water_1500ml",
+            "pack_count": 1,
+            "line_cost_minor": 10400,
+            "surplus": "1342.274",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "246.714",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_150ml",
+            "pack_count": 1,
+            "line_cost_minor": 30000,
+            "surplus": "146.714",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "org_cheddar_100g",
+            "pack_count": 1,
+            "line_cost_minor": 36400,
+            "surplus": "24.666",
+            "unit": "g"
+          }
+        ],
+        "options_per_line": [
+          5,
+          4,
+          3,
+          3,
+          5,
+          2,
+          3,
+          4,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "canned_diced_tomatoes",
+          "cheddar",
+          "green_bell_pepper",
+          "ground_beef",
+          "long_grain_rice",
+          "onion",
+          "salt",
+          "water",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b015",
+      "family_id": "list_dev_02",
+      "label": "feasible",
+      "design": "list_no_budget",
+      "text": "Pick up 1 kilo of butter, 250 g turkey mince, 500 millilitres whole milk and one litre ricotta cheese",
+      "gold_request": {
+        "request_id": "dev_b015",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "butter",
+            "amount": "1000.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "ground_turkey",
+            "amount": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "amount": "500.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "amount": "1000.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": null,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 488600,
+        "budget_minor": null,
+        "basket": [
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_500g",
+            "pack_count": 2,
+            "line_cost_minor": 208800,
+            "surplus": "0.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "ground_turkey",
+            "product_id": "bas_ground_turkey_500g",
+            "pack_count": 1,
+            "line_cost_minor": 120000,
+            "surplus": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "product_id": "bas_milk_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 11000,
+            "surplus": "0.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "product_id": "bas_ricotta_500ml",
+            "pack_count": 2,
+            "line_cost_minor": 148800,
+            "surplus": "0.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          6,
+          3,
+          5,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "butter",
+          "ground_turkey",
+          "milk",
+          "ricotta"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b016",
+      "family_id": "list_dev_01",
+      "label": "feasible",
+      "design": "list_generous",
+      "text": "I want 500 millilitres of dijon mustard, 500 millilitres worcestershire, spend up to four thousand rupees",
+      "gold_request": {
+        "request_id": "dev_b016",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "dijon_mustard",
+            "amount": "500.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "amount": "500.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 400000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 261600,
+        "budget_minor": 400000,
+        "basket": [
+          {
+            "ingredient_id": "dijon_mustard",
+            "product_id": "bas_dijon_mustard_200ml",
+            "pack_count": 3,
+            "line_cost_minor": 150000,
+            "surplus": "100.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_300ml",
+            "pack_count": 2,
+            "line_cost_minor": 111600,
+            "surplus": "100.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "dijon_mustard",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b017",
+      "family_id": "foodcom_247934",
+      "label": "feasible",
+      "design": "generous",
+      "text": "I feel like turkey burger. feeding 5 and spend up to 4.5k",
+      "gold_request": {
+        "request_id": "dev_b017",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_247934",
+        "servings": 5,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 450000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 403700,
+        "budget_minor": 450000,
+        "basket": [
+          {
+            "ingredient_id": "ground_turkey",
+            "product_id": "bas_ground_turkey_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 223200,
+            "surplus": "244.012",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "246.919",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.946",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_150ml",
+            "pack_count": 1,
+            "line_cost_minor": 30000,
+            "surplus": "133.570",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "garlic_powder",
+            "product_id": "bas_garlic_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "45.892",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_thyme",
+            "product_id": "bas_dried_thyme_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "45.892",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_rosemary",
+            "product_id": "bas_dried_rosemary_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.946",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dijon_mustard",
+            "product_id": "bas_dijon_mustard_200ml",
+            "pack_count": 1,
+            "line_cost_minor": 50000,
+            "surplus": "183.570",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "product_id": "bas_ricotta_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 40000,
+            "surplus": "118.562",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          3,
+          3,
+          4,
+          4,
+          4,
+          3,
+          3,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "dijon_mustard",
+          "dried_rosemary",
+          "dried_thyme",
+          "garlic_powder",
+          "ground_turkey",
+          "ricotta",
+          "salt",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b018",
+      "family_id": "list_dev_03",
+      "label": "feasible",
+      "design": "list_generous",
+      "text": "Pick up 250 gm sharp cheddar cheese, 1 l chicken broth and spend up to 1,350",
+      "gold_request": {
+        "request_id": "dev_b018",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "cheddar",
+            "amount": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "amount": "1000.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 135000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 111500,
+        "budget_minor": 135000,
+        "basket": [
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "sim_cheddar_250g",
+            "pack_count": 1,
+            "line_cost_minor": 65000,
+            "surplus": "0.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "product_id": "bas_chicken_broth_1000ml",
+            "pack_count": 1,
+            "line_cost_minor": 46500,
+            "surplus": "0.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          6,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "cheddar",
+          "chicken_broth"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b019",
+      "family_id": "foodcom_3596",
+      "label": "feasible",
+      "design": "pantry_full",
+      "text": "Get the ingredients for aloo soup. I have 3 teaspoons chicken bouillon granules left, spend up to PKR 2,070, feeding 5",
+      "gold_request": {
+        "request_id": "dev_b019",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3596",
+        "servings": 5,
+        "items": [],
+        "pantry": {
+          "chicken_bouillon": "14.787"
+        },
+        "budget_minor": 207000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 207000,
+        "budget_minor": 207000,
+        "basket": [
+          {
+            "ingredient_id": "potato",
+            "product_id": "bas_potato_1piece",
+            "pack_count": 10,
+            "line_cost_minor": 25000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_100g",
+            "pack_count": 1,
+            "line_cost_minor": 24000,
+            "surplus": "29.375",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_flour",
+            "product_id": "sim_flour_500g",
+            "pack_count": 1,
+            "line_cost_minor": 9000,
+            "surplus": "425.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "product_id": "bas_milk_1000ml",
+            "pack_count": 2,
+            "line_cost_minor": 41000,
+            "surplus": "225.588",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "246.919",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "48.459",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "sim_cheddar_100g",
+            "pack_count": 3,
+            "line_cost_minor": 90000,
+            "surplus": "16.504",
+            "unit": "g"
+          }
+        ],
+        "options_per_line": [
+          4,
+          6,
+          4,
+          5,
+          3,
+          4,
+          6
+        ],
+        "covered_by_pantry": [
+          "chicken_bouillon"
+        ],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "butter",
+          "cheddar",
+          "milk",
+          "potato",
+          "salt",
+          "white_flour"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b020",
+      "family_id": "foodcom_1591",
+      "label": "feasible",
+      "design": "exact",
+      "text": "I feel like lemon chicken. feeding 3. no more than Rs 1,267/-",
+      "gold_request": {
+        "request_id": "dev_b020",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1591",
+        "servings": 3,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 126700,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 126700,
+        "budget_minor": 126700,
+        "basket": [
+          {
+            "ingredient_id": "lemon_juice",
+            "product_id": "bas_lemon_juice_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 10000,
+            "surplus": "55.639",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "55.639",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lemon_pepper_seasoning",
+            "product_id": "bas_lemon_pepper_seasoning_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "42.606",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_cutlet",
+            "product_id": "bas_chicken_cutlet_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 83700,
+            "surplus": "1.500",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_cutlet",
+          "lemon_juice",
+          "lemon_pepper_seasoning",
+          "olive_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b021",
+      "family_id": "foodcom_116236",
+      "label": "feasible",
+      "design": "pantry_full",
+      "text": "Get the ingredients for creamy cucumber salad and feeding 8. I have 2 tablespoons of dill left. spend up to Rs. 1139/-",
+      "gold_request": {
+        "request_id": "dev_b021",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_116236",
+        "servings": 8,
+        "items": [],
+        "pantry": {
+          "dill_weed": "29.574"
+        },
+        "budget_minor": 113900,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 113900,
+        "budget_minor": 113900,
+        "basket": [
+          {
+            "ingredient_id": "sour_cream",
+            "product_id": "bas_sour_cream_400g",
+            "pack_count": 1,
+            "line_cost_minor": 48400,
+            "surplus": "97.333",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "sugar",
+            "product_id": "bas_sugar_500g",
+            "pack_count": 1,
+            "line_cost_minor": 8000,
+            "surplus": "434.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_vinegar",
+            "product_id": "bas_white_vinegar_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "460.568",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "243.428",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "46.714",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cucumber",
+            "product_id": "bas_cucumber_1piece",
+            "pack_count": 6,
+            "line_cost_minor": 21000,
+            "surplus": "0.666",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "onion",
+            "product_id": "bas_onion_1piece",
+            "pack_count": 2,
+            "line_cost_minor": 6000,
+            "surplus": "0.666",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          4,
+          3,
+          3,
+          4,
+          4,
+          5
+        ],
+        "covered_by_pantry": [
+          "dill_weed"
+        ],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "cucumber",
+          "onion",
+          "salt",
+          "sour_cream",
+          "sugar",
+          "white_vinegar"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b022",
+      "family_id": "foodcom_247934",
+      "label": "feasible",
+      "design": "multipack",
+      "text": "I feel like turkey burgers, feeding 12, spend up to 9700 rupees",
+      "gold_request": {
+        "request_id": "dev_b022",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_247934",
+        "servings": 12,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 970000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 179379,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 661300,
+        "budget_minor": 970000,
+        "basket": [
+          {
+            "ingredient_id": "ground_turkey",
+            "product_id": "bas_ground_turkey_1000g",
+            "pack_count": 2,
+            "line_cost_minor": 446400,
+            "surplus": "185.630",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "242.606",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_150ml",
+            "pack_count": 1,
+            "line_cost_minor": 30000,
+            "surplus": "110.568",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "garlic_powder",
+            "product_id": "bas_garlic_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "40.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_thyme",
+            "product_id": "bas_dried_thyme_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "40.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_rosemary",
+            "product_id": "bas_dried_rosemary_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dijon_mustard",
+            "product_id": "bas_dijon_mustard_200ml",
+            "pack_count": 1,
+            "line_cost_minor": 50000,
+            "surplus": "160.568",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "product_id": "bas_ricotta_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 74400,
+            "surplus": "184.549",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          3,
+          3,
+          4,
+          4,
+          4,
+          3,
+          3,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "dijon_mustard",
+          "dried_rosemary",
+          "dried_thyme",
+          "garlic_powder",
+          "ground_turkey",
+          "ricotta",
+          "salt",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": true,
+      "history_shared_ingredients": [
+        "black_pepper",
+        "dijon_mustard",
+        "dried_rosemary",
+        "ground_turkey",
+        "salt"
+      ]
+    },
+    {
+      "scenario_id": "dev_b023",
+      "family_id": "list_dev_01",
+      "label": "feasible",
+      "design": "list_no_budget",
+      "text": "Pick up 500 ml of dijon mustard, two liters of worcestershire sauce",
+      "gold_request": {
+        "request_id": "dev_b023",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "dijon_mustard",
+            "amount": "500.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "amount": "2000.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": null,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 540600,
+        "budget_minor": null,
+        "basket": [
+          {
+            "ingredient_id": "dijon_mustard",
+            "product_id": "bas_dijon_mustard_200ml",
+            "pack_count": 3,
+            "line_cost_minor": 150000,
+            "surplus": "100.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_300ml",
+            "pack_count": 7,
+            "line_cost_minor": 390600,
+            "surplus": "100.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "dijon_mustard",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b024",
+      "family_id": "foodcom_247934",
+      "label": "feasible",
+      "design": "exact",
+      "text": "Thinking of making turkey burgers and feeding 3, no more than Rs. 3,005/-",
+      "gold_request": {
+        "request_id": "dev_b024",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_247934",
+        "servings": 3,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 300500,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 300500,
+        "budget_minor": 300500,
+        "basket": [
+          {
+            "ingredient_id": "ground_turkey",
+            "product_id": "bas_ground_turkey_500g",
+            "pack_count": 1,
+            "line_cost_minor": 120000,
+            "surplus": "46.407",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "248.151",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "48.767",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_150ml",
+            "pack_count": 1,
+            "line_cost_minor": 30000,
+            "surplus": "140.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "garlic_powder",
+            "product_id": "bas_garlic_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "47.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_thyme",
+            "product_id": "bas_dried_thyme_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_rosemary",
+            "product_id": "bas_dried_rosemary_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "48.767",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dijon_mustard",
+            "product_id": "bas_dijon_mustard_200ml",
+            "pack_count": 1,
+            "line_cost_minor": 50000,
+            "surplus": "190.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "product_id": "bas_ricotta_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 40000,
+            "surplus": "171.137",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          3,
+          3,
+          4,
+          4,
+          4,
+          3,
+          3,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "dijon_mustard",
+          "dried_rosemary",
+          "dried_thyme",
+          "garlic_powder",
+          "ground_turkey",
+          "ricotta",
+          "salt",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b025",
+      "family_id": "foodcom_116236",
+      "label": "feasible",
+      "design": "exclusion",
+      "text": "Thinking of making kheera salad and 5 portions, without any sirka, no more than 1,150 rupees",
+      "gold_request": {
+        "request_id": "dev_b025",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_116236",
+        "servings": 5,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 115000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [
+          "white_vinegar"
+        ],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 93000,
+        "budget_minor": 115000,
+        "basket": [
+          {
+            "ingredient_id": "sour_cream",
+            "product_id": "bas_sour_cream_200g",
+            "pack_count": 1,
+            "line_cost_minor": 26000,
+            "surplus": "10.833",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "sugar",
+            "product_id": "bas_sugar_500g",
+            "pack_count": 1,
+            "line_cost_minor": 8000,
+            "surplus": "458.750",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "dill_weed",
+            "product_id": "bas_dill_weed_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 25000,
+            "surplus": "37.677",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "245.892",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.946",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cucumber",
+            "product_id": "bas_cucumber_4piece",
+            "pack_count": 1,
+            "line_cost_minor": 13000,
+            "surplus": "0.666",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "onion",
+            "product_id": "bas_onion_1piece",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "0.166",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          4,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [
+          "white_vinegar"
+        ],
+        "required_ingredients": [
+          "black_pepper",
+          "cucumber",
+          "dill_weed",
+          "onion",
+          "salt",
+          "sour_cream",
+          "sugar"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b026",
+      "family_id": "list_dev_00",
+      "label": "feasible",
+      "design": "list_exact",
+      "text": "Pick up 1 kilogram butter, 500 gm long grain rice, 2 l whole milk, 500ml light olive oil, spend up to Rs. 3474/-",
+      "gold_request": {
+        "request_id": "dev_b026",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "butter",
+            "amount": "1000.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "long_grain_rice",
+            "amount": "500.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "amount": "2000.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "amount": "500.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 347400,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 347400,
+        "budget_minor": 347400,
+        "basket": [
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_500g",
+            "pack_count": 2,
+            "line_cost_minor": 208800,
+            "surplus": "0.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "long_grain_rice",
+            "product_id": "bas_long_grain_rice_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 28000,
+            "surplus": "500.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "product_id": "bas_milk_1000ml",
+            "pack_count": 2,
+            "line_cost_minor": 41000,
+            "surplus": "0.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "bas_olive_oil_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 69600,
+            "surplus": "0.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          6,
+          5,
+          5,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "butter",
+          "long_grain_rice",
+          "milk",
+          "olive_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b027",
+      "family_id": "list_dev_02",
+      "label": "feasible",
+      "design": "list_generous",
+      "text": "I want 250 gm of makhan, 250 grams of turkey mince, 250 millilitres whole milk, 500 ml of ricotta cheese, no more than rupees 3900",
+      "gold_request": {
+        "request_id": "dev_b027",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "butter",
+            "amount": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "ground_turkey",
+            "amount": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "amount": "250.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "amount": "500.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 390000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 277400,
+        "budget_minor": 390000,
+        "basket": [
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_100g",
+            "pack_count": 3,
+            "line_cost_minor": 72000,
+            "surplus": "50.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "ground_turkey",
+            "product_id": "bas_ground_turkey_500g",
+            "pack_count": 1,
+            "line_cost_minor": 120000,
+            "surplus": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "product_id": "bas_milk_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 11000,
+            "surplus": "250.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "product_id": "bas_ricotta_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 74400,
+            "surplus": "0.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          6,
+          3,
+          5,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "butter",
+          "ground_turkey",
+          "milk",
+          "ricotta"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b028",
+      "family_id": "foodcom_1591",
+      "label": "feasible",
+      "design": "multipack",
+      "text": "Thinking of making lemon chicken, feeding 12, spend up to rupees 3,550",
+      "gold_request": {
+        "request_id": "dev_b028",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1591",
+        "servings": 12,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 355000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 322100,
+        "budget_minor": 355000,
+        "basket": [
+          {
+            "ingredient_id": "lemon_juice",
+            "product_id": "bas_lemon_juice_100ml",
+            "pack_count": 2,
+            "line_cost_minor": 20000,
+            "surplus": "22.558",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 2,
+            "line_cost_minor": 36000,
+            "surplus": "22.558",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lemon_pepper_seasoning",
+            "product_id": "bas_lemon_pepper_seasoning_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "20.426",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_cutlet",
+            "product_id": "bas_chicken_cutlet_6piece",
+            "pack_count": 3,
+            "line_cost_minor": 251100,
+            "surplus": "0.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_cutlet",
+          "lemon_juice",
+          "lemon_pepper_seasoning",
+          "olive_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b029",
+      "family_id": "foodcom_1591",
+      "label": "feasible",
+      "design": "generous",
+      "text": "Thinking of making grilled lemon chicken, eight portions and no more than 3300 rupees",
+      "gold_request": {
+        "request_id": "dev_b029",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1591",
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 330000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 238400,
+        "budget_minor": 330000,
+        "basket": [
+          {
+            "ingredient_id": "lemon_juice",
+            "product_id": "bas_lemon_juice_100ml",
+            "pack_count": 2,
+            "line_cost_minor": 20000,
+            "surplus": "81.705",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 2,
+            "line_cost_minor": 36000,
+            "surplus": "81.705",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lemon_pepper_seasoning",
+            "product_id": "bas_lemon_pepper_seasoning_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "30.284",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_cutlet",
+            "product_id": "bas_chicken_cutlet_6piece",
+            "pack_count": 2,
+            "line_cost_minor": 167400,
+            "surplus": "0.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_cutlet",
+          "lemon_juice",
+          "lemon_pepper_seasoning",
+          "olive_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b030",
+      "family_id": "foodcom_147335",
+      "label": "infeasible",
+      "design": "budget_low",
+      "text": "I feel like cilantro lime rice, spend up to 450 rupees and feeding four",
+      "gold_request": {
+        "request_id": "dev_b030",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_147335",
+        "servings": 4,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 45000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "budget_below_minimum_cost",
+        "min_cost_minor": 77500,
+        "budget_minor": 45000,
+        "basket": [
+          {
+            "ingredient_id": "vegetable_oil",
+            "product_id": "bas_vegetable_oil_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 27500,
+            "surplus": "495.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cilantro",
+            "product_id": "bas_cilantro_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "40.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "basmati_rice",
+            "product_id": "bas_basmati_rice_1000g",
+            "pack_count": 1,
+            "line_cost_minor": 35000,
+            "surplus": "868.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "263.411",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "247.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lime",
+            "product_id": "bas_lime_1piece",
+            "pack_count": 1,
+            "line_cost_minor": 2000,
+            "surplus": "0.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          3,
+          5,
+          4,
+          3,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "basmati_rice",
+          "cilantro",
+          "lime",
+          "salt",
+          "vegetable_oil",
+          "water"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b031",
+      "family_id": "foodcom_22330",
+      "label": "infeasible",
+      "design": "budget_low",
+      "text": "I feel like egg drop soup and 6 portions, no more than PKR 1050/-",
+      "gold_request": {
+        "request_id": "dev_b031",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_22330",
+        "servings": 6,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 105000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "budget_below_minimum_cost",
+        "min_cost_minor": 168200,
+        "budget_minor": 105000,
+        "basket": [
+          {
+            "ingredient_id": "chicken_broth",
+            "product_id": "bas_chicken_broth_500ml",
+            "pack_count": 5,
+            "line_cost_minor": 125000,
+            "surplus": "370.706",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "242.606",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "411.279",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cornstarch",
+            "product_id": "bas_cornstarch_200g",
+            "pack_count": 1,
+            "line_cost_minor": 10000,
+            "surplus": "179.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "egg",
+            "product_id": "sim_egg_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "3.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "green_onion",
+            "product_id": "bas_green_onion_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 7200,
+            "surplus": "3.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          3,
+          3,
+          4,
+          3,
+          5,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_broth",
+          "cornstarch",
+          "egg",
+          "green_onion",
+          "salt",
+          "water"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b032",
+      "family_id": "foodcom_116236",
+      "label": "infeasible",
+      "design": "budget_low",
+      "text": "Get the ingredients for creamy cucumber salad, two portions, no more than rs 500/-",
+      "gold_request": {
+        "request_id": "dev_b032",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_116236",
+        "servings": 2,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 50000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 57954,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "budget_below_minimum_cost",
+        "min_cost_minor": 99500,
+        "budget_minor": 50000,
+        "basket": [
+          {
+            "ingredient_id": "sour_cream",
+            "product_id": "bas_sour_cream_200g",
+            "pack_count": 1,
+            "line_cost_minor": 26000,
+            "surplus": "124.333",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "sugar",
+            "product_id": "bas_sugar_500g",
+            "pack_count": 1,
+            "line_cost_minor": 8000,
+            "surplus": "483.500",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_vinegar",
+            "product_id": "bas_white_vinegar_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "490.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dill_weed",
+            "product_id": "bas_dill_weed_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 25000,
+            "surplus": "45.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "248.357",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "49.178",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cucumber",
+            "product_id": "bas_cucumber_1piece",
+            "pack_count": 2,
+            "line_cost_minor": 7000,
+            "surplus": "0.666",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "onion",
+            "product_id": "bas_onion_1piece",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "0.666",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          4,
+          3,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "cucumber",
+          "dill_weed",
+          "onion",
+          "salt",
+          "sour_cream",
+          "sugar",
+          "white_vinegar"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": true,
+      "history_shared_ingredients": [
+        "black_pepper",
+        "cucumber",
+        "onion",
+        "sour_cream"
+      ]
+    },
+    {
+      "scenario_id": "dev_b033",
+      "family_id": "foodcom_1356",
+      "label": "infeasible",
+      "design": "diet_conflict",
+      "text": "Thinking of making stuffed shimla mirch. needs to be non-dairy, spend up to 3400",
+      "gold_request": {
+        "request_id": "dev_b033",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1356",
+        "servings": null,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 340000,
+        "currency": "PKR",
+        "diet": [
+          "dairy_free"
+        ],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "no_eligible_option",
+        "min_cost_minor": null,
+        "basket": [],
+        "ingredients_without_option": [
+          {
+            "ingredient_id": "cheddar",
+            "unit": "g",
+            "same_ingredient_and_unit": 6,
+            "available": 6,
+            "diet_allowed": 0,
+            "eligible": 0
+          }
+        ],
+        "options_per_line": [
+          5,
+          4,
+          3,
+          3,
+          5,
+          2,
+          3,
+          4,
+          0
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "canned_diced_tomatoes",
+          "cheddar",
+          "green_bell_pepper",
+          "ground_beef",
+          "long_grain_rice",
+          "onion",
+          "salt",
+          "water",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b034",
+      "family_id": "foodcom_1591",
+      "label": "infeasible",
+      "design": "one_short",
+      "text": "I feel like grilled lemon chicken, spend up to rs 1,473/-, feeding five",
+      "gold_request": {
+        "request_id": "dev_b034",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1591",
+        "servings": 5,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 147300,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "budget_below_minimum_cost",
+        "min_cost_minor": 147400,
+        "budget_minor": 147300,
+        "basket": [
+          {
+            "ingredient_id": "lemon_juice",
+            "product_id": "bas_lemon_juice_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 10000,
+            "surplus": "26.066",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "26.066",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lemon_pepper_seasoning",
+            "product_id": "bas_lemon_pepper_seasoning_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "37.677",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_cutlet",
+            "product_id": "bas_chicken_cutlet_8piece",
+            "pack_count": 1,
+            "line_cost_minor": 104400,
+            "surplus": "0.500",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_cutlet",
+          "lemon_juice",
+          "lemon_pepper_seasoning",
+          "olive_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b035",
+      "family_id": "foodcom_116236",
+      "label": "infeasible",
+      "design": "one_short",
+      "text": "Get the ingredients for kheera salad, feeding 8 and no more than 1388 PKR",
+      "gold_request": {
+        "request_id": "dev_b035",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_116236",
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 138800,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "budget_below_minimum_cost",
+        "min_cost_minor": 138900,
+        "budget_minor": 138800,
+        "basket": [
+          {
+            "ingredient_id": "sour_cream",
+            "product_id": "bas_sour_cream_400g",
+            "pack_count": 1,
+            "line_cost_minor": 48400,
+            "surplus": "97.333",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "sugar",
+            "product_id": "bas_sugar_500g",
+            "pack_count": 1,
+            "line_cost_minor": 8000,
+            "surplus": "434.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_vinegar",
+            "product_id": "bas_white_vinegar_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "460.568",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dill_weed",
+            "product_id": "bas_dill_weed_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 25000,
+            "surplus": "30.284",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "243.428",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "46.714",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cucumber",
+            "product_id": "bas_cucumber_1piece",
+            "pack_count": 6,
+            "line_cost_minor": 21000,
+            "surplus": "0.666",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "onion",
+            "product_id": "bas_onion_1piece",
+            "pack_count": 2,
+            "line_cost_minor": 6000,
+            "surplus": "0.666",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          4,
+          3,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "cucumber",
+          "dill_weed",
+          "onion",
+          "salt",
+          "sour_cream",
+          "sugar",
+          "white_vinegar"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b036",
+      "family_id": "list_dev_01",
+      "label": "infeasible",
+      "design": "list_diet_conflict",
+      "text": "Pick up one liter dijon, 1 litre worcestershire, gluten free please, spend up to 6900",
+      "gold_request": {
+        "request_id": "dev_b036",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "dijon_mustard",
+            "amount": "1000.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "amount": "1000.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 690000,
+        "currency": "PKR",
+        "diet": [
+          "gluten_free"
+        ],
+        "exclusions": [],
+        "user_id": 23347,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "no_eligible_option",
+        "min_cost_minor": null,
+        "basket": [],
+        "ingredients_without_option": [
+          {
+            "ingredient_id": "dijon_mustard",
+            "unit": "ml",
+            "same_ingredient_and_unit": 2,
+            "available": 2,
+            "diet_allowed": 0,
+            "eligible": 0
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "unit": "ml",
+            "same_ingredient_and_unit": 4,
+            "available": 4,
+            "diet_allowed": 0,
+            "eligible": 0
+          }
+        ],
+        "options_per_line": [
+          0,
+          0
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "dijon_mustard",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": true,
+      "history_shared_ingredients": [
+        "dijon_mustard",
+        "worcestershire_sauce"
+      ]
+    },
+    {
+      "scenario_id": "dev_b037",
+      "family_id": "list_dev_00",
+      "label": "infeasible",
+      "design": "list_diet_conflict",
+      "text": "I want one kilo makhan, 250 grams long-grain white rice, two l of milk, two liters of extra virgin olive oil, no dairy, no more than PKR 6600/-",
+      "gold_request": {
+        "request_id": "dev_b037",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "butter",
+            "amount": "1000.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "long_grain_rice",
+            "amount": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "amount": "2000.000",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "amount": "2000.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 660000,
+        "currency": "PKR",
+        "diet": [
+          "dairy_free"
+        ],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "no_eligible_option",
+        "min_cost_minor": null,
+        "basket": [],
+        "ingredients_without_option": [
+          {
+            "ingredient_id": "milk",
+            "unit": "ml",
+            "same_ingredient_and_unit": 5,
+            "available": 5,
+            "diet_allowed": 0,
+            "eligible": 0
+          }
+        ],
+        "options_per_line": [
+          1,
+          5,
+          0,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "butter",
+          "long_grain_rice",
+          "milk",
+          "olive_oil"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b038",
+      "family_id": "foodcom_247934",
+      "label": "infeasible",
+      "design": "diet_conflict",
+      "text": "Thinking of making turkey burgers, gluten-free please, feeding 6, spend up to 4550",
+      "gold_request": {
+        "request_id": "dev_b038",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_247934",
+        "servings": 6,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 455000,
+        "currency": "PKR",
+        "diet": [
+          "gluten_free"
+        ],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "no_eligible_option",
+        "min_cost_minor": null,
+        "basket": [],
+        "ingredients_without_option": [
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "unit": "ml",
+            "same_ingredient_and_unit": 4,
+            "available": 4,
+            "diet_allowed": 0,
+            "eligible": 0
+          },
+          {
+            "ingredient_id": "dijon_mustard",
+            "unit": "ml",
+            "same_ingredient_and_unit": 2,
+            "available": 2,
+            "diet_allowed": 0,
+            "eligible": 0
+          }
+        ],
+        "options_per_line": [
+          3,
+          3,
+          4,
+          0,
+          4,
+          3,
+          3,
+          0,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "dijon_mustard",
+          "dried_rosemary",
+          "dried_thyme",
+          "garlic_powder",
+          "ground_turkey",
+          "ricotta",
+          "salt",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b039",
+      "family_id": "foodcom_247934",
+      "label": "infeasible",
+      "design": "one_short",
+      "text": "Get the ingredients for turkey burger. feeding eight. spend up to 5404 rupees",
+      "gold_request": {
+        "request_id": "dev_b039",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_247934",
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 540400,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "checker": {
+        "label": "infeasible",
+        "reason": "budget_below_minimum_cost",
+        "min_cost_minor": 540500,
+        "budget_minor": 540400,
+        "basket": [
+          {
+            "ingredient_id": "ground_turkey",
+            "product_id": "bas_ground_turkey_500g",
+            "pack_count": 3,
+            "line_cost_minor": 360000,
+            "surplus": "290.420",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "245.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "46.714",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "worcestershire_sauce",
+            "product_id": "bas_worcestershire_sauce_150ml",
+            "pack_count": 1,
+            "line_cost_minor": 30000,
+            "surplus": "123.712",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "garlic_powder",
+            "product_id": "bas_garlic_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "43.428",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_thyme",
+            "product_id": "bas_dried_thyme_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "43.428",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dried_rosemary",
+            "product_id": "bas_dried_rosemary_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "46.714",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dijon_mustard",
+            "product_id": "bas_dijon_mustard_200ml",
+            "pack_count": 1,
+            "line_cost_minor": 50000,
+            "surplus": "173.712",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ricotta",
+            "product_id": "bas_ricotta_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 40000,
+            "surplus": "39.699",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          3,
+          3,
+          4,
+          4,
+          4,
+          3,
+          3,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "dijon_mustard",
+          "dried_rosemary",
+          "dried_thyme",
+          "garlic_powder",
+          "ground_turkey",
+          "ricotta",
+          "salt",
+          "worcestershire_sauce"
+        ]
+      },
+      "clarification_answer": null,
+      "resolved_request": null,
+      "resolved_checker": null,
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b040",
+      "family_id": "foodcom_3596",
+      "label": "clarification",
+      "design": "ambiguous_diet",
+      "text": "I feel like aloo soup, spend up to rs 2,000, needs to be healthy and three portions",
+      "gold_request": {
+        "request_id": "dev_b040",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3596",
+        "servings": 3,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 200000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": true,
+        "clarification_type": "ambiguous_diet",
+        "clarification_prompt": "Which dietary rule should I apply: vegetarian, vegan, gluten-free, dairy-free or nut-free?"
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "ambiguous_diet"
+      },
+      "clarification_answer": "no restrictions, just normal",
+      "resolved_request": {
+        "request_id": "dev_b040",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3596",
+        "servings": 3,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 200000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 173700,
+        "budget_minor": 200000,
+        "basket": [
+          {
+            "ingredient_id": "potato",
+            "product_id": "bas_potato_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 14000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_100g",
+            "pack_count": 1,
+            "line_cost_minor": 24000,
+            "surplus": "57.625",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_flour",
+            "product_id": "sim_flour_500g",
+            "pack_count": 1,
+            "line_cost_minor": 9000,
+            "surplus": "455.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "milk",
+            "product_id": "bas_milk_1500ml",
+            "pack_count": 1,
+            "line_cost_minor": 28700,
+            "surplus": "435.353",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_bouillon",
+            "product_id": "bas_chicken_bouillon_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 20000,
+            "surplus": "42.606",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "248.151",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "49.075",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "sim_cheddar_100g",
+            "pack_count": 2,
+            "line_cost_minor": 60000,
+            "surplus": "29.902",
+            "unit": "g"
+          }
+        ],
+        "options_per_line": [
+          4,
+          6,
+          4,
+          5,
+          4,
+          3,
+          4,
+          6
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "butter",
+          "cheddar",
+          "chicken_bouillon",
+          "milk",
+          "potato",
+          "salt",
+          "white_flour"
+        ]
+      },
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b041",
+      "family_id": "foodcom_1591",
+      "label": "clarification",
+      "design": "pantry_unknown",
+      "text": "Get the ingredients for grilled lemon chicken, spend up to 1.5k rupees, 4 portions and there's a bit of chicken cutlet in my pantry",
+      "gold_request": {
+        "request_id": "dev_b041",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1591",
+        "servings": 4,
+        "items": [],
+        "pantry": {
+          "chicken_cutlet": null
+        },
+        "budget_minor": 150000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": true,
+        "clarification_type": "missing_pantry_quantity",
+        "clarification_prompt": "How much chicken cutlet do you already have (in piece)?"
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_pantry_quantity"
+      },
+      "clarification_answer": "3",
+      "resolved_request": {
+        "request_id": "dev_b041",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_1591",
+        "servings": 4,
+        "items": [],
+        "pantry": {
+          "chicken_cutlet": "3.000"
+        },
+        "budget_minor": 150000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 103000,
+        "budget_minor": 150000,
+        "basket": [
+          {
+            "ingredient_id": "lemon_juice",
+            "product_id": "bas_lemon_juice_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 10000,
+            "surplus": "40.852",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "40.852",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "lemon_pepper_seasoning",
+            "product_id": "bas_lemon_pepper_seasoning_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "40.142",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chicken_cutlet",
+            "product_id": "bas_chicken_cutlet_4piece",
+            "pack_count": 1,
+            "line_cost_minor": 60000,
+            "surplus": "1.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          2,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chicken_cutlet",
+          "lemon_juice",
+          "lemon_pepper_seasoning",
+          "olive_oil"
+        ]
+      },
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b042",
+      "family_id": "foodcom_22330",
+      "label": "clarification",
+      "design": "broad",
+      "text": "Pick a veggie dinner for me. spend up to rupees 3,000. feeding four",
+      "gold_request": {
+        "request_id": "dev_b042",
+        "intent": "plan_meal",
+        "recipe_id": null,
+        "servings": 4,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 300000,
+        "currency": "PKR",
+        "diet": [
+          "vegetarian"
+        ],
+        "exclusions": [],
+        "user_id": 39518,
+        "needs_clarification": true,
+        "clarification_type": "missing_recipe",
+        "clarification_prompt": "Which dish would you like? For example: garlic green beans, lime rice or refried beans."
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_recipe"
+      },
+      "clarification_answer": "the garlic green beans",
+      "resolved_request": {
+        "request_id": "dev_b042",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_43390",
+        "servings": 4,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 300000,
+        "currency": "PKR",
+        "diet": [
+          "vegetarian"
+        ],
+        "exclusions": [],
+        "user_id": 39518,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 79700,
+        "budget_minor": 300000,
+        "basket": [
+          {
+            "ingredient_id": "green_beans",
+            "product_id": "bas_green_beans_500g",
+            "pack_count": 1,
+            "line_cost_minor": 23300,
+            "surplus": "46.407",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "bas_water_1500ml",
+            "pack_count": 1,
+            "line_cost_minor": 10400,
+            "surplus": "1026.823",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "garlic",
+            "product_id": "bas_garlic_10piece",
+            "pack_count": 1,
+            "line_cost_minor": 4000,
+            "surplus": "7.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "butter",
+            "product_id": "bas_butter_100g",
+            "pack_count": 1,
+            "line_cost_minor": 24000,
+            "surplus": "57.625",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "247.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "49.383",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          5,
+          2,
+          4,
+          6,
+          3,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "butter",
+          "garlic",
+          "green_beans",
+          "salt",
+          "water"
+        ]
+      },
+      "has_history": true,
+      "history_shared_ingredients": [
+        "butter",
+        "salt"
+      ]
+    },
+    {
+      "scenario_id": "dev_b043",
+      "family_id": "foodcom_247934",
+      "label": "clarification",
+      "design": "unknown_meal",
+      "text": "Get the ingredients for nihari. spend up to 3k and 4 portions",
+      "gold_request": {
+        "request_id": "dev_b043",
+        "intent": "plan_meal",
+        "recipe_id": null,
+        "servings": 4,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 300000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 51069,
+        "needs_clarification": true,
+        "clarification_type": "missing_recipe",
+        "clarification_prompt": "Which dish would you like? For example: homemade pasta, sweet potato fries or garlic green beans."
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_recipe"
+      },
+      "clarification_answer": "the homemade pasta",
+      "resolved_request": {
+        "request_id": "dev_b043",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3474",
+        "servings": 4,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 300000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 51069,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 50000,
+        "budget_minor": 300000,
+        "basket": [
+          {
+            "ingredient_id": "white_flour",
+            "product_id": "sim_flour_500g",
+            "pack_count": 1,
+            "line_cost_minor": 9000,
+            "surplus": "260.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "egg",
+            "product_id": "sim_egg_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "4.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "85.213",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "440.852",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          4,
+          5,
+          5,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "egg",
+          "olive_oil",
+          "water",
+          "white_flour"
+        ]
+      },
+      "has_history": true,
+      "history_shared_ingredients": [
+        "olive_oil",
+        "white_flour"
+      ]
+    },
+    {
+      "scenario_id": "dev_b044",
+      "family_id": "list_dev_03",
+      "label": "clarification",
+      "design": "list_vague_budget",
+      "text": "I want one pound sharp cheddar cheese and 500 millilitres chicken broth. budget friendly",
+      "gold_request": {
+        "request_id": "dev_b044",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "cheddar",
+            "amount": "453.593",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "amount": "500.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": null,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 25326,
+        "needs_clarification": true,
+        "clarification_type": "missing_budget",
+        "clarification_prompt": "What is your budget in rupees?"
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_budget"
+      },
+      "clarification_answer": "2050 rupees",
+      "resolved_request": {
+        "request_id": "dev_b044",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "cheddar",
+            "amount": "453.593",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "amount": "500.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 205000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 25326,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 138100,
+        "budget_minor": 205000,
+        "basket": [
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "bas_cheddar_500g",
+            "pack_count": 1,
+            "line_cost_minor": 113100,
+            "surplus": "46.407",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "product_id": "bas_chicken_broth_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 25000,
+            "surplus": "0.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          6,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "cheddar",
+          "chicken_broth"
+        ]
+      },
+      "has_history": true,
+      "history_shared_ingredients": [
+        "cheddar",
+        "chicken_broth"
+      ]
+    },
+    {
+      "scenario_id": "dev_b045",
+      "family_id": "foodcom_116236",
+      "label": "clarification",
+      "design": "ambiguous_diet",
+      "text": "Thinking of making kheera salad, no more than rupees 1,900/-, needs to be low-carb",
+      "gold_request": {
+        "request_id": "dev_b045",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_116236",
+        "servings": null,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 190000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": true,
+        "clarification_type": "ambiguous_diet",
+        "clarification_prompt": "Which dietary rule should I apply: vegetarian, vegan, gluten-free, dairy-free or nut-free?"
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "ambiguous_diet"
+      },
+      "clarification_answer": "no restrictions, just normal",
+      "resolved_request": {
+        "request_id": "dev_b045",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_116236",
+        "servings": null,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 190000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 127900,
+        "budget_minor": 190000,
+        "basket": [
+          {
+            "ingredient_id": "sour_cream",
+            "product_id": "bas_sour_cream_400g",
+            "pack_count": 1,
+            "line_cost_minor": 48400,
+            "surplus": "173.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "sugar",
+            "product_id": "bas_sugar_500g",
+            "pack_count": 1,
+            "line_cost_minor": 8000,
+            "surplus": "450.500",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "white_vinegar",
+            "product_id": "bas_white_vinegar_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "470.426",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "dill_weed",
+            "product_id": "bas_dill_weed_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 25000,
+            "surplus": "35.213",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "245.071",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "black_pepper",
+            "product_id": "bas_black_pepper_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 15000,
+            "surplus": "47.535",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "cucumber",
+            "product_id": "bas_cucumber_4piece",
+            "pack_count": 1,
+            "line_cost_minor": 13000,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "onion",
+            "product_id": "bas_onion_1piece",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "0.000",
+            "unit": "piece"
+          }
+        ],
+        "options_per_line": [
+          4,
+          4,
+          3,
+          2,
+          3,
+          4,
+          4,
+          5
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "black_pepper",
+          "cucumber",
+          "dill_weed",
+          "onion",
+          "salt",
+          "sour_cream",
+          "sugar",
+          "white_vinegar"
+        ]
+      },
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b046",
+      "family_id": "foodcom_176192",
+      "label": "clarification",
+      "design": "unknown_meal",
+      "text": "I feel like nihari. 3 portions, spend up to 3,000 rupees",
+      "gold_request": {
+        "request_id": "dev_b046",
+        "intent": "plan_meal",
+        "recipe_id": null,
+        "servings": 3,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 300000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": true,
+        "clarification_type": "missing_recipe",
+        "clarification_prompt": "Which dish would you like? For example: homemade pasta, scrambled eggs or sweet potato fries."
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_recipe"
+      },
+      "clarification_answer": "the homemade pasta",
+      "resolved_request": {
+        "request_id": "dev_b046",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3474",
+        "servings": 3,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 300000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 50000,
+        "budget_minor": 300000,
+        "basket": [
+          {
+            "ingredient_id": "white_flour",
+            "product_id": "sim_flour_500g",
+            "pack_count": 1,
+            "line_cost_minor": 9000,
+            "surplus": "320.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "egg",
+            "product_id": "sim_egg_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "4.500",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "88.909",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "455.639",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          4,
+          5,
+          5,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "egg",
+          "olive_oil",
+          "water",
+          "white_flour"
+        ]
+      },
+      "has_history": false
+    },
+    {
+      "scenario_id": "dev_b047",
+      "family_id": "foodcom_247934",
+      "label": "clarification",
+      "design": "broad",
+      "text": "Pick a dinner for me. no more than Rs twenty-five hundred, feeding 8",
+      "gold_request": {
+        "request_id": "dev_b047",
+        "intent": "plan_meal",
+        "recipe_id": null,
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 250000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 136992,
+        "needs_clarification": true,
+        "clarification_type": "missing_recipe",
+        "clarification_prompt": "Which dish would you like? For example: homemade pasta, sweet potato fries or lime rice."
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_recipe"
+      },
+      "clarification_answer": "the homemade pasta",
+      "resolved_request": {
+        "request_id": "dev_b047",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3474",
+        "servings": 8,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 250000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 136992,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 50000,
+        "budget_minor": 250000,
+        "basket": [
+          {
+            "ingredient_id": "white_flour",
+            "product_id": "sim_flour_500g",
+            "pack_count": 1,
+            "line_cost_minor": 9000,
+            "surplus": "20.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "egg",
+            "product_id": "sim_egg_6piece",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "2.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "70.426",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "water",
+            "product_id": "sim_water_500ml",
+            "pack_count": 1,
+            "line_cost_minor": 5000,
+            "surplus": "381.705",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          4,
+          5,
+          5,
+          4
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "egg",
+          "olive_oil",
+          "water",
+          "white_flour"
+        ]
+      },
+      "has_history": true,
+      "history_shared_ingredients": [
+        "egg",
+        "olive_oil"
+      ]
+    },
+    {
+      "scenario_id": "dev_b048",
+      "family_id": "foodcom_176192",
+      "label": "clarification",
+      "design": "vague_budget",
+      "text": "I feel like baked sweet potato fries, 6 portions, budget friendly",
+      "gold_request": {
+        "request_id": "dev_b048",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_176192",
+        "servings": 6,
+        "items": [],
+        "pantry": {},
+        "budget_minor": null,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 48049,
+        "needs_clarification": true,
+        "clarification_type": "missing_budget",
+        "clarification_prompt": "What is your budget in rupees?"
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_budget"
+      },
+      "clarification_answer": "about Rs 900",
+      "resolved_request": {
+        "request_id": "dev_b048",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_176192",
+        "servings": 6,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 90000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": 48049,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 69700,
+        "budget_minor": 90000,
+        "basket": [
+          {
+            "ingredient_id": "sweet_potato",
+            "product_id": "bas_sweet_potato_3piece",
+            "pack_count": 1,
+            "line_cost_minor": 11200,
+            "surplus": "0.000",
+            "unit": "piece"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "product_id": "sim_olive_oil_100ml",
+            "pack_count": 1,
+            "line_cost_minor": 18000,
+            "surplus": "66.729",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "ground_cumin",
+            "product_id": "bas_ground_cumin_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "42.606",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "chili_powder",
+            "product_id": "bas_chili_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "46.303",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "salt",
+            "product_id": "bas_salt_250ml",
+            "pack_count": 1,
+            "line_cost_minor": 3000,
+            "surplus": "248.151",
+            "unit": "ml"
+          },
+          {
+            "ingredient_id": "onion_powder",
+            "product_id": "bas_onion_powder_50ml",
+            "pack_count": 1,
+            "line_cost_minor": 12500,
+            "surplus": "46.303",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          5,
+          5,
+          4,
+          4,
+          3,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "chili_powder",
+          "ground_cumin",
+          "olive_oil",
+          "onion_powder",
+          "salt",
+          "sweet_potato"
+        ]
+      },
+      "has_history": true,
+      "history_shared_ingredients": [
+        "ground_cumin",
+        "olive_oil",
+        "sweet_potato"
+      ]
+    },
+    {
+      "scenario_id": "dev_b049",
+      "family_id": "list_dev_03",
+      "label": "clarification",
+      "design": "list_missing_quantity",
+      "text": "I want cheddar, 2 l of chicken broth, no more than 2950 rupees",
+      "gold_request": {
+        "request_id": "dev_b049",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "cheddar",
+            "amount": null,
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "amount": "2000.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 295000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": true,
+        "clarification_type": "missing_item_quantity",
+        "clarification_prompt": "How much cheddar cheese do you need (in g)?"
+      },
+      "checker": {
+        "label": "clarification",
+        "reason": "missing_item_quantity"
+      },
+      "clarification_answer": "250 g",
+      "resolved_request": {
+        "request_id": "dev_b049",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "cheddar",
+            "amount": "250.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "amount": "2000.000",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 295000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "resolved_checker": {
+        "label": "feasible",
+        "reason": "within_budget",
+        "min_cost_minor": 158000,
+        "budget_minor": 295000,
+        "basket": [
+          {
+            "ingredient_id": "cheddar",
+            "product_id": "sim_cheddar_250g",
+            "pack_count": 1,
+            "line_cost_minor": 65000,
+            "surplus": "0.000",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "chicken_broth",
+            "product_id": "bas_chicken_broth_1000ml",
+            "pack_count": 2,
+            "line_cost_minor": 93000,
+            "surplus": "0.000",
+            "unit": "ml"
+          }
+        ],
+        "options_per_line": [
+          6,
+          3
+        ],
+        "covered_by_pantry": [],
+        "excluded_lines": [],
+        "required_ingredients": [
+          "cheddar",
+          "chicken_broth"
+        ]
+      },
+      "has_history": false
+    }
+  ]
+}

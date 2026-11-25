@@ -1,0 +1,1411 @@
+{
+  "benchmark": "retrieval",
+  "split": "test",
+  "queries": [
+    {
+      "query_id": "rq_test_000",
+      "query": "almond drink unsweetened",
+      "required_ingredient": "almond_milk",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_almond_milk_1000ml",
+        "sel_almond_milk_1000ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_001",
+      "query": "almnd milk",
+      "required_ingredient": "almond_milk",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_almond_milk_1000ml",
+        "sel_almond_milk_1000ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_002",
+      "query": "mott's applesauce",
+      "required_ingredient": "applesauce",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_applesauce_250ml",
+        "bas_applesauce_500ml",
+        "bas_applesauce_700ml",
+        "sel_applesauce_700ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_003",
+      "query": "baking powdr",
+      "required_ingredient": "baking_powder",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_baking_powder_100g",
+        "bas_baking_powder_250g",
+        "sel_baking_powder_250g"
+      ]
+    },
+    {
+      "query_id": "rq_test_004",
+      "query": "basmati chawal",
+      "required_ingredient": "basmati_rice",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_basmati_rice_1000g",
+        "bas_basmati_rice_2000g",
+        "bas_basmati_rice_5000g",
+        "org_basmati_rice_1000g",
+        "sel_basmati_rice_5000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_005",
+      "query": "tilda basmati",
+      "required_ingredient": "basmati_rice",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_basmati_rice_1000g",
+        "bas_basmati_rice_2000g",
+        "bas_basmati_rice_5000g",
+        "org_basmati_rice_1000g",
+        "sel_basmati_rice_5000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_006",
+      "query": "beef fillet",
+      "required_ingredient": "beef_tenderloin",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_beef_tenderloin_1000g",
+        "bas_beef_tenderloin_2000g",
+        "bas_beef_tenderloin_500g",
+        "sel_beef_tenderloin_2000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_007",
+      "query": "filet mignon",
+      "required_ingredient": "beef_tenderloin",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_beef_tenderloin_1000g",
+        "bas_beef_tenderloin_2000g",
+        "bas_beef_tenderloin_500g",
+        "sel_beef_tenderloin_2000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_008",
+      "query": "kali mirch",
+      "required_ingredient": "black_pepper",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_black_pepper_100ml",
+        "bas_black_pepper_250ml",
+        "bas_black_pepper_50ml",
+        "sel_black_pepper_250ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_009",
+      "query": "black peper",
+      "required_ingredient": "black_pepper",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_black_pepper_100ml",
+        "bas_black_pepper_250ml",
+        "bas_black_pepper_50ml",
+        "sel_black_pepper_250ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_010",
+      "query": "light brown sugar",
+      "required_ingredient": "brown_sugar",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_brown_sugar_1000g",
+        "bas_brown_sugar_500g",
+        "sel_brown_sugar_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_011",
+      "query": "brussel sprouts",
+      "required_ingredient": "brussels_sprouts",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_brussels_sprouts_1000g",
+        "bas_brussels_sprouts_250g",
+        "bas_brussels_sprouts_500g",
+        "org_brussels_sprouts_250g",
+        "sel_brussels_sprouts_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_012",
+      "query": "makhan",
+      "required_ingredient": "butter",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_butter_100g",
+        "bas_butter_200g",
+        "bas_butter_500g",
+        "org_butter_100g",
+        "sel_butter_500g",
+        "var1_butter_200g"
+      ]
+    },
+    {
+      "query_id": "rq_test_013",
+      "query": "butter block",
+      "required_ingredient": "butter",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_butter_100g",
+        "bas_butter_200g",
+        "bas_butter_500g",
+        "org_butter_100g",
+        "sel_butter_500g",
+        "var1_butter_200g"
+      ]
+    },
+    {
+      "query_id": "rq_test_014",
+      "query": "plant-based butter",
+      "required_ingredient": "butter",
+      "query_type": "constrained",
+      "required_unit": null,
+      "dietary_rules": [
+        "vegan"
+      ],
+      "relevant_ids": [
+        "var1_butter_200g"
+      ]
+    },
+    {
+      "query_id": "rq_test_015",
+      "query": "cultured buttermilk",
+      "required_ingredient": "buttermilk",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_buttermilk_1000ml",
+        "bas_buttermilk_500ml",
+        "org_buttermilk_500ml",
+        "sel_buttermilk_1000ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_016",
+      "query": "gobhi",
+      "required_ingredient": "cauliflower",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cauliflower_1piece",
+        "bas_cauliflower_2piece",
+        "org_cauliflower_1piece",
+        "sel_cauliflower_2piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_017",
+      "query": "cauliflour",
+      "required_ingredient": "cauliflower",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cauliflower_1piece",
+        "bas_cauliflower_2piece",
+        "org_cauliflower_1piece",
+        "sel_cauliflower_2piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_018",
+      "query": "cayenne pepper",
+      "required_ingredient": "cayenne",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cayenne_100ml",
+        "bas_cayenne_50ml",
+        "sel_cayenne_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_019",
+      "query": "chicken stock powder",
+      "required_ingredient": "chicken_bouillon",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chicken_bouillon_100ml",
+        "bas_chicken_bouillon_50ml",
+        "sel_chicken_bouillon_100ml",
+        "var1_chicken_bouillon_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_020",
+      "query": "knorr chicken cubes",
+      "required_ingredient": "chicken_bouillon",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chicken_bouillon_100ml",
+        "bas_chicken_bouillon_50ml",
+        "sel_chicken_bouillon_100ml",
+        "var1_chicken_bouillon_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_021",
+      "query": "boneless chicken breast",
+      "required_ingredient": "chicken_breast",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chicken_breast_1000g",
+        "bas_chicken_breast_4piece",
+        "sel_chicken_breast_1000g",
+        "sel_chicken_breast_4piece",
+        "sim_chicken_250g",
+        "sim_chicken_2piece",
+        "sim_chicken_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_022",
+      "query": "chicken brest fillets",
+      "required_ingredient": "chicken_breast",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chicken_breast_1000g",
+        "bas_chicken_breast_4piece",
+        "sel_chicken_breast_1000g",
+        "sel_chicken_breast_4piece",
+        "sim_chicken_250g",
+        "sim_chicken_2piece",
+        "sim_chicken_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_023",
+      "query": "thin chicken cutlets",
+      "required_ingredient": "chicken_cutlet",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chicken_cutlet_4piece",
+        "bas_chicken_cutlet_6piece",
+        "bas_chicken_cutlet_8piece",
+        "sel_chicken_cutlet_8piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_024",
+      "query": "party wings",
+      "required_ingredient": "chicken_wings",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chicken_wings_1000g",
+        "bas_chicken_wings_2000g",
+        "bas_chicken_wings_500g",
+        "sel_chicken_wings_2000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_025",
+      "query": "chanay",
+      "required_ingredient": "chickpeas_canned",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chickpeas_canned_400g",
+        "bas_chickpeas_canned_540g",
+        "bas_chickpeas_canned_800g",
+        "sel_chickpeas_canned_800g"
+      ]
+    },
+    {
+      "query_id": "rq_test_026",
+      "query": "garbanzo beans",
+      "required_ingredient": "chickpeas_canned",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chickpeas_canned_400g",
+        "bas_chickpeas_canned_540g",
+        "bas_chickpeas_canned_800g",
+        "sel_chickpeas_canned_800g"
+      ]
+    },
+    {
+      "query_id": "rq_test_027",
+      "query": "red chili powder",
+      "required_ingredient": "chili_powder",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chili_powder_100ml",
+        "bas_chili_powder_200ml",
+        "bas_chili_powder_50ml",
+        "sel_chili_powder_200ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_028",
+      "query": "chilli powder",
+      "required_ingredient": "chili_powder",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chili_powder_100ml",
+        "bas_chili_powder_200ml",
+        "bas_chili_powder_50ml",
+        "sel_chili_powder_200ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_029",
+      "query": "sriracha style chili sauce",
+      "required_ingredient": "chili_sauce",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_chili_sauce_300ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_030",
+      "query": "cod fish fillet",
+      "required_ingredient": "cod",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cod_250g",
+        "bas_cod_500g",
+        "sel_cod_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_031",
+      "query": "ready cooked brown rice",
+      "required_ingredient": "cooked_brown_rice",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cooked_brown_rice_250g",
+        "bas_cooked_brown_rice_500g",
+        "org_cooked_brown_rice_250g",
+        "sel_cooked_brown_rice_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_032",
+      "query": "corn tortillas",
+      "required_ingredient": "corn_tortilla",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_corn_tortilla_10piece",
+        "bas_corn_tortilla_20piece",
+        "bas_corn_tortilla_30piece",
+        "sel_corn_tortilla_30piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_033",
+      "query": "cornflour",
+      "required_ingredient": "cornstarch",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cornstarch_200g",
+        "bas_cornstarch_500g",
+        "sel_cornstarch_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_034",
+      "query": "philadelphia cream cheese",
+      "required_ingredient": "cream_cheese",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cream_cheese_200g",
+        "bas_cream_cheese_400g",
+        "org_cream_cheese_200g",
+        "sel_cream_cheese_400g"
+      ]
+    },
+    {
+      "query_id": "rq_test_035",
+      "query": "cream of chicken",
+      "required_ingredient": "cream_of_chicken_soup",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cream_of_chicken_soup_298g",
+        "sel_cream_of_chicken_soup_298g"
+      ]
+    },
+    {
+      "query_id": "rq_test_036",
+      "query": "kheera",
+      "required_ingredient": "cucumber",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_cucumber_1piece",
+        "bas_cucumber_4piece",
+        "org_cucumber_1piece",
+        "sel_cucumber_4piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_037",
+      "query": "madras curry powder",
+      "required_ingredient": "curry_powder",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_curry_powder_100ml",
+        "bas_curry_powder_200ml",
+        "bas_curry_powder_50ml",
+        "sel_curry_powder_200ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_038",
+      "query": "rotel tomatoes",
+      "required_ingredient": "diced_tomatoes_green_chilies",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_diced_tomatoes_green_chilies_283g",
+        "bas_diced_tomatoes_green_chilies_400g",
+        "sel_diced_tomatoes_green_chilies_400g"
+      ]
+    },
+    {
+      "query_id": "rq_test_039",
+      "query": "grey poupon",
+      "required_ingredient": "dijon_mustard",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_dijon_mustard_200ml",
+        "sel_dijon_mustard_200ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_040",
+      "query": "dried basil leaves",
+      "required_ingredient": "dried_basil",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_dried_basil_100ml",
+        "bas_dried_basil_50ml",
+        "sel_dried_basil_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_041",
+      "query": "rubbed sage",
+      "required_ingredient": "dried_sage",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_dried_sage_50ml",
+        "sel_dried_sage_50ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_042",
+      "query": "thyme leaves",
+      "required_ingredient": "dried_thyme",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_dried_thyme_100ml",
+        "bas_dried_thyme_50ml",
+        "sel_dried_thyme_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_043",
+      "query": "wide egg noodles",
+      "required_ingredient": "egg_noodles",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_egg_noodles_400g",
+        "org_egg_noodles_400g",
+        "sel_egg_noodles_400g"
+      ]
+    },
+    {
+      "query_id": "rq_test_044",
+      "query": "gluten-free elbow pasta",
+      "required_ingredient": "elbow_macaroni",
+      "query_type": "constrained",
+      "required_unit": null,
+      "dietary_rules": [
+        "gluten_free"
+      ],
+      "relevant_ids": [
+        "var1_elbow_macaroni_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_045",
+      "query": "fettucine",
+      "required_ingredient": "fettuccine",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_fettuccine_400g",
+        "bas_fettuccine_500g",
+        "org_fettuccine_400g",
+        "sel_fettuccine_500g",
+        "var1_fettuccine_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_046",
+      "query": "lehsan",
+      "required_ingredient": "garlic",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_garlic_100g",
+        "bas_garlic_10piece",
+        "bas_garlic_200g",
+        "bas_garlic_30piece",
+        "org_garlic_10piece",
+        "sel_garlic_200g",
+        "sel_garlic_30piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_047",
+      "query": "garlic cloves",
+      "required_ingredient": "garlic",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_garlic_100g",
+        "bas_garlic_10piece",
+        "bas_garlic_200g",
+        "bas_garlic_30piece",
+        "org_garlic_10piece",
+        "sel_garlic_200g",
+        "sel_garlic_30piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_048",
+      "query": "garlic powder",
+      "required_ingredient": "garlic_powder",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_garlic_powder_100ml",
+        "bas_garlic_powder_200ml",
+        "bas_garlic_powder_50ml",
+        "sel_garlic_powder_200ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_049",
+      "query": "string beans",
+      "required_ingredient": "green_beans",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_green_beans_1000g",
+        "bas_green_beans_250g",
+        "bas_green_beans_500g",
+        "org_green_beans_250g",
+        "sel_green_beans_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_050",
+      "query": "old el paso green chiles",
+      "required_ingredient": "green_chilies_canned",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_green_chilies_canned_113g",
+        "bas_green_chilies_canned_227g",
+        "sel_green_chilies_canned_227g"
+      ]
+    },
+    {
+      "query_id": "rq_test_051",
+      "query": "qeema",
+      "required_ingredient": "ground_beef",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_ground_beef_1000g",
+        "bas_ground_beef_250g",
+        "bas_ground_beef_500g",
+        "sel_ground_beef_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_052",
+      "query": "beef mince",
+      "required_ingredient": "ground_beef",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_ground_beef_1000g",
+        "bas_ground_beef_250g",
+        "bas_ground_beef_500g",
+        "sel_ground_beef_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_053",
+      "query": "zeera powder",
+      "required_ingredient": "ground_cumin",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_ground_cumin_100ml",
+        "bas_ground_cumin_200ml",
+        "bas_ground_cumin_50ml",
+        "sel_ground_cumin_200ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_054",
+      "query": "sonth",
+      "required_ingredient": "ground_ginger",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_ground_ginger_100ml",
+        "bas_ground_ginger_50ml",
+        "sel_ground_ginger_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_055",
+      "query": "double cream",
+      "required_ingredient": "heavy_cream",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_heavy_cream_200ml",
+        "bas_heavy_cream_500ml",
+        "org_heavy_cream_200ml",
+        "sel_heavy_cream_500ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_056",
+      "query": "heinz ketchup",
+      "required_ingredient": "ketchup",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_ketchup_1000ml",
+        "bas_ketchup_300ml",
+        "bas_ketchup_500ml",
+        "sel_ketchup_1000ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_057",
+      "query": "mutton chops",
+      "required_ingredient": "lamb_chop",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_lamb_chop_2piece",
+        "bas_lamb_chop_4piece",
+        "bas_lamb_chop_8piece",
+        "sel_lamb_chop_8piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_058",
+      "query": "lime juice",
+      "required_ingredient": "lime_juice",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_lime_juice_250ml",
+        "org_lime_juice_100ml",
+        "sel_lime_juice_250ml",
+        "sim_lime_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_059",
+      "query": "long grain white rice",
+      "required_ingredient": "long_grain_rice",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_long_grain_rice_1000g",
+        "bas_long_grain_rice_2000g",
+        "bas_long_grain_rice_5000g",
+        "org_long_grain_rice_1000g",
+        "sel_long_grain_rice_5000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_060",
+      "query": "margerine",
+      "required_ingredient": "margarine",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_margarine_250g",
+        "bas_margarine_500g",
+        "sel_margarine_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_061",
+      "query": "hellmann's mayo",
+      "required_ingredient": "mayonnaise",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_mayonnaise_1000g",
+        "bas_mayonnaise_250g",
+        "bas_mayonnaise_500g",
+        "sel_mayonnaise_1000g",
+        "var1_mayonnaise_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_062",
+      "query": "vegan mayo",
+      "required_ingredient": "mayonnaise",
+      "query_type": "constrained",
+      "required_unit": null,
+      "dietary_rules": [
+        "vegan"
+      ],
+      "relevant_ids": [
+        "var1_mayonnaise_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_063",
+      "query": "monterey jack",
+      "required_ingredient": "monterey_jack",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_monterey_jack_200g",
+        "bas_monterey_jack_400g",
+        "org_monterey_jack_200g",
+        "sel_monterey_jack_400g",
+        "var1_monterey_jack_400g"
+      ]
+    },
+    {
+      "query_id": "rq_test_064",
+      "query": "vegetarian jack cheese",
+      "required_ingredient": "monterey_jack",
+      "query_type": "constrained",
+      "required_unit": null,
+      "dietary_rules": [
+        "vegetarian"
+      ],
+      "relevant_ids": [
+        "var1_monterey_jack_400g"
+      ]
+    },
+    {
+      "query_id": "rq_test_065",
+      "query": "mozarella",
+      "required_ingredient": "mozzarella",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_mozzarella_200g",
+        "bas_mozzarella_400g",
+        "org_mozzarella_200g",
+        "sel_mozzarella_400g"
+      ]
+    },
+    {
+      "query_id": "rq_test_066",
+      "query": "yellow mustard",
+      "required_ingredient": "mustard",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_mustard_200ml",
+        "bas_mustard_400ml",
+        "sel_mustard_400ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_067",
+      "query": "jaiphal",
+      "required_ingredient": "nutmeg",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_nutmeg_100ml",
+        "bas_nutmeg_50ml",
+        "sel_nutmeg_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_068",
+      "query": "extra virgin olive oil",
+      "required_ingredient": "olive_oil",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_olive_oil_1000ml",
+        "bas_olive_oil_500ml",
+        "sel_olive_oil_1000ml",
+        "sim_olive_oil_100ml",
+        "sim_olive_oil_250ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_069",
+      "query": "pyaz",
+      "required_ingredient": "onion",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_onion_1000g",
+        "bas_onion_1piece",
+        "bas_onion_2000g",
+        "bas_onion_3piece",
+        "bas_onion_6piece",
+        "org_onion_1piece",
+        "sel_onion_2000g",
+        "sel_onion_6piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_070",
+      "query": "yellow onions",
+      "required_ingredient": "onion",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_onion_1000g",
+        "bas_onion_1piece",
+        "bas_onion_2000g",
+        "bas_onion_3piece",
+        "bas_onion_6piece",
+        "org_onion_1piece",
+        "sel_onion_2000g",
+        "sel_onion_6piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_071",
+      "query": "onion granules",
+      "required_ingredient": "onion_powder",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_onion_powder_100ml",
+        "bas_onion_powder_50ml",
+        "sel_onion_powder_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_072",
+      "query": "onion salt",
+      "required_ingredient": "onion_salt",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_onion_salt_100ml",
+        "sel_onion_salt_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_073",
+      "query": "paprika powder",
+      "required_ingredient": "paprika",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_paprika_100ml",
+        "bas_paprika_50ml",
+        "sel_paprika_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_074",
+      "query": "parmigiano reggiano",
+      "required_ingredient": "parmesan",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_parmesan_100g",
+        "bas_parmesan_200g",
+        "bas_parmesan_400g",
+        "org_parmesan_100g",
+        "sel_parmesan_400g",
+        "var1_parmesan_200g"
+      ]
+    },
+    {
+      "query_id": "rq_test_075",
+      "query": "vegetarian hard cheese",
+      "required_ingredient": "parmesan",
+      "query_type": "constrained",
+      "required_unit": null,
+      "dietary_rules": [
+        "vegetarian"
+      ],
+      "relevant_ids": [
+        "var1_parmesan_200g"
+      ]
+    },
+    {
+      "query_id": "rq_test_076",
+      "query": "skippy peanut butter",
+      "required_ingredient": "peanut_butter",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_peanut_butter_1000g",
+        "bas_peanut_butter_340g",
+        "bas_peanut_butter_500g",
+        "sel_peanut_butter_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_077",
+      "query": "groundnuts",
+      "required_ingredient": "peanuts",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_peanuts_200g",
+        "bas_peanuts_500g",
+        "sel_peanuts_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_078",
+      "query": "salted peanuts",
+      "required_ingredient": "peanuts",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_peanuts_200g",
+        "bas_peanuts_500g",
+        "sel_peanuts_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_079",
+      "query": "dahi",
+      "required_ingredient": "plain_yogurt",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_plain_yogurt_1000g",
+        "bas_plain_yogurt_250g",
+        "bas_plain_yogurt_500g",
+        "org_plain_yogurt_250g",
+        "sel_plain_yogurt_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_080",
+      "query": "plain yoghurt",
+      "required_ingredient": "plain_yogurt",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_plain_yogurt_1000g",
+        "bas_plain_yogurt_250g",
+        "bas_plain_yogurt_500g",
+        "org_plain_yogurt_250g",
+        "sel_plain_yogurt_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_081",
+      "query": "aloo",
+      "required_ingredient": "potato",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_potato_1000g",
+        "bas_potato_1piece",
+        "bas_potato_2500g",
+        "bas_potato_5000g",
+        "bas_potato_6piece",
+        "org_potato_1piece",
+        "sel_potato_5000g",
+        "sel_potato_6piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_082",
+      "query": "potatos",
+      "required_ingredient": "potato",
+      "query_type": "misspelling",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_potato_1000g",
+        "bas_potato_1piece",
+        "bas_potato_2500g",
+        "bas_potato_5000g",
+        "bas_potato_6piece",
+        "org_potato_1piece",
+        "sel_potato_5000g",
+        "sel_potato_6piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_083",
+      "query": "red chili flakes",
+      "required_ingredient": "red_pepper_flakes",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_red_pepper_flakes_100ml",
+        "bas_red_pepper_flakes_50ml",
+        "sel_red_pepper_flakes_100ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_084",
+      "query": "chawal ka atta",
+      "required_ingredient": "rice_flour",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_rice_flour_1000g",
+        "bas_rice_flour_500g",
+        "org_rice_flour_500g",
+        "sel_rice_flour_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_085",
+      "query": "ricotta cheese",
+      "required_ingredient": "ricotta",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_ricotta_250ml",
+        "bas_ricotta_500ml",
+        "org_ricotta_250ml",
+        "sel_ricotta_500ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_086",
+      "query": "quaker old fashioned oats",
+      "required_ingredient": "rolled_oats",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_rolled_oats_1000g",
+        "bas_rolled_oats_500g",
+        "sel_rolled_oats_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_087",
+      "query": "salmon fillets",
+      "required_ingredient": "salmon",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_salmon_1000g",
+        "bas_salmon_250g",
+        "bas_salmon_500g",
+        "sel_salmon_1000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_088",
+      "query": "soured cream",
+      "required_ingredient": "sour_cream",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_sour_cream_200g",
+        "bas_sour_cream_400g",
+        "org_sour_cream_200g",
+        "sel_sour_cream_400g"
+      ]
+    },
+    {
+      "query_id": "rq_test_089",
+      "query": "kikkoman soy sauce",
+      "required_ingredient": "soy_sauce",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_soy_sauce_300ml",
+        "bas_soy_sauce_500ml",
+        "sel_soy_sauce_500ml",
+        "sim_soy_150ml",
+        "var1_soy_sauce_300ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_090",
+      "query": "gluten-free tamari",
+      "required_ingredient": "soy_sauce",
+      "query_type": "constrained",
+      "required_unit": null,
+      "dietary_rules": [
+        "gluten_free"
+      ],
+      "relevant_ids": [
+        "var1_soy_sauce_300ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_091",
+      "query": "shakarkandi",
+      "required_ingredient": "sweet_potato",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_sweet_potato_1piece",
+        "bas_sweet_potato_3piece",
+        "bas_sweet_potato_6piece",
+        "org_sweet_potato_1piece",
+        "sel_sweet_potato_6piece"
+      ]
+    },
+    {
+      "query_id": "rq_test_092",
+      "query": "tomato puree concentrate",
+      "required_ingredient": "tomato_paste",
+      "query_type": "near_match",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_tomato_paste_140g",
+        "bas_tomato_paste_70g",
+        "sel_tomato_paste_140g"
+      ]
+    },
+    {
+      "query_id": "rq_test_093",
+      "query": "canola oil",
+      "required_ingredient": "vegetable_oil",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_vegetable_oil_1000ml",
+        "bas_vegetable_oil_3000ml",
+        "bas_vegetable_oil_500ml",
+        "sel_vegetable_oil_3000ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_094",
+      "query": "drinking water",
+      "required_ingredient": "water",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_water_1500ml",
+        "sel_water_1500ml",
+        "sim_water_1000ml",
+        "sim_water_500ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_095",
+      "query": "maida",
+      "required_ingredient": "white_flour",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_white_flour_2000g",
+        "org_white_flour_500g",
+        "sim_flour_1000g",
+        "sim_flour_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_096",
+      "query": "all purpose flour",
+      "required_ingredient": "white_flour",
+      "query_type": "synonym",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_white_flour_2000g",
+        "org_white_flour_500g",
+        "sim_flour_1000g",
+        "sim_flour_500g"
+      ]
+    },
+    {
+      "query_id": "rq_test_097",
+      "query": "atta",
+      "required_ingredient": "whole_wheat_flour",
+      "query_type": "transliteration",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_whole_wheat_flour_1000g",
+        "bas_whole_wheat_flour_2000g",
+        "bas_whole_wheat_flour_5000g",
+        "org_whole_wheat_flour_1000g",
+        "sel_whole_wheat_flour_5000g"
+      ]
+    },
+    {
+      "query_id": "rq_test_098",
+      "query": "lea and perrins",
+      "required_ingredient": "worcestershire_sauce",
+      "query_type": "brand",
+      "required_unit": null,
+      "dietary_rules": [],
+      "relevant_ids": [
+        "bas_worcestershire_sauce_150ml",
+        "bas_worcestershire_sauce_300ml",
+        "sel_worcestershire_sauce_300ml",
+        "var1_worcestershire_sauce_300ml"
+      ]
+    },
+    {
+      "query_id": "rq_test_099",
+      "query": "anchovy-free worcestershire",
+      "required_ingredient": "worcestershire_sauce",
+      "query_type": "constrained",
+      "required_unit": null,
+      "dietary_rules": [
+        "vegetarian"
+      ],
+      "relevant_ids": [
+        "var1_worcestershire_sauce_300ml"
+      ]
+    }
+  ]
+}
