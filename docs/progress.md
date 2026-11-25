@@ -11,7 +11,137 @@ Each phase starts only with the project owner's permission.
 | 1 | Fix inherited defects (D3, D4, D5) | **Complete — 2026-11-25** |
 | 2 | D2 full catalog and recipes | **Complete — 2026-11-25** (independent recipe review pending) |
 | 3 | D2 transaction sample and Track B splits | **Complete — 2026-11-25** (mapping review by a single reviewer) |
-| 4–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 4 is next) |
+| 4 | D2 benchmarks and gold feasibility checker | **Complete — 2026-11-25** (second-person annotation review pending) |
+| 5–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 5 is next) |
+
+## Phase 4 — D2 benchmarks and gold feasibility checker (complete, 2026-11-25)
+
+**What changed**
+
+- **Gold feasibility checker** (`src/smartcart/validation/feasibility.py`):
+  - Resolves the requirements: recipe lines scaled to servings, plus items, aggregated,
+    minus pantry, minus excluded ingredients.
+  - Builds the eligible options per line: same ingredient and unit, available, every
+    diet `"allowed"`; `unknown` fails.
+  - Finds the exact minimum-cost basket by depth-first enumeration (pruning only branches
+    that cannot beat the best basket).
+  - Returns the label (`feasible`, `infeasible`, `clarification` or `unsupported`), the
+    reason, the minimum cost and the cheapest basket.
+- **Benchmark generator:**
+  - `src/smartcart/benchmarks/`:
+    - `groups.py`: grouped splits;
+    - `language.py`: tokenizer, span builder, units, numbers and budgets;
+    - `requests.py`: phrasing pools per split, rendering, gold StructuredRequests;
+    - `build.py`: scenario designs and clarification answers.
+  - `scripts/build_benchmarks.py`: writes everything, runs 16 checks, and supports
+    `--check` (byte-for-byte rebuild plus lock verification) and `--lock`.
+  - `configs/benchmarks.json` holds the settings.
+- **Hand-written inputs:**
+  - `data/processed/recipe_aliases.csv`: 89 user-facing meal names for the 42 recipes,
+    including transliterations such as "anda bhurji" and "aloo soup";
+  - `configs/retrieval_queries.csv`: 150 retrieval queries.
+- **NLU annotations:** `data/annotations/nlu.jsonl`.
+  - **900 examples:** 300 seeds × 3 paraphrases. Intents per split: 240/60/60 plan_meal,
+    150/36/36 grocery list, 120/30/30 revise, 90/24/24 unsupported.
+  - Each example has tokens, BIO tags over the 10 slot labels, character spans with
+    normalized values, quantity → item attachment (`attach_to`), the session for
+    revisions, and the gold StructuredRequest.
+  - Clarification examples cover all 5 gold types in train and test. NLU dev has no
+    `missing_recipe` example; the basket dev set has 4.
+  - `data/splits/nlu_split.json` gives the 600/150/150 split by `seed_id`.
+- **Grouped splits** (`data/splits/benchmark_groups.json`):
+  - Whole meal families go to one split: 16 / 8 / 18 recipes. Grocery-list families are
+    drawn from each split's recipe ingredients.
+  - Phrasing templates are partitioned by split, so dev and test text uses templates never
+    seen in training.
+- **Basket benchmark:**
+  - `data/benchmarks/basket_test.json`: **200 scenarios (120 / 40 / 40)** across 24 test
+    families. `basket_dev.json`: 50 scenarios (30 / 10 / 10).
+  - The test infeasible scenarios are 25 budget-below-minimum and 15 diet conflicts. Test
+    has 26 exact-budget feasible scenarios and 66 with multi-pack lines.
+  - Clarification scenarios carry an answer and a resolved request with its own label.
+  - 40 test and 10 dev scenarios have an Instacart `user_id` whose Track B training
+    history shares at least 2 required ingredients.
+- **Retrieval benchmark:** `data/benchmarks/retrieval_{dev,test}.json`.
+  - 50 / 100 hand-written queries, with ingredient groups of 40 dev / 78 test that never
+    overlap.
+  - Query types: synonym, real brand names, misspellings, Urdu transliterations
+    (dhania, kali mirch, qeema …), misleading near-matches, and diet-constrained queries.
+  - The relevant set is every available product of the target ingredient that is
+    `allowed` for the query's diet.
+- **Docs:**
+  - `docs/benchmark_policy.md`: the basket semantics behind every label, the annotation
+    scheme, how the data was generated, the splits and the limitations.
+  - `docs/annotation_review.md`: the review record.
+  - `docs/benchmark_lock.md`: SHA-256 of the locked files.
+  - `BUILD_PHASES.md`: adds the `missing_item_quantity` clarification type; Phase 7 now
+    uses the locked retrieval files.
+
+**Contract decisions (documented in `benchmark_policy.md`)**
+
+- **Exclusions drop the ingredient** from the requirements (the user cooks without it),
+  and none of its products may be bought. Infeasibility comes from budgets and diets.
+- **Budgets are inclusive caps.** Strict wording ("under" or "below") is never generated
+  when the budget equals the minimum cost.
+- **A request with no budget has no cost limit.** Only vague cost wording triggers
+  `missing_budget`.
+- **No servings means the recipe's base servings**; the gold `servings` stays `null`.
+- **`missing_item_quantity` is a new clarification type.** `low_confidence_intent` is
+  runtime-only and never a gold label.
+- **"Lactose-free" is not dairy-free.** A negated diet category ("no dairy") is a `DIET`
+  span; a negated ingredient is an `EXCLUSION` span on the ingredient only.
+
+**Verification evidence**
+
+- `build_benchmarks.py`: all 16 checks pass (`results/metrics/benchmark_checks.json`).
+  They include:
+  - the counts;
+  - no seed or family overlap;
+  - test families absent from dev and from NLU training;
+  - no identical text across splits;
+  - distinct paraphrases;
+  - spans consistent with gold;
+  - every basket label reproduced by the checker;
+  - the history counts;
+  - disjoint retrieval ingredients.
+- `build_benchmarks.py --check`: all 8 files rebuild byte-for-byte, and the 5 locked files
+  match `docs/benchmark_lock.md`.
+- `pytest`: **121 passed, 95 subtests** (92 before, plus 10 in `test_feasibility.py` and
+  19 in `test_benchmarks.py`).
+  - Checker cases from the plan:
+    - the worked example (600 g needed, 200 g pantry, 250 g packs → 2 packs, 100 g surplus);
+    - exact budget, and one below it;
+    - multi-pack;
+    - excluded ingredient;
+    - unknown label;
+    - disallowed and unavailable products;
+    - pantry covers everything;
+    - the pruned search equals full enumeration on 12 recipes × 3 diets.
+  - Benchmark tests: counts, grouping, label reproduction, test-family isolation,
+    required-case coverage, history users from the Phase 3 sample, retrieval relevance
+    recomputed, token/BIO/span integrity, the gold contract, the lock, and the rebuild.
+- **Annotation review:** the build agent read the 180-example sample twice.
+  - Round 1 found 5 gold-label problems (2.8%): "lactose-free" annotated as dairy-free,
+    and strict "below" wording on exact budgets. It also found 5 text problems.
+  - All were fixed in the generator and verified dataset-wide.
+  - Round 2 found no gold errors. It did turn up duplicate paraphrases, which are now
+    prevented by a check.
+
+**Open limitations**
+
+- **The text is template-generated**, not written by people, so parser scores on it are
+  likely optimistic. Held-out templates reduce, but do not remove, this bias. The report
+  must state it.
+- **The second-person annotation check is pending.** The build agent wrote the generator,
+  so its review is not independent. A teammate should judge the 180 rows in
+  `review_sample.jsonl`; otherwise do a delayed self-review and disclose it.
+  Any fix means rebuilding and re-locking.
+- Number agreement on ingredient nouns is not inflected ("six egg"). This is cosmetic;
+  gold labels are unaffected.
+- `has_history` users are matched at ingredient level through the Phase 3 mapping (about
+  89% precision).
+- The old `retrieval/queries.py` generator and `results/predictions/retrieval_benchmark_results.json`
+  are superseded and are replaced in Phase 7.
 
 ## Phase 3 — D2 transaction sample and Track B splits (complete, 2026-11-25)
 
@@ -318,15 +448,17 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 4 — D2 benchmarks and gold feasibility checker.**
+**Phase 5 — D3 complete baseline (E0).**
 
-- `data/annotations/nlu.jsonl` (900 examples) with a grouped 600/150/150 split by `seed_id`.
-- A second-person check of at least 20% of the annotations, or a disclosed delayed self-review.
-- `src/smartcart/validation/feasibility.py`: an exhaustive gold feasibility checker
-  over the full catalog.
-- Basket scenarios (`basket_dev.json`, `basket_test.json`) and a grouped retrieval benchmark.
+- A TF-IDF + LinearSVC intent classifier, trained only on the 600 training examples.
+- Regex and dictionary slots for every slot type, with negation and unit rules.
+- `parse_request(..., parser="baseline")`.
+- TF-IDF retrieval per ingredient, independent cheapest-option selection and post-hoc
+  filtering. Incomplete outcomes count as failures.
+- Predictions on validation, saved, with the configuration in `configs/experiments/E0.json`.
 
-With Phase 3 done, Phase 8 (associations and Track B) needs only Phase 7.
+Phases 6 (transformer parser) and 7 (semantic retrieval) also depend only on Phase 4.
+Outstanding from Phase 4: the second-person annotation review.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open

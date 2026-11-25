@@ -111,7 +111,8 @@ py -3.11 -m venv .venv
   ```
   - `intent` is one of `plan_meal`, `build_grocery_list`, `revise_basket`, `unsupported`.
   - `pantry` amounts are in the ingredient's recipe unit; `null` means unknown and triggers clarification.
-  - `clarification_type` is one of `missing_recipe`, `missing_budget`, `missing_pantry_quantity`, `low_confidence_intent`, `ambiguous_diet`, or `null`.
+  - `clarification_type` is one of `missing_recipe`, `missing_budget`, `missing_pantry_quantity`, `missing_item_quantity` (added in Phase 4), `low_confidence_intent` (runtime only, never a gold label), `ambiguous_diet`, or `null`.
+  - The basket semantics behind every benchmark label (servings default, inclusive budget, exclusions drop the line, one product type per line, `unknown` fails a diet) are in `docs/benchmark_policy.md`.
 - **Parser** — `smartcart.nlu.api.parse_request(text, catalog, parser="transformer"|"baseline", session=None) -> StructuredRequest`. `session` carries the previous request so revisions work.
 - **Retrieval** — `smartcart.retrieval.api.retrieve_candidates(ingredient_id, catalog, method="minilm"|"tfidf", top_k=10) -> [{"product_id", "retrieval_score" (0–1), "rank"}]`. Rankings are over the whole catalog; retrieval never enforces hard rules.
 - **Associations** — `smartcart.associations.api.pair_score(a, b) -> float in [0, 1]` (symmetric; 0.0 if unknown) and `history_score(user_id, product_or_ingredient_id) -> float in [0, 1]`.
@@ -293,8 +294,9 @@ py -3.11 -m venv .venv
 2. Search per required ingredient, not per whole request.
 3. Retrieve the initial top 10, then apply eligibility checks for ingredient identity, unit and diet in the solver. Similarity never proves a dietary rule.
 4. Tune the candidate count on development queries only.
-5. Implement `retrieve_candidates`. Fix `filter_eligible_candidates()`: it checks dietary values with `is True`, but the catalog uses `"allowed"`, so no product can currently pass a dietary filter (found in Phase 2).
-6. Evaluate Recall@5, Recall@10 and MRR for TF-IDF and MiniLM under the same catalog and eligibility rules. Regenerate figure `11_` and `results/predictions/retrieval_benchmark_results.json`.
+5. Evaluate on the locked `data/benchmarks/retrieval_{dev,test}.json` from Phase 4. The old inline generator `retrieval/queries.py` (11 pilot ingredients) is superseded.
+6. Implement `retrieve_candidates`. Fix `filter_eligible_candidates()`: it checks dietary values with `is True`, but the catalog uses `"allowed"`, so no product can currently pass a dietary filter (found in Phase 2).
+7. Evaluate Recall@5, Recall@10 and MRR for TF-IDF and MiniLM under the same catalog and eligibility rules. Regenerate figure `11_` and `results/predictions/retrieval_benchmark_results.json`.
 
 **Completion check:** dev and test results exist for both methods; test queries are evaluated once, with frozen settings; the leak-regression test passes.
 
