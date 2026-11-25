@@ -1,0 +1,19 @@
+{
+  "archive": "data/raw/archive_3.zip",
+  "seed": 20261125,
+  "n_users": 10000,
+  "min_usable_orders": 5,
+  "chunksize": 2000000,
+  "mapping_rules": "configs/instacart_ingredient_map.csv",
+  "mapping_review": "data/processed/instacart_mapping_review.csv",
+  "review_sample_size": 150,
+  "catalog": "data/processed/catalog.json",
+  "outputs": {
+    "users": "data/splits/instacart_users.json",
+    "trackb": "data/splits/instacart_trackb.json",
+    "mapping": "data/processed/instacart_ingredient_map.csv",
+    "mapping_readable": "data/interim/instacart/ingredient_map_with_names.csv",
+    "baskets": "data/interim/instacart/sample_order_products.csv.gz",
+    "checks": "results/metrics/transaction_checks.json"
+  }
+}
