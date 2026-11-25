@@ -7,9 +7,46 @@ Each phase starts only with the project owner's permission.
 
 | Phase | Scope | Status |
 | --- | --- | --- |
-| 0 | Repo prep, raw data, D1 scope | Partial: raw archives restored and hash-verified; `.gitignore` additions, audit re-run, `docs/scope.md` and literature setup not started |
+| 0 | Repo prep, raw data, D1 scope | **Complete — 2026-11-25** (one external input outstanding: the team literature matrix) |
 | 1 | Fix inherited defects (D3, D4, D5) | **Complete — 2026-11-25** |
-| 2–12 | See BUILD_PHASES.md | Not started; awaiting permission |
+| 2–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 2 is next) |
+
+## Phase 0 — Repo prep, raw data, D1 scope (complete, 2026-11-25)
+
+Phase 1 was done first, at the owner's request.
+
+**What changed**
+
+- **Raw data restored.** `data/raw/archive_3.zip` (Instacart) and `data/raw/archive_4.zip`
+  (Food.com) are back in place. Their SHA-256 hashes match the original audit exactly:
+  `c347cd7f…3038` and `fa7910c9…527d`.
+- **Audit re-run.** `scripts/audit_data.py` took 243 s and regenerated
+  `docs/data_audit.md`, `data/interim/audit/summary.json` and `recipe_candidates.csv`.
+- **`.gitignore`** now tracks `data/processed/catalog.json`, `data/annotations/*.jsonl`,
+  `data/benchmarks/*.json`, `data/splits/*.json`, `results/metrics/` and
+  `results/run_manifest.json`. Raw archives, audit intermediates and `models/` stay ignored.
+- **D1 scope.** Added `docs/scope.md`: user scenario, pipeline, core and out-of-scope items,
+  the simulated-price policy, contribution statement, RQ1–RQ3, definition of success,
+  Tracks A and B, and the unresolved 90% rubric note.
+- **Literature skeleton.** Added `docs/literature/review.md`: the 15-row comparison table
+  with the six closest papers from the plan [S7]–[S12] pre-listed (analysis cells empty
+  until each paper is read), completion rules and the synthesis outline.
+
+**Verification evidence**
+
+- The regenerated `docs/data_audit.md` is identical to the committed version except for
+  the `Generated:` timestamp. Every count, hash and check reproduced:
+  - Instacart: 49,688 products, 3,421,083 orders, 32,434,489 prior rows and 1,384,617 train rows.
+  - Food.com: 522,517 recipes.
+- `git check-ignore` confirms the new data and result paths are tracked, and that
+  `data/raw/`, `data/interim/` and `models/` remain ignored.
+- `pytest`: 63 passed, 95 subtests.
+
+**Open items**
+
+- **External input:** the team's literature-matrix spreadsheet must be added to
+  `docs/literature/`. Rows 7–15 and all analysis cells wait on it and on reading the papers (Phase 12).
+- The rubric's missing 10% is to be confirmed with the instructor (see `docs/scope.md`).
 
 ## Phase 1 — Fix inherited defects (complete, 2026-11-25)
 
@@ -141,14 +178,16 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-Phase 1 is complete. Before Phase 2 begins, finish the remaining Phase 0 items:
+**Phase 2 — D2 full catalog and recipes.**
 
-- the `.gitignore` additions;
-- re-running `scripts/audit_data.py` against the restored archives;
-- writing `docs/scope.md`;
-- adding the literature matrix to `docs/literature/`.
+- ~40 Food.com recipes across at least 20 meal families, from `archive_4.zip`, manually normalized.
+- Canonical ingredients and `data/processed/synonyms.csv`.
+- A 300–500 option catalog in `data/processed/catalog.json`.
+- Coverage, duplicate and missing-field checks.
+- `docs/data_card.md`.
 
-Completion criteria for both phases are in [BUILD_PHASES.md](BUILD_PHASES.md).
+Phase 3 (the Instacart sample and Track B splits) can run alongside Phase 2.
+Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open
 limitations and the next task here.
