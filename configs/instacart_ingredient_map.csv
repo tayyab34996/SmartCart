@@ -1,0 +1,120 @@
+ingredient_id,aisle_ids,include,exclude,note
+green_onion,83|16|123,\b(green onions?|scallions?|spring onions?)\b,,before onion
+onion_powder,104,\bonion powder\b,salt,before onion
+onion_salt,104,\bonion salt\b,,before onion
+onion,83|123,\b(yellow|white|red|sweet|vidalia|spanish)? ?onions?\b,\b(green|rings?|dip|soup|pearl|cipollini|shallots?|chives?)\b|\b(celery|peppers|mix|blend)\b,
+garlic_powder,104,\bgarlic powder\b,\bsalt\b,before garlic
+garlic_salt,104,\bgarlic salt\b,,before garlic
+garlic,83|123|16,\bgarlic\b,\b(minced|chopped|paste|pickled|black|spread|dip|sauce|scapes?|bread|jar)\b,whole fresh garlic only
+lemon_pepper_seasoning,104,\blemon pepper\b,,before black pepper
+cayenne,104,\bcayenne\b,,before pepper
+red_pepper_flakes,104,\b(crushed red pepper|red pepper flakes|chili flakes|chile flakes)\b,,
+black_pepper,104,\b(black pepper|ground pepper|peppercorns?|pepper ground)\b,\b(lemon|blend|medley|mix|white pepper|grinder.*(?:salt))\b|\b(pink|green peppercorns|rainbow|mixed|four|peppercorn blend|sichuan|szechuan)\b,
+seasoning_salt,104,\b(seasoned salt|seasoning salt)\b,,before salt
+salt,104|17,\b(sea salt|table salt|kosher salt|iodized salt|salt)\b,\b(garlic|onion|celery|seasoned|seasoning|lemon|smoked|truffle|pepper|lime|chili|herb|substitute|caramel|bath|epsom|scrub|blend|grinder.*pepper|salt.free|salt free|no salt|nosalt)\b|\b(lite|light)\b,
+paprika,104,\bpaprika\b,\bsmoked\b,sweet paprika; smoked excluded
+chili_powder,104,\b(chili|chile) powder\b,,
+ground_cumin,104,\bcumin\b,\bseeds?\b,
+curry_powder,104|76,\bcurry powder\b,,
+ground_ginger,104,\bginger\b,\b(crystallized|candied|tea|root|paste|pureed?|chews?|galangal)\b,dried ground only
+nutmeg,104,\bnutmeg\b,,
+cajun_seasoning,104,\bcajun\b,\b(chips|sauce)\b,
+dried_basil,104,\bbasil\b,\b(paste|pesto|with|salt)\b,
+dried_thyme,104,\bthyme\b,\b(tortas|rosemary|za.atar)\b,
+dried_rosemary,104,\brosemary\b,\b(tortas|thyme)\b,
+dried_sage,104,\bsage\b,,
+dill_weed,104,\bdill\b,\bseeds?\b,
+sesame_seeds,104|117|66,\bsesame seeds?\b,\b(oil|bar|sticks?|crackers?|candy)\b,
+cilantro,16|83|123,\b(cilantro|coriander)\b,\b(paste|dressing|seeds?|ground)\b,fresh only
+parsley,16|83|123,\bparsley\b,\bpaste\b,fresh only
+chicken_bouillon,69,\bchicken\b.*\b(bouillon|base|granules|cubes?)\b|\bbouillon\b.*\bchicken\b,\b(vegetarian|no.chicken)\b,before chicken_broth
+chicken_broth,69,\bchicken\b.*\b(broth|stock)\b,\b(soup|noodle|bone broth.*(?:cup))\b|\b(vegetarian|no.chicken)\b,
+beef_broth,69,\bbeef\b.*\b(broth|stock)\b,\bsoup\b,
+vegetable_broth,69,\bvegetable\b.*\b(broth|stock)\b,\bsoup\b,
+cream_of_chicken_soup,69,\bcream of chicken\b,,
+condensed_tomato_soup,69,\btomato\b.*\bcondensed\b|\bcondensed\b.*\btomato\b,,condensed only; ready-to-serve tomato soups are a different product
+diced_tomatoes_green_chilies,81|30,\b(diced tomatoes|tomatoes)\b.*\b(green chil(e|i)(s|es)?|chil(e|i)(s|es)?)\b|\brotel\b|\bro.tel\b,\b(salsa|sauce)\b,before canned_diced_tomatoes and green_chilies_canned
+canned_diced_tomatoes,81|9,\bdiced tomatoes\b,\b(green chil|chilies|chiles|jalape)\b,after diced_tomatoes_green_chilies
+tomato_paste,81|9,\btomato paste\b,,
+green_chilies_canned,81|30,\b(whole green chil(e|i)(s|es)?|green chil(e|i)(s|es)?)\b,\b(tomato|salsa|enchilada|sauce|chicken|pork|stew)\b,
+chickpeas_canned,59|81|30|76,\b(chickpeas?|garbanzo)\b,\b(hummus|snacks?|pasta|flour|curry|masala|crisps?|crunchy|roasted|dry|dried)\b,
+pinto_beans_canned,59|30,\bpinto beans?\b,\b(refried|dry|dried|bulk)\b|\b(chili|soup)\b,
+black_beans_canned,59|30,\bblack beans?\b,\b(refried|dry|dried|bulk|soup|sauce|chips?|burger|pasta)\b,
+canned_corn,81,\b(sweet corn|whole kernel corn|corn kernels?|golden corn|corn)\b,\b(cream style|creamed|baby corn|hominy|salsa|relish)\b,
+coconut_milk,66|59|81,\bcoconut milk\b,\b(beverage|yogurt|ice cream|creamer)\b,canned aisles only; carton beverages excluded
+white_flour,17,\b(all.purpose flour|all purpose flour|unbleached flour|white flour|bleached flour)\b,\b(gluten.free|whole wheat|almond|coconut|cake|bread|pastry|self.rising)\b,
+whole_wheat_flour,17,\bwhole wheat flour\b,\bpastry\b,
+rice_flour,17,\brice flour\b,,
+cornmeal,17|130,\bcorn ?meal\b,\bmix\b,
+cornstarch,17,\bcorn ?starch\b,,
+baking_powder,17,\bbaking powder\b,,
+brown_sugar,17,\bbrown sugar\b,\b(cinnamon|syrup|oatmeal)\b,before sugar
+sugar,17,\b(granulated sugar|cane sugar|pure sugar|white sugar|sugar)\b,\b(brown|powdered|confectioners|icing|coconut|substitute|free|stevia|raw|turbinado|sprinkles|decor|cubes?|cinnamon|maple|vanilla|organic.*(?:powdered))\b|\b(muscovado|demerara)\b,
+honey,29,\bhoney\b,\b(mustard|nut|bbq|graham|comb)\b,
+olive_oil,19,\bolive oil\b,\b(spray|cooking spray)\b|\b(balsamic|flavored|infused|garlic|basil|lemon|truffle|chili|blood orange)\b,
+vegetable_oil,19,\b(vegetable oil|canola oil)\b,\b(spray|cooking spray)\b,
+white_vinegar,19,\b(distilled white vinegar|white distilled vinegar|white vinegar|distilled vinegar)\b,\b(wine|balsamic|rice)\b,
+soy_sauce,66|72,\b(soy sauce|tamari)\b,\b(low sodium.*(?:packets))\b|\b(aminos|ponzu)\b,
+worcestershire_sauce,72|5,\bworcestershire\b,,
+mustard,72,\byellow mustard\b|\bprepared mustard\b|^(organic |classic )*mustard$,\b(ketchup|relish|honey|dijon)\b,yellow prepared mustard only
+dijon_mustard,72,\bdijon\b,\b(vinaigrette|dressing)\b,
+ketchup,72,\bketchup\b,,
+mayonnaise,72|89,\b(mayonnaise|mayo)\b,\b(chipotle|sriracha|wasabi|aioli|dressing|pesto|lime|garlic)\b,"plain mayonnaise, including egg-free"
+chili_sauce,72|66,\bchili sauce\b,\b(sweet chili|garlic chili|sriracha)\b,
+salsa,51|30|67,\bsalsa\b,\b(verde.*(?:chips)|chips?|con queso|queso|seasoning|dip mix)\b,
+applesauce,99,\b(applesauce|apple sauce)\b,\b(pouch|squeez|go.go)\b,
+peanut_butter,88,\bpeanut butter\b,\b(cups?|cookies?|bars?|crackers?|filled|pretzels?|chocolate)\b|\b(powdered|pb2)\b,
+peanuts,117,\bpeanuts?\b,\b(butter|brittle|chocolate|candy|trail|mix|m.m)\b,
+water,115,\b(spring water|purified water|drinking water|natural spring water|water)\b,\b(sparkling|seltzer|flavored|lemon|lime|berry|coconut|vitamin|tonic|club soda|mineral|essence|infused|alkaline|electrolyte|cucumber|watermelon|orange|grapefruit|mango|cherry|peach|raspberry|strawberry|kiwi|pomegranate|black cherry)\b|\b(nutrient|enhanced|sparking|electrolytes?|alkali\w*|cactus|maple|birch|aloe|smart)\b,still plain water only
+lime_juice,98|72|19,\blime juice\b,\b(cocktail|margarita|limeade|with|cranberry)\b,
+lemon_juice,98|72|19,\blemon juice\b,\b(cocktail|lemonade|with|aloe)\b,
+lime,24|123,\blimes?\b,\b(juice|sparkling|key lime pie)\b,
+milk,84,\bmilk\b,\b(chocolate|strawberry|almond|soy|coconut|cashew|rice|oat|hemp|flax|buttermilk|goat|banana|vanilla|coffee|evaporated|condensed|powdered|dry|cocoa|protein|shake|kefir)\b,"cow milk, plain"
+buttermilk,84|53,\bbuttermilk\b,\b(dressing|pancake|biscuits?|ranch)\b,
+almond_milk,91|84,\balmond(milk| milk|breeze)\b,\b(creamer|yogurt|cheese|chocolate)\b|\b(coffee|cold brew|espresso|coconut|blend)\b,
+heavy_cream,53|84,\b(heavy cream|heavy whipping cream|whipping cream)\b,\b(aerosol|whipped topping|reddi|ready to whip)\b,
+sour_cream,53|108,\bsour cream\b,\b(dip|onion|chips?|chive)\b,
+cream_cheese,108|53,\bcream cheese\b,\b(frosting|bagel|danish|cheesecake|spread with|veggie|chive|strawberry|honey|salmon|garden)\b|\b(imitation|better than|vegan|dairy.free)\b,
+butter,36,\bbutter\b,\b(peanut|almond|cashew|sunflower|apple|cookie|spread|margarine|buttery|ghee|substitute|plant|vegan|olive oil.*(?:spread))\b,
+margarine,36,\b(margarine|buttery spread|vegetable oil spread|i can.t believe|country crock|smart balance|earth balance)\b,,
+egg,86,\beggs?\b,\b(egg whites?|beaters|substitute|hard.boiled|boiled|liquid|nog|salad)\b,
+plain_yogurt,120,\bplain\b.*\byogh?urt\b|\byogh?urt\b.*\bplain\b,\b(drink|kefir|coconut|almond|soy|cashew|vanilla|honey|flavored|pouch|squeeze|tubes?)\b|\b(drinkable|coffee|goats?)\b,
+vanilla_yogurt,120,\bvanilla\b.*\byogh?urt\b|\byogh?urt\b.*\bvanilla\b,\b(drink|kefir|coconut|almond|soy|cashew|pouch|squeeze|tubes?|frozen|bars?|blueberry|strawberry|peach|cherry|raspberry|banana|mango|variety|chocolate|honey)\b|/|\b(m.m|goats?|sheep milk)\b,single-flavour vanilla only
+cheddar,21|2,\bcheddar\b,\b(crackers?|popcorn|soup|sauce|dip|bacon|jalape|pepper jack|chips?|cheese crisps?)\b|\b(cheeseball|spreadable|variety|colby|rice|vegan|imitation|dairy.free|mozzarella|twists)\b,
+monterey_jack,21|2,\b(monterey jack|pepper jack|jack cheese)\b,\b(cheddar|colby)\b,colby-jack blends excluded
+parmesan,21|2,\b(parmesan|parmigiano)\b,\b(crisps?|crackers?|dressing|garlic.*(?:sauce)|romano blend.*(?:dressing))\b|\b(romano|asiago|blend)\b,
+mozzarella,21|2,\bmozzarella\b,\b(sticks?.*(?:breaded)|marinara)\b|\b(rice|cheeze|vegan|imitation|dairy.free|non.dairy)\b,
+ricotta,108|2|21,\bricotta\b,\b(ravioli|pasta|lasagna)\b|\b(sheep|goat)\b,
+firm_tofu,14,\btofu\b,\b(silken|soft|smoked|baked|teriyaki|cutlets?|marinated|savory|burger|nuggets?|skins?|scramble)\b|\b(pups|dogs?)\b,plain firm and extra-firm
+chicken_cutlet,35|49,\bchicken\b.*\bcutlets?\b|\bthin sliced chicken\b,\b(breaded|dinosaurs?)\b,before chicken_breast
+chicken_breast,35|49|34,\bchicken breasts?\b,\b(nuggets?|tenders?|strips?|breaded|patties|patty|fried|grilled.*(?:sliced)|rotisserie|tenderloins?)\b,
+chicken_thigh,35|49|34,\bchicken thighs?\b,\b(nuggets?|breaded|fried)\b,
+chicken_wings,35|49|34,\b(chicken wings?|wingettes?|party wings)\b,\b(breaded|sauce|buffalo|bbq|cooked)\b,raw wings only
+chicken_pieces,35|49,\b(chicken drumsticks?|chicken legs?|chicken leg quarters?|cut up chicken|split chicken)\b,\b(rotisserie|cooked)\b,bone-in pieces; whole birds excluded
+ground_turkey,35|122|49|34,\bground turkey\b|\bturkey\b.*\bground\b,\b(sausage|burgers?|patties|meatballs?)\b,
+ground_beef,122|7|34,\bground beef\b|\bbeef\b.*\bground\b|\bground chuck\b|\bground sirloin\b|\bhamburger\b,\b(patties|burgers?.*(?:frozen)|meatballs?|jerky)\b,
+beef_tenderloin,122|7,\b(beef tenderloin|filet mignon|tenderloin steak|beef filet)\b,\bpork\b,
+lamb_chop,122|7,\blamb\b.*\bchops?\b|\blamb loin\b|\blamb rack\b|\brack of lamb\b,,
+salmon,39|15|34,\bsalmon\b,\b(smoked|lox|jerky|burgers?|patties|cakes?|canned|pouch|salad|dip|spread|roe|cat|dog)\b|\b(seasoned|marinated|teriyaki)\b,
+cod,39|34|15,\bcod\b,\b(liver|breaded|battered|crusted|fish sticks?|cakes?)\b,plain fillets
+cucumber,83|123,\bcucumbers?\b,\b(pickles?|salad|dip|water|tzatziki)\b,
+potato,83|123,\b(russet|yukon|red potato|red potatoes|baby potatoes|gold potatoes|white potatoes|potatoes|potato)\b,\b(sweet|chips?|salad|mashed|fries|tots|hash|skins|yams?)\b,
+sweet_potato,83|123,\b(sweet potato(es)?|yams?)\b,\b(chips?|fries|tots|pie)\b,
+mushroom,83|123,\bmushrooms?\b,\b(portobello|portabella|shiitake|oyster|enoki|maitake|cremini|crimini|baby bella|bella|chanterelle|morel|porcini|dried|stuffed|soup|medley|blend|wild)\b|\b(mixed|exotic|specialty|brown)\b,white button only
+green_bell_pepper,83|123,\bgreen\b.*\b(bell )?peppers?\b,\b(chil(e|i)|jalape|hot|serrano|poblano|anaheim)\b,
+zucchini,83|123,\bzucchini\b,\b(noodles?|spirals?|zoodles?|bread|chips?)\b,
+cauliflower,83|123,\bcauliflower\b,\b(rice|riced|pizza|crust|mash|gnocchi|tots|crackers?)\b|\b(broccoli)\b,
+green_beans,83|123,\b(green beans?|string beans?|haricots? verts?)\b,\b(casserole|chips?)\b,
+brussels_sprouts,83|123,\bbrussels? sprouts?\b,\bshaved\b,
+asparagus,83|123,\basparagus\b,,
+elbow_macaroni,131,\b(elbows?|macaroni)\b,\b(cheese|dinner|cavatappi)\b,
+fettuccine,131|12,\bfettuc+ine\b,\b(alfredo|sauce)\b,
+egg_noodles,131,\begg noodles?\b,,
+basmati_rice,63|68|76,\bbasmati\b,\b(microwav|ready|cooked|pouch|frozen|seasoned|pilaf|mix)\b,
+long_grain_rice,63|68,\blong grain\b.*\brice\b|\bjasmine rice\b|\bwhite rice\b|\benriched rice\b,\b(brown|wild|arborio|sushi|short grain|calrose|medium grain|microwav|ready|cooked|pouch|frozen|seasoned|pilaf|mix|minute|instant|basmati)\b,
+cooked_brown_rice,4|63,\bbrown rice\b.*\b(microwav\w*|ready|cooked|steamed|pouch(es)?)\b|\b(microwav\w*|ready|cooked|steamed)\b.*\bbrown rice\b,\b(quinoa|bowl|vegetables?|mix|seasoned|fried|pilaf|wild|ramen)\b,ready-to-heat pouches; uncooked rice excluded
+cooked_brown_rice,38|116,^(organic )?(whole grain )?brown rice$,,plain frozen cooked brown rice
+rolled_oats,130|57,\b(rolled oats|old fashioned oats|old.fashioned.*oat)\b,\b(instant|bars?|granola|cookies?|steel cut)\b,
+breadcrumbs,17|5|112|66,\bbread ?crumbs\b|\bpanko\b,\b(italian|seasoned|garlic|herb|chicken|fish|pollock|onion rings)\b,plain only; seasoned crumbs excluded
+flour_tortilla,128,\bflour tortillas?\b|\btortillas?\b.*\bflour\b,\b(chips?|corn)\b,
+corn_tortilla,128,\bcorn tortillas?\b|\btortillas?\b.*\bcorn\b,\b(chips?|flour)\b,
