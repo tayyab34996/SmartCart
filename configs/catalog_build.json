@@ -1,0 +1,100 @@
+{
+  "build_version": 2,
+  "checked_on": "2026-11-25",
+  "pilot_catalog": "data/processed/pilot/catalog.json",
+  "inputs": {
+    "recipes": "data/processed/recipes.csv",
+    "recipe_lines": "data/processed/recipe_lines.csv",
+    "ingredients": "data/processed/ingredients.csv",
+    "synonyms": "data/processed/synonyms.csv"
+  },
+  "output": "data/processed/catalog.json",
+  "checks_output": "results/metrics/catalog_checks.json",
+  "targets": {"recipes_min": 38, "meal_families_min": 20, "products_min": 300, "products_max": 500},
+  "extra_sources": [
+    {
+      "id": "nist_sp811_tsp_oz",
+      "title": "NIST SP 811 Appendix B.8/B.9 (teaspoon and avoirdupois ounce)",
+      "locator": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+      "kind": "metrology_reference",
+      "checked_on": "2026-11-25",
+      "notes": "U.S. teaspoon 4.928922 ml; avoirdupois ounce 28.349523125 g (exact, 1/16 lb). Can and package sizes stated in ounces are treated as net mass."
+    },
+    {
+      "id": "ka_weight_chart",
+      "title": "King Arthur Baking ingredient weight chart",
+      "locator": "https://www.kingarthurbaking.com/learn/ingredient-weight-chart",
+      "kind": "ingredient_reference",
+      "checked_on": "2026-11-25",
+      "notes": "Rows used (volume = grams): all-purpose flour 1 cup = 120; sugar 1 cup = 198; brown sugar packed 1 cup = 213; butter 1/2 cup = 113; grated cheddar/jack 1 cup = 113; grated Parmesan 1/2 cup = 50; sour cream 1 cup = 227; yogurt 1 cup = 227; mayonnaise 1/2 cup = 113; oats 1 cup = 89; cornstarch 1/4 cup = 28; dried breadcrumbs 1/4 cup = 28; long-grain rice dry 1/2 cup = 99; cooked brown rice 1 cup = 170; diced onions 1 cup = 142; baking powder 1 tsp = 4; minced garlic 2 tbsp = 28. Reference estimates, not measured densities."
+    },
+    {
+      "id": "measure_policy_v2",
+      "title": "SmartCart recipe-line resolution policy",
+      "locator": "docs/data_card.md#recipe-line-resolution-policy",
+      "kind": "design_policy",
+      "checked_on": "2026-11-25",
+      "notes": "Project policy, not a measurement standard: dash = 1/8 tsp and pinch = 1/16 tsp; ranges use the upper bound; 'X or Y' uses the first option; lines marked optional are excluded; one recipe bunch of green onions equals the catalog bunch of 6 stalks."
+    },
+    {
+      "id": "simulation_v2",
+      "title": "SmartCart full-catalog simulation policy",
+      "locator": "docs/data_card.md#simulation-policy",
+      "kind": "design_policy",
+      "checked_on": "2026-11-25",
+      "notes": "All product names, house brands, pack sizes, prices, availability and dietary states are designed for an offline study. No store prices, real brand products or Instacart SKU matches are claimed."
+    }
+  ],
+  "extra_conversions": [
+    {"id": "oz_g", "from_unit": "oz", "to_unit": "g", "factor": "28.349523125", "ingredient_id": null, "kind": "unit_conversion", "evidence_ids": ["nist_sp811_tsp_oz"]},
+    {"id": "tsp_ml", "from_unit": "us_tsp", "to_unit": "ml", "factor": "4.928922", "ingredient_id": null, "kind": "unit_conversion", "evidence_ids": ["nist_sp811_tsp_oz"]},
+    {"id": "dash_ml", "from_unit": "dash", "to_unit": "ml", "factor": "0.616115", "ingredient_id": null, "kind": "unit_conversion", "evidence_ids": ["measure_policy_v2", "nist_sp811_tsp_oz"]},
+    {"id": "pinch_ml", "from_unit": "pinch", "to_unit": "ml", "factor": "0.308058", "ingredient_id": null, "kind": "unit_conversion", "evidence_ids": ["measure_policy_v2", "nist_sp811_tsp_oz"]},
+    {"id": "green_onion_bunch", "from_unit": "bunch", "to_unit": "piece", "factor": "6", "ingredient_id": "green_onion", "kind": "package_definition", "evidence_ids": ["measure_policy_v2"]},
+    {"id": "flour_tbsp_g", "from_unit": "us_tbsp", "to_unit": "g", "factor": "7.5", "ingredient_id": "white_flour", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "butter_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "226", "ingredient_id": "butter", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "butter_tbsp_g", "from_unit": "us_tbsp", "to_unit": "g", "factor": "14.125", "ingredient_id": "butter", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "sugar_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "198", "ingredient_id": "sugar", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "sugar_tbsp_g", "from_unit": "us_tbsp", "to_unit": "g", "factor": "12.375", "ingredient_id": "sugar", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "brown_sugar_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "213", "ingredient_id": "brown_sugar", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "cheddar_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "113", "ingredient_id": "cheddar", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "jack_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "113", "ingredient_id": "monterey_jack", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "parmesan_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "100", "ingredient_id": "parmesan", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "sour_cream_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "227", "ingredient_id": "sour_cream", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "plain_yogurt_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "227", "ingredient_id": "plain_yogurt", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "vanilla_yogurt_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "227", "ingredient_id": "vanilla_yogurt", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "mayonnaise_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "226", "ingredient_id": "mayonnaise", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "oats_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "89", "ingredient_id": "rolled_oats", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "cornstarch_tbsp_g", "from_unit": "us_tbsp", "to_unit": "g", "factor": "7", "ingredient_id": "cornstarch", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "breadcrumbs_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "112", "ingredient_id": "breadcrumbs", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "basmati_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "198", "ingredient_id": "basmati_rice", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "long_grain_rice_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "198", "ingredient_id": "long_grain_rice", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "brown_rice_cooked_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "170", "ingredient_id": "cooked_brown_rice", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "onion_cup_g", "from_unit": "us_cup", "to_unit": "g", "factor": "142", "ingredient_id": "onion", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "onion_tbsp_g", "from_unit": "us_tbsp", "to_unit": "g", "factor": "8.875", "ingredient_id": "onion", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "baking_powder_tsp_g", "from_unit": "us_tsp", "to_unit": "g", "factor": "4", "ingredient_id": "baking_powder", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]},
+    {"id": "garlic_minced_tsp_g", "from_unit": "us_tsp", "to_unit": "g", "factor": "4.666667", "ingredient_id": "garlic", "kind": "ingredient_specific_reference_estimate", "evidence_ids": ["ka_weight_chart"]}
+  ],
+  "brands": {
+    "basics": {"label": "SmartCart Basics", "price_factor": "1.00"},
+    "select": {"label": "SmartCart Select", "price_factor": "1.18"},
+    "organic": {"label": "SmartCart Organic", "price_factor": "1.40"}
+  },
+  "pack_size_discount": ["1.00", "0.93", "0.87", "0.82"],
+  "organic_categories": ["produce", "dairy", "egg", "grain"],
+  "unavailable_every_nth": 29,
+  "dietary_variants": [
+    {"ingredient_id": "cheddar", "name": "Cheddar cheese, vegetarian (microbial rennet)", "overrides": {"vegetarian": "allowed"}},
+    {"ingredient_id": "monterey_jack", "name": "Monterey Jack cheese, vegetarian (microbial rennet)", "overrides": {"vegetarian": "allowed"}},
+    {"ingredient_id": "parmesan", "name": "Italian-style hard cheese, vegetarian", "overrides": {"vegetarian": "allowed"}},
+    {"ingredient_id": "soy_sauce", "name": "Tamari soy sauce, gluten-free", "overrides": {"gluten_free": "allowed"}},
+    {"ingredient_id": "elbow_macaroni", "name": "Elbow macaroni, gluten-free (rice and corn)", "overrides": {"gluten_free": "allowed"}},
+    {"ingredient_id": "fettuccine", "name": "Fettuccine, gluten-free (rice and corn)", "overrides": {"gluten_free": "allowed"}},
+    {"ingredient_id": "breadcrumbs", "name": "Breadcrumbs, gluten-free", "overrides": {"gluten_free": "allowed"}},
+    {"ingredient_id": "mayonnaise", "name": "Mayonnaise, egg-free plant-based", "overrides": {"vegan": "allowed", "vegetarian": "allowed"}},
+    {"ingredient_id": "worcestershire_sauce", "name": "Worcestershire sauce, anchovy-free", "overrides": {"vegetarian": "allowed", "vegan": "allowed"}},
+    {"ingredient_id": "butter", "name": "Plant-based butter block", "overrides": {"vegan": "allowed", "dairy_free": "allowed"}},
+    {"ingredient_id": "seasoning_salt", "name": "Seasoning salt, certified gluten-free", "overrides": {"gluten_free": "allowed"}},
+    {"ingredient_id": "chicken_bouillon", "name": "Chicken-style bouillon, vegetarian", "overrides": {"vegetarian": "allowed", "vegan": "allowed"}}
+  ]
+}

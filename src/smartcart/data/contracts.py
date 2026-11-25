@@ -224,6 +224,48 @@ def load_pilot(path: Path) -> dict:
     return data
 
 
+MAPPING_STATUSES = {"seed_reviewed", "agent_reviewed"}
+
+
+def validate_catalog(data: dict) -> dict:
+    """Validate the full catalog: the pilot contract plus a meal family per recipe.
+
+    The full catalog uses the same schema as the pilot, with two additions:
+    recipes carry a ``meal_family`` and ingredient mappings may be
+    ``agent_reviewed`` (reviewed by the build agent, independent review pending).
+    """
+    if not isinstance(data, dict):
+        raise ContractError("catalog: expected an object")
+    recipes, ingredients = data.get("recipes"), data.get("ingredients")
+    if not isinstance(recipes, list) or not isinstance(ingredients, list):
+        raise ContractError("catalog: recipes and ingredients must be lists")
+    families = {}
+    stripped_recipes = []
+    for recipe in recipes:
+        if not isinstance(recipe, dict):
+            raise ContractError("catalog: each recipe must be an object")
+        rid = recipe.get("id", "?")
+        families[rid] = text(recipe.get("meal_family"), f"{rid}.meal_family")
+        stripped_recipes.append({k: v for k, v in recipe.items() if k != "meal_family"})
+    stripped_ingredients = []
+    for ingredient in ingredients:
+        if not isinstance(ingredient, dict):
+            raise ContractError("catalog: each ingredient must be an object")
+        status = ingredient.get("mapping_status")
+        if status not in MAPPING_STATUSES:
+            raise ContractError(f"{ingredient.get('id', '?')}: ingredient mapping has not been reviewed")
+        stripped_ingredients.append({**ingredient, "mapping_status": "seed_reviewed"})
+    result = validate_pilot({**data, "recipes": stripped_recipes, "ingredients": stripped_ingredients})
+    result["meal_families"] = len(set(families.values()))
+    return result
+
+
+def load_catalog(path: Path) -> dict:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    validate_catalog(data)
+    return data
+
+
 def requirements_for(data: dict, recipe_id: str, servings: int) -> list[dict]:
     """Calculate planned ingredient requirements, not product packs or a basket."""
     if type(servings) is not int or servings <= 0:
