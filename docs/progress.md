@@ -1,6 +1,66 @@
 # SmartCart progress and direction
 
-## Completed
+The build is organised in phases defined in [BUILD_PHASES.md](BUILD_PHASES.md).
+Each phase starts only with the project owner's permission.
+
+## Phase status
+
+| Phase | Scope | Status |
+| --- | --- | --- |
+| 0 | Repo prep, raw data, D1 scope | Partial: raw archives restored and hash-verified; `.gitignore` additions, audit re-run, `docs/scope.md` and literature setup not started |
+| 1 | Fix inherited defects (D3, D4, D5) | **Complete — 2026-11-25** |
+| 2–12 | See BUILD_PHASES.md | Not started; awaiting permission |
+
+## Phase 1 — Fix inherited defects (complete, 2026-11-25)
+
+**What changed**
+
+- **D3 pantry bug.** Reference scenario `d3_ref_02` now uses pantry key
+  `white_flour` (was `'flour'`, which matched nothing, so pantry stock was ignored).
+  The 250 g in the pantry now covers the 120 g requirement, so no flour is bought.
+- **D3 basket assembly** (`optimization/basket.py`):
+  - A line fully covered by the pantry returns `line_status: covered_by_pantry`, with 0 packs and 0 cost.
+  - An ingredient with no compatible product returns `line_status: no_compatible_option`, and the basket status becomes `incomplete`, instead of raising. The uncovered IDs are listed in `uncovered_ingredients`.
+  - Every line now carries its `ingredient_id`. `item_count` counts purchased lines only.
+- **D3 unmatched pantry keys** (`pipeline/baseline.py`): the basket lists `ignored_pantry_keys`, so a misspelled pantry ingredient is visible instead of silently ignored.
+- **D3 evaluator** (`pipeline/evaluator.py`):
+  - A scenario passes only if status, maximum cost, the **exact total**, **every expected line** (ingredient, product, packs, line cost) and pantry use all match.
+  - All 5 reference scenarios now carry hand-calculated expected lines and totals (`benchmarks/reference.py`, with the calculation in its header comment).
+  - Scenario `d3_ref_05` was renamed to say honestly that it does not exercise multiple packs.
+- **D4 unsupported figure.** Deleted `results/figures/10_nlu_training_and_comparison_curves.png` and its notebook 04 display cell. No committed code trained DistilBERT or produced it. It is regenerated from real logs in Phase 6.
+- **D5 answer leak** (`retrieval/evaluation.py`): the evaluator no longer passes the gold `required_ingredient` to the eligibility filter. Rankings are scored over the whole catalog; only request-side constraints (unit, diet) are applied.
+- **D5 TF-IDF** (`retrieval/tfidf.py`): ranks the whole catalog deterministically (score, then product ID) and keeps zero-score items, so both retrievers return equal-length lists.
+- `results/figures/README.md`: figure 10 is marked as removed and figure 11 as superseded.
+
+**Verification evidence**
+
+- `pytest`: **63 passed, 95 subtests** (55 before, plus 8 new regression tests).
+  - Pantry stock reduces purchased flour (1 pack → 0).
+  - A wrong expected line fails a scenario.
+  - A wrong expected total fails a scenario.
+  - An unmatched pantry key is reported and fails a scenario.
+  - A missing product option gives an `incomplete` basket.
+  - The retrieval evaluator never receives the gold ingredient.
+  - A wrong-ingredient product ranked first is penalised (MRR 0.5).
+  - TF-IDF returns a deterministic full-length ranking.
+- `results/predictions/baseline_outputs.json` re-exported: 5/5 scenarios pass the stricter checks. The pantry scenario total is now 41000 minor units (was 50000).
+- `results/predictions/retrieval_benchmark_results.json` re-run with the fixed evaluator. Test split, before → after the fix:
+
+  | Retriever | Recall@10 | MRR |
+  | --- | --- | --- |
+  | MiniLM | 0.957 → 0.957 | 0.960 → 0.848 |
+  | TF-IDF | 0.450 → 0.690 | 0.450 → 0.491 |
+
+**Open limitations (carried to later phases)**
+
+- The retrieval numbers above are **provisional**. Dev and test queries share the same 11 pilot ingredients, and the catalog has only 20 products. The grouped split and full catalog come in Phases 4 and 7. Do not cite these numbers or figure 11 in the report.
+- Figure 09 (intent confusion matrix) also has no committed plotting code; it is regenerated in Phase 6.
+- The NLU metrics in `results/predictions/nlu_evaluation_results.json` are still from 8 training examples, and the DistilBERT models remain untrained (Phase 6).
+- The baseline still uses keyword intent rules and matches products by ingredient ID without a retrieval step (Phase 5).
+
+## Earlier history (before the phase plan)
+
+### Completed
 
 - Read the proposal, build plan, and literature matrix; established the project scope.
 - Initialized the local checkout and project structure.
@@ -30,7 +90,13 @@
   quantities, packs, price, surplus, incompatible inputs, unchanged catalog records,
   and two actual seed products. The combined suite now has 38 passing tests.
 
-## Initial audit findings
+- Later work by member 1 (before 2026-11-25): baseline pipeline and benchmark (D3),
+  NLU skeleton (D4) and retrieval (D5). See BUILD_PHASES.md section 2 for its status.
+- 2026-11-25: Python 3.11 `.venv`, completed `requirements.txt` and a verified
+  `requirements-lock.txt`. Raw archives restored to `data/raw/`; their SHA-256 hashes
+  match the audit below exactly.
+
+### Initial audit findings
 
 The supplied Instacart files contain 206,209 users, 3,421,083 orders, 49,688
 products, 32,434,489 prior purchase rows, and 1,384,617 training purchase rows.
@@ -46,7 +112,7 @@ The recipe CSV has no dedicated ingredient-unit column.
 Evidence: [audit report](data_audit.md), [source dictionary](data_dictionary.md),
 and the ignored `data/interim/audit/summary.json` and `recipe_candidates.csv` files.
 
-## Current pilot and remaining data work
+### Pilot data work (superseded by Phase 2)
 
 The first examples and [their contracts](pilot_data.md) are implemented. They are
 development data, not locked benchmark examples. Simulated product prices and
@@ -73,22 +139,16 @@ Completion evidence: five accepted recipes, a covering 20-option catalog,
 reviewed mappings, and five expected basket examples. No recipe is marked
 ready while its required quantities or units remain unresolved.
 
-## Next implementation task
+## Next task (awaiting permission)
 
-Continue in coaching mode: briefly explain each function's purpose, inputs,
-outputs, and place in the pipeline; the student writes application code and the
-assistant reviews and tests it. Pantry subtraction and whole-pack counts are
-complete, and one-product evaluation now returns required packs, line cost, and
-surplus quantity. Next, evaluate eligible alternatives for one ingredient and
-choose the lowest total line cost, using a documented deterministic tie-breaker.
-Whole-basket assembly and budget checks follow that step.
+Phase 1 is complete. Before Phase 2 begins, finish the remaining Phase 0 items:
 
-Build the simple basket baseline from structured requests: scale original quantities,
-subtract explicit pantry stock, select whole product packs in compatible units,
-calculate cost, and independently check coverage and budget. Use manually checked
-expected examples to validate the outcomes. Then expand the data and add request parsing.
-Historical transaction sampling and training/validation/test manifests follow
-before mining rules or fitting statistical models.
+- the `.gitignore` additions;
+- re-running `scripts/audit_data.py` against the restored archives;
+- writing `docs/scope.md`;
+- adding the literature matrix to `docs/literature/`.
 
-After each completed milestone, record what changed, the verification evidence,
-any unresolved limitations, and the next concrete task with completion criteria.
+Completion criteria for both phases are in [BUILD_PHASES.md](BUILD_PHASES.md).
+
+After each phase, record what changed, the verification evidence, the open
+limitations and the next task here.
