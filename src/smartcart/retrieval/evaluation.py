@@ -15,6 +15,9 @@ def	compute_query_retrieval_metrics(ranked_ids:list,relevant_ids:set)->dict:
 	return	{'recall_at_5':r5,'recall_at_10':r10,'mrr':mrr}
 
 def	evaluate_retriever_queries(queries:list,search_fn,filter_fn=None)->dict:
+	# Rankings are scored over the whole catalog. The gold ingredient ('required_ingredient')
+	# defines relevance only and is never passed to the filter; doing so would remove every
+	# wrong-ingredient product and leak the answer. Only request-side constraints are applied.
 	if	not	queries:
 		return	{'recall_at_5':0.0,'recall_at_10':0.0,'mrr':0.0,'num_queries':0}
 	total_r5=0.0
@@ -23,7 +26,7 @@ def	evaluate_retriever_queries(queries:list,search_fn,filter_fn=None)->dict:
 	for	q	in	queries:
 		cands=search_fn(q['query'])
 		if	filter_fn:
-			cands=filter_fn(cands,required_ingredient=q.get('required_ingredient'),required_unit=q.get('required_unit'),dietary_rules=q.get('dietary_rules'))
+			cands=filter_fn(cands,required_unit=q.get('required_unit'),dietary_rules=q.get('dietary_rules'))
 		ranked_ids=[c['id']for	c	in	cands]
 		metrics=compute_query_retrieval_metrics(ranked_ids,set(q.get('relevant_ids',[])))
 		total_r5+=metrics['recall_at_5']

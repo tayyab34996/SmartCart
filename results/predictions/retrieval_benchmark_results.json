@@ -1,29 +1,29 @@
 {
   "dev": {
     "tfidf": {
-      "recall_at_5": 0.68,
-      "recall_at_10": 0.68,
-      "mrr": 0.68,
+      "recall_at_5": 0.7,
+      "recall_at_10": 0.84,
+      "mrr": 0.6798333333333335,
       "num_queries": 50
     },
     "minilm": {
       "recall_at_5": 1.0,
       "recall_at_10": 1.0,
-      "mrr": 1.0,
+      "mrr": 0.9333333333333335,
       "num_queries": 50
     }
   },
   "test": {
     "tfidf": {
-      "recall_at_5": 0.45,
-      "recall_at_10": 0.45,
-      "mrr": 0.45,
+      "recall_at_5": 0.5233333333333333,
+      "recall_at_10": 0.69,
+      "mrr": 0.4907500000000001,
       "num_queries": 100
     },
     "minilm": {
-      "recall_at_5": 0.9566666666666666,
+      "recall_at_5": 0.92,
       "recall_at_10": 0.9566666666666666,
-      "mrr": 0.96,
+      "mrr": 0.8476944444444444,
       "num_queries": 100
     }
   }

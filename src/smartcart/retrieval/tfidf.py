@@ -20,12 +20,12 @@ def	search_products_tfidf(query:str,retriever_state:tuple,top_k:int=10)->list:
 		return	[]
 	q_vec=vectorizer.transform([query.strip().lower()])
 	sims=cosine_similarity(q_vec,matrix)[0]
-	ranked_indices=sims.argsort()[::-1][:top_k]
+	# Rank the whole catalog deterministically (score desc, then product id); zero-score items are
+	# kept so TF-IDF returns the same list length as the semantic retriever.
+	ranked_indices=sorted(range(len(products)),key=lambda	i:(-float(sims[i]),str(products[i].get('id',''))))[:top_k]
 	results=[]
 	for	idx	in	ranked_indices:
-		score=float(sims[idx])
-		if	score>0.0:
-			item=dict(products[idx])
-			item['retrieval_score']=score
-			results.append(item)
+		item=dict(products[idx])
+		item['retrieval_score']=float(sims[idx])
+		results.append(item)
 	return	results
