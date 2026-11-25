@@ -1,0 +1,285 @@
+{
+  "eligibility": {
+    "users_in_archive": 206209,
+    "users_with_usable_orders": 206209,
+    "eligible_users": 175072,
+    "excluded_users_fewer_than_min_usable_orders": 31137,
+    "orders_in_archive": 3421083,
+    "orders_excluded_no_product_rows": {
+      "test": 75000
+    },
+    "usable_orders_per_user_all": {
+      "min": 3,
+      "median": 10.0,
+      "mean": 16.23,
+      "max": 100
+    },
+    "usable_orders_per_sampled_user": {
+      "min": 5,
+      "median": 12.0,
+      "mean": 18.36,
+      "max": 100
+    }
+  },
+  "sample": {
+    "seed": 20261125,
+    "n_users": 10000,
+    "user_ids_sha256": "8f96d5210d8afb984a167641f035926bb135263090db1911be0ba6cf5f50630b"
+  },
+  "trackb": {
+    "orders": {
+      "train": 163626,
+      "validation": 10000,
+      "test": 10000
+    },
+    "train_orders_per_user": {
+      "min": 3,
+      "median": 10.0,
+      "mean": 16.36,
+      "max": 98
+    },
+    "items_per_basket": {
+      "train": {
+        "min": 1,
+        "median": 8.0,
+        "mean": 9.99,
+        "max": 102
+      },
+      "validation": {
+        "min": 1,
+        "median": 9.0,
+        "mean": 10.46,
+        "max": 121
+      },
+      "test": {
+        "min": 1,
+        "median": 9.0,
+        "mean": 10.62,
+        "max": 76
+      }
+    },
+    "item_rows": 1845604,
+    "distinct_products": 36616,
+    "split_orders_without_product_rows": 0,
+    "test_orders_from_instacart_train_set": 6656
+  },
+  "order_product_reads": [
+    {
+      "member": "order_products__prior.csv",
+      "rows_read": 32434489,
+      "chunks": 17,
+      "rows_kept": 1774645,
+      "duplicate_rows_dropped": 0
+    },
+    {
+      "member": "order_products__train.csv",
+      "rows_read": 1384617,
+      "chunks": 1,
+      "rows_kept": 70959,
+      "duplicate_rows_dropped": 0
+    }
+  ],
+  "mapping": {
+    "rules": 119,
+    "rules_with_no_match": [],
+    "instacart_products_mapped": 3288,
+    "products_matched_by_more_than_one_ingredient": 18,
+    "catalog_ingredients_with_mapping": 118,
+    "catalog_ingredients": 118,
+    "recipe_ingredients_with_mapping": 98,
+    "recipe_ingredients": 98,
+    "ingredients_without_mapping": [],
+    "sample_item_rows_mapped_share": 0.2135,
+    "sample_orders_with_mapped_item_share": {
+      "test": 0.7413,
+      "train": 0.7324,
+      "validation": 0.7339
+    },
+    "products_per_ingredient": {
+      "almond_milk": 56,
+      "applesauce": 61,
+      "asparagus": 9,
+      "baking_powder": 7,
+      "basmati_rice": 17,
+      "beef_broth": 26,
+      "beef_tenderloin": 1,
+      "black_beans_canned": 20,
+      "black_pepper": 39,
+      "breadcrumbs": 29,
+      "brown_sugar": 11,
+      "brussels_sprouts": 16,
+      "butter": 99,
+      "buttermilk": 14,
+      "cajun_seasoning": 7,
+      "canned_corn": 31,
+      "canned_diced_tomatoes": 40,
+      "cauliflower": 17,
+      "cayenne": 10,
+      "cheddar": 213,
+      "chicken_bouillon": 18,
+      "chicken_breast": 50,
+      "chicken_broth": 53,
+      "chicken_cutlet": 3,
+      "chicken_pieces": 9,
+      "chicken_thigh": 16,
+      "chicken_wings": 8,
+      "chickpeas_canned": 12,
+      "chili_powder": 7,
+      "chili_sauce": 9,
+      "cilantro": 5,
+      "coconut_milk": 7,
+      "cod": 10,
+      "condensed_tomato_soup": 4,
+      "cooked_brown_rice": 3,
+      "corn_tortilla": 23,
+      "cornmeal": 13,
+      "cornstarch": 8,
+      "cream_cheese": 36,
+      "cream_of_chicken_soup": 14,
+      "cucumber": 26,
+      "curry_powder": 8,
+      "diced_tomatoes_green_chilies": 11,
+      "dijon_mustard": 21,
+      "dill_weed": 6,
+      "dried_basil": 7,
+      "dried_rosemary": 6,
+      "dried_sage": 4,
+      "dried_thyme": 7,
+      "egg": 99,
+      "egg_noodles": 8,
+      "elbow_macaroni": 36,
+      "fettuccine": 23,
+      "firm_tofu": 32,
+      "flour_tortilla": 39,
+      "garlic": 14,
+      "garlic_powder": 7,
+      "garlic_salt": 7,
+      "green_beans": 8,
+      "green_bell_pepper": 3,
+      "green_chilies_canned": 21,
+      "green_onion": 4,
+      "ground_beef": 21,
+      "ground_cumin": 8,
+      "ground_ginger": 5,
+      "ground_turkey": 18,
+      "heavy_cream": 11,
+      "honey": 104,
+      "ketchup": 29,
+      "lamb_chop": 6,
+      "lemon_juice": 13,
+      "lemon_pepper_seasoning": 10,
+      "lime": 7,
+      "lime_juice": 10,
+      "long_grain_rice": 24,
+      "margarine": 24,
+      "mayonnaise": 34,
+      "milk": 122,
+      "monterey_jack": 45,
+      "mozzarella": 119,
+      "mushroom": 27,
+      "mustard": 9,
+      "nutmeg": 5,
+      "olive_oil": 76,
+      "onion": 39,
+      "onion_powder": 4,
+      "onion_salt": 1,
+      "paprika": 9,
+      "parmesan": 41,
+      "parsley": 16,
+      "peanut_butter": 84,
+      "peanuts": 33,
+      "pinto_beans_canned": 14,
+      "plain_yogurt": 83,
+      "potato": 72,
+      "red_pepper_flakes": 4,
+      "rice_flour": 8,
+      "ricotta": 19,
+      "rolled_oats": 13,
+      "salmon": 25,
+      "salsa": 216,
+      "salt": 57,
+      "seasoning_salt": 8,
+      "sesame_seeds": 13,
+      "sour_cream": 26,
+      "soy_sauce": 36,
+      "sugar": 30,
+      "sweet_potato": 15,
+      "tomato_paste": 16,
+      "vanilla_yogurt": 101,
+      "vegetable_broth": 17,
+      "vegetable_oil": 18,
+      "water": 66,
+      "white_flour": 14,
+      "white_vinegar": 6,
+      "whole_wheat_flour": 11,
+      "worcestershire_sauce": 11,
+      "zucchini": 7
+    },
+    "manual_review": {
+      "review_matches_current_mapping": true,
+      "precision_sample": 150,
+      "precision_correct": 134,
+      "precision": 0.8933,
+      "precision_wilson_95": [
+        0.8338,
+        0.9333
+      ],
+      "recall_sample_unmapped": 150,
+      "recall_sample_missed": 3,
+      "unmapped_miss_rate": 0.02,
+      "unmapped_miss_rate_wilson_95": [
+        0.0068,
+        0.0571
+      ],
+      "estimated_product_recall_in_rule_aisles": 0.9013,
+      "note": "single reviewer (the build agent); rules were frozen before the held-out samples were drawn; recall covers only aisles named by a rule"
+    },
+    "catalog_product_matches": 0,
+    "catalog_product_match_note": "catalog products are simulated house-brand options, so no Instacart product is a verified match; every catalog external_ids stays {}"
+  },
+  "profile": {
+    "steps": [
+      {
+        "step": "read orders.csv (3,421,083 rows)",
+        "elapsed_s": 0.9,
+        "rss_mb": 116.4
+      },
+      {
+        "step": "selected users and built Track B split",
+        "elapsed_s": 2.2,
+        "rss_mb": 155.2
+      },
+      {
+        "step": "mapped products (3,288 of 49,688)",
+        "elapsed_s": 2.9,
+        "rss_mb": 161.4
+      },
+      {
+        "step": "streamed order_products__prior.csv (32,434,489 rows, 17 chunks)",
+        "elapsed_s": 8.5,
+        "rss_mb": 194.2
+      },
+      {
+        "step": "streamed order_products__train.csv (1,384,617 rows, 1 chunks)",
+        "elapsed_s": 8.8,
+        "rss_mb": 195.3
+      },
+      {
+        "step": "wrote outputs",
+        "elapsed_s": 16.0,
+        "rss_mb": 268.6
+      }
+    ],
+    "peak_rss_mb_at_steps": 268.6,
+    "note": "RSS sampled after each step (psutil); not a continuous peak measurement"
+  },
+  "checks": {
+    "sample_size_met": true,
+    "every_sampled_user_has_min_usable_orders": true,
+    "every_split_order_has_items": true,
+    "no_duplicate_items_in_basket": true,
+    "every_recipe_ingredient_mapped": true,
+    "manual_review_matches_current_mapping": true
+  },
+  "all_checks_pass": true
+}
