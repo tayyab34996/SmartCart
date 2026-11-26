@@ -33,11 +33,24 @@ from smartcart.nlu.lexicon import (
     CLAUSE_BREAKS, CURRENCY_WORDS, MAX_SERVINGS, MIN_BUDGET_RUPEES, NEGATION_CUES, PANTRY_CUES, UNIT_WORDS,
     USER_UNIT_FACTORS, VAGUE_BUDGET_TOKENS, Lexicon, parse_number,
 )
-from smartcart.validation.feasibility import quantize_amount
+from smartcart.validation.feasibility import check_feasibility, quantize_amount
 
 INTENTS = ("build_grocery_list", "plan_meal", "revise_basket", "unsupported")
 ITEM_INTENTS = {"build_grocery_list", "revise_basket"}
 DIET_PROMPT = "Which dietary rule should I apply: vegetarian, vegan, gluten-free, dairy-free or nut-free?"
+
+
+def suggest_recipes(request: dict, catalog: dict, limit: int = 3) -> list[str]:
+    """Up to ``limit`` recipes feasible under the request's diet, budget and servings, cheapest first."""
+    ranked = []
+    for rid in sorted(r["id"] for r in catalog["recipes"]):
+        probe = {"intent": "plan_meal", "recipe_id": rid, "servings": request.get("servings"), "items": [],
+                 "pantry": {}, "budget_minor": request.get("budget_minor"), "diet": request.get("diet", []),
+                 "exclusions": []}
+        result = check_feasibility(probe, catalog)
+        if result["label"] == "feasible":
+            ranked.append((result["min_cost_minor"], rid))
+    return [rid for _, rid in sorted(ranked)[:limit]]
 
 
 # ---------------------------------------------------------------- intent
@@ -247,11 +260,16 @@ def empty_request(request_id: str | None, intent: str) -> dict:
 class BaselineParser:
     """parse(text, session) -> StructuredRequest, using the trained intent model and rules."""
 
-    def __init__(self, lexicon: Lexicon, intent_model: Pipeline, context_rules: bool = True):
+    def __init__(self, lexicon: Lexicon, intent_model, context_rules: bool = True, suggest_recipes: bool = False):
         self.lex = lexicon
         self.intent_model = intent_model
         self.context_rules = context_rules
+        self.suggest_recipes = suggest_recipes
         self.slots = RuleSlotExtractor(lexicon)
+
+    def extract_spans(self, text: str, intent: str) -> list[dict]:
+        """Labelled spans with normalised values. E0 uses the rules; Phase 6 overrides this."""
+        return self.slots.extract(text, intent)
 
     # ---- fields from spans
     def _fields(self, spans: list[dict], intent: str) -> dict:
@@ -260,6 +278,8 @@ class BaselineParser:
                   "exclusions": set(), "pantry": {}, "items": []}
         for idx, span in enumerate(spans):
             label, value = span["label"], span["value"]
+            if value is None and label != "MEAL":
+                continue  # a span whose text could not be normalised carries no field value
             if label == "MEAL" and intent == "plan_meal" and fields["recipe_id"] is None:
                 fields["recipe_id"] = value
             elif label == "SERVINGS" and fields["servings"] is None:
@@ -319,7 +339,7 @@ class BaselineParser:
 
     def structural_issue(self, request: dict) -> tuple[str, str] | None:
         if request["intent"] == "plan_meal" and not request.get("recipe_id"):
-            return "missing_recipe", "Which dish would you like?"
+            return "missing_recipe", self._recipe_prompt(request)
         for iid, amount in request["pantry"].items():
             if amount is None:
                 return ("missing_pantry_quantity",
@@ -328,6 +348,15 @@ class BaselineParser:
             if item["amount"] is None:
                 return "missing_item_quantity", f"How much {self._name(item['ingredient_id'])} do you need (in {item['unit']})?"
         return None
+
+    def _recipe_prompt(self, request: dict) -> str:
+        if not self.suggest_recipes:
+            return "Which dish would you like?"
+        names = [self.lex.recipe_name(rid) for rid in suggest_recipes(request, self.lex.catalog)]
+        if not names:
+            return "Which dish would you like?"
+        listed = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " or " + names[-1]
+        return f"Which dish would you like? For example: {listed}."
 
     def _gate(self, request: dict, fields: dict, vague: bool) -> dict:
         if request["intent"] == "unsupported":
@@ -366,7 +395,7 @@ class BaselineParser:
         if intent == "revise_basket" and not session:
             if has_meal:
                 return "plan_meal"
-            listed = self.slots.extract(text, "build_grocery_list")
+            listed = self.extract_spans(text, "build_grocery_list")
             return "build_grocery_list" if any(s["label"] == "PRODUCT" for s in listed) else "plan_meal"
         if intent in {"plan_meal", "build_grocery_list"} and session and not has_meal:
             return "revise_basket"
@@ -374,17 +403,22 @@ class BaselineParser:
 
     def parse_with_trace(self, text: str, session: dict | None = None, request_id: str | None = None) -> dict:
         classifier_intent, scores = self.predict_intent(text)
-        spans = self.slots.extract(text, classifier_intent)
+        spans = self.extract_spans(text, classifier_intent)
         intent = self.apply_context_rules(text, classifier_intent, spans, session)
         if intent != classifier_intent:
-            spans = self.slots.extract(text, intent)
+            spans = self.extract_spans(text, intent)
         request = empty_request(request_id, intent)
         if intent != "unsupported":
             tokens = [t.lower() for t, _, _ in tokenize(text)]
             vague = self.slots.vague_budget(tokens)
             fields = self._fields(spans, intent)
             request = self._gate(self._merge(request, fields, session), fields, vague)
+        request = self.confidence_gate(request, scores, intent == classifier_intent)
         return {"request": request, "spans": spans, "classifier_intent": classifier_intent, "intent_scores": scores}
+
+    def confidence_gate(self, request: dict, scores: dict, classifier_decided: bool) -> dict:
+        """E0 has no confidence gating; the transformer parser overrides this."""
+        return request
 
     def parse(self, text: str, session: dict | None = None, request_id: str | None = None) -> dict:
         return self.parse_with_trace(text, session, request_id)["request"]

@@ -114,6 +114,7 @@ class Lexicon:
         self.catalog = catalog
         self.ingredients = {i["id"]: i for i in catalog["ingredients"]}
         self.recipes = {r["id"]: r for r in catalog["recipes"]}
+        self.recipe_aliases = {rid: list(recipe_aliases.get(rid, [])) for rid in self.recipes}
         self.ingredient_keys = self._ingredient_table()
         self.meal_keys = self._unique({rid: [clean_name(self.recipes[rid]["name"])] + list(recipe_aliases.get(rid, []))
                                        for rid in self.recipes})
@@ -147,6 +148,10 @@ class Lexicon:
         for key, iid in variants.items():
             table.setdefault(key, iid)  # listed forms win over generated variants
         return table
+
+    def recipe_name(self, recipe_id: str) -> str:
+        aliases = self.recipe_aliases.get(recipe_id) or []
+        return aliases[0] if aliases else clean_name(self.recipes[recipe_id]["name"])
 
     def ingredient_query(self, ingredient_id: str) -> str:
         return clean_name(self.ingredients[ingredient_id]["name"])
