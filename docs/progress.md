@@ -737,6 +737,11 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
+**Handover (2026-11-26):** Phase 7 onwards will be built by a teammate, from a fresh
+clone with Claude Code. Setup steps are in [TEAMMATE_SETUP.md](TEAMMATE_SETUP.md), and the
+working rules for Claude Code are in [CLAUDE.md](../CLAUDE.md). The DistilBERT
+checkpoints are shared through Google Drive, not git.
+
 **Phase 7 — D5 semantic retrieval.**
 
 - `scripts/build_index.py`: encode normalised product names and short descriptions with
