@@ -13,7 +13,130 @@ Each phase starts only with the project owner's permission.
 | 3 | D2 transaction sample and Track B splits | **Complete — 2026-11-25** (mapping review by a single reviewer) |
 | 4 | D2 benchmarks and gold feasibility checker | **Complete — 2026-11-25** (second-person annotation review pending) |
 | 5 | D3 complete baseline (E0) | **Complete — 2026-11-26** (validation only; test sets untouched) |
-| 6–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 6 is next) |
+| 6 | D4 transformer parser | **Complete — 2026-11-26** (validation only; test evaluated in Phase 11) |
+| 7–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 7 is next) |
+
+## Phase 6 — D4 transformer parser (complete, 2026-11-26)
+
+**What changed**
+
+- **Base model:** `distilbert/distilbert-base-uncased`, pinned to revision
+  `12040accade4e8a0f71eabdb258fecc2e7e948be`. It was downloaded once into the Hugging
+  Face cache; the default "xet" download failed, so `HF_HUB_DISABLE_XET=1` was used.
+  Training and evaluation run with `HF_HUB_OFFLINE=1`.
+- **Training** (`scripts/train_nlu.py`, `src/smartcart/nlu/training.py`):
+  - Two models per seed: sequence classification for intent, and token classification
+    over 21 BIO tags for slots. Only the first sub-token of each word is labelled.
+  - Seeds 13, 42 and 7. Plain PyTorch AdamW with lr 5e-5, batch 16, weight decay 0.01,
+    10% linear warm-up, max length 96 (the longest annotation is 50 sub-tokens).
+  - 6 epochs for intent and 8 for slots. The epoch with the best dev score is kept.
+  - Only the 600 training examples update the weights.
+  - Checkpoints are in `models/nlu/transformer/seed<seed>/{intent,slots}/` (git-ignored).
+    The per-epoch log is `results/metrics/nlu_training_log.json` (tracked).
+  - Training took **about 75 min on CPU** (4 threads), about 2 min per epoch.
+- **Parser** (`nlu/transformer_parser.py`, `nlu/normalize.py`):
+  - `TransformerParser` reuses E0's normalisation, revision merge, clarification rules,
+    answer handling and the same two dialogue-state rules, so the comparison isolates
+    the models.
+  - `SpanNormalizer` gives tagged spans their values: exact alias, then plural, then a
+    close spelling at difflib ratio ≥ 0.85, then attachment. It reproduces all 3,273 gold
+    values and attachments in train and dev.
+  - Temperature-scaled intent confidence.
+  - A runtime `low_confidence_intent` question when the confidence is below the seed's
+    threshold.
+  - Up to 3 feasible, cheapest-first recipe suggestions when the dish is missing.
+  - Unsupported detection through the intent class.
+- **API:** `parse_request(..., parser="transformer", seed=None)` uses the primary seed 42
+  by default, and `load_transformer_parser()` loads any seed.
+- **Calibration and evaluation** (`scripts/evaluate_nlu.py [--calibrate|--check]`):
+  - For each seed, fits the temperature on dev NLL and picks the threshold on dev (wrong
+    intents caught minus correct intents questioned), then freezes both in
+    `configs/nlu_transformer.json`.
+  - Evaluates both parsers on dev with the shared `nlu/metrics.py`.
+  - Writes `results/metrics/nlu_dev.json` (E0, every seed, mean ± std),
+    `results/metrics/nlu_calibration.json` and
+    `results/predictions/nlu_dev_transformer_seed{13,42,7}.jsonl`.
+- **Figures** regenerated from real outputs: `09_nlu_intent_confusion_matrix.png` (E0
+  vs DistilBERT, classifier-only intent, dev) and `10_nlu_training_curves.png` (from the
+  training log). `results/figures/README.md` is updated.
+- **Shared code:** the E0 parser gained hooks (`extract_spans`, `confidence_gate`,
+  `suggest_recipes`). All 7 E0 outputs still rebuild byte-for-byte.
+- **Failure review:** `docs/nlu_failures.md` covers all 45 DistilBERT dev failures (28
+  reviewed rows, 10 causes), E0's 4 failures, and the decisions taken before freezing.
+
+**Verification evidence (validation, 150 examples; DistilBERT = mean ± std over 3 seeds)**
+
+| Metric | E0 | DistilBERT |
+| --- | --- | --- |
+| Intent macro-F1, classifier only | 0.837 | **0.943 ± 0.005** |
+| Intent macro-F1, with the shared context rules | **0.978** | 0.972 ± 0.016 |
+| Slot entity micro-F1 | **0.991** | 0.962 ± 0.010 |
+| Quantity attachment | **0.975** | 0.966 ± 0.012 |
+| Exact budget (gold set) | **1.000** | 0.978 ± 0.009 |
+| Exact servings (gold set) | **1.000** | 0.959 ± 0.032 |
+| Clarification type accuracy (15 gold) | 0.800 | **0.844 ± 0.083** |
+| Unnecessary clarifications | **0** | 3 ± 0.8 |
+| Whole-request exact match | **0.973** | 0.900 ± 0.011 |
+
+- **Per seed:**
+  - kept epochs: intent 5 / 2 / 3 (seeds 13 / 42 / 7), slots 4 / 5 / 5;
+  - dev slot F1 at the kept epoch: 0.954 / 0.956 / 0.976.
+- **Calibration:**
+  - temperatures 1.10 / 1.25 / 1.35, all slightly overconfident before scaling;
+  - ECE 0.025 → 0.023, 0.048 → 0.022, 0.049 → 0.030;
+  - thresholds 0.5 / 0 / 0. Seed 13's rests on one example, and the gate fired once on
+    dev, catching a wrong intent.
+- **Completion check:**
+  - the checkpoints load locally (`parse_request` test);
+  - metrics exist for both parsers;
+  - figures 09 and 10 are regenerated from logs and predictions;
+  - the calibration and thresholds are frozen in `configs/nlu_transformer.json`.
+- `evaluate_nlu.py --check`: all 5 outputs rebuild byte-for-byte from the checkpoints.
+  `run_baseline.py --check` still passes.
+- `pytest`: **164 passed, 95 subtests** (152 before, plus 12 in
+  `test_transformer_parser.py`). The new tests cover:
+  - BIO repair and decoding, first-sub-token labelling, and every annotation fitting
+    `max_length`;
+  - the normaliser on all gold spans, plus misspellings and unknown words;
+  - temperature fitting, ECE and the threshold rule;
+  - recipe suggestions;
+  - training-log consistency (epoch counts, kept epoch = best dev);
+  - the transformer `parse_request` with a revision;
+  - committed metrics recomputed from predictions, and frozen calibration plus rebuild.
+
+  The checkpoint tests skip on a clone without `models/`.
+
+**Findings to carry into the report**
+
+- **DistilBERT wins on intent alone (+0.106 macro-F1).** The rules close that gap, and
+  the E0 dictionaries win on slots.
+- **Why the slots go the other way:** most transformer errors (31 of 45) involve
+  validation-only phrasing ("6 portions", "I have X left", "found X in the fridge",
+  "throw in X", "can we do it for X instead"). The dictionaries key on catalog words
+  that every split shares. This is the template-data bias already noted in Phase 4,
+  measured. Expect the same on test, which also uses held-out templates.
+- **Clause punctuation matters.** In a hand-written probe without commas, 2 of 3 seeds
+  read "for 2 under 1500 rupees" as a 2-rupee budget.
+- The low-confidence gate contributes almost nothing on this data: the confidence of
+  wrong intents is mostly high (0.95+ for the list/plan errors).
+
+**Open limitations**
+
+- **The test split was not evaluated in Phase 6.** BUILD_PHASES says to evaluate test
+  "once frozen". To keep a single, final look at the test data, the NLU test metrics for
+  both parsers are produced once in Phase 11 with the frozen configs, alongside every
+  other test-set result. The owner can ask for them earlier.
+- **Retraining is seeded, but byte-identical retraining is not verified.** CPU kernels
+  and thread counts can change the last digits. The committed predictions and metrics
+  are reproduced exactly from the trained checkpoints (`--check`).
+- **Teammates need the checkpoints to run the transformer:** about 75 min of CPU
+  training, or a copy of `models/nlu/transformer/` (1.5 GB, not in git).
+- Results come from template-generated text (see Phase 4). Absolute scores are likely
+  optimistic for both parsers, and the ranking between them may not transfer to real
+  user text.
+- The old `nlu/transformer_model.py` (random-weight skeleton), `nlu/runner.py` and
+  `results/predictions/nlu_evaluation_results.json` are superseded but kept, because
+  older tests import them.
 
 ## Phase 5 — D3 complete baseline E0 (complete, 2026-11-26)
 
@@ -614,20 +737,21 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 6 — D4 transformer parser.**
+**Phase 7 — D5 semantic retrieval.**
 
-- `scripts/train_nlu.py`: fine-tune `distilbert-base-uncased` for intent and BIO slots,
-  with seeds 13, 42 and 7. Checkpoints go to `models/nlu/`, and training curves are logged.
-- Normalisation. The E0 lexicon and number rules in `nlu/lexicon.py` can be reused for
-  value normalisation.
-- Calibrated confidence and gating thresholds chosen on dev, clarification prompts
-  (including up to 3 recipe suggestions), and unsupported detection.
-- `parse_request(..., parser="transformer")` with `session` support.
-- Metrics with `nlu/metrics.py` (shared with E0) on dev. Regenerate figures 09 and 10,
-  and review at least 20 dev failures in `docs/nlu_failures.md`.
+- `scripts/build_index.py`: encode normalised product names and short descriptions with
+  frozen `all-MiniLM-L6-v2` (already cached), normalise them, and build a FAISS
+  `IndexFlatIP` cached with its input hash.
+- Add `method="minilm"` to `retrieve_candidates` (`retrieval/api.py`) and fix the
+  `is True` diet check in `retrieval/filtering.py`.
+- Decide the product text for both retrievers. TF-IDF currently includes the ingredient
+  name words, which makes per-ingredient retrieval nearly trivial (Phase 5 finding).
+- Tune the candidate count on `retrieval_dev.json` only. Evaluate Recall@5, Recall@10 and
+  MRR for both methods, regenerate figure 11 and `retrieval_benchmark_results.json`, and
+  keep the leak-regression test.
 
-Phase 7 (semantic retrieval) also depends only on Phases 2 and 4.
-Outstanding from Phase 4: the second-person annotation review.
+Outstanding: the second-person annotation review (Phase 4), and the owner's decision on
+the optional parser variants in `docs/nlu_failures.md`.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open
