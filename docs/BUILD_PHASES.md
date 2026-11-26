@@ -295,7 +295,7 @@ py -3.11 -m venv .venv
 3. Retrieve the initial top 10, then apply eligibility checks for ingredient identity, unit and diet in the solver. Similarity never proves a dietary rule.
 4. Tune the candidate count on development queries only.
 5. Evaluate on the locked `data/benchmarks/retrieval_{dev,test}.json` from Phase 4. The old inline generator `retrieval/queries.py` (11 pilot ingredients) is superseded.
-6. Implement `retrieve_candidates`. Fix `filter_eligible_candidates()`: it checks dietary values with `is True`, but the catalog uses `"allowed"`, so no product can currently pass a dietary filter (found in Phase 2).
+6. Add `method="minilm"` to `retrieve_candidates` (`retrieval/api.py`; TF-IDF was added in Phase 5). Fix `filter_eligible_candidates()`: it checks dietary values with `is True`, but the catalog uses `"allowed"`, so no product can currently pass a dietary filter (found in Phase 2).
 7. Evaluate Recall@5, Recall@10 and MRR for TF-IDF and MiniLM under the same catalog and eligibility rules. Regenerate figure `11_` and `results/predictions/retrieval_benchmark_results.json`.
 
 **Completion check:** dev and test results exist for both methods; test queries are evaluated once, with frozen settings; the leak-regression test passes.
@@ -332,7 +332,7 @@ py -3.11 -m venv .venv
       - exactly one option per ingredient;
       - sum of option costs ≤ `budget_minor` (integers in minor units).
    5. Objective with explicit integer scaling: maximise normalized relevance + history + pair bonuses (AND-linked Booleans), with modest cost and surplus penalties. Hard rules stay outside the objective, and the weights are tuned on dev.
-   6. An independent validator (`src/smartcart/validation/validator.py`) recomputes quantities, exclusions, diet and cost from the selected catalog IDs. A basket is shown as valid only if this passes.
+   6. An independent validator (`src/smartcart/validation/validator.py`, written in Phase 5 to score E0) recomputes quantities, exclusions, diet and cost from the selected catalog IDs. A basket is shown as valid only if this passes.
 2. **Statuses:**
    - `valid`
    - `needs_clarification`

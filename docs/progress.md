@@ -12,7 +12,173 @@ Each phase starts only with the project owner's permission.
 | 2 | D2 full catalog and recipes | **Complete — 2026-11-25** (independent recipe review pending) |
 | 3 | D2 transaction sample and Track B splits | **Complete — 2026-11-25** (mapping review by a single reviewer) |
 | 4 | D2 benchmarks and gold feasibility checker | **Complete — 2026-11-25** (second-person annotation review pending) |
-| 5–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 5 is next) |
+| 5 | D3 complete baseline (E0) | **Complete — 2026-11-26** (validation only; test sets untouched) |
+| 6–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 6 is next) |
+
+## Phase 5 — D3 complete baseline E0 (complete, 2026-11-26)
+
+**What changed**
+
+- **Baseline parser** (`src/smartcart/nlu/baseline_parser.py`, `lexicon.py`):
+  - **Intent:** a scikit-learn `Pipeline` of `TfidfVectorizer` and `LinearSVC`, trained
+    only on the 600 training examples. The rows are checked against `nlu_split.json`.
+  - **Slots** cover all 10 types:
+    - longest-match gazetteers over catalog ingredient names and reviewed aliases (plus
+      simple plural variants), the 89 recipe aliases, and diet words;
+    - number rules: digits, `1,350`, `1.5k`, `3550/-`, word numbers such as
+      "twenty-five hundred", and "a dozen";
+    - unit words, converted with the NIST factors;
+    - currency words.
+  - **Roles:** a number followed by a unit or an ingredient is a QUANTITY attached to that
+    ingredient. A number next to a currency word, with a `k` or `/-` suffix, or of at
+    least 100 is a BUDGET. Any other integer up to 30 is SERVINGS.
+  - **Negation and pantry:** a negation cue before an ingredient in its clause makes an
+    EXCLUSION on the ingredient only. Negated diet categories ("no dairy") are matched
+    first as DIET spans. Pantry cues ("have", "got", "pantry", "left", "fridge" …) make a
+    PANTRY item.
+  - **Normalisation** to a StructuredRequest: amounts in catalog units, budgets in minor
+    units, revisions merged into `session`. Rule-based clarification covers all 5 gold
+    types, and `answer()` applies a user's reply to the pending question.
+  - **Two dialogue-state rules** sit on top of the classifier, and both are reported:
+    `revise_basket` needs a session, and with a session a request that names no meal is
+    read as a revision. E0 has no confidence gating.
+- **`parse_request(..., parser="baseline")`** (`nlu/api.py`); `parser="transformer"`
+  raises until Phase 6.
+- **`retrieve_candidates(..., method="tfidf")`** (`retrieval/api.py`): ranks the whole
+  catalog for one ingredient (query = canonical ingredient name) and returns
+  `product_id`, `retrieval_score` in [0, 1] and `rank`. MiniLM raises until Phase 7.
+- **E0 selection** (`pipeline/e0.py`):
+  - resolve requirements with the gold policy;
+  - TF-IDF top 10 per line;
+  - the cheapest available product with the right ingredient and unit, chosen per line
+    independently;
+  - a **post-hoc diet filter** that drops non-`allowed` products, leaving the line uncovered.
+  - Statuses: `valid`, `over_budget`, `incomplete`, `no_requirements`,
+    `invalid_request`, `needs_clarification`, `unsupported`. Incomplete and invalid
+    outcomes count as failures.
+- **Independent validator** (`validation/validator.py`): recomputes needs, units,
+  availability, diet, exclusions, packs, line costs, duplicates, missing lines and the
+  budget from product IDs and pack counts, and reports coverage. Phase 9 reuses it.
+- **NLU metrics** (`nlu/metrics.py`): intent (per class plus confusion matrix),
+  entity-level slot F1 per label, quantity attachment, exact budget and servings,
+  clarification, whole-request exact match. Phase 6 shares them.
+- **Runner:** `scripts/run_baseline.py --config configs/experiments/E0.json [--check]`.
+  It writes:
+  - `results/metrics/E0_intent_tuning.json`, `E0_nlu_dev.json`, `E0_basket_dev.json`
+    and `E0_latency_dev.json`;
+  - `results/predictions/E0_nlu_dev.jsonl`;
+  - `E0_basket_dev_{gold_input,end_to_end}.jsonl`;
+  - `E0_reference_baskets.json`.
+
+  The intent model goes to the ignored `models/nlu/E0_intent.joblib`. The runner reads
+  no test file and refuses any split other than dev.
+- **Config** `configs/experiments/E0.json` (frozen): data paths, the intent model, the
+  15-entry tuning grid and its selection rule, TF-IDF top 10, independent selection,
+  post-hoc filtering, association weight 0 and at most 3 clarification turns.
+
+**Tuning (validation only)**
+
+- **Intent grid:** word (1–2), char_wb (2–4) and word+char features × C ∈ {0.01, 0.03,
+  0.1, 0.3, 1}, trained on train and scored on dev.
+  - Selected: **char_wb (2–4), C = 0.1, dev macro-F1 0.837** (word (1–2) at C = 1 gave 0.725).
+  - The runner re-runs the grid and stops if the best entry differs from the frozen config.
+- **Context rules** were added after reading dev errors: most were dev openers never seen
+  in training ("I feel like …", "Thinking of making …") classified as `revise_basket`.
+- Retrieval `top_k = 10` was fixed by the plan, not tuned.
+
+**Verification evidence (dev only)**
+
+- **Completion check:**
+  - The 5 reference structured requests (pilot catalog) produce itemized baskets equal
+    to the hand-calculated lines, totals and statuses: **5/5**.
+  - Validation predictions are saved.
+  - The E0 configuration is in `configs/experiments/E0.json`.
+- **NLU, 150 validation examples:**
+
+  | Metric | Value |
+  | --- | --- |
+  | Intent macro-F1, classifier only / with context rules | 0.837 / 0.978 |
+  | Intent accuracy, classifier only / with context rules | 0.833 / 0.973 |
+  | Slot entity micro-F1 (P / R) | 0.991 (1.000 / 0.982) |
+  | Quantity attachment | 231/237 = 0.975 |
+  | Exact budget / servings (when gold is set) | 108/108, 81/81; no spurious values |
+  | Clarification decision (P / R), type accuracy | 15/15 asked, 1.000 / 1.000; type 12/15 |
+  | Whole-request exact match | 146/150 = 0.973 |
+
+  - Classifier-only per-class F1: list 0.892, plan 0.826, **revise 0.632**, unsupported 1.000.
+  - All remaining errors are intent errors. In 3 lists with an unquantified item, the
+    intent was predicted as `plan_meal`; in 1 plan request it was predicted as a list.
+- **Basket, 50 `basket_dev` scenarios:**
+
+  | Metric | Gold input | End to end |
+  | --- | --- | --- |
+  | Valid complete success, feasible (30) | 29 (0.967) | 27 (0.900) |
+  | Mean coverage, feasible | 0.993 | 0.926 |
+  | Infeasible detected (10) | 10 | 10 |
+  | Clarification success within 3 turns (10) | 9 | 8 |
+  | Unnecessary clarifications | 0 | 1 |
+  | Violations among outputs labelled valid | 0 / 38 | 0 / 35 |
+  | Lines dropped by the post-hoc diet filter | 11 | 11 |
+  | `has_history` subset success | 9/10 | 9/10 |
+
+  - **Every E0 selection failure comes from the post-hoc diet filter:**
+    - `dev_b014` (nut-free): the cheapest water and cheddar are `unknown` for nut-free;
+    - `dev_b042` (vegetarian): the cheapest water is `unknown` for vegetarian.
+  - The other end-to-end failures are parser intent errors:
+    - a meal request read as a list, leaving nothing to buy;
+    - two lists read as meal requests, so the parser asked for a dish.
+- **Latency on this laptop** (not part of `--check`): cold load 0.30 s; warm p50/p95
+  0.040 / 0.063 s end to end.
+- `run_baseline.py --check`: all 7 outputs rebuild byte-for-byte.
+- `pytest`: **152 passed, 95 subtests** (121 before, plus 18 in `test_baseline_parser.py`
+  and 13 in `test_e0_pipeline.py`). The new tests cover:
+  - number and unit forms, attachment, and diet negation vs ingredient exclusion;
+  - pantry with and without an amount, budget and currency spans, and alias vs
+    ambiguous-diet precedence;
+  - all clarification rules, revision merging, the context rules (also turned off), and
+    answer handling;
+  - training rows only, and frozen config equal to the tuning choice;
+  - predictions on dev IDs only, and committed metrics recomputed from predictions;
+  - retrieval: whole-catalog ranking, score bounds, no hard rules;
+  - selection: E0 equals the checker minimum on every feasible dev request without a
+    diet; the post-hoc filter; the statuses;
+  - the validator rejecting 10 kinds of corrupted basket;
+  - the rebuild check.
+
+**Findings to carry into the report**
+
+- **Selection is separable in this benchmark.** Line costs add up, and each line takes one
+  product. So whenever no diet applies, the per-line cheapest choice *is* the minimum-cost
+  basket. A test confirms it on every such dev request. E0 loses only through the
+  post-hoc diet filter (an `unknown` cheapest product), the candidate pool, or parsing.
+  Constrained selection (E3) can therefore only gain on diet scenarios and on the
+  objective terms, so the E0–E3 gap is expected to be small and concentrated there.
+- **Infeasible detection is 10/10 only because pool and minimum coincide here.** E0
+  cannot tell "proven infeasible" from "my heuristic failed". On dev the TF-IDF top 10
+  always held a compatible product (0 lines without one), so its `over_budget` matched
+  the true minimum.
+- **TF-IDF per-ingredient retrieval is nearly trivial.** The product text includes the
+  ingredient's name words (unchanged since Phase 1). Phase 7 decides the product text
+  for both retrievers, and E0 is re-run in Phase 11 with the same text.
+
+**Open limitations**
+
+- **The slot scores are optimistic.** Template text uses catalog aliases and recipe
+  aliases, and the baseline's dictionaries are exactly those lists. The report must state it.
+- **The context rules make revision detection almost free.** In the NLU data only
+  revision examples carry a session. The classifier-only intent scores are reported next
+  to the final ones for that reason.
+- **Possible test leakage of the rule author's knowledge.** The cue word lists were
+  written from training and validation examples plus common words. The rule author (the
+  build agent) had read the generator source, which contains the test templates, but no
+  test example was parsed or scored. Disclose this in the report.
+- E0 has no confidence gating; low-confidence clarification is a Phase 6 feature.
+- The simulated user answers one question once. A second question in the same scenario
+  goes unanswered, so the "3 turns" limit is not exercised on dev.
+- The old keyword parser (`nlu/parser.py`, `nlu/intent.py`, `pipeline/baseline.py`) and
+  `nlu/runner.py` remain for the Phase 1 reference tests. They are superseded by E0, and
+  `results/predictions/nlu_evaluation_results.json` is still the old 8-example output
+  (replaced in Phase 6).
 
 ## Phase 4 — D2 benchmarks and gold feasibility checker (complete, 2026-11-25)
 
@@ -448,16 +614,19 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 5 — D3 complete baseline (E0).**
+**Phase 6 — D4 transformer parser.**
 
-- A TF-IDF + LinearSVC intent classifier, trained only on the 600 training examples.
-- Regex and dictionary slots for every slot type, with negation and unit rules.
-- `parse_request(..., parser="baseline")`.
-- TF-IDF retrieval per ingredient, independent cheapest-option selection and post-hoc
-  filtering. Incomplete outcomes count as failures.
-- Predictions on validation, saved, with the configuration in `configs/experiments/E0.json`.
+- `scripts/train_nlu.py`: fine-tune `distilbert-base-uncased` for intent and BIO slots,
+  with seeds 13, 42 and 7. Checkpoints go to `models/nlu/`, and training curves are logged.
+- Normalisation. The E0 lexicon and number rules in `nlu/lexicon.py` can be reused for
+  value normalisation.
+- Calibrated confidence and gating thresholds chosen on dev, clarification prompts
+  (including up to 3 recipe suggestions), and unsupported detection.
+- `parse_request(..., parser="transformer")` with `session` support.
+- Metrics with `nlu/metrics.py` (shared with E0) on dev. Regenerate figures 09 and 10,
+  and review at least 20 dev failures in `docs/nlu_failures.md`.
 
-Phases 6 (transformer parser) and 7 (semantic retrieval) also depend only on Phase 4.
+Phase 7 (semantic retrieval) also depends only on Phases 2 and 4.
 Outstanding from Phase 4: the second-person annotation review.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
