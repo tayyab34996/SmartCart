@@ -1,0 +1,70 @@
+{
+  "description": "Phase 6 DistilBERT parser: training settings, checkpoint paths and the calibration frozen on validation data.",
+  "base_model": "distilbert/distilbert-base-uncased",
+  "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "seeds": [
+    13,
+    42,
+    7
+  ],
+  "primary_seed": 42,
+  "max_length": 96,
+  "torch_threads": 4,
+  "intent": {
+    "epochs": 6,
+    "batch_size": 16,
+    "learning_rate": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1
+  },
+  "slots": {
+    "epochs": 8,
+    "batch_size": 16,
+    "learning_rate": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1
+  },
+  "epoch_selection": "best validation score after each epoch (intent macro-F1, slot entity micro-F1); ties go to the earlier epoch",
+  "data": {
+    "catalog": "data/processed/catalog.json",
+    "recipe_aliases": "data/processed/recipe_aliases.csv",
+    "nlu": "data/annotations/nlu.jsonl",
+    "nlu_split": "data/splits/nlu_split.json"
+  },
+  "checkpoints": "models/nlu/transformer/seed{seed}/{task}",
+  "training_log": "results/metrics/nlu_training_log.json",
+  "context_rules": true,
+  "suggest_recipes": true,
+  "calibration_method": "temperature scaling of intent logits, fitted per seed on validation NLL",
+  "temperature_grid": {
+    "start": 0.25,
+    "stop": 5.0,
+    "step": 0.05
+  },
+  "threshold_grid": [
+    0.0,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "threshold_rule": "maximise wrong intents caught minus correct intents questioned on validation data; ties go to the lower threshold",
+  "calibration": {
+    "13": {
+      "temperature": 1.1,
+      "threshold": 0.5
+    },
+    "42": {
+      "temperature": 1.25,
+      "threshold": 0.0
+    },
+    "7": {
+      "temperature": 1.35,
+      "threshold": 0.0
+    }
+  }
+}
