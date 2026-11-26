@@ -1,0 +1,201 @@
+{
+  "method": "temperature scaling of intent logits, fitted per seed on validation NLL",
+  "threshold_rule": "maximise wrong intents caught minus correct intents questioned on validation data; ties go to the lower threshold",
+  "seeds": {
+    "13": {
+      "temperature": 1.1,
+      "nll_before": 0.103648,
+      "nll_after": 0.102352,
+      "ece_before": 0.024789,
+      "ece_after": 0.022915,
+      "threshold": 0.5,
+      "threshold_grid": [
+        {
+          "threshold": 0.0,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.3,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.4,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.5,
+          "wrong_caught": 1,
+          "correct_questioned": 0,
+          "net": 1
+        },
+        {
+          "threshold": 0.6,
+          "wrong_caught": 2,
+          "correct_questioned": 1,
+          "net": 1
+        },
+        {
+          "threshold": 0.7,
+          "wrong_caught": 2,
+          "correct_questioned": 3,
+          "net": -1
+        },
+        {
+          "threshold": 0.8,
+          "wrong_caught": 3,
+          "correct_questioned": 4,
+          "net": -1
+        },
+        {
+          "threshold": 0.9,
+          "wrong_caught": 4,
+          "correct_questioned": 4,
+          "net": 0
+        },
+        {
+          "threshold": 0.95,
+          "wrong_caught": 4,
+          "correct_questioned": 6,
+          "net": -2
+        }
+      ],
+      "classifier_decided_examples": 147
+    },
+    "42": {
+      "temperature": 1.25,
+      "nll_before": 0.24522,
+      "nll_after": 0.229322,
+      "ece_before": 0.047575,
+      "ece_after": 0.021578,
+      "threshold": 0.0,
+      "threshold_grid": [
+        {
+          "threshold": 0.0,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.3,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.4,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.5,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.6,
+          "wrong_caught": 0,
+          "correct_questioned": 1,
+          "net": -1
+        },
+        {
+          "threshold": 0.7,
+          "wrong_caught": 0,
+          "correct_questioned": 4,
+          "net": -4
+        },
+        {
+          "threshold": 0.8,
+          "wrong_caught": 0,
+          "correct_questioned": 5,
+          "net": -5
+        },
+        {
+          "threshold": 0.9,
+          "wrong_caught": 1,
+          "correct_questioned": 8,
+          "net": -7
+        },
+        {
+          "threshold": 0.95,
+          "wrong_caught": 1,
+          "correct_questioned": 22,
+          "net": -21
+        }
+      ],
+      "classifier_decided_examples": 143
+    },
+    "7": {
+      "temperature": 1.35,
+      "nll_before": 0.235892,
+      "nll_after": 0.212061,
+      "ece_before": 0.048829,
+      "ece_after": 0.030022,
+      "threshold": 0.0,
+      "threshold_grid": [
+        {
+          "threshold": 0.0,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.3,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.4,
+          "wrong_caught": 0,
+          "correct_questioned": 0,
+          "net": 0
+        },
+        {
+          "threshold": 0.5,
+          "wrong_caught": 0,
+          "correct_questioned": 3,
+          "net": -3
+        },
+        {
+          "threshold": 0.6,
+          "wrong_caught": 2,
+          "correct_questioned": 3,
+          "net": -1
+        },
+        {
+          "threshold": 0.7,
+          "wrong_caught": 2,
+          "correct_questioned": 3,
+          "net": -1
+        },
+        {
+          "threshold": 0.8,
+          "wrong_caught": 3,
+          "correct_questioned": 3,
+          "net": 0
+        },
+        {
+          "threshold": 0.9,
+          "wrong_caught": 4,
+          "correct_questioned": 8,
+          "net": -4
+        },
+        {
+          "threshold": 0.95,
+          "wrong_caught": 4,
+          "correct_questioned": 13,
+          "net": -9
+        }
+      ],
+      "classifier_decided_examples": 146
+    }
+  }
+}

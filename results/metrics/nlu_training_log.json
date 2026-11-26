@@ -1,0 +1,404 @@
+{
+  "runs": {
+    "seed13_intent": {
+      "task": "intent",
+      "seed": 13,
+      "selection_metric": "dev_macro_f1",
+      "best_epoch": 5,
+      "best_dev_score": 0.942647,
+      "epochs": [
+        {
+          "epoch": 1,
+          "train_loss": 1.022579,
+          "dev_loss": 0.386382,
+          "dev_score": 0.911494,
+          "seconds": 84.34
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.08955,
+          "dev_loss": 0.16291,
+          "dev_score": 0.921032,
+          "seconds": 85.25
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.008991,
+          "dev_loss": 0.111783,
+          "dev_score": 0.933461,
+          "seconds": 101.89
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.00514,
+          "dev_loss": 0.107152,
+          "dev_score": 0.933461,
+          "seconds": 120.64
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.004117,
+          "dev_loss": 0.103648,
+          "dev_score": 0.942647,
+          "seconds": 121.4
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.003621,
+          "dev_loss": 0.10234,
+          "dev_score": 0.942647,
+          "seconds": 120.19
+        }
+      ],
+      "train_examples": 600,
+      "dev_examples": 150,
+      "total_seconds": 640.4,
+      "checkpoint": "models/nlu/transformer/seed13/intent"
+    },
+    "seed13_slots": {
+      "task": "slots",
+      "seed": 13,
+      "selection_metric": "dev_slot_micro_f1",
+      "best_epoch": 4,
+      "best_dev_score": 0.9538,
+      "epochs": [
+        {
+          "epoch": 1,
+          "train_loss": 1.835774,
+          "dev_loss": 0.517095,
+          "dev_score": 0.729894,
+          "seconds": 115.62
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.239425,
+          "dev_loss": 0.125993,
+          "dev_score": 0.921013,
+          "seconds": 118.33
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.05371,
+          "dev_loss": 0.104449,
+          "dev_score": 0.941964,
+          "seconds": 89.07
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.0268,
+          "dev_loss": 0.090349,
+          "dev_score": 0.9538,
+          "seconds": 83.67
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.013565,
+          "dev_loss": 0.095466,
+          "dev_score": 0.942494,
+          "seconds": 81.8
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.009091,
+          "dev_loss": 0.08754,
+          "dev_score": 0.949813,
+          "seconds": 112.01
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.008263,
+          "dev_loss": 0.086504,
+          "dev_score": 0.950525,
+          "seconds": 116.51
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.006813,
+          "dev_loss": 0.08638,
+          "dev_score": 0.950525,
+          "seconds": 111.44
+        }
+      ],
+      "train_examples": 600,
+      "dev_examples": 150,
+      "total_seconds": 830.4,
+      "checkpoint": "models/nlu/transformer/seed13/slots"
+    },
+    "seed42_intent": {
+      "task": "intent",
+      "seed": 42,
+      "selection_metric": "dev_macro_f1",
+      "best_epoch": 2,
+      "best_dev_score": 0.948932,
+      "epochs": [
+        {
+          "epoch": 1,
+          "train_loss": 1.023304,
+          "dev_loss": 0.440148,
+          "dev_score": 0.886541,
+          "seconds": 121.48
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.100503,
+          "dev_loss": 0.24522,
+          "dev_score": 0.948932,
+          "seconds": 121.78
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.009436,
+          "dev_loss": 0.283821,
+          "dev_score": 0.919244,
+          "seconds": 121.54
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.005327,
+          "dev_loss": 0.297044,
+          "dev_score": 0.919244,
+          "seconds": 121.73
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.004167,
+          "dev_loss": 0.30193,
+          "dev_score": 0.919244,
+          "seconds": 120.87
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.003715,
+          "dev_loss": 0.309172,
+          "dev_score": 0.919244,
+          "seconds": 124.03
+        }
+      ],
+      "train_examples": 600,
+      "dev_examples": 150,
+      "total_seconds": 743.5,
+      "checkpoint": "models/nlu/transformer/seed42/intent"
+    },
+    "seed42_slots": {
+      "task": "slots",
+      "seed": 42,
+      "selection_metric": "dev_slot_micro_f1",
+      "best_epoch": 5,
+      "best_dev_score": 0.955606,
+      "epochs": [
+        {
+          "epoch": 1,
+          "train_loss": 1.976839,
+          "dev_loss": 0.564687,
+          "dev_score": 0.793129,
+          "seconds": 123.21
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.270944,
+          "dev_loss": 0.126002,
+          "dev_score": 0.924003,
+          "seconds": 122.61
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.057851,
+          "dev_loss": 0.097259,
+          "dev_score": 0.918276,
+          "seconds": 122.89
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.023663,
+          "dev_loss": 0.08529,
+          "dev_score": 0.933234,
+          "seconds": 122.13
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.013399,
+          "dev_loss": 0.059682,
+          "dev_score": 0.955606,
+          "seconds": 118.98
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.009405,
+          "dev_loss": 0.077679,
+          "dev_score": 0.945805,
+          "seconds": 118.15
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.007901,
+          "dev_loss": 0.073287,
+          "dev_score": 0.943452,
+          "seconds": 117.59
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.006996,
+          "dev_loss": 0.071884,
+          "dev_score": 0.942494,
+          "seconds": 97.31
+        }
+      ],
+      "train_examples": 600,
+      "dev_examples": 150,
+      "total_seconds": 956.6,
+      "checkpoint": "models/nlu/transformer/seed42/slots"
+    },
+    "seed7_intent": {
+      "task": "intent",
+      "seed": 7,
+      "selection_metric": "dev_macro_f1",
+      "best_epoch": 3,
+      "best_dev_score": 0.936751,
+      "epochs": [
+        {
+          "epoch": 1,
+          "train_loss": 0.994098,
+          "dev_loss": 0.570309,
+          "dev_score": 0.618349,
+          "seconds": 89.91
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.166509,
+          "dev_loss": 0.23548,
+          "dev_score": 0.911337,
+          "seconds": 80.77
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.011078,
+          "dev_loss": 0.235892,
+          "dev_score": 0.936751,
+          "seconds": 81.7
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.005607,
+          "dev_loss": 0.231336,
+          "dev_score": 0.933231,
+          "seconds": 88.64
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.004213,
+          "dev_loss": 0.233484,
+          "dev_score": 0.933231,
+          "seconds": 115.07
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.003757,
+          "dev_loss": 0.23749,
+          "dev_score": 0.926401,
+          "seconds": 93.94
+        }
+      ],
+      "train_examples": 600,
+      "dev_examples": 150,
+      "total_seconds": 551.6,
+      "checkpoint": "models/nlu/transformer/seed7/intent"
+    },
+    "seed7_slots": {
+      "task": "slots",
+      "seed": 7,
+      "selection_metric": "dev_slot_micro_f1",
+      "best_epoch": 5,
+      "best_dev_score": 0.975758,
+      "epochs": [
+        {
+          "epoch": 1,
+          "train_loss": 1.950631,
+          "dev_loss": 0.573623,
+          "dev_score": 0.740913,
+          "seconds": 85.42
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.262542,
+          "dev_loss": 0.11884,
+          "dev_score": 0.926903,
+          "seconds": 86.25
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.057516,
+          "dev_loss": 0.07141,
+          "dev_score": 0.951311,
+          "seconds": 83.94
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.02149,
+          "dev_loss": 0.052434,
+          "dev_score": 0.969103,
+          "seconds": 83.62
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.013198,
+          "dev_loss": 0.036755,
+          "dev_score": 0.975758,
+          "seconds": 68.22
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.011465,
+          "dev_loss": 0.045798,
+          "dev_score": 0.975094,
+          "seconds": 67.8
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.007737,
+          "dev_loss": 0.085395,
+          "dev_score": 0.947756,
+          "seconds": 70.77
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.007124,
+          "dev_loss": 0.081546,
+          "dev_score": 0.951327,
+          "seconds": 69.51
+        }
+      ],
+      "train_examples": 600,
+      "dev_examples": 150,
+      "total_seconds": 617.1,
+      "checkpoint": "models/nlu/transformer/seed7/slots"
+    }
+  },
+  "base_model": "distilbert/distilbert-base-uncased",
+  "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "environment": {
+    "python": "3.11.9",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.24.1",
+    "device": "cpu",
+    "torch_threads": 4,
+    "machine": "AMD64"
+  },
+  "hyperparameters": {
+    "intent": {
+      "epochs": 6,
+      "batch_size": 16,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.1
+    },
+    "slots": {
+      "epochs": 8,
+      "batch_size": 16,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.1
+    }
+  },
+  "max_length": 96,
+  "epoch_selection": "best validation score after each epoch (intent macro-F1, slot entity micro-F1); ties go to the earlier epoch"
+}
