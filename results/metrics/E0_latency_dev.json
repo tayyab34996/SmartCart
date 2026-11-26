@@ -1,0 +1,18 @@
+{
+  "run": "E0",
+  "split": "dev",
+  "note": "wall time on the build machine; not part of --check",
+  "cold_load_s": 0.30322,
+  "warm_gold_input": {
+    "p50_s": 0.037078,
+    "p95_s": 0.057337,
+    "max_s": 0.059659,
+    "scenarios": 50
+  },
+  "warm_end_to_end": {
+    "p50_s": 0.040125,
+    "p95_s": 0.062603,
+    "max_s": 0.087673,
+    "scenarios": 50
+  }
+}

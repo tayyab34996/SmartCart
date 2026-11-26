@@ -1,0 +1,120 @@
+{
+  "run": "E0",
+  "split": "dev",
+  "policy": "docs/benchmark_policy.md",
+  "gold_input": {
+    "scenarios": 50,
+    "by_label": {
+      "feasible": {
+        "scenarios": 30,
+        "success": 29,
+        "success_rate": 0.966667,
+        "statuses": {
+          "incomplete": 1,
+          "valid": 29
+        }
+      },
+      "infeasible": {
+        "scenarios": 10,
+        "success": 10,
+        "success_rate": 1.0,
+        "statuses": {
+          "incomplete": 4,
+          "over_budget": 6
+        }
+      },
+      "clarification": {
+        "scenarios": 10,
+        "success": 9,
+        "success_rate": 0.9,
+        "statuses": {
+          "incomplete": 1,
+          "valid": 9
+        }
+      }
+    },
+    "valid_complete_success_feasible": 0.966667,
+    "mean_coverage_feasible": 0.992593,
+    "false_rejections_feasible": 1,
+    "infeasible_detected": 10,
+    "clarification_success_within_turns": 9,
+    "clarification_asked": 10,
+    "clarification_type_match": 10,
+    "unnecessary_clarifications": 0,
+    "outputs_labelled_valid": 38,
+    "violations_among_valid": 0,
+    "violation_types_among_valid": {},
+    "feasible_failure_causes": {
+      "incomplete": 1
+    },
+    "candidate_pool": {
+      "lines": 287,
+      "no_compatible_candidate": 0,
+      "removed_by_diet_filter": 11
+    },
+    "has_history_subset": {
+      "scenarios": 10,
+      "success": 9
+    }
+  },
+  "end_to_end": {
+    "scenarios": 50,
+    "by_label": {
+      "feasible": {
+        "scenarios": 30,
+        "success": 27,
+        "success_rate": 0.9,
+        "statuses": {
+          "incomplete": 1,
+          "needs_clarification": 1,
+          "no_requirements": 1,
+          "valid": 27
+        }
+      },
+      "infeasible": {
+        "scenarios": 10,
+        "success": 10,
+        "success_rate": 1.0,
+        "statuses": {
+          "incomplete": 4,
+          "over_budget": 6
+        }
+      },
+      "clarification": {
+        "scenarios": 10,
+        "success": 8,
+        "success_rate": 0.8,
+        "statuses": {
+          "incomplete": 1,
+          "needs_clarification": 1,
+          "valid": 8
+        }
+      }
+    },
+    "valid_complete_success_feasible": 0.9,
+    "mean_coverage_feasible": 0.925926,
+    "false_rejections_feasible": 1,
+    "infeasible_detected": 10,
+    "clarification_success_within_turns": 8,
+    "clarification_asked": 10,
+    "clarification_type_match": 9,
+    "unnecessary_clarifications": 1,
+    "outputs_labelled_valid": 35,
+    "violations_among_valid": 0,
+    "violation_types_among_valid": {},
+    "feasible_failure_causes": {
+      "incomplete": 1,
+      "needs_clarification": 1,
+      "no_requirements": 1
+    },
+    "candidate_pool": {
+      "lines": 277,
+      "no_compatible_candidate": 0,
+      "removed_by_diet_filter": 11
+    },
+    "has_history_subset": {
+      "scenarios": 10,
+      "success": 9
+    }
+  }
+}

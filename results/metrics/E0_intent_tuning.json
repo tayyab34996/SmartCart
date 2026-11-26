@@ -1,0 +1,345 @@
+{
+  "selection": "highest validation macro-F1; ties go to the earlier grid entry",
+  "train_examples": 600,
+  "dev_examples": 150,
+  "grid": [
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word",
+          "ngram_range": [
+            1,
+            2
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.01
+        }
+      },
+      "dev_macro_f1": 0.369892,
+      "dev_accuracy": 0.526667
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word",
+          "ngram_range": [
+            1,
+            2
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.03
+        }
+      },
+      "dev_macro_f1": 0.704008,
+      "dev_accuracy": 0.753333
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word",
+          "ngram_range": [
+            1,
+            2
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.1
+        }
+      },
+      "dev_macro_f1": 0.780128,
+      "dev_accuracy": 0.78
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word",
+          "ngram_range": [
+            1,
+            2
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.3
+        }
+      },
+      "dev_macro_f1": 0.760009,
+      "dev_accuracy": 0.733333
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word",
+          "ngram_range": [
+            1,
+            2
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 1.0
+        }
+      },
+      "dev_macro_f1": 0.725384,
+      "dev_accuracy": 0.686667
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "char_wb",
+          "ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.01
+        }
+      },
+      "dev_macro_f1": 0.367375,
+      "dev_accuracy": 0.56
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "char_wb",
+          "ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.03
+        }
+      },
+      "dev_macro_f1": 0.781692,
+      "dev_accuracy": 0.806667
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "char_wb",
+          "ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.1
+        }
+      },
+      "dev_macro_f1": 0.837479,
+      "dev_accuracy": 0.833333
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "char_wb",
+          "ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.3
+        }
+      },
+      "dev_macro_f1": 0.819353,
+      "dev_accuracy": 0.8
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "char_wb",
+          "ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 1.0
+        }
+      },
+      "dev_macro_f1": 0.783421,
+      "dev_accuracy": 0.753333
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word+char",
+          "word_ngram_range": [
+            1,
+            2
+          ],
+          "char_ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.01
+        }
+      },
+      "dev_macro_f1": 0.682975,
+      "dev_accuracy": 0.746667
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word+char",
+          "word_ngram_range": [
+            1,
+            2
+          ],
+          "char_ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.03
+        }
+      },
+      "dev_macro_f1": 0.777122,
+      "dev_accuracy": 0.793333
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word+char",
+          "word_ngram_range": [
+            1,
+            2
+          ],
+          "char_ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.1
+        }
+      },
+      "dev_macro_f1": 0.821876,
+      "dev_accuracy": 0.806667
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word+char",
+          "word_ngram_range": [
+            1,
+            2
+          ],
+          "char_ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 0.3
+        }
+      },
+      "dev_macro_f1": 0.772643,
+      "dev_accuracy": 0.74
+    },
+    {
+      "config": {
+        "vectorizer": {
+          "sublinear_tf": true,
+          "min_df": 1,
+          "analyzer": "word+char",
+          "word_ngram_range": [
+            1,
+            2
+          ],
+          "char_ngram_range": [
+            2,
+            4
+          ]
+        },
+        "classifier": {
+          "type": "LinearSVC",
+          "random_state": 0,
+          "C": 1.0
+        }
+      },
+      "dev_macro_f1": 0.768707,
+      "dev_accuracy": 0.733333
+    }
+  ],
+  "selected_index": 7,
+  "selected": {
+    "vectorizer": {
+      "sublinear_tf": true,
+      "min_df": 1,
+      "analyzer": "char_wb",
+      "ngram_range": [
+        2,
+        4
+      ]
+    },
+    "classifier": {
+      "type": "LinearSVC",
+      "random_state": 0,
+      "C": 0.1
+    }
+  },
+  "matches_frozen_config": true
+}

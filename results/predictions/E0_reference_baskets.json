@@ -1,0 +1,313 @@
+{
+  "run": "E0",
+  "catalog": "data/processed/pilot/catalog.json",
+  "price_note": "SIMULATED PKR prices",
+  "scenarios": [
+    {
+      "scenario_id": "d3_ref_01_feasible_recipe",
+      "description": "Standard_feasible_recipe_basket_under_budget",
+      "request": {
+        "request_id": "d3_ref_01_feasible_recipe",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3474",
+        "servings": 2,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 100000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "expected_status": "valid",
+      "expected_total_cost_minor": 50000,
+      "status": "valid",
+      "total_cost_minor": 50000,
+      "purchased": [
+        {
+          "ingredient_id": "white_flour",
+          "product_id": "sim_flour_500g",
+          "pack_count": 1,
+          "line_cost_minor": 9000,
+          "unit": "g"
+        },
+        {
+          "ingredient_id": "egg",
+          "product_id": "sim_egg_6piece",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "piece"
+        },
+        {
+          "ingredient_id": "olive_oil",
+          "product_id": "sim_olive_oil_100ml",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "ml"
+        },
+        {
+          "ingredient_id": "water",
+          "product_id": "sim_water_500ml",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "unit": "ml"
+        }
+      ],
+      "covered_by_pantry": [],
+      "checks": {
+        "status": true,
+        "total": true,
+        "lines": true
+      },
+      "matches_expected": true
+    },
+    {
+      "scenario_id": "d3_ref_02_pantry_deduction",
+      "description": "Pantry_flour_250g_covers_120g_requirement_so_no_flour_is_bought",
+      "request": {
+        "request_id": "d3_ref_02_pantry_deduction",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3474",
+        "servings": 2,
+        "items": [],
+        "pantry": {
+          "white_flour": "250"
+        },
+        "budget_minor": 100000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "expected_status": "valid",
+      "expected_total_cost_minor": 41000,
+      "status": "valid",
+      "total_cost_minor": 41000,
+      "purchased": [
+        {
+          "ingredient_id": "egg",
+          "product_id": "sim_egg_6piece",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "piece"
+        },
+        {
+          "ingredient_id": "olive_oil",
+          "product_id": "sim_olive_oil_100ml",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "ml"
+        },
+        {
+          "ingredient_id": "water",
+          "product_id": "sim_water_500ml",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "unit": "ml"
+        }
+      ],
+      "covered_by_pantry": [
+        {
+          "ingredient_id": "white_flour",
+          "unit": "g",
+          "required": "120.000",
+          "pantry": "250.000",
+          "need": "0.000"
+        }
+      ],
+      "checks": {
+        "status": true,
+        "total": true,
+        "lines": true
+      },
+      "matches_expected": true
+    },
+    {
+      "scenario_id": "d3_ref_03_budget_exceeded",
+      "description": "Recipe_with_insufficient_budget_flagging_over_budget",
+      "request": {
+        "request_id": "d3_ref_03_budget_exceeded",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3474",
+        "servings": 2,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 20000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "expected_status": "over_budget",
+      "expected_total_cost_minor": 50000,
+      "status": "over_budget",
+      "total_cost_minor": 50000,
+      "purchased": [
+        {
+          "ingredient_id": "white_flour",
+          "product_id": "sim_flour_500g",
+          "pack_count": 1,
+          "line_cost_minor": 9000,
+          "unit": "g"
+        },
+        {
+          "ingredient_id": "egg",
+          "product_id": "sim_egg_6piece",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "piece"
+        },
+        {
+          "ingredient_id": "olive_oil",
+          "product_id": "sim_olive_oil_100ml",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "ml"
+        },
+        {
+          "ingredient_id": "water",
+          "product_id": "sim_water_500ml",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "unit": "ml"
+        }
+      ],
+      "covered_by_pantry": [],
+      "checks": {
+        "status": true,
+        "total": true,
+        "lines": true
+      },
+      "matches_expected": true
+    },
+    {
+      "scenario_id": "d3_ref_04_direct_grocery_list",
+      "description": "Direct_ingredient_requirements_without_recipe",
+      "request": {
+        "request_id": "d3_ref_04_direct_grocery_list",
+        "intent": "build_grocery_list",
+        "recipe_id": null,
+        "servings": null,
+        "items": [
+          {
+            "ingredient_id": "chicken_breast",
+            "amount": "500",
+            "unit": "g"
+          },
+          {
+            "ingredient_id": "olive_oil",
+            "amount": "100",
+            "unit": "ml"
+          }
+        ],
+        "pantry": {},
+        "budget_minor": 150000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "expected_status": "valid",
+      "expected_total_cost_minor": 98000,
+      "status": "valid",
+      "total_cost_minor": 98000,
+      "purchased": [
+        {
+          "ingredient_id": "chicken_breast",
+          "product_id": "sim_chicken_500g",
+          "pack_count": 1,
+          "line_cost_minor": 80000,
+          "unit": "g"
+        },
+        {
+          "ingredient_id": "olive_oil",
+          "product_id": "sim_olive_oil_100ml",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "ml"
+        }
+      ],
+      "covered_by_pantry": [],
+      "checks": {
+        "status": true,
+        "total": true,
+        "lines": true
+      },
+      "matches_expected": true
+    },
+    {
+      "scenario_id": "d3_ref_05_scaled_servings",
+      "description": "Recipe_scaled_to_six_servings_still_fits_one_pack_per_ingredient",
+      "request": {
+        "request_id": "d3_ref_05_scaled_servings",
+        "intent": "plan_meal",
+        "recipe_id": "foodcom_3474",
+        "servings": 6,
+        "items": [],
+        "pantry": {},
+        "budget_minor": 200000,
+        "currency": "PKR",
+        "diet": [],
+        "exclusions": [],
+        "user_id": null,
+        "needs_clarification": false,
+        "clarification_type": null,
+        "clarification_prompt": null
+      },
+      "expected_status": "valid",
+      "expected_total_cost_minor": 50000,
+      "status": "valid",
+      "total_cost_minor": 50000,
+      "purchased": [
+        {
+          "ingredient_id": "white_flour",
+          "product_id": "sim_flour_500g",
+          "pack_count": 1,
+          "line_cost_minor": 9000,
+          "unit": "g"
+        },
+        {
+          "ingredient_id": "egg",
+          "product_id": "sim_egg_6piece",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "piece"
+        },
+        {
+          "ingredient_id": "olive_oil",
+          "product_id": "sim_olive_oil_100ml",
+          "pack_count": 1,
+          "line_cost_minor": 18000,
+          "unit": "ml"
+        },
+        {
+          "ingredient_id": "water",
+          "product_id": "sim_water_500ml",
+          "pack_count": 1,
+          "line_cost_minor": 5000,
+          "unit": "ml"
+        }
+      ],
+      "covered_by_pantry": [],
+      "checks": {
+        "status": true,
+        "total": true,
+        "lines": true
+      },
+      "matches_expected": true
+    }
+  ],
+  "all_match": true
+}
