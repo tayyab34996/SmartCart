@@ -1,0 +1,60 @@
+{
+  "run": "E0",
+  "description": "Baseline: TF-IDF + LinearSVC intent, rule/dictionary slots, TF-IDF retrieval per ingredient, independent cheapest-option selection, post-hoc diet and budget filtering.",
+  "frozen": true,
+  "data": {
+    "catalog": "data/processed/catalog.json",
+    "pilot_catalog": "data/processed/pilot/catalog.json",
+    "recipe_aliases": "data/processed/recipe_aliases.csv",
+    "nlu": "data/annotations/nlu.jsonl",
+    "nlu_split": "data/splits/nlu_split.json",
+    "basket_dev": "data/benchmarks/basket_dev.json"
+  },
+  "parser": {
+    "type": "baseline",
+    "train_split": "train",
+    "intent_model": {
+      "vectorizer": {"analyzer": "char_wb", "ngram_range": [2, 4], "sublinear_tf": true, "min_df": 1},
+      "classifier": {"type": "LinearSVC", "C": 0.1, "random_state": 0}
+    },
+    "context_rules": true,
+    "confidence_gating": false
+  },
+  "intent_tuning": {
+    "selection": "highest validation macro-F1; ties go to the earlier grid entry",
+    "tuned_on": "dev",
+    "grid": [
+      {"vectorizer": {"analyzer": "word", "ngram_range": [1, 2]}, "classifier": {"C": 0.01}},
+      {"vectorizer": {"analyzer": "word", "ngram_range": [1, 2]}, "classifier": {"C": 0.03}},
+      {"vectorizer": {"analyzer": "word", "ngram_range": [1, 2]}, "classifier": {"C": 0.1}},
+      {"vectorizer": {"analyzer": "word", "ngram_range": [1, 2]}, "classifier": {"C": 0.3}},
+      {"vectorizer": {"analyzer": "word", "ngram_range": [1, 2]}, "classifier": {"C": 1.0}},
+      {"vectorizer": {"analyzer": "char_wb", "ngram_range": [2, 4]}, "classifier": {"C": 0.01}},
+      {"vectorizer": {"analyzer": "char_wb", "ngram_range": [2, 4]}, "classifier": {"C": 0.03}},
+      {"vectorizer": {"analyzer": "char_wb", "ngram_range": [2, 4]}, "classifier": {"C": 0.1}},
+      {"vectorizer": {"analyzer": "char_wb", "ngram_range": [2, 4]}, "classifier": {"C": 0.3}},
+      {"vectorizer": {"analyzer": "char_wb", "ngram_range": [2, 4]}, "classifier": {"C": 1.0}},
+      {"vectorizer": {"analyzer": "word+char", "word_ngram_range": [1, 2], "char_ngram_range": [2, 4]}, "classifier": {"C": 0.01}},
+      {"vectorizer": {"analyzer": "word+char", "word_ngram_range": [1, 2], "char_ngram_range": [2, 4]}, "classifier": {"C": 0.03}},
+      {"vectorizer": {"analyzer": "word+char", "word_ngram_range": [1, 2], "char_ngram_range": [2, 4]}, "classifier": {"C": 0.1}},
+      {"vectorizer": {"analyzer": "word+char", "word_ngram_range": [1, 2], "char_ngram_range": [2, 4]}, "classifier": {"C": 0.3}},
+      {"vectorizer": {"analyzer": "word+char", "word_ngram_range": [1, 2], "char_ngram_range": [2, 4]}, "classifier": {"C": 1.0}}
+    ]
+  },
+  "retrieval": {"method": "tfidf", "top_k": 10, "query": "ingredient canonical name", "tuned": false},
+  "selection": "independent_cheapest",
+  "filtering": "post_hoc",
+  "association_weight": 0.0,
+  "max_clarification_turns": 3,
+  "evaluated_splits": ["dev"],
+  "outputs": {
+    "intent_model": "models/nlu/E0_intent.joblib",
+    "intent_tuning": "results/metrics/E0_intent_tuning.json",
+    "nlu_predictions": "results/predictions/E0_nlu_dev.jsonl",
+    "nlu_metrics": "results/metrics/E0_nlu_dev.json",
+    "basket_predictions": "results/predictions/E0_basket_dev_{mode}.jsonl",
+    "basket_metrics": "results/metrics/E0_basket_dev.json",
+    "reference_baskets": "results/predictions/E0_reference_baskets.json",
+    "latency": "results/metrics/E0_latency_dev.json"
+  }
+}
