@@ -132,11 +132,11 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(int(PARSER.intent_model.named_steps["svc"].coef_.shape[0]), 4)
         self.assertEqual(len(PARSER.intent_model.named_steps["tfidf"].vocabulary_) > 0, True)
 
-    def test_api_and_unimplemented_parser(self):
+    def test_api_and_unknown_parser(self):
         request = parse_request("Make homemade pasta for 2", CATALOG)
         self.assertEqual((request["recipe_id"], request["servings"]), ("foodcom_3474", 2))
-        with self.assertRaises(NotImplementedError):
-            parse_request("hello", CATALOG, parser="transformer")
+        with self.assertRaises(ValueError):
+            parse_request("hello", CATALOG, parser="gpt")
 
     def test_frozen_config_is_the_tuning_choice(self):
         tuning = json.loads((ROOT / CONFIG["outputs"]["intent_tuning"]).read_text(encoding="utf-8"))
