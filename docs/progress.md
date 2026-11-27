@@ -16,7 +16,146 @@ Each phase starts only with the project owner's permission.
 | 6 | D4 transformer parser | **Complete — 2026-11-26** (validation only; test evaluated in Phase 11) |
 | 7 | D5 semantic retrieval | **Complete — 2026-11-28** (validation only; test evaluated in Phase 11) |
 | 8 | D6 associations and Track B | **Complete — 2026-11-28** (validation only; Track B test evaluated in Phase 11) |
-| 9–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 9 is next) |
+| 9 | D7 constrained solver and validator | **Complete — 2026-11-28** (dev only; test scenarios run in Phase 11) |
+| 10–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 10 is next) |
+
+## Phase 9 — D7 constrained solver and validator (complete, 2026-11-28)
+
+**What changed**
+
+- **`src/smartcart/optimization/cpsat.py`**, the plan's six steps:
+  1. Resolve the request: scale, aggregate, subtract the pantry (`resolve_requirements`).
+  2. Build the candidate pool from frozen MiniLM retrieval, using the canonical
+     ingredient name, the Phase 7 product text and **top 40** (`candidate_count.selected`).
+     Hard rules then decide which candidates are options: same ingredient and unit,
+     available, every diet `"allowed"`, not excluded. They never enter the objective.
+  3. Compute the minimum whole packs and integer option costs.
+  4. Build the CP-SAT model:
+     - one Boolean per option and exactly one per line;
+     - `Σ cost ≤ budget_minor`;
+     - an integer objective: relevance + history + pair bonuses (pairs through AND-linked
+       Booleans `y ≤ xa, y ≤ xb`) minus cost and surplus penalties, each normalised to
+       [0, 1] and scaled by 10^6;
+     - main coefficients multiplied by 10^4 with a tie-break (cheaper option, then
+       product ID) below them, so the optimum is unique and reproducible.
+     A pair of lines whose option pairs all score the same is added as a constant, with
+     no variables.
+  5. Statuses: `valid`, `needs_clarification`, `no_basket_in_candidate_pool` (logged, then
+     the model is rebuilt over every eligible catalog product and solved again),
+     `infeasible_in_scope` (proven: no eligible product, or the full-catalog model is
+     infeasible), `solver_timeout` (never infeasible), `unsupported` and
+     `invalid_request`. Each solve logs the CP-SAT status, the time limit and whether
+     optimality was proven.
+  6. Validate with the Phase 5 validator: a basket is labelled `valid` only if it passes.
+
+  **Budget conflicts:** the minimum-cost complete basket under the same rules is solved
+  and its total is reported as `suggested_budget_minor`; the request is never relaxed.
+  CP-SAT runs single-threaded with seed 0 and a 10 s limit.
+- **`src/smartcart/explanations/`:** sentences filled only from verified records:
+  - per line: packs × product = amount bought vs need, surplus and cost; "cheapest of n
+    eligible options" (checked) or why a dearer option was chosen; diet labels;
+  - pantry and excluded lines, the total vs the budget, and the simulated-price note;
+  - a proven infeasibility with the suggested budget or the missing ingredient;
+  - a timeout stated as not proof.
+- **`src/smartcart/pipeline/constrained.py`:** the scenario runner. It uses E0's dialogue
+  (at most 3 clarification turns, the simulated user answers once) and scores like E0,
+  except that only `infeasible_in_scope` counts as detecting an infeasible scenario.
+- **`configs/solver.json`** (frozen): candidates, eligibility, constraints, objective
+  terms, scaling and weights, solver settings, statuses, and the selection rule (written
+  before any dev run).
+- **`scripts/run_solver.py [--select|--check]`:** dev basket scenarios with gold input.
+  It writes `results/metrics/solver_dev.json`,
+  `results/predictions/solver_dev_gold_input.jsonl` (basket, statuses, solver log,
+  trace and explanation per scenario) and `results/metrics/solver_latency_dev.json`
+  (machine-dependent, not part of `--check`).
+
+**Weight selection (dev, gold input; rule fixed in advance)**
+
+- Fixed: relevance 1.0, history 0.1, pair 0.1. The last two are inactive by Phase 8's
+  measurement.
+- Tuned: cost {0.25, 0.5, 1, 2, 4} × surplus {0, 0.1, 0.25, 0.5}.
+- **All 20 settings tie:** 50/50 success, cost ratio 1.000 to the checker minimum, and the
+  same surplus. The rule's last tie-break picked the first entry (**cost 0.25, surplus 0**).
+- **On this benchmark the objective reduces to "cheapest eligible option per line"**:
+  - products of one ingredient share the same display text, so they have equal relevance;
+  - the history and pair terms are constant across products;
+  - the cheapest pack is never beaten on surplus by a weight in the grid.
+
+  222 of 222 bought lines are the cheapest eligible option.
+
+**Verification evidence (50 dev scenarios, gold input)**
+
+| Metric | CP-SAT (E3 selector) | E0 |
+| --- | --- | --- |
+| Success, all scenarios | **50 / 50** | 48 / 50 |
+| Valid complete success, feasible (30) | **30 / 30** | 29 / 30 |
+| Infeasible detected (10) | 10 / 10 (proven) | 10 / 10 |
+| Clarification scenarios (10) | **10 / 10** | 9 / 10 |
+| Violations among outputs labelled valid | 0 / 40 | 0 / 38 |
+| False rejections / solver timeouts | 0 / 0 | — |
+
+- **Valid baskets:** optimality was proven for 40 of 40, and mean feasible coverage is 1.000.
+- **Infeasible scenarios:** 6 have the reason "budget below the minimum cost" and 4 "no
+  eligible option" (diet conflicts). All 10 were expanded to the whole catalog to prove
+  infeasibility. No feasible scenario needed expansion, so the top-40 pool always held
+  an optimal basket. `pair_variables` = 0 (every line pair scored the same).
+- **E0's two dev failures are fixed:** dev_b014 (nut-free) and dev_b042 (vegetarian), where
+  E0's post-hoc filter dropped an `unknown` cheapest product. As Phase 5 predicted, the
+  E0–E3 gap on dev comes only from diet scenarios.
+- **Agreement with the Phase 4 checker (exact enumeration):** labels 50/50, minimum
+  complete-basket cost 50/50, and suggested budget equal to the checker minimum in 6/6
+  budget conflicts. The tests add the plan's small cases and 12 recipes × 3 diets.
+- **Latency** (`solver_latency_dev.json`): selection takes a few milliseconds per request
+  (CP-SAT about 1–2 ms), far below the 5 s target. Parsing is measured in Phase 11.
+- **Completion check:**
+  - CP-SAT agrees with enumeration on every small case;
+  - the validator rejects deliberately corrupted solver baskets (missing line, duplicate,
+    unknown product, zero packs, wrong line cost, unrequested and unavailable products,
+    over budget, too few packs);
+  - the weights and constraints are recorded in `configs/solver.json`.
+- **On the team's Windows machine:**
+  - `run_solver.py --check` and all nine earlier `--check` scripts pass;
+  - `pytest`: **230 passed, 95 subtests** (209 before, plus 21 in `test_solver.py`).
+- **Cross-platform check:** the outputs were first generated on Linux. On Windows, 4 of the
+  50 prediction rows differed only in a MiniLM relevance score (1e-6). All 50 baskets and
+  statuses, and every metric, were identical. The committed predictions and latency file
+  come from Windows (p95 selection 0.017 s, CP-SAT 0.0014 s).
+- The new tests are in `tests/unit/test_solver.py` (21). They cover:
+  - the small cases against enumeration: worked example, exact budget and one below with
+    the suggested budget, multi-pack, excluded ingredient, unknown label, unavailable
+    product, pantry covers all;
+  - minimum cost on real recipes;
+  - the timeout (time limit 0 → `solver_timeout`, never infeasible);
+  - every request status, pool expansion and `no_basket_in_candidate_pool`, and the
+    infeasibility proof over the whole catalog;
+  - AND-linked pair variables changing the choice, and the constant shortcut;
+  - hard rules outside the objective (a huge history bonus cannot buy an `unknown` product);
+  - a unique reproducible optimum, the validator gate, and explanations;
+  - the frozen weights re-derived from the committed grid;
+  - dev-only reading and the rebuild check.
+
+**Findings to carry into the report**
+
+- **Constrained selection fixes exactly the failures it should.** On dev, CP-SAT turns
+  E0's two diet failures into valid baskets and proves every infeasible case. The gain is
+  small because selection is separable here (Phase 5).
+- **The objective weights do not matter on this benchmark.** Every grid setting gives the
+  same baskets. The objective's terms are implemented and logged, but under the current
+  catalog and ingredient-level associations they cannot change a choice. E3 and E4 will
+  select the same baskets.
+- **Infeasibility is proven, not guessed:** over every eligible catalog product, with the
+  required budget reported. A timeout is a separate status.
+
+**Open limitations**
+
+- **Dev only.** `basket_test.json` (200 scenarios) is run once in Phase 11, with the
+  parsers end to end and component-isolated.
+- **The tie in the weight grid means the chosen weights are not "tuned" in any meaningful
+  sense.** Report the tie rather than the weights.
+- The top-40 pool is generous for canonical ingredient queries (Phase 7). Expansion is
+  used only to prove infeasibility.
+- Explanations are templated sentences. They are checked for content in tests, but not
+  evaluated with users.
 
 ## Phase 8 — D6 associations and Track B (complete, 2026-11-28)
 
@@ -1042,31 +1181,23 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 9 — D7 constrained solver and validator.**
+**Phase 10 — D8 Streamlit interface** (`app.py`, run with `streamlit run app.py`).
 
-- Selection in the plan's six steps (BUILD_PHASES Phase 9): resolve and scale, eligible
-  options per ingredient, minimum whole packs per option, then CP-SAT
-  (`src/smartcart/optimization/cpsat.py`):
-  - one Boolean per option and exactly one option per line;
-  - the cost sum ≤ `budget_minor` (integers);
-  - an explicitly scaled integer objective.
-- Candidates: retrieve `candidate_count.selected` = 40 products per ingredient with
-  MiniLM and the frozen product text (`configs/retrieval.json`), then apply the
-  eligibility checks.
-- Objective terms: relevance, history and pair bonuses. Use
-  `smartcart.associations.api.basket_pair_score` (a bounded mean), never an unbounded
-  sum. Phase 8 measured that the pair and history terms cannot change which product is
-  chosen. Keep them, log them, and expect E3 = E4 on selection.
-- Statuses `valid`, `needs_clarification`, `no_basket_in_candidate_pool` (expand and
-  retry), `infeasible_in_scope`, `solver_timeout` (never infeasible) and `unsupported`.
-  Log the solver status, the time limit and whether optimality was proven.
-- For a budget conflict, offer the minimum-cost complete basket's budget as a
-  suggestion; never relax rules silently.
-- Explanations from verified records (`src/smartcart/explanations/`). Reuse the Phase 5
-  validator.
-- Tests: CP-SAT against the Phase 4 enumeration on small cases (exact budget, too-small
-  budget, excluded product, unknown label, pantry, multi-pack, timeout handling).
-  Record the objective weights and constraints in `configs/`.
+- Show the request, the extracted fields and any clarification question. Let the user
+  confirm a recipe for broad meal goals.
+- Show the products, pack quantities, line costs, total, remaining budget and ingredient
+  coverage, with explanations from `smartcart.explanations.explain` (verified records only).
+- Support budget and exclusion edits, re-run selection with
+  `smartcart.optimization.cpsat.select_basket` (`configs/solver.json`), and explain what
+  changed.
+- Export the validated basket and its trace as CSV and JSON.
+- Show a prominent simulated-price banner and clear statuses: valid, clarification
+  needed, no solution found (`solver_timeout`, `no_basket_in_candidate_pool`), and proven
+  infeasible within scope (`infeasible_in_scope`, with the suggested budget).
+- Optionally select a user with history (`history_score` needs `data/interim/instacart/`).
+- Completion check: all six demo cases work (normal feasible request, budget revision,
+  dietary exclusion, pantry quantity, unfamiliar wording, infeasible request), and cold
+  load and warm latency are measured.
 
 Outstanding: the second-person annotation review (Phase 4), the owner's decision on the
 optional parser variants in `docs/nlu_failures.md`, and independent reviews of the
