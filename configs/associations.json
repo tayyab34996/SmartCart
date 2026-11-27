@@ -1,0 +1,95 @@
+{
+  "description": "Phase 8 associations and Track B. Ingredient-level FP-Growth rules mined on Track B training orders only; a bounded pair score; a personalised history score; popularity vs personalised frequency vs association-enhanced next-basket ranking. Thresholds and the association weight are chosen on half of the validation users by the rule below (written before any validation result was computed) and reported on the other half.",
+  "frozen": true,
+  "data": {
+    "catalog": "data/processed/catalog.json",
+    "trackb": "data/splits/instacart_trackb.json",
+    "mapping": "data/processed/instacart_ingredient_map.csv",
+    "baskets": "data/interim/instacart/sample_order_products.csv.gz",
+    "basket_dev": "data/benchmarks/basket_dev.json"
+  },
+  "level": "ingredient",
+  "level_reason": "No catalog product has a verified Instacart ID (catalog products are simulated), so baskets are aggregated to catalog ingredients through the Phase 3 mapping (89.3% held-out precision); an order's transaction is the set of its mapped ingredients.",
+  "evaluated_splits": [
+    "train (mining, history)",
+    "validation"
+  ],
+  "test_split": "Track B test orders (each user's final order) are not read in Phase 8. They are evaluated once in Phase 11 with this frozen config; the history for a test order is the user's training and validation orders, and the rules stay training-only.",
+  "mining": {
+    "algorithm": "mlxtend.frequent_patterns.fpgrowth",
+    "transactions": "every Track B training order of the 10,000 sampled users (orders without a mapped ingredient stay in the support denominator)",
+    "max_len": 3,
+    "min_count_floor": 10,
+    "rules": "mlxtend association_rules on the mined itemsets; pair_score uses the single-item rules (pairs) only"
+  },
+  "pair_score": {
+    "formula": "1 - 1/lift for a pair whose co-occurrence count >= min_count, whose larger directional confidence >= min_confidence and whose lift > 1; otherwise 0.0",
+    "properties": "symmetric (lift is symmetric), bounded in [0, 1], 0.0 for unknown or negatively associated pairs",
+    "basket_use": "Phase 9 must use basket_pair_score (the mean over pairs of lines, in [0, 1]); never an unbounded sum"
+  },
+  "history_score": "share of the user's training orders that contain the ingredient (in [0, 1]); 0.0 for unknown users or items",
+  "trackb": {
+    "universe": "the catalog ingredients",
+    "list_length": 10,
+    "target": "the user's validation order, as the set of its mapped ingredients; users whose validation order has none are counted and excluded (recall is undefined)",
+    "rankers": {
+      "popularity": "training-order count over all sampled users; ties by ingredient ID",
+      "frequency": "history_score (personalised item frequency [S9]); ties by popularity, then ingredient ID",
+      "association": "history_score + weight * assoc, assoc(i) = sum over j != i of history_score(j) * pair_score(i, j) / sum over j != i of history_score(j) (0 without history); ties by popularity, then ingredient ID"
+    },
+    "metrics": [
+      "recall_at_10",
+      "ndcg_at_10 (binary relevance)",
+      "both also restricted to repeat items (in the user's training history) and new items"
+    ],
+    "user_split": {
+      "method": "sha256(f'{seed}:trackb-validation:{user_id}') as an integer; even = tune, odd = report",
+      "seed": 20261128
+    },
+    "bootstrap": {
+      "resamples": 2000,
+      "seed": 20261128,
+      "interval": "95% percentile, paired over report-half users"
+    }
+  },
+  "grid": {
+    "min_count": [
+      10,
+      25,
+      50,
+      100,
+      200
+    ],
+    "min_confidence": [
+      0.0,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "weight": [
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ]
+  },
+  "selection": {
+    "rule": "highest tune-half NDCG@10 of the association ranker; ties go to the higher tune-half Recall@10, then the larger min_count, then the larger min_confidence, then the smaller weight",
+    "selected": {
+      "min_count": 200,
+      "min_confidence": 0.2,
+      "weight": 0.1
+    }
+  },
+  "outputs": {
+    "rules": "data/processed/rules.csv",
+    "rules_summary": "results/metrics/association_rules.json",
+    "mining_profile": "results/metrics/association_mining_profile.json",
+    "trackb_metrics": "results/metrics/trackb_validation.json",
+    "selection_activity": "results/metrics/association_selection_activity.json",
+    "trackb_predictions": "data/interim/trackb/validation_{ranker}.jsonl",
+    "figure_rules": "results/figures/12_association_rules.png",
+    "figure_trackb": "results/figures/13_trackb_validation.png"
+  }
+}

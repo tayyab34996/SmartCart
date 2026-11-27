@@ -1,0 +1,1120 @@
+{
+  "level": "ingredient",
+  "universe": 118,
+  "list_length": 10,
+  "target": "validation order (second-to-last usable order), mapped ingredients",
+  "history": "training orders",
+  "rules": "training orders only",
+  "users": {
+    "sampled": 10000,
+    "excluded_empty_target": 2661,
+    "evaluated": 7339,
+    "tune": 3669,
+    "report": 3670
+  },
+  "selection": {
+    "rule": "highest tune-half NDCG@10 of the association ranker; ties go to the higher tune-half Recall@10, then the larger min_count, then the larger min_confidence, then the smaller weight",
+    "selected": {
+      "min_count": 200,
+      "min_confidence": 0.2,
+      "weight": 0.1
+    },
+    "pairs_with_score": 138,
+    "grid": [
+      {
+        "min_count": 10,
+        "min_confidence": 0.0,
+        "weight": 0.1,
+        "pairs_with_score": 3346,
+        "recall_at_10": 0.665926,
+        "ndcg_at_10": 0.557719
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.0,
+        "weight": 0.25,
+        "pairs_with_score": 3346,
+        "recall_at_10": 0.659805,
+        "ndcg_at_10": 0.553496
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.0,
+        "weight": 0.5,
+        "pairs_with_score": 3346,
+        "recall_at_10": 0.636073,
+        "ndcg_at_10": 0.536856
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.0,
+        "weight": 1.0,
+        "pairs_with_score": 3346,
+        "recall_at_10": 0.581422,
+        "ndcg_at_10": 0.493848
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.0,
+        "weight": 2.0,
+        "pairs_with_score": 3346,
+        "recall_at_10": 0.486233,
+        "ndcg_at_10": 0.408709
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.05,
+        "weight": 0.1,
+        "pairs_with_score": 2144,
+        "recall_at_10": 0.673006,
+        "ndcg_at_10": 0.563319
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.05,
+        "weight": 0.25,
+        "pairs_with_score": 2144,
+        "recall_at_10": 0.66698,
+        "ndcg_at_10": 0.559255
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.05,
+        "weight": 0.5,
+        "pairs_with_score": 2144,
+        "recall_at_10": 0.65008,
+        "ndcg_at_10": 0.544625
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.05,
+        "weight": 1.0,
+        "pairs_with_score": 2144,
+        "recall_at_10": 0.605015,
+        "ndcg_at_10": 0.507958
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.05,
+        "weight": 2.0,
+        "pairs_with_score": 2144,
+        "recall_at_10": 0.522763,
+        "ndcg_at_10": 0.43238
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.1,
+        "weight": 0.1,
+        "pairs_with_score": 963,
+        "recall_at_10": 0.684819,
+        "ndcg_at_10": 0.571126
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.1,
+        "weight": 0.25,
+        "pairs_with_score": 963,
+        "recall_at_10": 0.680036,
+        "ndcg_at_10": 0.567715
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.1,
+        "weight": 0.5,
+        "pairs_with_score": 963,
+        "recall_at_10": 0.664184,
+        "ndcg_at_10": 0.555239
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.1,
+        "weight": 1.0,
+        "pairs_with_score": 963,
+        "recall_at_10": 0.626381,
+        "ndcg_at_10": 0.519889
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.1,
+        "weight": 2.0,
+        "pairs_with_score": 963,
+        "recall_at_10": 0.560068,
+        "ndcg_at_10": 0.450439
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.2,
+        "weight": 0.1,
+        "pairs_with_score": 233,
+        "recall_at_10": 0.683288,
+        "ndcg_at_10": 0.573809
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.2,
+        "weight": 0.25,
+        "pairs_with_score": 233,
+        "recall_at_10": 0.67897,
+        "ndcg_at_10": 0.571464
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.2,
+        "weight": 0.5,
+        "pairs_with_score": 233,
+        "recall_at_10": 0.670247,
+        "ndcg_at_10": 0.562649
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.2,
+        "weight": 1.0,
+        "pairs_with_score": 233,
+        "recall_at_10": 0.64458,
+        "ndcg_at_10": 0.534752
+      },
+      {
+        "min_count": 10,
+        "min_confidence": 0.2,
+        "weight": 2.0,
+        "pairs_with_score": 233,
+        "recall_at_10": 0.590715,
+        "ndcg_at_10": 0.471115
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.0,
+        "weight": 0.1,
+        "pairs_with_score": 2354,
+        "recall_at_10": 0.672462,
+        "ndcg_at_10": 0.561894
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.0,
+        "weight": 0.25,
+        "pairs_with_score": 2354,
+        "recall_at_10": 0.666221,
+        "ndcg_at_10": 0.55777
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.0,
+        "weight": 0.5,
+        "pairs_with_score": 2354,
+        "recall_at_10": 0.646807,
+        "ndcg_at_10": 0.543283
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.0,
+        "weight": 1.0,
+        "pairs_with_score": 2354,
+        "recall_at_10": 0.59977,
+        "ndcg_at_10": 0.503584
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.0,
+        "weight": 2.0,
+        "pairs_with_score": 2354,
+        "recall_at_10": 0.513561,
+        "ndcg_at_10": 0.427633
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.05,
+        "weight": 0.1,
+        "pairs_with_score": 1730,
+        "recall_at_10": 0.676592,
+        "ndcg_at_10": 0.565209
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.05,
+        "weight": 0.25,
+        "pairs_with_score": 1730,
+        "recall_at_10": 0.67052,
+        "ndcg_at_10": 0.561167
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.05,
+        "weight": 0.5,
+        "pairs_with_score": 1730,
+        "recall_at_10": 0.654676,
+        "ndcg_at_10": 0.547432
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.05,
+        "weight": 1.0,
+        "pairs_with_score": 1730,
+        "recall_at_10": 0.611901,
+        "ndcg_at_10": 0.512012
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.05,
+        "weight": 2.0,
+        "pairs_with_score": 1730,
+        "recall_at_10": 0.53351,
+        "ndcg_at_10": 0.440172
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.1,
+        "weight": 0.1,
+        "pairs_with_score": 859,
+        "recall_at_10": 0.685372,
+        "ndcg_at_10": 0.571435
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.1,
+        "weight": 0.25,
+        "pairs_with_score": 859,
+        "recall_at_10": 0.680459,
+        "ndcg_at_10": 0.568075
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.1,
+        "weight": 0.5,
+        "pairs_with_score": 859,
+        "recall_at_10": 0.664573,
+        "ndcg_at_10": 0.556095
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.1,
+        "weight": 1.0,
+        "pairs_with_score": 859,
+        "recall_at_10": 0.627376,
+        "ndcg_at_10": 0.520866
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.1,
+        "weight": 2.0,
+        "pairs_with_score": 859,
+        "recall_at_10": 0.564026,
+        "ndcg_at_10": 0.453277
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.2,
+        "weight": 0.1,
+        "pairs_with_score": 216,
+        "recall_at_10": 0.684989,
+        "ndcg_at_10": 0.574491
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.2,
+        "weight": 0.25,
+        "pairs_with_score": 216,
+        "recall_at_10": 0.680944,
+        "ndcg_at_10": 0.572262
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.2,
+        "weight": 0.5,
+        "pairs_with_score": 216,
+        "recall_at_10": 0.672145,
+        "ndcg_at_10": 0.563916
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.2,
+        "weight": 1.0,
+        "pairs_with_score": 216,
+        "recall_at_10": 0.647509,
+        "ndcg_at_10": 0.536649
+      },
+      {
+        "min_count": 25,
+        "min_confidence": 0.2,
+        "weight": 2.0,
+        "pairs_with_score": 216,
+        "recall_at_10": 0.595454,
+        "ndcg_at_10": 0.475648
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.0,
+        "weight": 0.1,
+        "pairs_with_score": 1674,
+        "recall_at_10": 0.676496,
+        "ndcg_at_10": 0.564363
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.0,
+        "weight": 0.25,
+        "pairs_with_score": 1674,
+        "recall_at_10": 0.671916,
+        "ndcg_at_10": 0.560791
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.0,
+        "weight": 0.5,
+        "pairs_with_score": 1674,
+        "recall_at_10": 0.654003,
+        "ndcg_at_10": 0.547723
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.0,
+        "weight": 1.0,
+        "pairs_with_score": 1674,
+        "recall_at_10": 0.613099,
+        "ndcg_at_10": 0.511975
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.0,
+        "weight": 2.0,
+        "pairs_with_score": 1674,
+        "recall_at_10": 0.536171,
+        "ndcg_at_10": 0.442335
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.05,
+        "weight": 0.1,
+        "pairs_with_score": 1421,
+        "recall_at_10": 0.678069,
+        "ndcg_at_10": 0.565995
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.05,
+        "weight": 0.25,
+        "pairs_with_score": 1421,
+        "recall_at_10": 0.672556,
+        "ndcg_at_10": 0.562104
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.05,
+        "weight": 0.5,
+        "pairs_with_score": 1421,
+        "recall_at_10": 0.657457,
+        "ndcg_at_10": 0.549621
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.05,
+        "weight": 1.0,
+        "pairs_with_score": 1421,
+        "recall_at_10": 0.616679,
+        "ndcg_at_10": 0.514643
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.05,
+        "weight": 2.0,
+        "pairs_with_score": 1421,
+        "recall_at_10": 0.542502,
+        "ndcg_at_10": 0.446606
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.1,
+        "weight": 0.1,
+        "pairs_with_score": 726,
+        "recall_at_10": 0.68656,
+        "ndcg_at_10": 0.572058
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.1,
+        "weight": 0.25,
+        "pairs_with_score": 726,
+        "recall_at_10": 0.682211,
+        "ndcg_at_10": 0.568775
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.1,
+        "weight": 0.5,
+        "pairs_with_score": 726,
+        "recall_at_10": 0.666953,
+        "ndcg_at_10": 0.557561
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.1,
+        "weight": 1.0,
+        "pairs_with_score": 726,
+        "recall_at_10": 0.628661,
+        "ndcg_at_10": 0.522328
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.1,
+        "weight": 2.0,
+        "pairs_with_score": 726,
+        "recall_at_10": 0.571868,
+        "ndcg_at_10": 0.45743
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.2,
+        "weight": 0.1,
+        "pairs_with_score": 200,
+        "recall_at_10": 0.685864,
+        "ndcg_at_10": 0.574876
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.2,
+        "weight": 0.25,
+        "pairs_with_score": 200,
+        "recall_at_10": 0.681818,
+        "ndcg_at_10": 0.572652
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.2,
+        "weight": 0.5,
+        "pairs_with_score": 200,
+        "recall_at_10": 0.672965,
+        "ndcg_at_10": 0.56428
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.2,
+        "weight": 1.0,
+        "pairs_with_score": 200,
+        "recall_at_10": 0.650117,
+        "ndcg_at_10": 0.537909
+      },
+      {
+        "min_count": 50,
+        "min_confidence": 0.2,
+        "weight": 2.0,
+        "pairs_with_score": 200,
+        "recall_at_10": 0.599413,
+        "ndcg_at_10": 0.477668
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.0,
+        "weight": 0.1,
+        "pairs_with_score": 1084,
+        "recall_at_10": 0.683038,
+        "ndcg_at_10": 0.568609
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.0,
+        "weight": 0.25,
+        "pairs_with_score": 1084,
+        "recall_at_10": 0.678903,
+        "ndcg_at_10": 0.565804
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.0,
+        "weight": 0.5,
+        "pairs_with_score": 1084,
+        "recall_at_10": 0.665118,
+        "ndcg_at_10": 0.554882
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.0,
+        "weight": 1.0,
+        "pairs_with_score": 1084,
+        "recall_at_10": 0.627924,
+        "ndcg_at_10": 0.522505
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.0,
+        "weight": 2.0,
+        "pairs_with_score": 1084,
+        "recall_at_10": 0.557928,
+        "ndcg_at_10": 0.459211
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.05,
+        "weight": 0.1,
+        "pairs_with_score": 1011,
+        "recall_at_10": 0.683212,
+        "ndcg_at_10": 0.569125
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.05,
+        "weight": 0.25,
+        "pairs_with_score": 1011,
+        "recall_at_10": 0.679004,
+        "ndcg_at_10": 0.565991
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.05,
+        "weight": 0.5,
+        "pairs_with_score": 1011,
+        "recall_at_10": 0.665778,
+        "ndcg_at_10": 0.555432
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.05,
+        "weight": 1.0,
+        "pairs_with_score": 1011,
+        "recall_at_10": 0.629397,
+        "ndcg_at_10": 0.522943
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.05,
+        "weight": 2.0,
+        "pairs_with_score": 1011,
+        "recall_at_10": 0.559569,
+        "ndcg_at_10": 0.460366
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.1,
+        "weight": 0.1,
+        "pairs_with_score": 578,
+        "recall_at_10": 0.690397,
+        "ndcg_at_10": 0.57395
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.1,
+        "weight": 0.25,
+        "pairs_with_score": 578,
+        "recall_at_10": 0.685792,
+        "ndcg_at_10": 0.570578
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.1,
+        "weight": 0.5,
+        "pairs_with_score": 578,
+        "recall_at_10": 0.672613,
+        "ndcg_at_10": 0.560702
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.1,
+        "weight": 1.0,
+        "pairs_with_score": 578,
+        "recall_at_10": 0.636212,
+        "ndcg_at_10": 0.527168
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.1,
+        "weight": 2.0,
+        "pairs_with_score": 578,
+        "recall_at_10": 0.580849,
+        "ndcg_at_10": 0.463305
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.2,
+        "weight": 0.1,
+        "pairs_with_score": 161,
+        "recall_at_10": 0.687823,
+        "ndcg_at_10": 0.575692
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.2,
+        "weight": 0.25,
+        "pairs_with_score": 161,
+        "recall_at_10": 0.683309,
+        "ndcg_at_10": 0.573492
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.2,
+        "weight": 0.5,
+        "pairs_with_score": 161,
+        "recall_at_10": 0.675598,
+        "ndcg_at_10": 0.565683
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.2,
+        "weight": 1.0,
+        "pairs_with_score": 161,
+        "recall_at_10": 0.653542,
+        "ndcg_at_10": 0.540442
+      },
+      {
+        "min_count": 100,
+        "min_confidence": 0.2,
+        "weight": 2.0,
+        "pairs_with_score": 161,
+        "recall_at_10": 0.60725,
+        "ndcg_at_10": 0.482405
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.0,
+        "weight": 0.1,
+        "pairs_with_score": 655,
+        "recall_at_10": 0.687253,
+        "ndcg_at_10": 0.571652
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.0,
+        "weight": 0.25,
+        "pairs_with_score": 655,
+        "recall_at_10": 0.684381,
+        "ndcg_at_10": 0.568778
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.0,
+        "weight": 0.5,
+        "pairs_with_score": 655,
+        "recall_at_10": 0.671712,
+        "ndcg_at_10": 0.559151
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.0,
+        "weight": 1.0,
+        "pairs_with_score": 655,
+        "recall_at_10": 0.635919,
+        "ndcg_at_10": 0.528587
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.0,
+        "weight": 2.0,
+        "pairs_with_score": 655,
+        "recall_at_10": 0.571189,
+        "ndcg_at_10": 0.467429
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.05,
+        "weight": 0.1,
+        "pairs_with_score": 640,
+        "recall_at_10": 0.687556,
+        "ndcg_at_10": 0.571895
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.05,
+        "weight": 0.25,
+        "pairs_with_score": 640,
+        "recall_at_10": 0.684186,
+        "ndcg_at_10": 0.568871
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.05,
+        "weight": 0.5,
+        "pairs_with_score": 640,
+        "recall_at_10": 0.671658,
+        "ndcg_at_10": 0.55933
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.05,
+        "weight": 1.0,
+        "pairs_with_score": 640,
+        "recall_at_10": 0.636641,
+        "ndcg_at_10": 0.529176
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.05,
+        "weight": 2.0,
+        "pairs_with_score": 640,
+        "recall_at_10": 0.573527,
+        "ndcg_at_10": 0.468679
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.1,
+        "weight": 0.1,
+        "pairs_with_score": 428,
+        "recall_at_10": 0.691827,
+        "ndcg_at_10": 0.574737
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.1,
+        "weight": 0.25,
+        "pairs_with_score": 428,
+        "recall_at_10": 0.688074,
+        "ndcg_at_10": 0.57181
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.1,
+        "weight": 0.5,
+        "pairs_with_score": 428,
+        "recall_at_10": 0.676263,
+        "ndcg_at_10": 0.562797
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.1,
+        "weight": 1.0,
+        "pairs_with_score": 428,
+        "recall_at_10": 0.644306,
+        "ndcg_at_10": 0.531473
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.1,
+        "weight": 2.0,
+        "pairs_with_score": 428,
+        "recall_at_10": 0.589633,
+        "ndcg_at_10": 0.470581
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.2,
+        "weight": 0.1,
+        "pairs_with_score": 138,
+        "recall_at_10": 0.690141,
+        "ndcg_at_10": 0.576834
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.2,
+        "weight": 0.25,
+        "pairs_with_score": 138,
+        "recall_at_10": 0.686423,
+        "ndcg_at_10": 0.574866
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.2,
+        "weight": 0.5,
+        "pairs_with_score": 138,
+        "recall_at_10": 0.679598,
+        "ndcg_at_10": 0.567927
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.2,
+        "weight": 1.0,
+        "pairs_with_score": 138,
+        "recall_at_10": 0.661645,
+        "ndcg_at_10": 0.544521
+      },
+      {
+        "min_count": 200,
+        "min_confidence": 0.2,
+        "weight": 2.0,
+        "pairs_with_score": 138,
+        "recall_at_10": 0.623211,
+        "ndcg_at_10": 0.491826
+      }
+    ]
+  },
+  "results": {
+    "report": {
+      "popularity": {
+        "num_users": 3670,
+        "all": {
+          "num_users": 3670,
+          "recall_at_10": 0.498224,
+          "ndcg_at_10": 0.3629
+        },
+        "repeat": {
+          "num_users": 3215,
+          "recall_at_10": 0.572473,
+          "ndcg_at_10": 0.403385
+        },
+        "new": {
+          "num_users": 1695,
+          "recall_at_10": 0.270408,
+          "ndcg_at_10": 0.149988
+        }
+      },
+      "frequency": {
+        "num_users": 3670,
+        "all": {
+          "num_users": 3670,
+          "recall_at_10": 0.701192,
+          "ndcg_at_10": 0.583846
+        },
+        "repeat": {
+          "num_users": 3215,
+          "recall_at_10": 0.905842,
+          "ndcg_at_10": 0.731397
+        },
+        "new": {
+          "num_users": 1695,
+          "recall_at_10": 0.121516,
+          "ndcg_at_10": 0.049204
+        }
+      },
+      "association": {
+        "num_users": 3670,
+        "all": {
+          "num_users": 3670,
+          "recall_at_10": 0.68436,
+          "ndcg_at_10": 0.573372
+        },
+        "repeat": {
+          "num_users": 3215,
+          "recall_at_10": 0.898283,
+          "ndcg_at_10": 0.7239
+        },
+        "new": {
+          "num_users": 1695,
+          "recall_at_10": 0.088924,
+          "ndcg_at_10": 0.035957
+        }
+      }
+    },
+    "tune": {
+      "popularity": {
+        "num_users": 3669,
+        "all": {
+          "num_users": 3669,
+          "recall_at_10": 0.502181,
+          "ndcg_at_10": 0.367727
+        },
+        "repeat": {
+          "num_users": 3224,
+          "recall_at_10": 0.568498,
+          "ndcg_at_10": 0.406568
+        },
+        "new": {
+          "num_users": 1676,
+          "recall_at_10": 0.283367,
+          "ndcg_at_10": 0.153894
+        }
+      },
+      "frequency": {
+        "num_users": 3669,
+        "all": {
+          "num_users": 3669,
+          "recall_at_10": 0.706809,
+          "ndcg_at_10": 0.585944
+        },
+        "repeat": {
+          "num_users": 3224,
+          "recall_at_10": 0.905394,
+          "ndcg_at_10": 0.730425
+        },
+        "new": {
+          "num_users": 1676,
+          "recall_at_10": 0.129217,
+          "ndcg_at_10": 0.053677
+        }
+      },
+      "association": {
+        "num_users": 3669,
+        "all": {
+          "num_users": 3669,
+          "recall_at_10": 0.690141,
+          "ndcg_at_10": 0.576834
+        },
+        "repeat": {
+          "num_users": 3224,
+          "recall_at_10": 0.899327,
+          "ndcg_at_10": 0.725708
+        },
+        "new": {
+          "num_users": 1676,
+          "recall_at_10": 0.089635,
+          "ndcg_at_10": 0.038266
+        }
+      }
+    },
+    "all_validation": {
+      "popularity": {
+        "num_users": 7339,
+        "all": {
+          "num_users": 7339,
+          "recall_at_10": 0.500202,
+          "ndcg_at_10": 0.365313
+        },
+        "repeat": {
+          "num_users": 6439,
+          "recall_at_10": 0.570483,
+          "ndcg_at_10": 0.404979
+        },
+        "new": {
+          "num_users": 3371,
+          "recall_at_10": 0.276851,
+          "ndcg_at_10": 0.15193
+        }
+      },
+      "frequency": {
+        "num_users": 7339,
+        "all": {
+          "num_users": 7339,
+          "recall_at_10": 0.704,
+          "ndcg_at_10": 0.584895
+        },
+        "repeat": {
+          "num_users": 6439,
+          "recall_at_10": 0.905618,
+          "ndcg_at_10": 0.73091
+        },
+        "new": {
+          "num_users": 3371,
+          "recall_at_10": 0.125345,
+          "ndcg_at_10": 0.051428
+        }
+      },
+      "association": {
+        "num_users": 7339,
+        "all": {
+          "num_users": 7339,
+          "recall_at_10": 0.68725,
+          "ndcg_at_10": 0.575102
+        },
+        "repeat": {
+          "num_users": 6439,
+          "recall_at_10": 0.898806,
+          "ndcg_at_10": 0.724805
+        },
+        "new": {
+          "num_users": 3371,
+          "recall_at_10": 0.089278,
+          "ndcg_at_10": 0.037105
+        }
+      }
+    }
+  },
+  "bootstrap_report_half": {
+    "association_minus_frequency_ndcg_at_10": {
+      "mean_difference": -0.010474,
+      "ci95": [
+        -0.012843,
+        -0.008161
+      ],
+      "users": 3670
+    },
+    "association_minus_frequency_recall_at_10": {
+      "mean_difference": -0.016832,
+      "ci95": [
+        -0.021797,
+        -0.012037
+      ],
+      "users": 3670
+    },
+    "frequency_minus_popularity_ndcg_at_10": {
+      "mean_difference": 0.220946,
+      "ci95": [
+        0.210756,
+        0.230964
+      ],
+      "users": 3670
+    },
+    "frequency_minus_popularity_recall_at_10": {
+      "mean_difference": 0.202968,
+      "ci95": [
+        0.191372,
+        0.21516
+      ],
+      "users": 3670
+    }
+  },
+  "report_users_whose_top10_changes_with_association": 3405,
+  "association_vs_frequency_report_half": {
+    "users_with_more_hits": 130,
+    "users_with_fewer_hits": 262,
+    "users_with_same_hits": 3278,
+    "items_most_often_pushed_into_top10": [
+      [
+        "heavy_cream",
+        663
+      ],
+      [
+        "white_flour",
+        488
+      ],
+      [
+        "buttermilk",
+        317
+      ],
+      [
+        "ricotta",
+        288
+      ],
+      [
+        "rolled_oats",
+        273
+      ],
+      [
+        "parsley",
+        231
+      ],
+      [
+        "vegetable_broth",
+        225
+      ],
+      [
+        "cream_cheese",
+        224
+      ],
+      [
+        "zucchini",
+        211
+      ],
+      [
+        "brown_sugar",
+        187
+      ]
+    ],
+    "items_most_often_pushed_out_of_top10": [
+      [
+        "almond_milk",
+        909
+      ],
+      [
+        "cucumber",
+        784
+      ],
+      [
+        "egg",
+        698
+      ],
+      [
+        "butter",
+        515
+      ],
+      [
+        "onion",
+        445
+      ],
+      [
+        "cheddar",
+        416
+      ],
+      [
+        "plain_yogurt",
+        367
+      ],
+      [
+        "water",
+        322
+      ],
+      [
+        "milk",
+        230
+      ],
+      [
+        "mozzarella",
+        219
+      ]
+    ]
+  }
+}
