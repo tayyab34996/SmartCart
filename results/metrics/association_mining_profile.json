@@ -1,0 +1,25 @@
+{
+  "steps": [
+    {
+      "step": "load training transactions",
+      "seconds": 5.27,
+      "rss_mb": 150.0
+    },
+    {
+      "step": "fpgrowth + rules, max_len=2, min_count=10",
+      "seconds": 3.65,
+      "rss_mb": 211.5,
+      "itemsets": 3639,
+      "rules": 7044
+    },
+    {
+      "step": "fpgrowth + rules, max_len=3, min_count=10",
+      "seconds": 6.45,
+      "rss_mb": 294.6,
+      "itemsets": 21247,
+      "rules": 112692
+    }
+  ],
+  "peak_rss_mb": 294.6,
+  "note": "machine-dependent; not part of --check"
+}

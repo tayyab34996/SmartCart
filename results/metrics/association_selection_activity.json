@@ -1,0 +1,847 @@
+{
+  "split": "basket_dev",
+  "thresholds": {
+    "min_count": 200,
+    "min_confidence": 0.2
+  },
+  "scenarios": 50,
+  "with_two_or_more_lines": 49,
+  "lines_with_more_than_one_option": 280,
+  "pair_term_nonzero": 22,
+  "pair_term_varies_with_choice": 0,
+  "with_history_user": 10,
+  "history_term_nonzero": 9,
+  "history_term_varies_with_choice": 0,
+  "rows": [
+    {
+      "scenario_id": "dev_b000",
+      "lines_with_options": 6,
+      "options": [
+        4,
+        3,
+        5,
+        4,
+        3,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b001",
+      "lines_with_options": 6,
+      "options": [
+        3,
+        3,
+        4,
+        3,
+        5,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b002",
+      "lines_with_options": 6,
+      "options": [
+        5,
+        5,
+        4,
+        4,
+        3,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b003",
+      "lines_with_options": 5,
+      "options": [
+        4,
+        3,
+        5,
+        3,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b004",
+      "lines_with_options": 7,
+      "options": [
+        4,
+        6,
+        4,
+        5,
+        4,
+        4,
+        6
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b005",
+      "lines_with_options": 6,
+      "options": [
+        5,
+        5,
+        4,
+        4,
+        3,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b006",
+      "lines_with_options": 6,
+      "options": [
+        5,
+        5,
+        4,
+        4,
+        3,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b007",
+      "lines_with_options": 6,
+      "options": [
+        4,
+        3,
+        5,
+        4,
+        3,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b008",
+      "lines_with_options": 8,
+      "options": [
+        4,
+        6,
+        4,
+        5,
+        4,
+        3,
+        4,
+        6
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b009",
+      "lines_with_options": 8,
+      "options": [
+        4,
+        4,
+        3,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b010",
+      "lines_with_options": 6,
+      "options": [
+        5,
+        5,
+        4,
+        4,
+        3,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b011",
+      "lines_with_options": 5,
+      "options": [
+        4,
+        3,
+        5,
+        4,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b012",
+      "lines_with_options": 4,
+      "options": [
+        5,
+        5,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b013",
+      "lines_with_options": 8,
+      "options": [
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b014",
+      "lines_with_options": 9,
+      "options": [
+        5,
+        4,
+        3,
+        3,
+        5,
+        2,
+        3,
+        4,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b015",
+      "lines_with_options": 4,
+      "options": [
+        6,
+        3,
+        5,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b016",
+      "lines_with_options": 2,
+      "options": [
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b017",
+      "lines_with_options": 9,
+      "options": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b018",
+      "lines_with_options": 2,
+      "options": [
+        6,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b019",
+      "lines_with_options": 7,
+      "options": [
+        4,
+        6,
+        4,
+        5,
+        3,
+        4,
+        6
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b020",
+      "lines_with_options": 4,
+      "options": [
+        5,
+        5,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b021",
+      "lines_with_options": 7,
+      "options": [
+        4,
+        4,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b022",
+      "lines_with_options": 9,
+      "options": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b023",
+      "lines_with_options": 2,
+      "options": [
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b024",
+      "lines_with_options": 9,
+      "options": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b025",
+      "lines_with_options": 7,
+      "options": [
+        4,
+        4,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b026",
+      "lines_with_options": 4,
+      "options": [
+        6,
+        5,
+        5,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b027",
+      "lines_with_options": 4,
+      "options": [
+        6,
+        3,
+        5,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b028",
+      "lines_with_options": 4,
+      "options": [
+        5,
+        5,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b029",
+      "lines_with_options": 4,
+      "options": [
+        5,
+        5,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b030",
+      "lines_with_options": 6,
+      "options": [
+        4,
+        3,
+        5,
+        4,
+        3,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b031",
+      "lines_with_options": 6,
+      "options": [
+        3,
+        3,
+        4,
+        3,
+        5,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b032",
+      "lines_with_options": 8,
+      "options": [
+        4,
+        4,
+        3,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b033",
+      "lines_with_options": 8,
+      "options": [
+        5,
+        4,
+        3,
+        3,
+        5,
+        2,
+        3,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b034",
+      "lines_with_options": 4,
+      "options": [
+        5,
+        5,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b035",
+      "lines_with_options": 8,
+      "options": [
+        4,
+        4,
+        3,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b036",
+      "lines_with_options": 0,
+      "options": [],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b037",
+      "lines_with_options": 3,
+      "options": [
+        1,
+        5,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b038",
+      "lines_with_options": 7,
+      "options": [
+        3,
+        3,
+        4,
+        4,
+        3,
+        3,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b039",
+      "lines_with_options": 9,
+      "options": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b040",
+      "lines_with_options": 8,
+      "options": [
+        4,
+        6,
+        4,
+        5,
+        4,
+        3,
+        4,
+        6
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b041",
+      "lines_with_options": 4,
+      "options": [
+        5,
+        5,
+        2,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b042",
+      "lines_with_options": 6,
+      "options": [
+        5,
+        2,
+        4,
+        6,
+        3,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b043",
+      "lines_with_options": 4,
+      "options": [
+        4,
+        5,
+        5,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b044",
+      "lines_with_options": 2,
+      "options": [
+        6,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b045",
+      "lines_with_options": 8,
+      "options": [
+        4,
+        4,
+        3,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b046",
+      "lines_with_options": 4,
+      "options": [
+        4,
+        5,
+        5,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    },
+    {
+      "scenario_id": "dev_b047",
+      "lines_with_options": 4,
+      "options": [
+        4,
+        5,
+        5,
+        4
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": true,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b048",
+      "lines_with_options": 6,
+      "options": [
+        5,
+        5,
+        4,
+        4,
+        3,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": true,
+      "history_spread": 0.0,
+      "history_nonzero": true
+    },
+    {
+      "scenario_id": "dev_b049",
+      "lines_with_options": 2,
+      "options": [
+        6,
+        3
+      ],
+      "pair_spread": 0.0,
+      "pair_nonzero": false,
+      "has_user": false,
+      "history_spread": 0.0,
+      "history_nonzero": false
+    }
+  ]
+}

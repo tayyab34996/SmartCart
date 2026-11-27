@@ -1,0 +1,746 @@
+{
+  "level": "ingredient",
+  "transactions": 163626,
+  "nonempty_transactions": 119846,
+  "items_seen": 117,
+  "items_in_catalog": 118,
+  "mined": {
+    "min_count_floor": 10,
+    "max_len": 3,
+    "itemsets_by_length": {
+      "1": 117,
+      "2": 3522,
+      "3": 17608
+    },
+    "rules": 112692
+  },
+  "thresholds": {
+    "min_count": 200,
+    "min_confidence": 0.2
+  },
+  "exported_rules": {
+    "total": 777,
+    "pairs (both directions)": 280,
+    "triples": 497
+  },
+  "pairs_with_positive_score": 138,
+  "pairs_passing_with_lift_at_most_1": 2,
+  "top_pairs_by_lift": [
+    {
+      "pair": [
+        "black_beans_canned",
+        "pinto_beans_canned"
+      ],
+      "count": 279,
+      "lift": 10.394511,
+      "pair_score": 0.903795,
+      "confidence": {
+        "black_beans_canned->pinto_beans_canned": 0.058762,
+        "pinto_beans_canned->black_beans_canned": 0.301622
+      }
+    },
+    {
+      "pair": [
+        "black_beans_canned",
+        "canned_corn"
+      ],
+      "count": 350,
+      "lift": 8.895082,
+      "pair_score": 0.887578,
+      "confidence": {
+        "black_beans_canned->canned_corn": 0.073715,
+        "canned_corn->black_beans_canned": 0.258112
+      }
+    },
+    {
+      "pair": [
+        "beef_broth",
+        "chicken_broth"
+      ],
+      "count": 219,
+      "lift": 7.185311,
+      "pair_score": 0.860827,
+      "confidence": {
+        "beef_broth->chicken_broth": 0.234979,
+        "chicken_broth->beef_broth": 0.040927
+      }
+    },
+    {
+      "pair": [
+        "mozzarella",
+        "ricotta"
+      ],
+      "count": 365,
+      "lift": 6.782028,
+      "pair_score": 0.852551,
+      "confidence": {
+        "mozzarella->ricotta": 0.043272,
+        "ricotta->mozzarella": 0.349617
+      }
+    },
+    {
+      "pair": [
+        "parmesan",
+        "ricotta"
+      ],
+      "count": 251,
+      "lift": 6.505573,
+      "pair_score": 0.846286,
+      "confidence": {
+        "parmesan->ricotta": 0.041508,
+        "ricotta->parmesan": 0.240421
+      }
+    },
+    {
+      "pair": [
+        "cilantro",
+        "lime"
+      ],
+      "count": 1588,
+      "lift": 6.072171,
+      "pair_score": 0.835314,
+      "confidence": {
+        "cilantro->lime": 0.291537,
+        "lime->cilantro": 0.202138
+      }
+    },
+    {
+      "pair": [
+        "garlic",
+        "parsley"
+      ],
+      "count": 1062,
+      "lift": 4.649205,
+      "pair_score": 0.784909,
+      "confidence": {
+        "garlic->parsley": 0.137209,
+        "parsley->garlic": 0.219921
+      }
+    },
+    {
+      "pair": [
+        "butter",
+        "white_flour"
+      ],
+      "count": 348,
+      "lift": 4.530575,
+      "pair_score": 0.779277,
+      "confidence": {
+        "butter->white_flour": 0.031842,
+        "white_flour->butter": 0.302609
+      }
+    },
+    {
+      "pair": [
+        "garlic",
+        "tomato_paste"
+      ],
+      "count": 411,
+      "lift": 4.286466,
+      "pair_score": 0.766708,
+      "confidence": {
+        "garlic->tomato_paste": 0.053101,
+        "tomato_paste->garlic": 0.202763
+      }
+    },
+    {
+      "pair": [
+        "brown_sugar",
+        "butter"
+      ],
+      "count": 282,
+      "lift": 4.167845,
+      "pair_score": 0.760068,
+      "confidence": {
+        "brown_sugar->butter": 0.278381,
+        "butter->brown_sugar": 0.025803
+      }
+    },
+    {
+      "pair": [
+        "green_chilies_canned",
+        "onion"
+      ],
+      "count": 258,
+      "lift": 3.983195,
+      "pair_score": 0.748945,
+      "confidence": {
+        "green_chilies_canned->onion": 0.436548,
+        "onion->green_chilies_canned": 0.014387
+      }
+    },
+    {
+      "pair": [
+        "garlic",
+        "onion"
+      ],
+      "count": 3349,
+      "lift": 3.947967,
+      "pair_score": 0.746705,
+      "confidence": {
+        "garlic->onion": 0.432687,
+        "onion->garlic": 0.186751
+      }
+    },
+    {
+      "pair": [
+        "green_bell_pepper",
+        "onion"
+      ],
+      "count": 1113,
+      "lift": 3.794971,
+      "pair_score": 0.736493,
+      "confidence": {
+        "green_bell_pepper->onion": 0.415919,
+        "onion->green_bell_pepper": 0.062064
+      }
+    },
+    {
+      "pair": [
+        "butter",
+        "sugar"
+      ],
+      "count": 464,
+      "lift": 3.681442,
+      "pair_score": 0.728367,
+      "confidence": {
+        "butter->sugar": 0.042456,
+        "sugar->butter": 0.245893
+      }
+    },
+    {
+      "pair": [
+        "beef_broth",
+        "onion"
+      ],
+      "count": 372,
+      "lift": 3.641886,
+      "pair_score": 0.725417,
+      "confidence": {
+        "beef_broth->onion": 0.399142,
+        "onion->beef_broth": 0.020744
+      }
+    },
+    {
+      "pair": [
+        "onion",
+        "tomato_paste"
+      ],
+      "count": 809,
+      "lift": 3.641616,
+      "pair_score": 0.725397,
+      "confidence": {
+        "onion->tomato_paste": 0.045112,
+        "tomato_paste->onion": 0.399112
+      }
+    },
+    {
+      "pair": [
+        "butter",
+        "heavy_cream"
+      ],
+      "count": 797,
+      "lift": 3.579024,
+      "pair_score": 0.720594,
+      "confidence": {
+        "butter->heavy_cream": 0.072925,
+        "heavy_cream->butter": 0.239052
+      }
+    },
+    {
+      "pair": [
+        "canned_diced_tomatoes",
+        "onion"
+      ],
+      "count": 1126,
+      "lift": 3.475628,
+      "pair_score": 0.712282,
+      "confidence": {
+        "canned_diced_tomatoes->onion": 0.38092,
+        "onion->canned_diced_tomatoes": 0.062789
+      }
+    },
+    {
+      "pair": [
+        "onion",
+        "vegetable_broth"
+      ],
+      "count": 528,
+      "lift": 3.468415,
+      "pair_score": 0.711684,
+      "confidence": {
+        "onion->vegetable_broth": 0.029443,
+        "vegetable_broth->onion": 0.38013
+      }
+    },
+    {
+      "pair": [
+        "onion",
+        "parsley"
+      ],
+      "count": 1766,
+      "lift": 3.336821,
+      "pair_score": 0.700314,
+      "confidence": {
+        "onion->parsley": 0.098478,
+        "parsley->onion": 0.365707
+      }
+    }
+  ],
+  "top_pairs_by_count": [
+    {
+      "pair": [
+        "egg",
+        "milk"
+      ],
+      "count": 6167,
+      "lift": 1.422458,
+      "pair_score": 0.296992,
+      "confidence": {
+        "egg->milk": 0.321098,
+        "milk->egg": 0.166964
+      }
+    },
+    {
+      "pair": [
+        "milk",
+        "onion"
+      ],
+      "count": 4727,
+      "lift": 1.16771,
+      "pair_score": 0.143623,
+      "confidence": {
+        "milk->onion": 0.127978,
+        "onion->milk": 0.263592
+      }
+    },
+    {
+      "pair": [
+        "almond_milk",
+        "milk"
+      ],
+      "count": 4267,
+      "lift": 1.155496,
+      "pair_score": 0.134571,
+      "confidence": {
+        "almond_milk->milk": 0.260835,
+        "milk->almond_milk": 0.115524
+      }
+    },
+    {
+      "pair": [
+        "cucumber",
+        "milk"
+      ],
+      "count": 4051,
+      "lift": 1.291814,
+      "pair_score": 0.225895,
+      "confidence": {
+        "cucumber->milk": 0.291607,
+        "milk->cucumber": 0.109676
+      }
+    },
+    {
+      "pair": [
+        "butter",
+        "milk"
+      ],
+      "count": 3916,
+      "lift": 1.587321,
+      "pair_score": 0.370008,
+      "confidence": {
+        "butter->milk": 0.358313,
+        "milk->butter": 0.106021
+      }
+    },
+    {
+      "pair": [
+        "milk",
+        "plain_yogurt"
+      ],
+      "count": 3808,
+      "lift": 1.642269,
+      "pair_score": 0.391086,
+      "confidence": {
+        "milk->plain_yogurt": 0.103097,
+        "plain_yogurt->milk": 0.370717
+      }
+    },
+    {
+      "pair": [
+        "cheddar",
+        "milk"
+      ],
+      "count": 3714,
+      "lift": 1.600951,
+      "pair_score": 0.375371,
+      "confidence": {
+        "cheddar->milk": 0.36139,
+        "milk->cheddar": 0.100552
+      }
+    },
+    {
+      "pair": [
+        "garlic",
+        "onion"
+      ],
+      "count": 3349,
+      "lift": 3.947967,
+      "pair_score": 0.746705,
+      "confidence": {
+        "garlic->onion": 0.432687,
+        "onion->garlic": 0.186751
+      }
+    },
+    {
+      "pair": [
+        "cucumber",
+        "onion"
+      ],
+      "count": 3026,
+      "lift": 1.987483,
+      "pair_score": 0.496851,
+      "confidence": {
+        "cucumber->onion": 0.217823,
+        "onion->cucumber": 0.168739
+      }
+    },
+    {
+      "pair": [
+        "milk",
+        "mozzarella"
+      ],
+      "count": 2696,
+      "lift": 1.415915,
+      "pair_score": 0.293743,
+      "confidence": {
+        "milk->mozzarella": 0.072991,
+        "mozzarella->milk": 0.319621
+      }
+    },
+    {
+      "pair": [
+        "lime",
+        "onion"
+      ],
+      "count": 2420,
+      "lift": 2.810692,
+      "pair_score": 0.644216,
+      "confidence": {
+        "lime->onion": 0.308045,
+        "onion->lime": 0.134947
+      }
+    },
+    {
+      "pair": [
+        "milk",
+        "vanilla_yogurt"
+      ],
+      "count": 2372,
+      "lift": 1.552131,
+      "pair_score": 0.355724,
+      "confidence": {
+        "milk->vanilla_yogurt": 0.064219,
+        "vanilla_yogurt->milk": 0.350369
+      }
+    },
+    {
+      "pair": [
+        "butter",
+        "egg"
+      ],
+      "count": 2298,
+      "lift": 1.791369,
+      "pair_score": 0.441768,
+      "confidence": {
+        "butter->egg": 0.210266,
+        "egg->butter": 0.11965
+      }
+    },
+    {
+      "pair": [
+        "onion",
+        "potato"
+      ],
+      "count": 2238,
+      "lift": 2.846414,
+      "pair_score": 0.648681,
+      "confidence": {
+        "onion->potato": 0.124798,
+        "potato->onion": 0.31196
+      }
+    },
+    {
+      "pair": [
+        "milk",
+        "potato"
+      ],
+      "count": 2180,
+      "lift": 1.346163,
+      "pair_score": 0.257148,
+      "confidence": {
+        "milk->potato": 0.059021,
+        "potato->milk": 0.303875
+      }
+    },
+    {
+      "pair": [
+        "cheddar",
+        "egg"
+      ],
+      "count": 2158,
+      "lift": 1.788959,
+      "pair_score": 0.441016,
+      "confidence": {
+        "cheddar->egg": 0.209983,
+        "egg->cheddar": 0.112361
+      }
+    },
+    {
+      "pair": [
+        "garlic",
+        "milk"
+      ],
+      "count": 2128,
+      "lift": 1.21796,
+      "pair_score": 0.178955,
+      "confidence": {
+        "garlic->milk": 0.274935,
+        "milk->garlic": 0.057613
+      }
+    },
+    {
+      "pair": [
+        "lime",
+        "milk"
+      ],
+      "count": 2109,
+      "lift": 1.189262,
+      "pair_score": 0.159142,
+      "confidence": {
+        "lime->milk": 0.268457,
+        "milk->lime": 0.057099
+      }
+    },
+    {
+      "pair": [
+        "cilantro",
+        "onion"
+      ],
+      "count": 1989,
+      "lift": 3.331784,
+      "pair_score": 0.69986,
+      "confidence": {
+        "cilantro->onion": 0.365155,
+        "onion->cilantro": 0.110913
+      }
+    },
+    {
+      "pair": [
+        "cream_cheese",
+        "milk"
+      ],
+      "count": 1982,
+      "lift": 1.637492,
+      "pair_score": 0.38931,
+      "confidence": {
+        "cream_cheese->milk": 0.369638,
+        "milk->cream_cheese": 0.05366
+      }
+    }
+  ],
+  "top_triples_by_lift": [
+    {
+      "antecedent": "black_beans_canned|lime",
+      "consequent": "cilantro",
+      "length": 3,
+      "count": 254,
+      "support": 0.001552,
+      "confidence": 0.371889,
+      "lift": 11.171409
+    },
+    {
+      "antecedent": "lime|parsley",
+      "consequent": "cilantro",
+      "length": 3,
+      "count": 234,
+      "support": 0.00143,
+      "confidence": 0.37084,
+      "lift": 11.139904
+    },
+    {
+      "antecedent": "garlic|lime",
+      "consequent": "cilantro",
+      "length": 3,
+      "count": 366,
+      "support": 0.002237,
+      "confidence": 0.320771,
+      "lift": 9.635858
+    },
+    {
+      "antecedent": "lime|onion",
+      "consequent": "cilantro",
+      "length": 3,
+      "count": 726,
+      "support": 0.004437,
+      "confidence": 0.3,
+      "lift": 9.011896
+    },
+    {
+      "antecedent": "black_beans_canned|cilantro",
+      "consequent": "lime",
+      "length": 3,
+      "count": 254,
+      "support": 0.001552,
+      "confidence": 0.415033,
+      "lift": 8.644366
+    },
+    {
+      "antecedent": "cilantro|garlic",
+      "consequent": "lime",
+      "length": 3,
+      "count": 366,
+      "support": 0.002237,
+      "confidence": 0.390192,
+      "lift": 8.126978
+    },
+    {
+      "antecedent": "butter|cilantro",
+      "consequent": "lime",
+      "length": 3,
+      "count": 202,
+      "support": 0.001235,
+      "confidence": 0.374768,
+      "lift": 7.805729
+    },
+    {
+      "antecedent": "cilantro|onion",
+      "consequent": "lime",
+      "length": 3,
+      "count": 726,
+      "support": 0.004437,
+      "confidence": 0.365008,
+      "lift": 7.602434
+    },
+    {
+      "antecedent": "cilantro|garlic",
+      "consequent": "parsley",
+      "length": 3,
+      "count": 204,
+      "support": 0.001247,
+      "confidence": 0.217484,
+      "lift": 7.369236
+    },
+    {
+      "antecedent": "butter|lime",
+      "consequent": "cilantro",
+      "length": 3,
+      "count": 202,
+      "support": 0.001235,
+      "confidence": 0.235431,
+      "lift": 7.072273
+    }
+  ],
+  "top_items_by_share_of_orders": [
+    {
+      "ingredient_id": "milk",
+      "orders": 36936,
+      "share": 0.225734
+    },
+    {
+      "ingredient_id": "egg",
+      "orders": 19206,
+      "share": 0.117377
+    },
+    {
+      "ingredient_id": "onion",
+      "orders": 17933,
+      "share": 0.109597
+    },
+    {
+      "ingredient_id": "almond_milk",
+      "orders": 16359,
+      "share": 0.099978
+    },
+    {
+      "ingredient_id": "cucumber",
+      "orders": 13892,
+      "share": 0.084901
+    },
+    {
+      "ingredient_id": "butter",
+      "orders": 10929,
+      "share": 0.066793
+    },
+    {
+      "ingredient_id": "cheddar",
+      "orders": 10277,
+      "share": 0.062808
+    },
+    {
+      "ingredient_id": "plain_yogurt",
+      "orders": 10272,
+      "share": 0.062777
+    },
+    {
+      "ingredient_id": "water",
+      "orders": 9458,
+      "share": 0.057803
+    },
+    {
+      "ingredient_id": "mozzarella",
+      "orders": 8435,
+      "share": 0.05155
+    },
+    {
+      "ingredient_id": "lime",
+      "orders": 7856,
+      "share": 0.048012
+    },
+    {
+      "ingredient_id": "garlic",
+      "orders": 7740,
+      "share": 0.047303
+    },
+    {
+      "ingredient_id": "potato",
+      "orders": 7174,
+      "share": 0.043844
+    },
+    {
+      "ingredient_id": "vanilla_yogurt",
+      "orders": 6770,
+      "share": 0.041375
+    },
+    {
+      "ingredient_id": "chicken_breast",
+      "orders": 6630,
+      "share": 0.040519
+    },
+    {
+      "ingredient_id": "parmesan",
+      "orders": 6047,
+      "share": 0.036956
+    },
+    {
+      "ingredient_id": "salsa",
+      "orders": 5729,
+      "share": 0.035013
+    },
+    {
+      "ingredient_id": "cilantro",
+      "orders": 5447,
+      "share": 0.033289
+    },
+    {
+      "ingredient_id": "cream_cheese",
+      "orders": 5362,
+      "share": 0.03277
+    },
+    {
+      "ingredient_id": "chicken_broth",
+      "orders": 5351,
+      "share": 0.032703
+    }
+  ]
+}
