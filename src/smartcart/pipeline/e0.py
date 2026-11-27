@@ -4,6 +4,8 @@ For each remaining requirement line (recipe scaled to servings, plus items, minu
 minus excluded ingredients; ``resolve_requirements`` from the gold policy):
 
 1. **Retrieve** the top ``k`` products for the ingredient with TF-IDF over the whole catalog.
+   E0 indexes the Phase 1 ``legacy`` product text (``name`` + ingredient ID words), so the
+   committed Phase 5 results reproduce; Phase 11 re-runs E0 with the Phase 7 text.
 2. **Select independently**: among retrieved products with the line's ingredient and unit
    that are available, take the cheapest by line cost (then surplus, then product ID).
    Lines are chosen one at a time; the budget and diet play no part in the choice.
@@ -37,7 +39,8 @@ def _option(product: dict, need: Decimal) -> dict:
             "surplus": quantize_amount(packs * pack - need)}
 
 
-def select_e0_basket(request: dict, catalog: dict, method: str = "tfidf", top_k: int = 10) -> dict:
+def select_e0_basket(request: dict, catalog: dict, method: str = "tfidf", top_k: int = 10,
+                     product_text: str = "legacy") -> dict:
     base = {"status": None, "lines": [], "purchased": [], "total_cost_minor": 0,
             "budget_minor": request.get("budget_minor"), "budget_remaining_minor": None, "covered_by_pantry": [],
             "excluded_lines": [], "uncovered_ingredients": [], "ignored_pantry_keys": []}
@@ -52,7 +55,8 @@ def select_e0_basket(request: dict, catalog: dict, method: str = "tfidf", top_k:
     lines = []
     for req in resolved["lines"]:
         need = Decimal(req["need"])
-        pool = retrieve_candidates(req["ingredient_id"], catalog, method=method, top_k=top_k)
+        pool = retrieve_candidates(req["ingredient_id"], catalog, method=method, top_k=top_k,
+                                   product_text=product_text)
         compatible = [products[c["product_id"]] for c in pool
                       if products[c["product_id"]]["ingredient_id"] == req["ingredient_id"]
                       and products[c["product_id"]]["pack_unit"] == req["unit"]

@@ -40,9 +40,13 @@ class RetrievalApiTests(unittest.TestCase):
         ranked = retrieve_candidates("cheddar", CATALOG, top_k=10)
         self.assertTrue(any(PRODUCTS[r["product_id"]]["ingredient_id"] != "cheddar" for r in ranked))
 
-    def test_minilm_waits_for_phase_7(self):
-        with self.assertRaises(NotImplementedError):
-            retrieve_candidates("cheddar", CATALOG, method="minilm")
+    def test_e0_keeps_the_phase_1_product_text(self):
+        # Phase 7 changed the default product text; E0 pins "legacy" so its results reproduce.
+        import inspect
+
+        self.assertEqual(inspect.signature(select_e0_basket).parameters["product_text"].default, "legacy")
+        self.assertNotEqual(retrieve_candidates("dill_weed", CATALOG, top_k=10, product_text="legacy"),
+                            retrieve_candidates("dill_weed", CATALOG, top_k=10))
 
 
 class SelectionTests(unittest.TestCase):
