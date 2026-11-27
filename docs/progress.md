@@ -15,7 +15,146 @@ Each phase starts only with the project owner's permission.
 | 5 | D3 complete baseline (E0) | **Complete — 2026-11-26** (validation only; test sets untouched) |
 | 6 | D4 transformer parser | **Complete — 2026-11-26** (validation only; test evaluated in Phase 11) |
 | 7 | D5 semantic retrieval | **Complete — 2026-11-28** (validation only; test evaluated in Phase 11) |
-| 8–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 8 is next) |
+| 8 | D6 associations and Track B | **Complete — 2026-11-28** (validation only; Track B test evaluated in Phase 11) |
+| 9–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 9 is next) |
+
+## Phase 8 — D6 associations and Track B (complete, 2026-11-28)
+
+**What changed**
+
+- **Package `src/smartcart/associations/`:**
+  - `transactions.py`: ingredient-level Track B transactions. Each order becomes the set
+    of catalog ingredients its products map to (Phase 3 mapping). Only the requested
+    splits are read; test-order rows are skipped while streaming.
+  - `mining.py`: FP-Growth (`mlxtend`) at the grid's lowest count, rules with exact integer
+    counts, and the pair table. The bounded pair score is `1 − 1/lift` (lift > 1 and the
+    thresholds passed, else 0); it is symmetric and in [0, 1].
+  - `trackb.py`: three rankers over the same 118 ingredients and list length 10 (ties by
+    popularity, then ID): popularity, personal frequency [S9], and frequency + weight ×
+    association term. Also Recall@10 and NDCG@10 overall and for repeat and new items,
+    the hash-based tune/report user halves, and a paired bootstrap.
+  - `activity.py`: measures whether the pair and history terms can change product
+    selection on basket scenarios.
+  - `api.py` (BUILD_PHASES 4.3): `pair_score(a, b)`, `basket_pair_score(items)` (a mean,
+    never an unbounded sum) and `history_score(user_id, item)`. Products resolve to their
+    ingredient. Unknown users, items and same-ingredient pairs score 0.
+- **Why ingredient level:** no catalog product has a verified Instacart ID (catalog
+  products are simulated), so the plan's fallback applies. 119,846 of 163,626 training
+  orders (73%) contain a mapped ingredient.
+- **`configs/associations.json`** (frozen), with the selection rule written before any
+  validation result was computed:
+  - the grid: min count {10, 25, 50, 100, 200} × min confidence {0, 0.05, 0.1, 0.2} ×
+    weight {0.1, 0.25, 0.5, 1, 2};
+  - tuning on the "tune" half of the validation users, reporting on the "report" half.
+- **`scripts/evaluate_trackb.py [--select|--check]`:** mines on training orders, runs the
+  grid on the tune half, freezes the choice and stops if it changes. It writes
+  `results/metrics/trackb_validation.json` and figure `13_trackb_validation.png`. Per-user
+  lists go to the ignored `data/interim/trackb/`, because they are derived from basket
+  contents, which are not redistributed (Phase 3 policy).
+- **`scripts/mine_rules.py [--check]`:** writes `data/processed/rules.csv` (antecedent,
+  consequent, length, count, support, confidence, lift, under the frozen thresholds),
+  `results/metrics/association_rules.json`, `association_selection_activity.json` and
+  figure `12_association_rules.png`. Time and memory go to
+  `association_mining_profile.json`, which is machine-dependent and not part of `--check`.
+- **`docs/association_analysis.md`:** the descriptive plots, the strongest rules read by
+  hand, helpful and misleading associations, the Track B results, and whether the score
+  is active.
+
+**Selection (tune half, rule fixed in advance)**
+
+- Selected: **min count 200, min confidence 0.2, weight 0.1**. This leaves 138 ingredient
+  pairs with a positive score; `rules.csv` holds 777 rules (280 directional pairs, 497
+  triples).
+- **All 100 grid settings score below plain personal frequency on the tune half.** The
+  best reaches NDCG@10 0.577, against 0.586 for frequency, so the rule picked the mildest
+  setting.
+
+**Verification evidence (validation orders, report half, 3,670 users)**
+
+| Ranker | Recall@10 | NDCG@10 | Repeat R@10 | New R@10 |
+| --- | --- | --- | --- | --- |
+| Popularity | 0.498 | 0.363 | 0.572 | **0.270** |
+| Personal frequency | **0.701** | **0.584** | **0.906** | 0.122 |
+| Frequency + association | 0.684 | 0.573 | 0.898 | 0.089 |
+
+- **Users:** 10,000 sampled. 2,661 are excluded because their validation order has no
+  mapped ingredient, so recall is undefined. 7,339 are evaluated: 3,669 tune and 3,670
+  report.
+- **Paired bootstrap** (2,000 resamples, report half):
+  - association − frequency: NDCG@10 −0.010 [−0.013, −0.008], Recall@10 −0.017
+    [−0.022, −0.012];
+  - frequency − popularity: NDCG@10 +0.221 [+0.211, +0.231].
+- **Selection activity** (50 dev basket scenarios):
+  - the pair term is non-zero in 22 of the 49 multi-line scenarios but **varies with the
+    chosen products in 0**;
+  - the history term is non-zero for 9 of the 10 history users but **varies in 0**.
+- **Mining profile** (`association_mining_profile.json`, Windows machine): `max_len=3` at
+  count 10 gives 21,247 itemsets and 112,692 rules in 6.5 s, with peak RSS 295 MB.
+- **Completion check:**
+  - the rules come from training orders only, tested: every exported pair count equals
+    its training-order count, and the validation orders would change it;
+  - the Track B metrics file exists;
+  - `association_analysis.md` states that the score is **inactive** for selection.
+- **On the team's Windows machine:**
+  - the Linux-made outputs of `mine_rules.py` and `evaluate_trackb.py` reproduced byte for
+    byte, before and after regenerating them there;
+  - all seven earlier `--check` scripts still pass;
+  - `pytest`: **209 passed, 95 subtests** (186 before, plus 23 in `test_associations.py`).
+- The new tests are in `tests/unit/test_associations.py` (23). They cover:
+  - FP-Growth counts against brute force;
+  - pair-table confidences and lift, and the threshold filters;
+  - the bounded lift transform, and both directions of a passing pair exported;
+  - manifest split filtering, and no test-order reads;
+  - training-only rule counts (with a discriminating check);
+  - the `pair_score` contract (symmetry, bounds, unknown and same-ingredient items,
+    products through their ingredient, agreement with `rules.csv`);
+  - `basket_pair_score` as a bounded mean, and the `history_score` contract;
+  - the metric definitions, the tie order and the association term;
+  - the deterministic, balanced user halves, and the bootstrap;
+  - the frozen choice re-derived from the committed grid, and equal user counts per ranker;
+  - the activity measure detecting a synthetic brand-level score, and the committed
+    "inactive" result;
+  - both rebuild checks.
+
+  The checks that need `data/interim/instacart/` skip on a clone without it.
+
+**Findings to carry into the report**
+
+- **Personal frequency is the strong baseline** [S9]: +0.22 NDCG@10 over popularity, and
+  91% of repeat items in the top 10.
+- **Associations make Track B ranking worse.**
+  - The loss is small but clear, and its bootstrap interval excludes zero.
+  - Even at weight 0.1 the term reorders the popularity fill for 3,405 of 3,670 users. It
+    promotes niche complements of the user's history (heavy cream, white flour,
+    buttermilk, ricotta) over popular staples (almond milk, cucumber, egg, butter). 130
+    users gain a hit and 262 lose one.
+  - New-item recall falls too (0.089 vs 0.122). This is a null result for the
+    association idea.
+- **The association score is inactive for basket selection.** With ingredient-level rules,
+  every product of an ingredient scores the same, and the selector picks one product per
+  fixed line, so both terms add a constant. E4 will select the same baskets as E3, and A3
+  the same as E4. Phase 11 should present this as an analysis result.
+- **The strongest rules mix complements and substitutes.**
+  - Complements: cilantro + lime, garlic + onion, butter + flour, mozzarella + ricotta.
+  - Substitutes bought together when stocking up: black beans + pinto beans (the top pair
+    by lift), beef broth + chicken broth. A "goes well with" bonus would be wrong for these.
+  - Pairs ranked by count (milk + egg) only reflect popularity; the lift-based score
+    discounts them.
+- The baskets are US Instacart shopping (almond milk is in about 10% of orders), applied
+  to a simulated PKR catalog.
+
+**Open limitations**
+
+- **The Track B test orders were not evaluated.** BUILD_PHASES asks for results "on the
+  held-out final orders"; following CLAUDE.md, these are evaluated once in Phase 11 with
+  `configs/associations.json` frozen. For a test order, the history is the training plus
+  validation orders, and the rules stay training-only. The owner can ask for it earlier.
+- The report half is held out from tuning but comes from the same validation orders. It
+  is not a test result.
+- Ingredient-level aggregation through a mapping with 89% precision; only 21% of sampled
+  item rows map to a catalog ingredient.
+- The rule review in `association_analysis.md` was done by the build agent, not
+  independently.
 
 ## Phase 7 — D5 semantic retrieval (complete, 2026-11-28)
 
@@ -114,8 +253,16 @@ Each phase starts only with the project owner's permission.
   - the leak-regression tests pass (the gold ingredient never reaches the filter; a
     wrong-ingredient first result is penalised);
   - the test queries were **not** evaluated (see the open limitations).
-- `build_index.py --check`, `evaluate_retrieval.py --check` and `run_baseline.py --check`
-  all rebuild byte for byte. VERIFY_WINDOWS
+- **On the team's Windows machine** (Python 3.11.9, the locked packages):
+  - `build_index.py --check`, `evaluate_retrieval.py --check` and all five earlier `--check`
+    scripts rebuild byte for byte, so E0, the NLU outputs and the locked benchmarks are
+    unchanged;
+  - `pytest`: **186 passed, 95 subtests** (164 before, plus 22 in
+    `test_semantic_retrieval.py`).
+- **Cross-platform check:** the outputs were first generated on Linux. On Windows, 8 of the
+  50 MiniLM prediction rows differed only in the sixth decimal of a score (1e-6). Every
+  ranking, every metric and the selection were identical. The committed predictions and
+  figure 11 were regenerated on Windows.
 - The new tests are in `tests/unit/test_semantic_retrieval.py` (22). They cover:
   - the diet fix;
   - product-text normalisation, legacy = Phase 1 text, and aliases not selectable;
@@ -165,9 +312,10 @@ Each phase starts only with the project owner's permission.
   `configs/retrieval.json` frozen. The owner can ask for it earlier.
 - **50 dev queries are few:** one query moves Recall@10 by up to 0.02, and the product-text
   choice was decided by 0.0002.
-- **Platform:** the committed outputs were checked on Windows (see above), but MiniLM's
-  float results can differ slightly on other CPUs or operating systems. Scores are
-  rounded to 6 decimals before ranking to limit this.
+- **Platform:** MiniLM's float results differ slightly between machines (1e-6 between Linux
+  and Windows here). Scores are rounded to 6 decimals before ranking, which kept every
+  ranking identical, but a `--check` of the prediction file can still report a
+  sixth-decimal difference on another platform. The committed files come from Windows.
 - **Relevance is at ingredient level** (all house brands of an ingredient count), so the
   benchmark does not test choosing between products of the same ingredient.
 - The old `retrieval/semantic.py`, `runner.py` and `queries.py` (pilot generator) are
@@ -894,26 +1042,31 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 8 — D6 associations and Track B.**
+**Phase 9 — D7 constrained solver and validator.**
 
-- `scripts/mine_rules.py`: FP-Growth (mlxtend) on the **training** Track B orders only.
-  Start with pairs and `max_len=3`, profile memory, and set the minimum count, support and
-  confidence on development data.
-- Use product-level rules where catalog products have verified Instacart IDs; otherwise
-  aggregate baskets to ingredients through the Phase 3 mapping and say so.
-- Export `data/processed/rules.csv` (antecedent, consequent, count, support, confidence,
-  lift) and read the strongest rules by hand.
-- `smartcart.associations.api.pair_score(a, b)` (symmetric, bounded in [0, 1], 0.0 if
-  unknown) and `history_score(user_id, item)` (personalised frequency from training orders).
-- Measure whether the association term changes product selection at all (with
-  ingredient-level rules every brand of an ingredient scores the same).
-- Track B: popularity vs personalised frequency vs association-enhanced ranking on the same
-  item universe and list length; Recall@10 and NDCG@10 on the held-out final orders, with
-  repeat and new items separately.
-- Write `docs/association_analysis.md`.
-
-Carried over from Phase 7 for Phase 9: retrieve `candidate_count.selected` (40) candidates
-per ingredient with MiniLM and the frozen product text, then apply the eligibility checks.
+- Selection in the plan's six steps (BUILD_PHASES Phase 9): resolve and scale, eligible
+  options per ingredient, minimum whole packs per option, then CP-SAT
+  (`src/smartcart/optimization/cpsat.py`):
+  - one Boolean per option and exactly one option per line;
+  - the cost sum ≤ `budget_minor` (integers);
+  - an explicitly scaled integer objective.
+- Candidates: retrieve `candidate_count.selected` = 40 products per ingredient with
+  MiniLM and the frozen product text (`configs/retrieval.json`), then apply the
+  eligibility checks.
+- Objective terms: relevance, history and pair bonuses. Use
+  `smartcart.associations.api.basket_pair_score` (a bounded mean), never an unbounded
+  sum. Phase 8 measured that the pair and history terms cannot change which product is
+  chosen. Keep them, log them, and expect E3 = E4 on selection.
+- Statuses `valid`, `needs_clarification`, `no_basket_in_candidate_pool` (expand and
+  retry), `infeasible_in_scope`, `solver_timeout` (never infeasible) and `unsupported`.
+  Log the solver status, the time limit and whether optimality was proven.
+- For a budget conflict, offer the minimum-cost complete basket's budget as a
+  suggestion; never relax rules silently.
+- Explanations from verified records (`src/smartcart/explanations/`). Reuse the Phase 5
+  validator.
+- Tests: CP-SAT against the Phase 4 enumeration on small cases (exact budget, too-small
+  budget, excluded product, unknown label, pantry, multi-pack, timeout handling).
+  Record the objective weights and constraints in `configs/`.
 
 Outstanding: the second-person annotation review (Phase 4), the owner's decision on the
 optional parser variants in `docs/nlu_failures.md`, and independent reviews of the

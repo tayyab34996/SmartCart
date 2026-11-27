@@ -110,6 +110,8 @@ Run these before changing anything:
 .\.venv\Scripts\python scripts/build_index.py
 .\.venv\Scripts\python scripts/build_index.py --check
 .\.venv\Scripts\python scripts/evaluate_retrieval.py --check
+.\.venv\Scripts\python scripts/mine_rules.py --check
+.\.venv\Scripts\python scripts/evaluate_trackb.py --check
 .\.venv\Scripts\python -m pytest
 ```
 
@@ -118,7 +120,7 @@ Expected results:
 - Every `--check` prints only `same` lines and exits without an error.
 - `build_index.py` (without `--check`) builds the git-ignored MiniLM index cache in
   `models\retrieval\` (Phase 7); retrieval also works without it, only slower to start.
-- `pytest` reports **186 passed** in about 3 minutes (Phase 7). pytest 9 hides the
+- `pytest` reports **209 passed** in about 4 minutes (Phase 8). pytest 9 hides the
   passed-subtest count at the default verbosity; with `-q` or `-v` the summary also shows
   **95 subtests passed**.
 - If 3 tests are skipped, the checkpoints are missing or misplaced (go back to step 1).
