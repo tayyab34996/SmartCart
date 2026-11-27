@@ -1,0 +1,264 @@
+{
+  "split": "dev",
+  "num_queries": 50,
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "selection": {
+    "product_text": {
+      "rule": "highest dev Recall@10 averaged over both methods; ties go to the higher averaged dev MRR, then to the earlier candidate",
+      "selected": "display_name_ingredient",
+      "table": {
+        "display_name": {
+          "tfidf": {
+            "recall_at_5": 0.396667,
+            "recall_at_10": 0.481667,
+            "mrr": 0.403667,
+            "num_queries": 50
+          },
+          "minilm": {
+            "recall_at_5": 0.625714,
+            "recall_at_10": 0.683667,
+            "mrr": 0.6355,
+            "num_queries": 50
+          }
+        },
+        "display_name_ingredient": {
+          "tfidf": {
+            "recall_at_5": 0.426667,
+            "recall_at_10": 0.485667,
+            "mrr": 0.436857,
+            "num_queries": 50
+          },
+          "minilm": {
+            "recall_at_5": 0.584714,
+            "recall_at_10": 0.68,
+            "mrr": 0.585333,
+            "num_queries": 50
+          }
+        },
+        "display_name_aliases": {
+          "tfidf": {
+            "recall_at_5": 0.740238,
+            "recall_at_10": 0.8,
+            "mrr": 0.757333,
+            "num_queries": 50
+          },
+          "minilm": {
+            "recall_at_5": 0.825905,
+            "recall_at_10": 0.876667,
+            "mrr": 0.847333,
+            "num_queries": 50
+          }
+        },
+        "legacy": {
+          "tfidf": {
+            "recall_at_5": 0.411,
+            "recall_at_10": 0.485333,
+            "mrr": 0.422,
+            "num_queries": 50
+          },
+          "minilm": {
+            "recall_at_5": 0.588667,
+            "recall_at_10": 0.679524,
+            "mrr": 0.609556,
+            "num_queries": 50
+          }
+        }
+      },
+      "diagnostic_only": [
+        "display_name_aliases",
+        "legacy"
+      ]
+    },
+    "candidate_count": {
+      "rule": "smallest k in the grid whose dev Recall@k (MiniLM, selected product text) is within 0.01 of the dev Recall@k at the largest k",
+      "selected": 40,
+      "recall_at_k": {
+        "tfidf": {
+          "5": 0.426667,
+          "10": 0.485667,
+          "15": 0.506667,
+          "20": 0.506667,
+          "25": 0.545,
+          "30": 0.55,
+          "40": 0.565,
+          "50": 0.565
+        },
+        "minilm": {
+          "5": 0.584714,
+          "10": 0.68,
+          "15": 0.714667,
+          "20": 0.74,
+          "25": 0.78,
+          "30": 0.795,
+          "40": 0.82,
+          "50": 0.82
+        }
+      }
+    }
+  },
+  "results": {
+    "tfidf": {
+      "num_queries": 50,
+      "recall_at_5": 0.426667,
+      "recall_at_10": 0.485667,
+      "mrr": 0.436857,
+      "top1_correct_ingredient": 21,
+      "no_relevant_in_top10": 24,
+      "recall_at_k": {
+        "5": 0.426667,
+        "10": 0.485667,
+        "15": 0.506667,
+        "20": 0.506667,
+        "25": 0.545,
+        "30": 0.55,
+        "40": 0.565,
+        "50": 0.565
+      },
+      "by_query_type": {
+        "brand": {
+          "num_queries": 9,
+          "recall_at_5": 0.648148,
+          "recall_at_10": 0.75,
+          "mrr": 0.68254,
+          "top1_correct_ingredient": 6,
+          "no_relevant_in_top10": 2
+        },
+        "constrained": {
+          "num_queries": 1,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 1.0,
+          "top1_correct_ingredient": 1,
+          "no_relevant_in_top10": 0
+        },
+        "misspelling": {
+          "num_queries": 7,
+          "recall_at_5": 0.202381,
+          "recall_at_10": 0.333333,
+          "mrr": 0.2,
+          "top1_correct_ingredient": 1,
+          "no_relevant_in_top10": 4
+        },
+        "near_match": {
+          "num_queries": 5,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 1.0,
+          "top1_correct_ingredient": 5,
+          "no_relevant_in_top10": 0
+        },
+        "synonym": {
+          "num_queries": 18,
+          "recall_at_5": 0.449074,
+          "recall_at_10": 0.511111,
+          "mrr": 0.461111,
+          "top1_correct_ingredient": 8,
+          "no_relevant_in_top10": 8
+        },
+        "transliteration": {
+          "num_queries": 10,
+          "recall_at_5": 0.0,
+          "recall_at_10": 0.0,
+          "mrr": 0.0,
+          "top1_correct_ingredient": 0,
+          "no_relevant_in_top10": 10
+        }
+      }
+    },
+    "minilm": {
+      "num_queries": 50,
+      "recall_at_5": 0.584714,
+      "recall_at_10": 0.68,
+      "mrr": 0.585333,
+      "top1_correct_ingredient": 28,
+      "no_relevant_in_top10": 16,
+      "recall_at_k": {
+        "5": 0.584714,
+        "10": 0.68,
+        "15": 0.714667,
+        "20": 0.74,
+        "25": 0.78,
+        "30": 0.795,
+        "40": 0.82,
+        "50": 0.82
+      },
+      "by_query_type": {
+        "brand": {
+          "num_queries": 9,
+          "recall_at_5": 0.614815,
+          "recall_at_10": 0.888889,
+          "mrr": 0.624074,
+          "top1_correct_ingredient": 5,
+          "no_relevant_in_top10": 1
+        },
+        "constrained": {
+          "num_queries": 1,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 1.0,
+          "top1_correct_ingredient": 1,
+          "no_relevant_in_top10": 0
+        },
+        "misspelling": {
+          "num_queries": 7,
+          "recall_at_5": 0.833333,
+          "recall_at_10": 0.857143,
+          "mrr": 0.857143,
+          "top1_correct_ingredient": 6,
+          "no_relevant_in_top10": 1
+        },
+        "near_match": {
+          "num_queries": 5,
+          "recall_at_5": 0.666667,
+          "recall_at_10": 0.8,
+          "mrr": 0.64,
+          "top1_correct_ingredient": 3,
+          "no_relevant_in_top10": 1
+        },
+        "synonym": {
+          "num_queries": 18,
+          "recall_at_5": 0.751984,
+          "recall_at_10": 0.833333,
+          "mrr": 0.747222,
+          "top1_correct_ingredient": 13,
+          "no_relevant_in_top10": 3
+        },
+        "transliteration": {
+          "num_queries": 10,
+          "recall_at_5": 0.0,
+          "recall_at_10": 0.0,
+          "mrr": 0.0,
+          "top1_correct_ingredient": 0,
+          "no_relevant_in_top10": 10
+        }
+      }
+    }
+  },
+  "pipeline_pool": {
+    "query": "canonical ingredient name (as in retrieve_candidates)",
+    "ingredients": 35,
+    "share_with_every_product_in_top_k": {
+      "tfidf": {
+        "5": 0.914286,
+        "10": 1.0,
+        "15": 1.0,
+        "20": 1.0,
+        "25": 1.0,
+        "30": 1.0,
+        "40": 1.0,
+        "50": 1.0
+      },
+      "minilm": {
+        "5": 0.914286,
+        "10": 1.0,
+        "15": 1.0,
+        "20": 1.0,
+        "25": 1.0,
+        "30": 1.0,
+        "40": 1.0,
+        "50": 1.0
+      }
+    }
+  }
+}

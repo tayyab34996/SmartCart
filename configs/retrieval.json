@@ -1,0 +1,80 @@
+{
+  "description": "Phase 7 retrieval: TF-IDF vs frozen MiniLM + exact FAISS inner-product index over the same product text. Product text and candidate count are chosen on dev queries only, by the rules below, which were written before any dev result was computed.",
+  "frozen": true,
+  "data": {
+    "catalog": "data/processed/catalog.json",
+    "retrieval_dev": "data/benchmarks/retrieval_dev.json"
+  },
+  "evaluated_splits": [
+    "dev"
+  ],
+  "test_split": "data/benchmarks/retrieval_test.json is not read in Phase 7. It is evaluated once in Phase 11 with this frozen config (CLAUDE.md; same as the Phase 6 NLU test split).",
+  "methods": [
+    "tfidf",
+    "minilm"
+  ],
+  "model": {
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "frozen": true,
+    "product_batch_size": 64,
+    "query_batch_size": 1,
+    "torch_threads": 4,
+    "index": "faiss.IndexFlatIP over L2-normalized embeddings (exact cosine)",
+    "score": "(1 + cosine) / 2, rounded to 6 decimals; ties by product ID"
+  },
+  "tfidf": {
+    "ngram_range": [
+      1,
+      2
+    ],
+    "lowercase": true,
+    "score": "cosine, rounded to 6 decimals; ties by product ID"
+  },
+  "evaluation": {
+    "ranking": "the whole catalog is ranked for the query text; only request-side constraints (required unit, dietary rules, availability) are then applied; the gold ingredient defines relevance only and is never used to filter",
+    "relevant": "the query's relevant_ids (every available product of the target ingredient that is allowed for the query's diet)",
+    "metrics": [
+      "recall_at_5",
+      "recall_at_10",
+      "mrr (first relevant within the top 10, else 0)"
+    ]
+  },
+  "product_text": {
+    "candidates": [
+      "display_name",
+      "display_name_ingredient"
+    ],
+    "diagnostic_only": [
+      "display_name_aliases",
+      "legacy"
+    ],
+    "diagnostic_reason": "display_name_aliases adds the reviewed aliases, which share an author with the queries (14 of 50 dev queries are literal aliases); legacy is the Phase 1 text kept for E0.",
+    "selection": "highest dev Recall@10 averaged over both methods; ties go to the higher averaged dev MRR, then to the earlier candidate",
+    "selected": "display_name_ingredient"
+  },
+  "candidate_count": {
+    "grid": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      40,
+      50
+    ],
+    "method": "minilm",
+    "selection": "smallest k in the grid whose dev Recall@k (MiniLM, selected product text) is within 0.01 of the dev Recall@k at the largest k",
+    "use": "Phase 9 retrieves this many candidates per ingredient before the eligibility checks; Recall@5/10 and MRR are reported unchanged",
+    "selected": 40
+  },
+  "index_cache": "models/retrieval",
+  "outputs": {
+    "index_manifest": "results/metrics/retrieval_index.json",
+    "metrics": "results/metrics/retrieval_dev.json",
+    "predictions": "results/predictions/retrieval_dev_{method}.jsonl",
+    "benchmark_results": "results/predictions/retrieval_benchmark_results.json",
+    "figure": "results/figures/11_retrieval_tfidf_vs_minilm.png"
+  }
+}
