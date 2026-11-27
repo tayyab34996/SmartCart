@@ -1,0 +1,14 @@
+{
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "batch_size": 64,
+  "index": "faiss.IndexFlatIP",
+  "dimension": 384,
+  "normalized": true,
+  "product_text": "display_name_ingredient",
+  "products": 466,
+  "catalog": "data/processed/catalog.json",
+  "catalog_sha256": "1e0785e43102927f74b839491cfc0f703a5388f04aad3ce007dd0241e711a155",
+  "input_hash": "00e09820aaedf23e657f4ca27cb0cc4b1b30c5b0a533d4b182983fd25444ce09",
+  "cache": "models/retrieval/minilm_display_name_ingredient.faiss (git-ignored)"
+}
