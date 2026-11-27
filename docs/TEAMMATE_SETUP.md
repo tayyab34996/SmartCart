@@ -107,13 +107,20 @@ Run these before changing anything:
 .\.venv\Scripts\python scripts/build_benchmarks.py --check
 .\.venv\Scripts\python scripts/run_baseline.py --check
 .\.venv\Scripts\python scripts/evaluate_nlu.py --check
+.\.venv\Scripts\python scripts/build_index.py
+.\.venv\Scripts\python scripts/build_index.py --check
+.\.venv\Scripts\python scripts/evaluate_retrieval.py --check
 .\.venv\Scripts\python -m pytest
 ```
 
 Expected results:
 
 - Every `--check` prints only `same` lines and exits without an error.
-- `pytest` reports **164 passed, 95 subtests passed** in about 2 minutes.
+- `build_index.py` (without `--check`) builds the git-ignored MiniLM index cache in
+  `models\retrieval\` (Phase 7); retrieval also works without it, only slower to start.
+- `pytest` reports **186 passed** in about 3 minutes (Phase 7). pytest 9 hides the
+  passed-subtest count at the default verbosity; with `-q` or `-v` the summary also shows
+  **95 subtests passed**.
 - If 3 tests are skipped, the checkpoints are missing or misplaced (go back to step 1).
 
 If anything differs, do not start Phase 7. Find the setup difference first and report it
@@ -146,9 +153,9 @@ about 4 minutes:
 
 | Item | Where | Status |
 | --- | --- | --- |
-| Fix the diet check (`is True` must be `== "allowed"`) | `src/smartcart/retrieval/filtering.py` | Part of Phase 7 |
-| Product text for both retrievers (TF-IDF currently includes the ingredient name) | Phase 7 | To decide in Phase 7 |
-| NLU test-set metrics for both parsers | Phase 11 | Deferred on purpose: one look at test data |
+| Fix the diet check (`is True` must be `== "allowed"`) | `src/smartcart/retrieval/filtering.py` | Done in Phase 7 |
+| Product text for both retrievers | `configs/retrieval.json` | Decided in Phase 7 (`display_name_ingredient`); E0 keeps the Phase 1 text until Phase 11 |
+| NLU and retrieval test-set metrics | Phase 11 | Deferred on purpose: one look at test data |
 | Optional parser variants (hybrid; snapping spans to the catalog) | `docs/nlu_failures.md` | Owner's decision before Phase 11 |
 | Second-person review of 180 annotations | `docs/annotation_review.md` | Pending; needs a teammate |
 | Independent review of the 42 recipes, and of the 300 Instacart mapping rows | `docs/progress.md` (Phases 2–3) | Pending |

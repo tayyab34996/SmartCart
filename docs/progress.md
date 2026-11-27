@@ -14,7 +14,164 @@ Each phase starts only with the project owner's permission.
 | 4 | D2 benchmarks and gold feasibility checker | **Complete — 2026-11-25** (second-person annotation review pending) |
 | 5 | D3 complete baseline (E0) | **Complete — 2026-11-26** (validation only; test sets untouched) |
 | 6 | D4 transformer parser | **Complete — 2026-11-26** (validation only; test evaluated in Phase 11) |
-| 7–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 7 is next) |
+| 7 | D5 semantic retrieval | **Complete — 2026-11-28** (validation only; test evaluated in Phase 11) |
+| 8–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 8 is next) |
+
+## Phase 7 — D5 semantic retrieval (complete, 2026-11-28)
+
+**What changed**
+
+- **Diet-filter fix** (`retrieval/filtering.py`): a diet is satisfied only by the catalog
+  value `"allowed"`. The old `is True` check let no catalog product pass a diet (found in
+  Phase 2). `unknown` and `disallowed` still fail.
+- **Product text** (`retrieval/product_text.py`), the same for both retrievers:
+  - `display_name`: the product name without `SIMULATED`, the house brand ("SmartCart
+    Basics/Select/Organic") and the pack size ("parmesan cheese grated");
+  - `display_name_ingredient`: `display_name` plus the `ingredient_id` words;
+  - `display_name_aliases` (**diagnostic only, never selectable**): adds the reviewed
+    aliases. The queries and the aliases share an author, and 14 of the 50 dev queries are
+    literal aliases ("dhania", "courgette", "turkey mince"), so this variant measures the
+    alias list rather than the retriever;
+  - `legacy`: the Phase 1 text, `name` + ingredient words, kept for E0.
+- **MiniLM index** (`retrieval/index.py`): frozen `all-MiniLM-L6-v2`, pinned to revision
+  `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`. Products are encoded once in catalog order
+  (batch 64), L2-normalized, and stored in an exact `faiss.IndexFlatIP`, so scores are cosine
+  similarities. A query is always encoded alone, so the API and the benchmark see the same
+  vector. The reported score is `(1 + cosine) / 2` in [0, 1].
+- **Ranking:** both methods score the whole catalog, round to 6 decimals, then break ties
+  by product ID, so float noise cannot reorder near-ties. E0 keeps the Phase 1 raw-float
+  order (see the findings).
+- **API** (`retrieval/api.py`):
+  - `retrieve_candidates(..., method="minilm")` now works;
+  - a `product_text` argument, defaulting to the frozen Phase 7 choice
+    (`DEFAULT_PRODUCT_TEXT`, tested against the config);
+  - `search_products(text, ...)` ranks the catalog for free text (the benchmark).
+  - **E0 pins `product_text="legacy"`** (`pipeline/e0.py`), so the committed Phase 5
+    results still rebuild byte for byte. Phase 11 re-runs E0 with the Phase 7 text.
+- **`scripts/build_index.py [--check]`:** builds the MiniLM index for the frozen text,
+  caches it in the git-ignored `models/retrieval/` with the SHA-256 of its inputs (model,
+  revision, batch size, product IDs and texts), and writes the committed manifest
+  `results/metrics/retrieval_index.json`. The API reads the cache only when the hash
+  matches; otherwise it builds the index in memory. `--check` compares the manifest and,
+  if present, the local cache.
+- **`scripts/evaluate_retrieval.py [--select|--check]`** with the frozen
+  `configs/retrieval.json`:
+  - scores every product-text variant with both methods on `retrieval_dev.json`;
+  - applies the selection rules (written in the config before any dev result existed);
+  - stops if the choice differs from the frozen config;
+  - writes `results/metrics/retrieval_dev.json`,
+    `results/predictions/retrieval_dev_{tfidf,minilm}.jsonl` and
+    `results/predictions/retrieval_benchmark_results.json` (replacing the provisional
+    pilot numbers), and regenerates figure `11_retrieval_tfidf_vs_minilm.png`.
+- **Benchmark scoring** (`retrieval/benchmark.py`): the whole catalog is ranked from the
+  query text, then only request-side constraints are applied (required unit, dietary
+  rules, availability). The gold ingredient defines relevance only and never reaches the
+  filter. Recall@5, Recall@10, and MRR over the top 10.
+
+**Selection (dev only, rules fixed in advance)**
+
+- **Product text:** highest dev Recall@10 averaged over both methods, then averaged MRR.
+
+  | Variant | TF-IDF R@10 / MRR | MiniLM R@10 / MRR |
+  | --- | --- | --- |
+  | `display_name` | 0.482 / 0.404 | 0.684 / 0.636 |
+  | **`display_name_ingredient`** (selected) | 0.486 / 0.437 | 0.680 / 0.585 |
+  | `legacy` (diagnostic) | 0.485 / 0.422 | 0.680 / 0.610 |
+  | `display_name_aliases` (diagnostic) | 0.800 / 0.757 | 0.877 / 0.847 |
+
+  `display_name_ingredient` wins by **0.0002** in averaged Recall@10 (0.58283 vs 0.58267),
+  which is effectively a tie. `display_name` has the better MRR for both methods. The rule
+  was followed as written.
+- **Candidate count:** the smallest k in {5, 10, 15, 20, 25, 30, 40, 50} whose MiniLM dev
+  Recall@k is within 0.01 of Recall@50 gives **k = 40** (Recall@k 0.585 at 5, 0.680 at 10,
+  0.740 at 20, 0.820 at 40 and 50). Phase 9 retrieves this many candidates per ingredient
+  before the eligibility checks.
+
+**Verification evidence (validation, 50 queries, selected product text)**
+
+| Metric | TF-IDF | MiniLM |
+| --- | --- | --- |
+| Recall@5 | 0.427 | **0.585** |
+| Recall@10 | 0.486 | **0.680** |
+| MRR | 0.437 | **0.585** |
+| Top-1 product of the right ingredient | 21 / 50 | **28 / 50** |
+| Queries with no relevant product in the top 10 | 24 | **16** |
+
+| Query type (n) | TF-IDF R@10 | MiniLM R@10 |
+| --- | --- | --- |
+| synonym (18) | 0.511 | **0.833** |
+| transliteration (10) | 0.000 | 0.000 |
+| brand (9) | 0.750 | **0.889** |
+| misspelling (7) | 0.333 | **0.857** |
+| near-match (5) | **1.000** | 0.800 |
+| diet-constrained (1) | 1.000 | 1.000 |
+
+- **Pipeline-pool diagnostic:** with the query `retrieve_candidates` actually uses (the
+  canonical ingredient name), the top 10 of both methods holds *every* available product
+  of the ingredient for all 35 dev ingredients (32 of 35 at k = 5).
+- **Completion check:**
+  - dev results exist for both methods;
+  - the leak-regression tests pass (the gold ingredient never reaches the filter; a
+    wrong-ingredient first result is penalised);
+  - the test queries were **not** evaluated (see the open limitations).
+- `build_index.py --check`, `evaluate_retrieval.py --check` and `run_baseline.py --check`
+  all rebuild byte for byte. VERIFY_WINDOWS
+- The new tests are in `tests/unit/test_semantic_retrieval.py` (22). They cover:
+  - the diet fix;
+  - product-text normalisation, legacy = Phase 1 text, and aliases not selectable;
+  - the MiniLM contract (ranks, score bounds, order, determinism, no hard rules,
+    whole-catalog ranking);
+  - the ID tie-break;
+  - the TF-IDF index equal to the Phase 1 retriever;
+  - the cache used only on a matching input hash;
+  - the leak regression and the metric definitions;
+  - the selection rules, and the frozen choices re-derived from the committed metrics;
+  - committed metrics recomputed from the predictions;
+  - dev-only reading;
+  - both rebuild checks.
+
+  Two older tests changed: the eligibility test now uses `"allowed"`, and "MiniLM waits for
+  Phase 7" became "E0 keeps the Phase 1 product text".
+
+**Findings to carry into the report**
+
+- **MiniLM beats TF-IDF on dev** (Recall@10 0.680 vs 0.486, MRR 0.585 vs 0.437). The gain
+  comes from synonyms ("courgette", "coriander leaves", "cut up chicken") and misspellings
+  ("chiken thighs", "bred crumbs", "eggz"). MiniLM wins 9 queries that TF-IDF misses
+  completely, and loses one ("lemon pepper", where green bell pepper ranks first).
+- **The 0.90 Recall@10 target is missed on dev** (0.680). It is a target, not a result.
+- **Transliterations fail for both methods (0 / 10).** "dhania", "anda", "doodh",
+  "namak" and "cheeni" are not English, and the English MiniLM maps them to unrelated
+  products (paprika, basmati rice, cheddar). Together with "sweetcorn tin", "polenta",
+  "bean curd", "mushrums" and "pace picante sauce", 15 queries fail for both methods.
+- **The aliases would fix most of this, but cannot be used fairly here:** with them,
+  Recall@10 rises to 0.800 (TF-IDF) and 0.877 (MiniLM). Because the queries and aliases
+  were written by the same person, this is reported only as a diagnostic. A real store's
+  synonym list, or a multilingual encoder, is future work.
+- **Free-text robustness and pipeline retrieval are different questions.** In the pipeline
+  the parser maps the user's words to an ingredient ID first, and the query is the
+  canonical name. There the top 10 is already complete on dev. The k = 40 chosen by the
+  rule is driven by the free-text queries, and costs the Phase 9 solver little.
+- **E0's TF-IDF order depends on float noise.** For 4 of 118 canonical queries, distractors
+  with scores that are equal in theory (dried basil, thyme, rosemary) come out in
+  last-bit float order. E0 keeps that order so Phase 5 reproduces; the Phase 7 ranking
+  rounds first and breaks ties by product ID.
+
+**Open limitations**
+
+- **The retrieval test split was not evaluated.** BUILD_PHASES' Phase 7 completion check
+  asks for test results. CLAUDE.md and the Phase 6 precedent keep one final look at test
+  data, so `retrieval_test.json` is evaluated once in Phase 11 with
+  `configs/retrieval.json` frozen. The owner can ask for it earlier.
+- **50 dev queries are few:** one query moves Recall@10 by up to 0.02, and the product-text
+  choice was decided by 0.0002.
+- **Platform:** the committed outputs were checked on Windows (see above), but MiniLM's
+  float results can differ slightly on other CPUs or operating systems. Scores are
+  rounded to 6 decimals before ranking to limit this.
+- **Relevance is at ingredient level** (all house brands of an ingredient count), so the
+  benchmark does not test choosing between products of the same ingredient.
+- The old `retrieval/semantic.py`, `runner.py` and `queries.py` (pilot generator) are
+  superseded but kept, because the Phase 1 tests import them.
 
 ## Phase 6 — D4 transformer parser (complete, 2026-11-26)
 
@@ -737,26 +894,30 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Handover (2026-11-26):** Phase 7 onwards will be built by a teammate, from a fresh
-clone with Claude Code. Setup steps are in [TEAMMATE_SETUP.md](TEAMMATE_SETUP.md), and the
-working rules for Claude Code are in [CLAUDE.md](../CLAUDE.md). The DistilBERT
-checkpoints are shared through Google Drive, not git.
+**Phase 8 — D6 associations and Track B.**
 
-**Phase 7 — D5 semantic retrieval.**
+- `scripts/mine_rules.py`: FP-Growth (mlxtend) on the **training** Track B orders only.
+  Start with pairs and `max_len=3`, profile memory, and set the minimum count, support and
+  confidence on development data.
+- Use product-level rules where catalog products have verified Instacart IDs; otherwise
+  aggregate baskets to ingredients through the Phase 3 mapping and say so.
+- Export `data/processed/rules.csv` (antecedent, consequent, count, support, confidence,
+  lift) and read the strongest rules by hand.
+- `smartcart.associations.api.pair_score(a, b)` (symmetric, bounded in [0, 1], 0.0 if
+  unknown) and `history_score(user_id, item)` (personalised frequency from training orders).
+- Measure whether the association term changes product selection at all (with
+  ingredient-level rules every brand of an ingredient scores the same).
+- Track B: popularity vs personalised frequency vs association-enhanced ranking on the same
+  item universe and list length; Recall@10 and NDCG@10 on the held-out final orders, with
+  repeat and new items separately.
+- Write `docs/association_analysis.md`.
 
-- `scripts/build_index.py`: encode normalised product names and short descriptions with
-  frozen `all-MiniLM-L6-v2` (already cached), normalise them, and build a FAISS
-  `IndexFlatIP` cached with its input hash.
-- Add `method="minilm"` to `retrieve_candidates` (`retrieval/api.py`) and fix the
-  `is True` diet check in `retrieval/filtering.py`.
-- Decide the product text for both retrievers. TF-IDF currently includes the ingredient
-  name words, which makes per-ingredient retrieval nearly trivial (Phase 5 finding).
-- Tune the candidate count on `retrieval_dev.json` only. Evaluate Recall@5, Recall@10 and
-  MRR for both methods, regenerate figure 11 and `retrieval_benchmark_results.json`, and
-  keep the leak-regression test.
+Carried over from Phase 7 for Phase 9: retrieve `candidate_count.selected` (40) candidates
+per ingredient with MiniLM and the frozen product text, then apply the eligibility checks.
 
-Outstanding: the second-person annotation review (Phase 4), and the owner's decision on
-the optional parser variants in `docs/nlu_failures.md`.
+Outstanding: the second-person annotation review (Phase 4), the owner's decision on the
+optional parser variants in `docs/nlu_failures.md`, and independent reviews of the
+recipes and the Instacart mapping.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open
