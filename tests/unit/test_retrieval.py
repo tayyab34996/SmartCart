@@ -29,7 +29,7 @@ class	TestRetrieval(unittest.TestCase):
 	def	test_eligibility_filter_strict_dietary(self):
 		cands=[
 			{'id':'p1','ingredient_id':'chicken_breast','pack_unit':'g','available':True,'dietary':{'vegetarian':'unknown'}},
-			{'id':'p2','ingredient_id':'tofu','pack_unit':'g','available':True,'dietary':{'vegetarian':True}}
+			{'id':'p2','ingredient_id':'tofu','pack_unit':'g','available':True,'dietary':{'vegetarian':'allowed'}}
 		]
 		filtered=filter_eligible_candidates(cands,dietary_rules=['vegetarian'])
 		self.assertEqual(len(filtered),1)
