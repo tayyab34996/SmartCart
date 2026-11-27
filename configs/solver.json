@@ -1,0 +1,97 @@
+{
+  "description": "Phase 9 constrained selection (D7): candidate pool from frozen MiniLM retrieval, hard eligibility rules outside the objective, CP-SAT with integer costs and an explicitly scaled integer objective, the independent Phase 5 validator, and explicit statuses. The objective weights are chosen on the dev basket scenarios (gold input) by the rule below, which was written before any dev result was computed.",
+  "frozen": true,
+  "data": {
+    "catalog": "data/processed/catalog.json",
+    "basket_dev": "data/benchmarks/basket_dev.json"
+  },
+  "evaluated_splits": [
+    "dev"
+  ],
+  "test_split": "data/benchmarks/basket_test.json is not read in Phase 9; E3/E4 run on it once in Phase 11 with this frozen config.",
+  "candidates": {
+    "method": "minilm",
+    "product_text": "display_name_ingredient",
+    "top_k": 40,
+    "source": "configs/retrieval.json (candidate_count.selected)",
+    "query": "canonical ingredient name (retrieve_candidates)",
+    "expand_when": "a line has no eligible option in the pool, or the pool model is infeasible: rebuild that model from every eligible catalog product and solve again (logged as no_basket_in_candidate_pool -> expanded)",
+    "expand": true
+  },
+  "eligibility": "same ingredient and unit, available, every requested diet \"allowed\" (unknown fails), ingredient not excluded; these hard rules decide which options exist and never enter the objective",
+  "constraints": [
+    "one Boolean per eligible option",
+    "exactly one option per remaining requirement line",
+    "sum of chosen option costs (integer minor units) <= budget_minor when a budget is given"
+  ],
+  "objective": {
+    "sense": "maximize",
+    "scale": 1000000,
+    "terms": {
+      "relevance": "mean over lines of the chosen option's retrieval score in [0, 1]",
+      "history": "mean over lines of history_score(user, product) in [0, 1] (0 without a user)",
+      "pair": "mean over pairs of lines of pair_score(chosen products) in [0, 1], via AND-linked Booleans y <= x_a, y <= x_b; a pair of lines whose option pairs all score the same is added as a constant (no variables)",
+      "cost": "chosen cost / sum over lines of the line's most expensive option cost, in [0, 1] (penalty)",
+      "surplus": "mean over lines of surplus / amount bought, in [0, 1) (penalty)"
+    },
+    "integer_coefficients": "round(scale * weight * normalised term) per option or option pair",
+    "fixed_weights": {
+      "relevance": 1.0,
+      "history": 0.1,
+      "pair": 0.1
+    },
+    "fixed_weights_reason": "Phase 8 measured that the history and pair terms cannot change which product is chosen (ingredient-level scores); they are kept and logged at a small weight. Relevance is the anchor weight.",
+    "tuned": [
+      "cost",
+      "surplus"
+    ],
+    "weights": {
+      "cost": 0.25,
+      "surplus": 0.0
+    }
+  },
+  "grid": {
+    "cost": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "surplus": [
+      0.0,
+      0.1,
+      0.25,
+      0.5
+    ]
+  },
+  "selection": {
+    "rule": "highest dev success (gold input, all 50 scenarios, scored as in E0 with infeasible_in_scope as the correct outcome for infeasible scenarios); ties go to the lower mean cost ratio (basket total / checker minimum) over feasible scenarios with a valid basket, then to the lower mean surplus share, then to the earlier grid entry (cost first, then surplus)",
+    "selected": {
+      "cost": 0.25,
+      "surplus": 0.0
+    }
+  },
+  "solver": {
+    "engine": "ortools.sat.python.cp_model (CP-SAT)",
+    "time_limit_s": 10.0,
+    "num_workers": 1,
+    "random_seed": 0,
+    "timeout_status": "solver_timeout (never reported as infeasible)"
+  },
+  "budget_conflict": "when the budget makes the full-catalog model infeasible, solve the minimum-cost complete basket under the same diet and exclusion rules and report its total as suggested_budget_minor; the request is never relaxed silently",
+  "statuses": [
+    "valid",
+    "needs_clarification",
+    "no_basket_in_candidate_pool",
+    "infeasible_in_scope",
+    "solver_timeout",
+    "unsupported",
+    "invalid_request"
+  ],
+  "max_clarification_turns": 3,
+  "outputs": {
+    "metrics": "results/metrics/solver_dev.json",
+    "predictions": "results/predictions/solver_dev_gold_input.jsonl"
+  }
+}

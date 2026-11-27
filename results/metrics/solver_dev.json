@@ -1,0 +1,572 @@
+{
+  "split": "dev",
+  "mode": "gold_input",
+  "selector": "CP-SAT (configs/solver.json)",
+  "selection": {
+    "rule": "highest dev success (gold input, all 50 scenarios, scored as in E0 with infeasible_in_scope as the correct outcome for infeasible scenarios); ties go to the lower mean cost ratio (basket total / checker minimum) over feasible scenarios with a valid basket, then to the lower mean surplus share, then to the earlier grid entry (cost first, then surplus)",
+    "selected": {
+      "cost": 0.25,
+      "surplus": 0.0
+    },
+    "grid": [
+      {
+        "cost": 0.25,
+        "surplus": 0.0,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 0.25,
+        "surplus": 0.1,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 0.25,
+        "surplus": 0.25,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 0.25,
+        "surplus": 0.5,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 0.5,
+        "surplus": 0.0,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 0.5,
+        "surplus": 0.1,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 0.5,
+        "surplus": 0.25,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 0.5,
+        "surplus": 0.5,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 1.0,
+        "surplus": 0.0,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 1.0,
+        "surplus": 0.1,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 1.0,
+        "surplus": 0.25,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 1.0,
+        "surplus": 0.5,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 2.0,
+        "surplus": 0.0,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 2.0,
+        "surplus": 0.1,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 2.0,
+        "surplus": 0.25,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 2.0,
+        "surplus": 0.5,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 4.0,
+        "surplus": 0.0,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 4.0,
+        "surplus": 0.1,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 4.0,
+        "surplus": 0.25,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      },
+      {
+        "cost": 4.0,
+        "surplus": 0.5,
+        "success": 50,
+        "cost_ratio": 1.0,
+        "surplus_share": 0.535127
+      }
+    ]
+  },
+  "results": {
+    "scenarios": 50,
+    "success": 50,
+    "by_label": {
+      "feasible": {
+        "scenarios": 30,
+        "success": 30,
+        "success_rate": 1.0,
+        "statuses": {
+          "valid": 30
+        }
+      },
+      "infeasible": {
+        "scenarios": 10,
+        "success": 10,
+        "success_rate": 1.0,
+        "statuses": {
+          "infeasible_in_scope": 10
+        }
+      },
+      "clarification": {
+        "scenarios": 10,
+        "success": 10,
+        "success_rate": 1.0,
+        "statuses": {
+          "valid": 10
+        }
+      }
+    },
+    "valid_complete_success_feasible": 1.0,
+    "mean_coverage_feasible": 1.0,
+    "infeasible_detected": 10,
+    "false_rejections": 0,
+    "solver_timeouts": 0,
+    "outputs_labelled_valid": 40,
+    "violations_among_valid": 0,
+    "optimality_proven_among_valid": 40,
+    "feasible_reference_scenarios": 40,
+    "status_reasons": {
+      "infeasible_in_scope:budget_below_minimum_cost": 6,
+      "infeasible_in_scope:no_eligible_option": 4,
+      "valid:optimal": 40
+    },
+    "pool_expansions": 10,
+    "pair_variables": 0,
+    "lines_bought": 222,
+    "lines_cheapest_option": 222,
+    "has_history_subset": {
+      "scenarios": 10,
+      "success": 10
+    }
+  },
+  "e0_gold_input": {
+    "success": 48,
+    "valid_complete_success_feasible": 0.966667,
+    "infeasible_detected": 10,
+    "violations_among_valid": 0,
+    "note": "E0 uses the Phase 1 TF-IDF text and top 10; read from results/metrics/E0_basket_dev.json"
+  },
+  "checker_agreement": {
+    "label_agreement": 50,
+    "min_cost_agreement": 50,
+    "scenarios": 50,
+    "suggested_budget_equals_checker_minimum": 6,
+    "budget_conflicts": 6,
+    "rows": [
+      {
+        "scenario_id": "dev_b000",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 77500,
+        "cpsat_min_cost_minor": 77500
+      },
+      {
+        "scenario_id": "dev_b001",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 136200,
+        "cpsat_min_cost_minor": 136200
+      },
+      {
+        "scenario_id": "dev_b002",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 74500,
+        "cpsat_min_cost_minor": 74500
+      },
+      {
+        "scenario_id": "dev_b003",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 74500,
+        "cpsat_min_cost_minor": 74500
+      },
+      {
+        "scenario_id": "dev_b004",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 158500,
+        "cpsat_min_cost_minor": 158500
+      },
+      {
+        "scenario_id": "dev_b005",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 74500,
+        "cpsat_min_cost_minor": 74500
+      },
+      {
+        "scenario_id": "dev_b006",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 62500,
+        "cpsat_min_cost_minor": 62500
+      },
+      {
+        "scenario_id": "dev_b007",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 79500,
+        "cpsat_min_cost_minor": 79500
+      },
+      {
+        "scenario_id": "dev_b008",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 161500,
+        "cpsat_min_cost_minor": 161500
+      },
+      {
+        "scenario_id": "dev_b009",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 105500,
+        "cpsat_min_cost_minor": 105500
+      },
+      {
+        "scenario_id": "dev_b010",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 69700,
+        "cpsat_min_cost_minor": 69700
+      },
+      {
+        "scenario_id": "dev_b011",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 75500,
+        "cpsat_min_cost_minor": 75500
+      },
+      {
+        "scenario_id": "dev_b012",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 103000,
+        "cpsat_min_cost_minor": 103000
+      },
+      {
+        "scenario_id": "dev_b013",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 400700,
+        "cpsat_min_cost_minor": 400700
+      },
+      {
+        "scenario_id": "dev_b014",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 253800,
+        "cpsat_min_cost_minor": 253800
+      },
+      {
+        "scenario_id": "dev_b015",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 488600,
+        "cpsat_min_cost_minor": 488600
+      },
+      {
+        "scenario_id": "dev_b016",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 261600,
+        "cpsat_min_cost_minor": 261600
+      },
+      {
+        "scenario_id": "dev_b017",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 403700,
+        "cpsat_min_cost_minor": 403700
+      },
+      {
+        "scenario_id": "dev_b018",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 111500,
+        "cpsat_min_cost_minor": 111500
+      },
+      {
+        "scenario_id": "dev_b019",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 207000,
+        "cpsat_min_cost_minor": 207000
+      },
+      {
+        "scenario_id": "dev_b020",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 126700,
+        "cpsat_min_cost_minor": 126700
+      },
+      {
+        "scenario_id": "dev_b021",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 113900,
+        "cpsat_min_cost_minor": 113900
+      },
+      {
+        "scenario_id": "dev_b022",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 661300,
+        "cpsat_min_cost_minor": 661300
+      },
+      {
+        "scenario_id": "dev_b023",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 540600,
+        "cpsat_min_cost_minor": 540600
+      },
+      {
+        "scenario_id": "dev_b024",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 300500,
+        "cpsat_min_cost_minor": 300500
+      },
+      {
+        "scenario_id": "dev_b025",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 93000,
+        "cpsat_min_cost_minor": 93000
+      },
+      {
+        "scenario_id": "dev_b026",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 347400,
+        "cpsat_min_cost_minor": 347400
+      },
+      {
+        "scenario_id": "dev_b027",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 277400,
+        "cpsat_min_cost_minor": 277400
+      },
+      {
+        "scenario_id": "dev_b028",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 322100,
+        "cpsat_min_cost_minor": 322100
+      },
+      {
+        "scenario_id": "dev_b029",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 238400,
+        "cpsat_min_cost_minor": 238400
+      },
+      {
+        "scenario_id": "dev_b030",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": 77500,
+        "cpsat_min_cost_minor": 77500
+      },
+      {
+        "scenario_id": "dev_b031",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": 168200,
+        "cpsat_min_cost_minor": 168200
+      },
+      {
+        "scenario_id": "dev_b032",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": 99500,
+        "cpsat_min_cost_minor": 99500
+      },
+      {
+        "scenario_id": "dev_b033",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": null,
+        "cpsat_min_cost_minor": null
+      },
+      {
+        "scenario_id": "dev_b034",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": 147400,
+        "cpsat_min_cost_minor": 147400
+      },
+      {
+        "scenario_id": "dev_b035",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": 138900,
+        "cpsat_min_cost_minor": 138900
+      },
+      {
+        "scenario_id": "dev_b036",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": null,
+        "cpsat_min_cost_minor": null
+      },
+      {
+        "scenario_id": "dev_b037",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": null,
+        "cpsat_min_cost_minor": null
+      },
+      {
+        "scenario_id": "dev_b038",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": null,
+        "cpsat_min_cost_minor": null
+      },
+      {
+        "scenario_id": "dev_b039",
+        "checker": "infeasible",
+        "solver": "infeasible",
+        "checker_min_cost_minor": 540500,
+        "cpsat_min_cost_minor": 540500
+      },
+      {
+        "scenario_id": "dev_b040",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 173700,
+        "cpsat_min_cost_minor": 173700
+      },
+      {
+        "scenario_id": "dev_b041",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 103000,
+        "cpsat_min_cost_minor": 103000
+      },
+      {
+        "scenario_id": "dev_b042",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 79700,
+        "cpsat_min_cost_minor": 79700
+      },
+      {
+        "scenario_id": "dev_b043",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 50000,
+        "cpsat_min_cost_minor": 50000
+      },
+      {
+        "scenario_id": "dev_b044",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 138100,
+        "cpsat_min_cost_minor": 138100
+      },
+      {
+        "scenario_id": "dev_b045",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 127900,
+        "cpsat_min_cost_minor": 127900
+      },
+      {
+        "scenario_id": "dev_b046",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 50000,
+        "cpsat_min_cost_minor": 50000
+      },
+      {
+        "scenario_id": "dev_b047",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 50000,
+        "cpsat_min_cost_minor": 50000
+      },
+      {
+        "scenario_id": "dev_b048",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 69700,
+        "cpsat_min_cost_minor": 69700
+      },
+      {
+        "scenario_id": "dev_b049",
+        "checker": "feasible",
+        "solver": "feasible",
+        "checker_min_cost_minor": 158000,
+        "cpsat_min_cost_minor": 158000
+      }
+    ]
+  }
+}
