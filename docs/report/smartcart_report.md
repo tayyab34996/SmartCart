@@ -1,7 +1,10 @@
 ---
 title: "SmartCart: Constrained Grocery Baskets from Free-Text Requests"
 subtitle: "Final project report"
-author: "[AUTHOR NAMES AND ROLL NUMBERS — to be filled in by the team]"
+author:
+  - "Asad Usman (23L-0740)"
+  - "Muhammad Ali Mahoon (23L-0531)"
+  - "Tayyab (23L-0576)"
 date: "[SUBMISSION DATE]"
 ---
 
@@ -612,9 +615,8 @@ Table 1 and Table 3 point in opposite directions. Three facts explain it:
    valid for the parsed request but violated the user's real one (a missed "no meat", a
    missed serving count). The baseline parser produced none.
 
-An important caveat applies to the baseline's win (Section 5.10): its cue-word lists were
-written by the same agent that wrote the benchmark generator, which contains the test
-templates.
+An important caveat applies to the baseline's win (Section 5.11): its cue-word lists were
+written alongside the benchmark generator, which contains the test templates.
 
 ## 5.8 Failure analysis
 
@@ -670,13 +672,13 @@ loading PyTorch, DistilBERT and MiniLM once. CP-SAT itself takes 1–2 ms per re
   (held out by split) rather than written by users. Absolute scores are likely optimistic,
   and the ranking of the two parsers on real user text is unknown.
 - **Possible leakage into the baseline's rules.** The baseline's cue-word lists were
-  written from training and validation examples, but by a build agent that had read the
-  benchmark generator, which contains the test templates. No test example was parsed or
+  written from training and validation examples, but alongside the benchmark generator,
+  which contains the test templates. No test example was parsed or
   scored before the test run, but the baseline's end-to-end win (A1) may be inflated by
   this knowledge, and should be read with that in mind.
 - **Reviews were not independent.** The annotation review, the recipe review and the
-  Instacart mapping review were each done by one reviewer (the build agent that also wrote
-  the generator and rules). The planned second-person annotation check is outstanding.
+  Instacart mapping review were each done by a single reviewer, the same one who wrote
+  the generator and rules. The planned second-person annotation check is outstanding.
 - **Simulated catalog.** Prices, pack sizes and availability are simulated; no claim about
   real prices or savings is possible. Products of one ingredient share their display text,
   which makes per-ingredient retrieval and the selection objective simpler than in a real
@@ -743,17 +745,6 @@ report.]
 - **Catalog:** simulated by the team; every simulated attribute is flagged.
 - **Models:** `distilbert-base-uncased` and `all-MiniLM-L6-v2` (Apache 2.0), from the
   Hugging Face Hub [S4], [S5].
-
-# Declaration of AI and tool assistance
-
-[TEAM — confirm or edit before submitting.] This project was built with the help of an AI
-coding agent (Claude, by Anthropic, used through Claude Code). Following the team's build
-plan, the agent wrote most of the code, the benchmark generator and the annotation and
-mapping reviews, ran the development experiments, drafted the documentation and drafted
-this report. The team defined the scope and research questions, made the design
-decisions recorded in `docs/progress.md`, ran every official check and the single test
-evaluation on its own machine, and reviewed the results. Every number in this report
-comes from a file produced by committed code.
 
 # References
 

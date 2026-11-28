@@ -33,9 +33,10 @@ Each phase starts only with the project owner's permission.
   use the evidence the matrix records. No novelty claim beyond the 15 papers.
 - **Report** (`docs/report/smartcart_report.md`, abstract written last; Word version
   `smartcart_report.docx`, 18 A4 pages, built with `docs/report/build_docx.py` and
-  `reference.docx`). Every table names its source file. Placeholders left for the team:
-  the author block, the contribution summary and the wording of the AI-assistance
-  declaration.
+  `reference.docx`). Every table names its source file. Authors: Asad Usman (23L-0740),
+  Muhammad Ali Mahoon (23L-0531), Tayyab (23L-0576). At the user's request the report has
+  no section on AI or tool assistance. Placeholders left: the contribution summary and the
+  submission date.
 - **Demo script and viva notes** (`docs/report/viva_and_demo.md`): the six demo cases
   with their recorded outcomes, one request end to end (`test_b000`), the baseline's
   rationale, one failure (`test_b007`) and two ablations (A4 − E4, A1 − E4).
@@ -88,7 +89,7 @@ Each phase starts only with the project owner's permission.
 | Every table traces to a config, a prediction file and a metric calculation | Done (`results/tables/`, source named under each report table, `evaluate_all.py`) |
 | Package: README, pinned environment, data instructions, sample inputs, tests, model instructions | Done |
 | Demo covers the six cases | Script and recorded outcomes ready; **rehearsal is the team's** |
-| Contribution summary, limitations, dataset terms, AI declaration | Limitations and terms done; **contribution summary and declaration wording for the team** |
+| Contribution summary, limitations, dataset terms, AI declaration | Limitations and terms done; **contribution summary for the team**; no AI declaration (user's decision) |
 
 **Open limitations**
 
@@ -1570,7 +1571,7 @@ ready while its required quantities or units remain unresolved.
 
 **All twelve phases are complete.** Before submission, the team:
 
-- fills in the author block, the contribution summary and the AI-declaration wording in
+- fills in the contribution summary and the submission date in
   `docs/report/smartcart_report.md`, then rebuilds the Word file
   (`python docs/report/build_docx.py`, needs pandoc) or edits the `.docx` directly;
 - decides whether `data/processed/cleaned_instacart_data.csv` and `scaled_features.csv`

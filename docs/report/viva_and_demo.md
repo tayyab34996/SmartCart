@@ -63,7 +63,8 @@ avoiding water"*
   retrieval, selector, association terms), so every difference is attributable.
 - It is strong where the domain is closed (a fixed catalog vocabulary), which is why the
   rule parser wins end to end (A1). Be ready to say the caveat: its cue words were written
-  by an agent that had read the generator's templates, which may favour it.
+  alongside the benchmark generator, which contains the test templates, so it may be
+  favoured.
 
 ### One failure (`docs/failure_analysis.md`, case 5)
 

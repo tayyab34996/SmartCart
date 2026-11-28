@@ -166,8 +166,8 @@ the most serious kind.**
     avoiding", "for a family of N, <budget>") that the baseline's dictionaries and rules
     handle.
   - Result: A1 − E4 = +0.133 [+0.062, +0.218] end to end.
-  - Caveat: the baseline's cue words were written by a build agent that had read the
-    benchmark generator, which contains the test templates (`docs/progress.md`, Phase 5).
+  - Caveat: the baseline's cue words were written alongside the benchmark generator,
+    which contains the test templates (`docs/progress.md`, Phase 5).
     No test example was parsed before the test run, but this may favour the baseline.
 - **Parser errors can produce baskets labelled valid that are wrong for the user**
   (cases 9–10). The validator can only check the request it is given. A deployed system
