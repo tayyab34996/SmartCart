@@ -49,6 +49,8 @@ Thumbs.db
 !/results/predictions/*
 !/results/metrics/**
 !/results/metrics/*
+!/results/tables/**
+!/results/tables/*
 !/results/run_manifest.json
 
 
