@@ -1,0 +1,69 @@
+{
+  "description": "Phase 10 Streamlit interface (D8). The app reuses the frozen components: the parser, constrained selection (configs/solver.json) and explanations. The demo cases are hand-written for the interface; none comes from a benchmark file.",
+  "parser": "transformer",
+  "fallback_parser": "baseline",
+  "fallback_reason": "the transformer needs the DistilBERT checkpoints in models/nlu/transformer/ (not in git); without them the app uses the E0 baseline parser and says so",
+  "catalog": "data/processed/catalog.json",
+  "solver_config": "configs/solver.json",
+  "trackb": "data/splits/instacart_trackb.json",
+  "history_users_listed": 25,
+  "recipe_suggestions": 3,
+  "demo_cases": [
+    {
+      "id": "D1_normal_feasible",
+      "title": "Normal feasible request (with a history user)",
+      "steps": [
+        {"action": "parse", "text": "I'd like to cook chicken curry in a hurry for 4 people with a budget of 2500 rupees", "user_id": "first_listed"}
+      ],
+      "expect": {"final_status": "valid"}
+    },
+    {
+      "id": "D2_budget_revision",
+      "title": "Budget revision in words",
+      "steps": [
+        {"action": "parse", "text": "Plan honey lime chicken for 3 people, budget 3000 rupees"},
+        {"action": "revise", "text": "Actually, can we do it for 1,200 rupees instead"}
+      ],
+      "expect": {"final_status": "infeasible_in_scope", "changes_mention": "budget"}
+    },
+    {
+      "id": "D3_dietary_exclusion",
+      "title": "Broad vegetarian goal, recipe confirmation, then an exclusion",
+      "steps": [
+        {"action": "parse", "text": "Something vegetarian for dinner for 3, keep it under 2500 rupees"},
+        {"action": "confirm_recipe", "choice": "first_suggestion"},
+        {"action": "edit", "exclude": "most_expensive_line"}
+      ],
+      "expect": {"final_status": "valid", "changes_mention": "removed"}
+    },
+    {
+      "id": "D4_pantry_quantity",
+      "title": "Pantry quantity asked and answered",
+      "steps": [
+        {"action": "parse", "text": "Get me everything for potato soup for 4 people within 2000 rupees, I already have some onion"},
+        {"action": "answer", "text": "I have 2 onions"}
+      ],
+      "expect": {"final_status": "valid", "pantry_used": true}
+    },
+    {
+      "id": "D5_unfamiliar_wording",
+      "title": "Unfamiliar, chatty wording",
+      "steps": [
+        {"action": "parse", "text": "mates coming round tonight lol, fancy doing baked salmon, there'll be 6 of us and I can't spend more than 10000"}
+      ],
+      "expect": {"final_status": "valid"}
+    },
+    {
+      "id": "D6_infeasible",
+      "title": "Infeasible request with a suggested budget",
+      "steps": [
+        {"action": "parse", "text": "Plan baked salmon for 6 people under 500 rupees"}
+      ],
+      "expect": {"final_status": "infeasible_in_scope", "suggested_budget": true}
+    }
+  ],
+  "outputs": {
+    "demo_cases": "results/metrics/demo_cases.json",
+    "latency": "results/metrics/app_latency.json"
+  }
+}
