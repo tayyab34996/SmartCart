@@ -19,7 +19,84 @@ Each phase starts only with the project owner's permission.
 | 9 | D7 constrained solver and validator | **Complete — 2026-11-28** (dev only; test scenarios run in Phase 11) |
 | 10 | D8 Streamlit interface | **Complete — 2026-11-28** |
 | 11 | D9 experiments | **Complete — 2026-11-28** (test sets evaluated once, frozen configs) |
-| 12 | D10 report, package and demo | In progress (clean-environment run pending) |
+| 12 | D10 report, package and demo | **Complete — 2026-11-28** |
+
+## Phase 12 — D10 report, package and demo (complete, 2026-11-28)
+
+**What changed**
+
+- **Literature review** (`docs/literature/review.md`): the 15-paper comparison table and
+  a five-part synthesis, built from the team's matrix
+  (`docs/literature/SmartCart_Literature_Review.xlsx`, now committed). Venue rule decided
+  by the team: peer-reviewed, 2019–2025, with Sentence-BERT as the foundational
+  exception. The methods and results of [S7]–[S12] were read in full; the other nine rows
+  use the evidence the matrix records. No novelty claim beyond the 15 papers.
+- **Report** (`docs/report/smartcart_report.md`, abstract written last; Word version
+  `smartcart_report.docx`, 18 A4 pages, built with `docs/report/build_docx.py` and
+  `reference.docx`). Every table names its source file. Placeholders left for the team:
+  the author block, the contribution summary and the wording of the AI-assistance
+  declaration.
+- **Demo script and viva notes** (`docs/report/viva_and_demo.md`): the six demo cases
+  with their recorded outcomes, one request end to end (`test_b000`), the baseline's
+  rationale, one failure (`test_b007`) and two ablations (A4 − E4, A1 − E4).
+- **README** rewritten: setup, data and model acquisition, one command per result,
+  verification commands, the interface, sample inputs, data sources and terms.
+- **`scripts/make_manifest.py [--check]`** writes `results/run_manifest.json`: seeds, the
+  pinned packages and the lock file's hash, both Hugging Face model revisions, the SHA-256
+  of the six DistilBERT checkpoints, the source archives, the five locked test files, and
+  the hash of every committed input (40) and Phase 11 result (16; latency files left
+  out). `--check` also compares installed packages with `requirements-lock.txt` and
+  verifies any raw archive present. **`tests/unit/test_manifest.py`** (6 tests).
+- **Corrections to Phase 11 documents:**
+  - on `plan_meal`, the NLU-test exact match is 50/60 for the baseline and 45–50/60 for
+    DistilBERT (the earlier text said "level, 49/60 vs 50/60", from one seed);
+  - the baseline-leakage caveat from Phase 5 is now stated wherever A1's win is reported.
+- **Found while writing the data terms:** `data/processed/cleaned_instacart_data.csv` and
+  `scaled_features.csv` (100,000 Instacart rows with product names, from the EDA notebooks
+  before the phase plan) are in the public repository. No result uses them; they are
+  excluded from the manifest and flagged in the README and the report. Whether to remove
+  them is the team's decision.
+
+**Verification evidence (the team's Windows machine)**
+
+- Main checkout (`data/interim/setup/phase12_check.log`, 19:31–19:54): the manifest was
+  written; `make_manifest.py --check` reported every section the same, the environment
+  matching the lock file and both raw archives ok; all earlier `--check` scripts and
+  `make_report.py --check` passed; `pytest -q`: **259 passed, 95 subtests**.
+- **Clean-environment run** (`data/interim/setup/phase12_clean.log`, 20:25–22:38): a fresh
+  clone of commit `bd55837` from GitHub into `C:\SCclean`, raw archives and checkpoints
+  hard-linked, a new `.venv` (Python 3.11.9) from `requirements-lock.txt`; then
+  `prepare_transactions.py` and `build_index.py`; `make_manifest.py --check` (environment
+  matches, archives ok); the eleven earlier `--check` scripts; `make_report.py --check`
+  (every report table rebuilt identically from the committed rows); `pytest -q`:
+  **259 passed, 95 subtests**.
+  - pytest's wall time in this run (1 h 56 min) includes a pause of the console window; it
+    takes about 12 minutes in the main checkout.
+  - Afterwards `git status` showed five rebuilt files as modified
+    (`instacart_ingredient_map.csv`, `instacart_trackb.json`, `instacart_users.json`,
+    `retrieval_index.json`, `transaction_checks.json`); their `--check` scripts report
+    `same`, so only line endings differ.
+  - By agreement with the user, the 33-minute `evaluate_all.py --check` was not repeated
+    in the clean clone (`-Full` runs it): it passed in the main checkout on the same code
+    and package versions (Phase 11 evidence).
+
+**Completion check** (the plan's final submission checklist)
+
+| Item | State |
+| --- | --- |
+| Report: all sections, consistent references, simulated data and assumptions labelled | Done |
+| Every table traces to a config, a prediction file and a metric calculation | Done (`results/tables/`, source named under each report table, `evaluate_all.py`) |
+| Package: README, pinned environment, data instructions, sample inputs, tests, model instructions | Done |
+| Demo covers the six cases | Script and recorded outcomes ready; **rehearsal is the team's** |
+| Contribution summary, limitations, dataset terms, AI declaration | Limitations and terms done; **contribution summary and declaration wording for the team** |
+
+**Open limitations**
+
+- The second-person annotation review (Phase 4) and independent reviews of the recipes
+  and the Instacart mapping were not done; the report says so.
+- The baseline's cue words may carry knowledge of the test templates (Phase 5); the report
+  states it next to A1's win.
+- All results are on template-generated text and a simulated catalog.
 
 ## Phase 11 — D9 experiments (complete, 2026-11-28)
 
@@ -1489,29 +1566,18 @@ Completion evidence: five accepted recipes, a covering 20-option catalog,
 reviewed mappings, and five expected basket examples. No recipe is marked
 ready while its required quantities or units remain unresolved.
 
-## Next task (awaiting permission)
+## Next task
 
-**Phase 12 — D10 report, package and demo** (BUILD_PHASES Phase 12). Nothing in it may
-change a result; every number in the report comes from the Phase 11 files.
+**All twelve phases are complete.** Before submission, the team:
 
-- Finish the literature review (15 papers; the closest work read in full), using the
-  team's literature matrix in `docs/literature/`.
-- Write the report in `docs/report/` (abstract last): introduction, literature review,
-  methodology, implementation, results and discussion (from `results/tables/`, figures
-  14–18 and `docs/failure_analysis.md`), conclusion answering RQ1–RQ3.
-  - Report the baseline-parser win (A1 − E4), the null retrieval and association effects
-    on baskets and the missed targets as they are.
-  - State the skipped pre-run commit and the checksum evidence.
-- README: setup, the reproducible commands (`prepare_data`, `train_nlu`, `build_index`,
-  `mine_rules`, `evaluate_all`, `streamlit run app.py`), data and model acquisition, and
-  sample inputs.
-- A clean-environment run (fresh `.venv`, `pytest`, `evaluate_all.py --check`) and
-  `results/run_manifest.json` (seeds, package versions, model revisions, input hashes).
-- Rehearse the six demo cases; prepare the viva points (one request end to end, the
-  baseline, one failure, one ablation).
+- fills in the author block, the contribution summary and the AI-declaration wording in
+  `docs/report/smartcart_report.md`, then rebuilds the Word file
+  (`python docs/report/build_docx.py`, needs pandoc) or edits the `.docx` directly;
+- decides whether `data/processed/cleaned_instacart_data.csv` and `scaled_features.csv`
+  stay in the public repository;
+- rehearses the six demo cases (`docs/report/viva_and_demo.md`);
+- optionally, does the second-person annotation review (Phase 4).
 
-Outstanding: the second-person annotation review (Phase 4), and independent reviews of
-the recipes and the Instacart mapping.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open
