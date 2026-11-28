@@ -18,7 +18,211 @@ Each phase starts only with the project owner's permission.
 | 8 | D6 associations and Track B | **Complete — 2026-11-28** (validation only; Track B test evaluated in Phase 11) |
 | 9 | D7 constrained solver and validator | **Complete — 2026-11-28** (dev only; test scenarios run in Phase 11) |
 | 10 | D8 Streamlit interface | **Complete — 2026-11-28** |
-| 11–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 11 is next) |
+| 11 | D9 experiments | **Complete — 2026-11-28** (test sets evaluated once, frozen configs) |
+| 12 | D10 report, package and demo | Not started; awaiting permission (next) |
+
+## Phase 11 — D9 experiments (complete, 2026-11-28)
+
+**What changed**
+
+- **Run configs** `configs/experiments/{E1,E2,E3,E4,A1,A2,A3,A4}.json` (E0 unchanged since
+  Phase 5). Each names its parser, retrieval method, product text, candidate count,
+  selector, filtering and (constrained runs) history and pair weights:
+
+  | Run | Parser | Retrieval | Selection |
+  | --- | --- | --- | --- |
+  | E0 | baseline | TF-IDF, legacy text, top 10 | independent cheapest, post-hoc filter |
+  | E1 | DistilBERT | as E0 | as E0 |
+  | E2 | DistilBERT | MiniLM, frozen text, top 40 | as E0 |
+  | E3 | DistilBERT | as E2 | CP-SAT, history 0, pair 0 |
+  | E4 | DistilBERT | as E2 | CP-SAT, history 0.1, pair 0.1 |
+  | A1 | baseline | as E4 | as E4 |
+  | A2 | DistilBERT | TF-IDF, frozen text, top 40 | as E4 |
+  | A3 | DistilBERT | as E4 | CP-SAT, history 0.1, pair 0 |
+  | A4 | DistilBERT | as E4 | independent cheapest, post-hoc filter (= E2 by construction) |
+
+- **`configs/experiments/evaluation.json`:** the run list, split, lock file, data paths,
+  the two modes, seeds 13/42/7, the bootstrap settings, the nine planned comparisons and
+  every output path.
+- **`src/smartcart/pipeline/experiment.py`:** one scenario through a run (parse with
+  up to 3 clarification turns, candidates, selection, validation), scoring against the
+  **gold** request, per-run metrics, mean and spread over seeds, and the paired
+  bootstrap over the 24 scenario families. Infeasibility counts as detected only through
+  `over_budget`/`incomplete` (independent selector) or `infeasible_in_scope` (CP-SAT); a
+  timeout never counts.
+- **`scripts/evaluate.py --config configs/experiments/<RUN>.json`:** one run, both modes.
+  On the test split it verifies `docs/benchmark_lock.md` first and refuses the dev-only
+  options (`--seeds`, `--dev-parser`). Writes
+  `results/predictions/runs/<RUN>_<mode>[_seed<N>].jsonl`,
+  `results/metrics/runs/<RUN>.json` and `<RUN>_latency.json` (cold load measured from
+  process start).
+- **`scripts/evaluate_components.py`:** the test evaluations deferred from Phases 6–8:
+  NLU (baseline and 3 DistilBERT seeds), retrieval (3 settings) and Track B (history =
+  training + validation orders, rules from training orders only). Writes
+  `results/metrics/test_components.json` and the per-example rows.
+- **`scripts/make_report.py [--check]`:** `results/metrics/phase11_summary.json`, the
+  tables `results/tables/{nlu,retrieval,baskets,comparisons,track_b}.md` (checked) and
+  `latency.md` (machine-dependent, not checked), and figures 14–18.
+- **`scripts/evaluate_all.py [--check]`:** lock check → components → the nine runs →
+  report. This is the one command behind every report table.
+- **`.gitignore`:** `results/tables/` is now tracked, so `make_report.py --check` works on
+  a fresh clone.
+- **`docs/failure_analysis.md`:** 16 cases from the test rows.
+- **`tests/unit/test_experiments.py`** (12 tests): every planned run has a frozen config
+  and the runs differ exactly as planned; the lock check; dev-only options refused on
+  test; which statuses count as detected infeasibility per selector; false rejections and
+  unnecessary questions; the harness reproduces the committed E0 and Phase 9 dev results; the family
+  bootstrap; and, once test outputs exist, rows and metrics for every run, mode and seed,
+  the 120/40/40 composition, every comparison present, and `make_report.py --check`.
+
+**How the test run was done**
+
+- The harness was first exercised on the **dev** split only (baseline parser,
+  `--dev-parser`; outputs in `data/interim/phase11_dev`, not committed).
+- The test split was then evaluated **once**, on the team's Windows laptop, with
+  `scripts/evaluate_all.py` (2026-11-28, 17:01–17:33 local time, log in
+  `data/interim/setup/phase11.log`). All five locked files matched
+  `docs/benchmark_lock.md`. No config, code or threshold was changed after it.
+- **Deviation from the plan, recorded honestly:** the Phase 11 configs and harness were
+  meant to be committed before the test run; that commit was skipped, so the run used
+  uncommitted files (HEAD was `e6f9ff4`). The SHA-256 checksums of all nine new config
+  files were taken when they were copied to the machine and again after the run, and are
+  identical; the files are committed unchanged in this phase. Everything the configs
+  point to (`configs/nlu_transformer.json` and the checkpoints, `configs/retrieval.json`,
+  `configs/associations.json`, `configs/solver.json`) was committed in Phases 6–9.
+
+**Verification evidence (the team's Windows machine)**
+
+- `scripts/evaluate_all.py --check` (2026-11-28, 18:23–18:56 local time): the lock check
+  passed, then the components, all nine runs and `make_report.py` rebuilt in memory and
+  matched the committed files exactly (80 `same` lines, 0 differences). The test-run
+  results are deterministic on this machine; latency files are not part of the check.
+- All eleven earlier `--check` scripts pass. `pytest -q`: **253 passed, 95 subtests** in
+  8 min 53 s (241 before, plus 12 in `test_experiments.py`). Log:
+  `data/interim/setup/phase11_check.log`.
+- **Completion check:** every run and mode has rows and metrics files; `evaluate_all.py`
+  reproduces every report table from the named configs; the test sets were evaluated with
+  frozen configs only.
+
+**Results (test split)**
+
+NLU, 150 examples (`results/tables/nlu.md`):
+
+| Parser | Intent macro-F1 (classifier only) | Intent macro-F1 | Slot micro-F1 | Request exact match |
+| --- | --- | --- | --- | --- |
+| E0 baseline | 0.788 | 0.842 | 0.947 | 0.773 |
+| DistilBERT (mean ± std, 3 seeds) | 0.936 ± 0.034 | 0.947 ± 0.028 | 0.972 ± 0.003 | 0.862 ± 0.006 |
+
+Budget exact: baseline 0.990, DistilBERT 0.971–0.981; servings exact: baseline 1.000,
+DistilBERT 0.974–0.987. Unnecessary clarifications: 14 and 14–16.
+
+Retrieval, 100 queries (`results/tables/retrieval.md`):
+
+| Setting | Recall@5 | Recall@10 | MRR | R@10 transliteration |
+| --- | --- | --- | --- | --- |
+| TF-IDF, legacy text, top 10 (E0) | 0.552 | 0.610 | 0.562 | 0.056 |
+| TF-IDF, frozen text | 0.549 | 0.610 | 0.555 | 0.056 |
+| MiniLM, frozen text | 0.696 | 0.764 | 0.713 | 0.111 |
+
+Baskets, 200 scenarios: 120 feasible, 40 infeasible, 40 clarification
+(`results/tables/baskets.md`; end-to-end DistilBERT runs are the mean over 3 seeds):
+
+| Run | Mode | Feasible success | Coverage | Violations among valid | Infeasible detected | False rejections | Clarification success | Unnecessary questions |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| E0 | gold input | 112/120 | 0.976 | 0 | 40/40 | 18 | 30/40 | 0 |
+| E0 | end to end | 109/120 | 0.959 | 0 | 39/40 | 19 | 26/40 | 2 |
+| E1 = E2 = A4 | end to end | 92.0 (91–93) | 0.851 | 3.0 (2–4) | 32.7 | 19.0 | 27.0 | 23.0 |
+| E3 = E4 = A2 = A3 | gold input | 120/120 | 1.000 | 0 | 40/40 | 0 | 40/40 | 0 |
+| E3 = E4 = A2 = A3 | end to end | 97.0 (96–98) | 0.822 | 3.0 (2–4) | 32.7 | 5.3 | 35.7 | 23.0 |
+| A1 | end to end | 117/120 | 0.975 | 0 | 39/40 | 1 | 36/40 | 2 |
+
+E1, E2 and A4 with gold input equal E0 (112/120, 18 false rejections); A1 with gold input
+equals E4. There were **0 solver timeouts** in every run.
+
+Paired differences in scenario success, 95% bootstrap interval over families
+(`results/tables/comparisons.md`):
+
+| Comparison | Gold input | End to end |
+| --- | --- | --- |
+| E1 − E0 (parser) | 0 | **−0.112** [−0.191, −0.048] |
+| E2 − E1 (retrieval) | 0 | 0 |
+| E3 − E2 (constrained selection) | **+0.090** [+0.064, +0.117] | **+0.068** [+0.041, +0.096] |
+| E4 − E3 (association terms) | 0 | 0 |
+| E4 − E0 (full system vs baseline) | **+0.090** [+0.064, +0.117] | −0.043 [−0.131, +0.032] |
+| A1 − E4 (baseline parser) | 0 | **+0.133** [+0.062, +0.218] |
+| A2 − E4 (TF-IDF retrieval) | 0 | 0 |
+| A3 − E4 (pair weight 0) | 0 | 0 |
+| A4 − E4 (independent selection) | **−0.090** [−0.117, −0.064] | **−0.068** [−0.096, −0.041] |
+
+Track B, final order of 7,413 users (2,587 excluded: no mapped ingredient in the target
+order) (`results/tables/track_b.md`):
+
+| Ranker | Recall@10 | NDCG@10 | New-item Recall@10 |
+| --- | --- | --- | --- |
+| Popularity | 0.502 | 0.361 | 0.261 |
+| Personal frequency | 0.703 | 0.582 | 0.104 |
+| Frequency + association | 0.686 | 0.572 | 0.073 |
+
+Association − frequency: NDCG@10 −0.0105 [−0.0122, −0.0089], Recall@10 −0.0170
+[−0.0204, −0.0135]. Frequency − popularity: NDCG@10 +0.221 [+0.215, +0.229].
+
+Latency (`results/tables/latency.md`, Windows 10 laptop, 4 CPUs): warm end-to-end p95 per
+scenario ≤ 0.42 s in every run (E2 highest; A1 0.035 s). Cold load 8.0 s for E0, 19.1 s
+for A1 (MiniLM), 24.5–31.9 s for DistilBERT runs.
+
+**Targets against actual values** (BUILD_PHASES section 6)
+
+| Target | Actual | |
+| --- | --- | --- |
+| Intent macro-F1 ≥ 0.85 | DistilBERT 0.947; baseline 0.842 | met (DistilBERT) / missed (baseline) |
+| Slot F1 ≥ 0.85 | 0.972 / 0.947 | met |
+| Exact numeric fields ≥ 95% | NLU test: budget 0.971–0.990, servings 0.974–1.000 | met |
+| Retrieval Recall@10 ≥ 0.90 | MiniLM 0.764 (TF-IDF 0.610) | **missed** |
+| Mean coverage ≥ 95% | gold input 1.000; E4 end to end 0.822; A1 0.975 | met with gold input and A1; **missed** by E4 end to end |
+| Valid complete success ≥ 90% | E4 gold 100%; E4 end to end 80.8%; A1 97.5%; E0 end to end 90.8% | met except E4 end to end |
+| 0 violations among valid | 0 with gold input and for the baseline parser; 2–4 per DistilBERT seed end to end | **missed** end to end with DistilBERT |
+| Infeasible detection ≥ 90% | gold 100%; E4 end to end 81.7%; A1 97.5% | met except E4 end to end |
+| Clarification within 3 turns ≥ 85% | E4 end to end 89%; A1 90%; E0 end to end 65% | met by E4 and A1 |
+| Warm p95 < 5 s | ≤ 0.42 s | met |
+| Track B: compare with baselines | frequency beats popularity; association lowers both metrics | reported |
+
+**Findings to carry into the report**
+
+- **RQ2 (constrained selection) — yes.** With the gold request, CP-SAT solves all 200
+  scenarios: every feasible basket valid, all 40 infeasible cases proven with a suggested
+  budget, 0 violations, 0 timeouts. E0's 18 failures are all diet scenarios where the
+  post-hoc filter drops a cheapest product that is `unknown` for the diet. The gain holds
+  end to end (+0.068).
+- **RQ1 (semantic retrieval) — better matching, no basket effect.** MiniLM beats TF-IDF by
+  0.154 Recall@10 on free-text queries, but E2 − E1 and A2 − E4 are exactly 0: the
+  pipeline queries canonical ingredient names, for which both pools contain the right
+  products. Transliterations stay unsolved by both (0.111 and 0.056).
+- **RQ3 (associations) — null on baskets, negative on Track B.** E4 = E3 and A3 = E4 on
+  every scenario (the terms cannot change selection, as Phase 8 showed). On Track B the
+  association term lowers NDCG@10 and new-item recall; the validation result holds on
+  test.
+- **The parser decides the end-to-end result, and the baseline wins.** DistilBERT leads on
+  the NLU test, but A1 (baseline parser) beats E4 by +0.133 end to end and E1 is below E0
+  by −0.112. DistilBERT's NLU lead is on revision, unsupported and list requests; on
+  `plan_meal`, 180 of the 200 basket scenarios, the two are level. The basket test uses
+  phrasings never seen in training ("We're having", "I'm avoiding", "for a family of N,
+  <budget> is my limit"), which the baseline's rules handle and DistilBERT often does not
+  (`docs/failure_analysis.md`, cases 3–8).
+- **Parser errors can produce baskets labelled valid that are wrong for the user** (2–4 per
+  DistilBERT seed: a missed "no meat", missed servings). The validator checks the request
+  it is given; the interface's "What I understood" panel is the safeguard.
+- The best end-to-end system measured is **A1** (baseline parser, MiniLM, CP-SAT):
+  192/200, 0 violations, 39/40 infeasible detected, 1 false rejection.
+
+**Open limitations**
+
+- All basket and NLU texts are template-generated (`docs/benchmark_policy.md`); the
+  parsers' ranking on real user text is unknown.
+- Prices are simulated PKR; no savings claim is possible.
+- The pre-run commit was skipped (see above); integrity rests on the recorded checksums.
+- Latency is from one laptop and is not part of `--check`.
+- Outstanding from earlier phases: the second-person annotation review (Phase 4) and the
+  independent recipe and Instacart-mapping reviews.
 
 ## Phase 10 — D8 Streamlit interface (complete, 2026-11-28)
 
@@ -1282,41 +1486,24 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 11 — D9 experiments.** This is the phase that reads the locked test sets, once,
-with frozen configs (`docs/benchmark_lock.md`).
+**Phase 12 — D10 report, package and demo** (BUILD_PHASES Phase 12). Nothing in it may
+change a result; every number in the report comes from the Phase 11 files.
 
-- `scripts/evaluate.py --config configs/experiments/<RUN>.json` for E0–E4 and A1–A4
-  (BUILD_PHASES Phase 11), each in two modes:
-  - component-isolated: the gold StructuredRequest, and a frozen candidate pool for the
-    selector comparison;
-  - end-to-end: predicted input.
-- Building blocks are in place:
-  - parsers: `smartcart.nlu.api.get_parser` (baseline, transformer × 3 seeds);
-  - retrieval: `retrieve_candidates` (tfidf/minilm, the frozen product text, k = 40;
-    E0 keeps its legacy text and top 10);
-  - selection: `optimization.cpsat.select_basket` (E3/E4), or E0's independent
-    selection with post-hoc filtering (E0, A4);
-  - scoring: `pipeline/constrained.score_scenario` (only `infeasible_in_scope` detects
-    infeasibility; timeouts are never infeasible).
-- Expected from the dev results, to be checked on test:
-  - E3 ≈ E2 except for diet scenarios;
-  - E3 = E4 and A3 = E4 on selection (the association terms are inactive);
-  - A2 shows the retrieval effect only where the pool matters.
-- Test-set results deferred from earlier phases:
-  - NLU test metrics for both parsers (Phase 6);
-  - `retrieval_test.json` for TF-IDF and MiniLM (Phase 7);
-  - Track B test orders, with history = training + validation orders (Phase 8);
-  - `basket_test.json` (200 scenarios) for every run.
-- Rows to `results/predictions/runs/<RUN>_<mode>.jsonl` and metrics per the plan's
-  section 8, with 3 seeds (mean and spread) and paired bootstrap over families. Also the
-  five figures, ≥10 failure analyses in `docs/failure_analysis.md`, and one command per
-  report table.
-
-Decided before Phase 11 (2026-11-28; the owner delegated the choice):
-- No optional parser variant is added. Phase 11 runs E0–E4 and A1–A4 as planned (see
-  `docs/nlu_failures.md`, "Decisions before freezing").
-- The NLU (Phase 6), retrieval (Phase 7) and Track B (Phase 8) test evaluations stay
-  deferred to Phase 11, so test data is read once, with frozen configs.
+- Finish the literature review (15 papers; the closest work read in full), using the
+  team's literature matrix in `docs/literature/`.
+- Write the report in `docs/report/` (abstract last): introduction, literature review,
+  methodology, implementation, results and discussion (from `results/tables/`, figures
+  14–18 and `docs/failure_analysis.md`), conclusion answering RQ1–RQ3.
+  - Report the baseline-parser win (A1 − E4), the null retrieval and association effects
+    on baskets and the missed targets as they are.
+  - State the skipped pre-run commit and the checksum evidence.
+- README: setup, the reproducible commands (`prepare_data`, `train_nlu`, `build_index`,
+  `mine_rules`, `evaluate_all`, `streamlit run app.py`), data and model acquisition, and
+  sample inputs.
+- A clean-environment run (fresh `.venv`, `pytest`, `evaluate_all.py --check`) and
+  `results/run_manifest.json` (seeds, package versions, model revisions, input hashes).
+- Rehearse the six demo cases; prepare the viva points (one request end to end, the
+  baseline, one failure, one ablation).
 
 Outstanding: the second-person annotation review (Phase 4), and independent reviews of
 the recipes and the Instacart mapping.

@@ -114,6 +114,7 @@ Run these before changing anything:
 .\.venv\Scripts\python scripts/evaluate_trackb.py --check
 .\.venv\Scripts\python scripts/run_solver.py --check
 .\.venv\Scripts\python scripts/run_demo_cases.py --check
+.\.venv\Scripts\python scripts/evaluate_all.py --check
 .\.venv\Scripts\python -m pytest
 ```
 
@@ -122,12 +123,16 @@ Expected results:
 - Every `--check` prints only `same` lines and exits without an error.
 - `build_index.py` (without `--check`) builds the git-ignored MiniLM index cache in
   `models\retrieval\` (Phase 7); retrieval also works without it, only slower to start.
-- `pytest` reports **241 passed** in about 7 minutes (Phase 10). pytest 9 hides the
+- `evaluate_all.py --check` (Phase 11) first prints `lock ok` for the five locked test
+  files, then rebuilds every Phase 11 result in memory and compares it with the committed
+  files. It takes about 30 minutes; it reads the test sets with the frozen configs and
+  changes nothing.
+- `pytest` reports **253 passed** in about 9 minutes (Phase 11). pytest 9 hides the
   passed-subtest count at the default verbosity; with `-q` or `-v` the summary also shows
   **95 subtests passed**.
 - If 3 tests are skipped, the checkpoints are missing or misplaced (go back to step 1).
 
-If anything differs, do not start Phase 7. Find the setup difference first and report it
+If anything differs, do not start the next phase. Find the setup difference first and report it
 to the teammate.
 
 To open the interface (Phase 10): `.\.venv\Scripts\python -m streamlit run app.py`. The first
@@ -145,10 +150,11 @@ about 4 minutes:
 1. `CLAUDE.md`: working rules (Claude Code reads it automatically).
 2. `docs/BUILD_PHASES.md`: the plan. Read sections 1–4 once, then the phase you are on.
 3. `docs/progress.md`: what is done, what was found, and the **"Next task"** section at
-   the bottom, which describes Phase 7.
+   the bottom, which describes the next phase.
 4. `docs/benchmark_policy.md`: what the benchmark labels mean.
 5. `docs/benchmark_lock.md`: the locked test files.
-6. `docs/nlu_failures.md`: Phase 6 findings and an open decision.
+6. `docs/nlu_failures.md`: Phase 6 findings and the decision taken before Phase 11.
+7. `docs/failure_analysis.md`: what fails on the test split, and why (Phase 11).
 
 ## 7. Working together on GitHub
 
@@ -161,8 +167,8 @@ about 4 minutes:
 | Item | Where | Status |
 | --- | --- | --- |
 | Fix the diet check (`is True` must be `== "allowed"`) | `src/smartcart/retrieval/filtering.py` | Done in Phase 7 |
-| Product text for both retrievers | `configs/retrieval.json` | Decided in Phase 7 (`display_name_ingredient`); E0 keeps the Phase 1 text until Phase 11 |
-| NLU and retrieval test-set metrics | Phase 11 | Deferred on purpose: one look at test data |
+| Product text for both retrievers | `configs/retrieval.json` | Decided in Phase 7 (`display_name_ingredient`); E0 keeps the Phase 1 text (Phase 11 ran E0 as frozen) |
+| NLU, retrieval and Track B test-set metrics | `results/metrics/test_components.json` | Done in Phase 11 (one test run, frozen configs) |
 | Optional parser variants (hybrid; snapping spans to the catalog) | `docs/nlu_failures.md` | Decided 2026-11-28: not added; Phase 11 runs E0–E4 and A1–A4 as planned |
 | Second-person review of 180 annotations | `docs/annotation_review.md` | Pending; needs a teammate |
 | Independent review of the 42 recipes, and of the 300 Instacart mapping rows | `docs/progress.md` (Phases 2–3) | Pending |
