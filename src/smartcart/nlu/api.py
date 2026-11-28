@@ -69,6 +69,11 @@ def load_transformer_parser(catalog: dict, config: dict, seed: int, root: Path =
 
 def parse_request(text: str, catalog: dict, parser: str = "baseline", session: dict | None = None,
                   request_id: str | None = None, seed: int | None = None) -> dict:
+    return get_parser(catalog, parser, seed).parse(text, session=session, request_id=request_id)
+
+
+def get_parser(catalog: dict, parser: str = "baseline", seed: int | None = None):
+    """The cached parser object (``parse(text, session)`` and ``answer(request, text)``)."""
     if parser not in {"baseline", "transformer"}:
         raise ValueError(f"unknown parser {parser}")
     if parser == "transformer":
@@ -82,4 +87,4 @@ def parse_request(text: str, catalog: dict, parser: str = "baseline", session: d
         if key not in _PARSERS:
             config = json.loads(DEFAULT_CONFIG.read_text(encoding="utf-8"))
             _PARSERS[key] = build_baseline_parser(catalog, config)
-    return _PARSERS[key].parse(text, session=session, request_id=request_id)
+    return _PARSERS[key]
