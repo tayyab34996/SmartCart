@@ -160,12 +160,15 @@ the most serious kind.**
   - On the NLU test it leads clearly: intent macro-F1 0.947 vs 0.842, exact match 0.862 vs
     0.773.
   - That lead comes from `revise_basket`, `unsupported` and list requests. On
-    `plan_meal`, which is 180 of the 200 basket scenarios, the two parsers are level on
-    the NLU test (exact match 49/60 vs 50/60).
+    `plan_meal`, which is 180 of the 200 basket scenarios, the baseline is level with or
+    ahead of DistilBERT on the NLU test (exact match 50/60 vs 45–50/60 across seeds).
   - In the basket test, DistilBERT is hit by held-out templates ("We're having", "I'm
     avoiding", "for a family of N, <budget>") that the baseline's dictionaries and rules
     handle.
   - Result: A1 − E4 = +0.133 [+0.062, +0.218] end to end.
+  - Caveat: the baseline's cue words were written by a build agent that had read the
+    benchmark generator, which contains the test templates (`docs/progress.md`, Phase 5).
+    No test example was parsed before the test run, but this may favour the baseline.
 - **Parser errors can produce baskets labelled valid that are wrong for the user**
   (cases 9–10). The validator can only check the request it is given. A deployed system
   would need to confirm the extracted constraints with the user, which the interface

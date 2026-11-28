@@ -115,6 +115,7 @@ Run these before changing anything:
 .\.venv\Scripts\python scripts/run_solver.py --check
 .\.venv\Scripts\python scripts/run_demo_cases.py --check
 .\.venv\Scripts\python scripts/evaluate_all.py --check
+.\.venv\Scripts\python scripts/make_manifest.py --check
 .\.venv\Scripts\python -m pytest
 ```
 
@@ -127,7 +128,10 @@ Expected results:
   files, then rebuilds every Phase 11 result in memory and compares it with the committed
   files. It takes about 30 minutes; it reads the test sets with the frozen configs and
   changes nothing.
-- `pytest` reports **253 passed** in about 9 minutes (Phase 11). pytest 9 hides the
+- `make_manifest.py --check` (Phase 12) also confirms that the installed packages match
+  `requirements-lock.txt` and that the raw archives and checkpoints have the recorded
+  hashes.
+- `pytest` reports **259 passed** in about 12 minutes (Phase 12). pytest 9 hides the
   passed-subtest count at the default verbosity; with `-q` or `-v` the summary also shows
   **95 subtests passed**.
 - If 3 tests are skipped, the checkpoints are missing or misplaced (go back to step 1).

@@ -19,7 +19,7 @@ Each phase starts only with the project owner's permission.
 | 9 | D7 constrained solver and validator | **Complete — 2026-11-28** (dev only; test scenarios run in Phase 11) |
 | 10 | D8 Streamlit interface | **Complete — 2026-11-28** |
 | 11 | D9 experiments | **Complete — 2026-11-28** (test sets evaluated once, frozen configs) |
-| 12 | D10 report, package and demo | Not started; awaiting permission (next) |
+| 12 | D10 report, package and demo | In progress (clean-environment run pending) |
 
 ## Phase 11 — D9 experiments (complete, 2026-11-28)
 
@@ -204,10 +204,15 @@ for A1 (MiniLM), 24.5–31.9 s for DistilBERT runs.
 - **The parser decides the end-to-end result, and the baseline wins.** DistilBERT leads on
   the NLU test, but A1 (baseline parser) beats E4 by +0.133 end to end and E1 is below E0
   by −0.112. DistilBERT's NLU lead is on revision, unsupported and list requests; on
-  `plan_meal`, 180 of the 200 basket scenarios, the two are level. The basket test uses
+  `plan_meal`, 180 of the 200 basket scenarios, the baseline is level or ahead (exact
+  match 50/60 vs 45–50/60). The basket test uses
   phrasings never seen in training ("We're having", "I'm avoiding", "for a family of N,
   <budget> is my limit"), which the baseline's rules handle and DistilBERT often does not
   (`docs/failure_analysis.md`, cases 3–8).
+- **Caveat on the baseline's win:** its cue words were written by a build agent that had
+  read the benchmark generator, which contains the test templates (Phase 5 limitation).
+  No test example was parsed before the test run, but the report must state that A1 may
+  be favoured by this.
 - **Parser errors can produce baskets labelled valid that are wrong for the user** (2–4 per
   DistilBERT seed: a missed "no meat", missed servings). The validator checks the request
   it is given; the interface's "What I understood" panel is the safeguard.
