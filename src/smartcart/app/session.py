@@ -1,6 +1,6 @@
 """The interface's logic, kept out of Streamlit so it can be tested (Phase 10).
 
-``app.py`` only draws widgets; every step it shows comes from these functions:
+``website/app.py`` only draws widgets; every step it shows comes from these functions:
 
 - ``parse`` / ``answer`` / ``revise``: the frozen parser (DistilBERT by default, the E0
   baseline when the checkpoints are missing);

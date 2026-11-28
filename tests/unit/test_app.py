@@ -120,7 +120,7 @@ class AppUiTests(unittest.TestCase):
         cls.AppTest = AppTest
 
     def app(self):
-        at = self.AppTest.from_file(str(ROOT / "app.py"), default_timeout=600).run()
+        at = self.AppTest.from_file(str(ROOT / "website" / "app.py"), default_timeout=600).run()
         self.assertFalse(at.exception)
         at.selectbox(key="parser").set_value(P).run()
         return at

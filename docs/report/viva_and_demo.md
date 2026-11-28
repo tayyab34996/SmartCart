@@ -9,7 +9,7 @@ conversations, DistilBERT parser) or from the test-split rows in
 ```powershell
 cd C:\SmartCart
 $env:HF_HUB_OFFLINE = "1"
-.\.venv\Scripts\python -m streamlit run app.py
+.\.venv\Scripts\python -m streamlit run website/app.py
 ```
 
 Start it a few minutes early: the first load takes about half a minute (PyTorch,

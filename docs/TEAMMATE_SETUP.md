@@ -139,7 +139,7 @@ Expected results:
 If anything differs, do not start the next phase. Find the setup difference first and report it
 to the teammate.
 
-To open the interface (Phase 10): `.\.venv\Scripts\python -m streamlit run app.py`. The first
+To open the interface (Phase 10): `.\.venv\Scripts\python -m streamlit run website/app.py`. The first
 load takes about half a minute while the models load.
 
 Optional, but it reproduces the raw-data audit report (`docs/data_audit.md`), which takes

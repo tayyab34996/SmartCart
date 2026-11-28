@@ -384,7 +384,7 @@ files. No configuration, code or threshold was changed afterwards.
 | `optimization` | Pack arithmetic and the CP-SAT selector |
 | `explanations` | Sentences built only from verified basket records |
 | `pipeline` | E0, the constrained pipeline and the Phase 11 experiment harness |
-| `app` | Interface logic (`session.py`); `app.py` only draws Streamlit widgets |
+| `app` | Interface logic (`session.py`); `website/app.py` only draws Streamlit widgets |
 
 Each pipeline step is a script with a frozen configuration and a `--check` flag that
 rebuilds its outputs in memory and compares them with the committed files. The test suite

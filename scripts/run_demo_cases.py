@@ -6,7 +6,7 @@ Usage:
 
 Each case in ``configs/app.json`` is a short conversation (parse, answer, confirm a
 recipe, edit, revise). The cases go through ``smartcart.app.session``, the same
-functions ``app.py`` calls, with the app's configured parser (DistilBERT, or the E0
+functions ``website/app.py`` calls, with the app's configured parser (DistilBERT, or the E0
 baseline when the checkpoints are missing). The record keeps, per step: the extracted
 fields, any clarification question and suggestions, the status, the basket total, the
 explanation summary, "what changed", and the CSV and JSON exports' sizes. Each case is

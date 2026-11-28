@@ -1,6 +1,6 @@
 """SmartCart: an offline grocery-basket assistant (Phase 10, D8).
 
-Run with:  .\\.venv\\Scripts\\python -m streamlit run app.py
+Run with:  .\\.venv\\Scripts\\python -m streamlit run website/app.py
 
 Every value shown comes from the frozen pipeline: the parser, constrained selection
 (``configs/solver.json``), the independent validator and explanations built from verified
@@ -13,7 +13,7 @@ import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 os.environ.setdefault("HF_HUB_OFFLINE", "1")

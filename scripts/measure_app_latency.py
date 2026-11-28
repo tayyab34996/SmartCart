@@ -3,7 +3,7 @@
 Usage:
     python scripts/measure_app_latency.py
 
-Runs ``app.py`` headless with Streamlit's ``AppTest`` in this (fresh) process:
+Runs ``website/app.py`` headless with Streamlit's ``AppTest`` in this (fresh) process:
 
 - **cold load**: from process start to the first rendered page, which loads the parser,
   the catalog and the MiniLM index (the app's cached warm-up);
@@ -51,7 +51,7 @@ def main() -> int:
 
     config = S.config()
     parser, note = S.choose_parser()
-    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=600)
+    app = AppTest.from_file(str(ROOT / "website" / "app.py"), default_timeout=600)
     app.run()
     cold = time.perf_counter() - START
     if app.exception:
