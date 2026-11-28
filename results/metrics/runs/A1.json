@@ -1,0 +1,103 @@
+{
+  "run": "A1",
+  "split": "test",
+  "description": "Ablation: E4 with the E0 baseline parser. Phase 11 run; frozen before any test data was read.",
+  "settings": {
+    "run": "A1",
+    "parser": "baseline",
+    "retrieval": {
+      "method": "minilm",
+      "product_text": "display_name_ingredient",
+      "top_k": 40
+    },
+    "selection": "constrained",
+    "max_turns": 3,
+    "weights": {
+      "relevance": 1.0,
+      "history": 0.1,
+      "pair": 0.1,
+      "cost": 0.25,
+      "surplus": 0.0
+    }
+  },
+  "gold_input": {
+    "scenarios": 200,
+    "success": 200,
+    "success_rate": 1.0,
+    "valid_complete_success_feasible": 1.0,
+    "feasible": {
+      "scenarios": 120,
+      "success": 120
+    },
+    "mean_coverage_feasible": 1.0,
+    "outputs_labelled_valid": 158,
+    "violations_among_valid": 0,
+    "infeasible": {
+      "scenarios": 40,
+      "detected": 40
+    },
+    "infeasible_detection_rate": 1.0,
+    "false_rejections": 0,
+    "clarification": {
+      "scenarios": 40,
+      "success_within_turns": 40,
+      "asked": 40,
+      "type_match": 40
+    },
+    "clarification_success_rate": 1.0,
+    "unnecessary_clarifications": 0,
+    "solver_timeouts": 0,
+    "statuses": {
+      "infeasible_in_scope": 42,
+      "valid": 158
+    },
+    "has_history_subset": {
+      "scenarios": 40,
+      "success": 40
+    }
+  },
+  "end_to_end": {
+    "seeds": null,
+    "per_seed": {
+      "single": {
+        "scenarios": 200,
+        "success": 192,
+        "success_rate": 0.96,
+        "valid_complete_success_feasible": 0.975,
+        "feasible": {
+          "scenarios": 120,
+          "success": 117
+        },
+        "mean_coverage_feasible": 0.975,
+        "outputs_labelled_valid": 152,
+        "violations_among_valid": 0,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 39
+        },
+        "infeasible_detection_rate": 0.975,
+        "false_rejections": 1,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 36,
+          "asked": 36,
+          "type_match": 36
+        },
+        "clarification_success_rate": 0.9,
+        "unnecessary_clarifications": 2,
+        "solver_timeouts": 0,
+        "statuses": {
+          "infeasible_in_scope": 42,
+          "invalid_request": 3,
+          "needs_clarification": 2,
+          "unsupported": 1,
+          "valid": 152
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 37
+        }
+      }
+    }
+  }
+}

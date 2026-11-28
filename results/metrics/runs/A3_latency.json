@@ -1,0 +1,16 @@
+{
+  "cold_load_s": 20.92,
+  "gold_input": {
+    "n": 200,
+    "p50": 0.0138,
+    "p95": 0.0589,
+    "max": 8.8287
+  },
+  "end_to_end": {
+    "n": 600,
+    "p50": 0.1182,
+    "p95": 0.1841,
+    "max": 0.6709
+  },
+  "note": "machine-dependent; not part of --check. cold_load_s runs from process start to the first parser and retrieval index being ready; per-scenario times include parsing, the clarification dialogue and selection"
+}

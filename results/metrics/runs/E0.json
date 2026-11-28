@@ -1,0 +1,98 @@
+{
+  "run": "E0",
+  "split": "test",
+  "description": "Baseline: TF-IDF + LinearSVC intent, rule/dictionary slots, TF-IDF retrieval per ingredient, independent cheapest-option selection, post-hoc diet and budget filtering.",
+  "settings": {
+    "run": "E0",
+    "parser": "baseline",
+    "retrieval": {
+      "method": "tfidf",
+      "product_text": "legacy",
+      "top_k": 10
+    },
+    "selection": "independent_cheapest",
+    "max_turns": 3
+  },
+  "gold_input": {
+    "scenarios": 200,
+    "success": 182,
+    "success_rate": 0.91,
+    "valid_complete_success_feasible": 0.933333,
+    "feasible": {
+      "scenarios": 120,
+      "success": 112
+    },
+    "mean_coverage_feasible": 0.97585,
+    "outputs_labelled_valid": 140,
+    "violations_among_valid": 0,
+    "infeasible": {
+      "scenarios": 40,
+      "detected": 40
+    },
+    "infeasible_detection_rate": 1.0,
+    "false_rejections": 18,
+    "clarification": {
+      "scenarios": 40,
+      "success_within_turns": 30,
+      "asked": 40,
+      "type_match": 40
+    },
+    "clarification_success_rate": 0.75,
+    "unnecessary_clarifications": 0,
+    "solver_timeouts": 0,
+    "statuses": {
+      "incomplete": 35,
+      "over_budget": 25,
+      "valid": 140
+    },
+    "has_history_subset": {
+      "scenarios": 40,
+      "success": 37
+    }
+  },
+  "end_to_end": {
+    "seeds": null,
+    "per_seed": {
+      "single": {
+        "scenarios": 200,
+        "success": 174,
+        "success_rate": 0.87,
+        "valid_complete_success_feasible": 0.908333,
+        "feasible": {
+          "scenarios": 120,
+          "success": 109
+        },
+        "mean_coverage_feasible": 0.959183,
+        "outputs_labelled_valid": 134,
+        "violations_among_valid": 0,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 39
+        },
+        "infeasible_detection_rate": 0.975,
+        "false_rejections": 19,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 26,
+          "asked": 36,
+          "type_match": 36
+        },
+        "clarification_success_rate": 0.65,
+        "unnecessary_clarifications": 2,
+        "solver_timeouts": 0,
+        "statuses": {
+          "incomplete": 34,
+          "needs_clarification": 2,
+          "no_requirements": 3,
+          "over_budget": 26,
+          "unsupported": 1,
+          "valid": 134
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 34
+        }
+      }
+    }
+  }
+}

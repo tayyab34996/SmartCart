@@ -1,0 +1,226 @@
+{
+  "run": "E2",
+  "split": "test",
+  "description": "E1 with MiniLM retrieval as frozen in Phase 7 (product text display_name_ingredient, 40 candidates). Independent selection with post-hoc filtering. Phase 11 run; frozen before any test data was read.",
+  "settings": {
+    "run": "E2",
+    "parser": "transformer",
+    "retrieval": {
+      "method": "minilm",
+      "product_text": "display_name_ingredient",
+      "top_k": 40
+    },
+    "selection": "independent_cheapest",
+    "max_turns": 3
+  },
+  "gold_input": {
+    "scenarios": 200,
+    "success": 182,
+    "success_rate": 0.91,
+    "valid_complete_success_feasible": 0.933333,
+    "feasible": {
+      "scenarios": 120,
+      "success": 112
+    },
+    "mean_coverage_feasible": 0.97585,
+    "outputs_labelled_valid": 140,
+    "violations_among_valid": 0,
+    "infeasible": {
+      "scenarios": 40,
+      "detected": 40
+    },
+    "infeasible_detection_rate": 1.0,
+    "false_rejections": 18,
+    "clarification": {
+      "scenarios": 40,
+      "success_within_turns": 30,
+      "asked": 40,
+      "type_match": 40
+    },
+    "clarification_success_rate": 0.75,
+    "unnecessary_clarifications": 0,
+    "solver_timeouts": 0,
+    "statuses": {
+      "incomplete": 35,
+      "over_budget": 25,
+      "valid": 140
+    },
+    "has_history_subset": {
+      "scenarios": 40,
+      "success": 37
+    }
+  },
+  "end_to_end": {
+    "seeds": [
+      13,
+      42,
+      7
+    ],
+    "per_seed": {
+      "13": {
+        "scenarios": 200,
+        "success": 150,
+        "success_rate": 0.75,
+        "valid_complete_success_feasible": 0.758333,
+        "feasible": {
+          "scenarios": 120,
+          "success": 91
+        },
+        "mean_coverage_feasible": 0.855761,
+        "outputs_labelled_valid": 121,
+        "violations_among_valid": 3,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 32
+        },
+        "infeasible_detection_rate": 0.8,
+        "false_rejections": 21,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 27,
+          "asked": 37,
+          "type_match": 36
+        },
+        "clarification_success_rate": 0.675,
+        "unnecessary_clarifications": 23,
+        "solver_timeouts": 0,
+        "statuses": {
+          "incomplete": 26,
+          "needs_clarification": 24,
+          "over_budget": 29,
+          "valid": 121
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 29
+        }
+      },
+      "42": {
+        "scenarios": 200,
+        "success": 152,
+        "success_rate": 0.76,
+        "valid_complete_success_feasible": 0.775,
+        "feasible": {
+          "scenarios": 120,
+          "success": 93
+        },
+        "mean_coverage_feasible": 0.849511,
+        "outputs_labelled_valid": 124,
+        "violations_among_valid": 4,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 34
+        },
+        "infeasible_detection_rate": 0.85,
+        "false_rejections": 17,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 25,
+          "asked": 35,
+          "type_match": 33
+        },
+        "clarification_success_rate": 0.625,
+        "unnecessary_clarifications": 22,
+        "solver_timeouts": 0,
+        "statuses": {
+          "incomplete": 25,
+          "needs_clarification": 24,
+          "over_budget": 27,
+          "valid": 124
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 30
+        }
+      },
+      "7": {
+        "scenarios": 200,
+        "success": 153,
+        "success_rate": 0.765,
+        "valid_complete_success_feasible": 0.766667,
+        "feasible": {
+          "scenarios": 120,
+          "success": 92
+        },
+        "mean_coverage_feasible": 0.848122,
+        "outputs_labelled_valid": 122,
+        "violations_among_valid": 2,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 32
+        },
+        "infeasible_detection_rate": 0.8,
+        "false_rejections": 19,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 29,
+          "asked": 39,
+          "type_match": 38
+        },
+        "clarification_success_rate": 0.725,
+        "unnecessary_clarifications": 24,
+        "solver_timeouts": 0,
+        "statuses": {
+          "incomplete": 27,
+          "needs_clarification": 25,
+          "over_budget": 26,
+          "valid": 122
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 29
+        }
+      }
+    },
+    "across_seeds": {
+      "success_rate": {
+        "mean": 0.758333,
+        "std": 0.006236,
+        "min": 0.75,
+        "max": 0.765
+      },
+      "valid_complete_success_feasible": {
+        "mean": 0.766667,
+        "std": 0.006804,
+        "min": 0.758333,
+        "max": 0.775
+      },
+      "mean_coverage_feasible": {
+        "mean": 0.851131,
+        "std": 0.003322,
+        "min": 0.848122,
+        "max": 0.855761
+      },
+      "infeasible_detection_rate": {
+        "mean": 0.816667,
+        "std": 0.02357,
+        "min": 0.8,
+        "max": 0.85
+      },
+      "clarification_success_rate": {
+        "mean": 0.675,
+        "std": 0.040825,
+        "min": 0.625,
+        "max": 0.725
+      },
+      "violations_among_valid": {
+        "mean": 3,
+        "std": 0.816497,
+        "min": 2,
+        "max": 4
+      },
+      "false_rejections": {
+        "mean": 19,
+        "std": 1.632993,
+        "min": 17,
+        "max": 21
+      },
+      "unnecessary_clarifications": {
+        "mean": 23,
+        "std": 0.816497,
+        "min": 22,
+        "max": 24
+      }
+    }
+  }
+}

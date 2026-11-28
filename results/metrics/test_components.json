@@ -1,0 +1,1367 @@
+{
+  "split": "test",
+  "nlu": {
+    "examples": 150,
+    "baseline": {
+      "examples": 150,
+      "intent_classifier_only": {
+        "accuracy": 0.806667,
+        "macro_f1": 0.787543,
+        "per_class": {
+          "build_grocery_list": {
+            "precision": 0.815789,
+            "recall": 0.861111,
+            "f1": 0.837838,
+            "support": 36
+          },
+          "plan_meal": {
+            "precision": 0.779412,
+            "recall": 0.883333,
+            "f1": 0.828125,
+            "support": 60
+          },
+          "revise_basket": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "support": 30
+          },
+          "unsupported": {
+            "precision": 0.928571,
+            "recall": 0.541667,
+            "f1": 0.684211,
+            "support": 24
+          }
+        },
+        "labels": [
+          "build_grocery_list",
+          "plan_meal",
+          "revise_basket",
+          "unsupported"
+        ],
+        "confusion_matrix": [
+          [
+            31,
+            5,
+            0,
+            0
+          ],
+          [
+            5,
+            53,
+            2,
+            0
+          ],
+          [
+            2,
+            3,
+            24,
+            1
+          ],
+          [
+            0,
+            7,
+            4,
+            13
+          ]
+        ]
+      },
+      "intent": {
+        "accuracy": 0.853333,
+        "macro_f1": 0.842017,
+        "per_class": {
+          "build_grocery_list": {
+            "precision": 0.861111,
+            "recall": 0.861111,
+            "f1": 0.861111,
+            "support": 36
+          },
+          "plan_meal": {
+            "precision": 0.774648,
+            "recall": 0.916667,
+            "f1": 0.839695,
+            "support": 60
+          },
+          "revise_basket": {
+            "precision": 1.0,
+            "recall": 0.966667,
+            "f1": 0.983051,
+            "support": 30
+          },
+          "unsupported": {
+            "precision": 0.928571,
+            "recall": 0.541667,
+            "f1": 0.684211,
+            "support": 24
+          }
+        },
+        "labels": [
+          "build_grocery_list",
+          "plan_meal",
+          "revise_basket",
+          "unsupported"
+        ],
+        "confusion_matrix": [
+          [
+            31,
+            5,
+            0,
+            0
+          ],
+          [
+            5,
+            55,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            29,
+            1
+          ],
+          [
+            0,
+            11,
+            0,
+            13
+          ]
+        ]
+      },
+      "slots": {
+        "micro": {
+          "precision": 0.979845,
+          "recall": 0.915942,
+          "f1": 0.946816,
+          "tp": 632,
+          "fp": 13,
+          "fn": 58
+        },
+        "per_label": {
+          "MEAL": {
+            "precision": 0.9,
+            "recall": 0.947368,
+            "f1": 0.923077,
+            "tp": 54,
+            "fp": 6,
+            "fn": 3
+          },
+          "PRODUCT": {
+            "precision": 0.975,
+            "recall": 0.866667,
+            "f1": 0.917647,
+            "tp": 117,
+            "fp": 3,
+            "fn": 18
+          },
+          "BUDGET": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 84,
+            "fp": 0,
+            "fn": 0
+          },
+          "CURRENCY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 63,
+            "fp": 0,
+            "fn": 0
+          },
+          "SERVINGS": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 57,
+            "fp": 0,
+            "fn": 0
+          },
+          "QUANTITY": {
+            "precision": 1.0,
+            "recall": 0.884058,
+            "f1": 0.938462,
+            "tp": 122,
+            "fp": 0,
+            "fn": 16
+          },
+          "UNIT": {
+            "precision": 1.0,
+            "recall": 0.91453,
+            "f1": 0.955357,
+            "tp": 107,
+            "fp": 0,
+            "fn": 10
+          },
+          "DIET": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 15,
+            "fp": 0,
+            "fn": 0
+          },
+          "EXCLUSION": {
+            "precision": 0.636364,
+            "recall": 0.583333,
+            "f1": 0.608696,
+            "tp": 7,
+            "fp": 4,
+            "fn": 5
+          },
+          "PANTRY": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.666667,
+            "tp": 6,
+            "fp": 0,
+            "fn": 6
+          }
+        }
+      },
+      "quantity_attachment": {
+        "accuracy": 0.87451,
+        "correct": 223,
+        "total": 255
+      },
+      "budget": {
+        "exact_accuracy": 0.990476,
+        "correct": 104,
+        "gold_set": 105,
+        "spurious_when_gold_unset": 0,
+        "gold_unset": 45
+      },
+      "servings": {
+        "exact_accuracy": 1.0,
+        "correct": 78,
+        "gold_set": 78,
+        "spurious_when_gold_unset": 0,
+        "gold_unset": 72
+      },
+      "clarification": {
+        "gold_clarifications": 27,
+        "predicted_clarifications": 36,
+        "recall": 0.814815,
+        "precision": 0.611111,
+        "type_accuracy": 0.740741,
+        "unnecessary": 14
+      },
+      "request_exact_match": {
+        "accuracy": 0.773333,
+        "correct": 116,
+        "total": 150
+      }
+    },
+    "transformer": {
+      "per_seed": {
+        "13": {
+          "examples": 150,
+          "intent_classifier_only": {
+            "accuracy": 0.986667,
+            "macro_f1": 0.98125,
+            "per_class": {
+              "build_grocery_list": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              },
+              "plan_meal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 60
+              },
+              "revise_basket": {
+                "precision": 0.966667,
+                "recall": 0.966667,
+                "f1": 0.966667,
+                "support": 30
+              },
+              "unsupported": {
+                "precision": 0.958333,
+                "recall": 0.958333,
+                "f1": 0.958333,
+                "support": 24
+              }
+            },
+            "labels": [
+              "build_grocery_list",
+              "plan_meal",
+              "revise_basket",
+              "unsupported"
+            ],
+            "confusion_matrix": [
+              [
+                36,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                60,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                29,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                23
+              ]
+            ]
+          },
+          "intent": {
+            "accuracy": 0.986667,
+            "macro_f1": 0.98328,
+            "per_class": {
+              "build_grocery_list": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              },
+              "plan_meal": {
+                "precision": 0.983607,
+                "recall": 1.0,
+                "f1": 0.991736,
+                "support": 60
+              },
+              "revise_basket": {
+                "precision": 1.0,
+                "recall": 0.966667,
+                "f1": 0.983051,
+                "support": 30
+              },
+              "unsupported": {
+                "precision": 0.958333,
+                "recall": 0.958333,
+                "f1": 0.958333,
+                "support": 24
+              }
+            },
+            "labels": [
+              "build_grocery_list",
+              "plan_meal",
+              "revise_basket",
+              "unsupported"
+            ],
+            "confusion_matrix": [
+              [
+                36,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                60,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                29,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                23
+              ]
+            ]
+          },
+          "slots": {
+            "micro": {
+              "precision": 0.957447,
+              "recall": 0.978261,
+              "f1": 0.967742,
+              "tp": 675,
+              "fp": 30,
+              "fn": 15
+            },
+            "per_label": {
+              "MEAL": {
+                "precision": 0.87931,
+                "recall": 0.894737,
+                "f1": 0.886957,
+                "tp": 51,
+                "fp": 7,
+                "fn": 6
+              },
+              "PRODUCT": {
+                "precision": 0.992647,
+                "recall": 1.0,
+                "f1": 0.99631,
+                "tp": 135,
+                "fp": 1,
+                "fn": 0
+              },
+              "BUDGET": {
+                "precision": 0.988235,
+                "recall": 1.0,
+                "f1": 0.994083,
+                "tp": 84,
+                "fp": 1,
+                "fn": 0
+              },
+              "CURRENCY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 63,
+                "fp": 0,
+                "fn": 0
+              },
+              "SERVINGS": {
+                "precision": 1.0,
+                "recall": 0.982456,
+                "f1": 0.99115,
+                "tp": 56,
+                "fp": 0,
+                "fn": 1
+              },
+              "QUANTITY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 138,
+                "fp": 0,
+                "fn": 0
+              },
+              "UNIT": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 117,
+                "fp": 0,
+                "fn": 0
+              },
+              "DIET": {
+                "precision": 0.590909,
+                "recall": 0.866667,
+                "f1": 0.702703,
+                "tp": 13,
+                "fp": 9,
+                "fn": 2
+              },
+              "EXCLUSION": {
+                "precision": 0.636364,
+                "recall": 0.583333,
+                "f1": 0.608696,
+                "tp": 7,
+                "fp": 4,
+                "fn": 5
+              },
+              "PANTRY": {
+                "precision": 0.578947,
+                "recall": 0.916667,
+                "f1": 0.709677,
+                "tp": 11,
+                "fp": 8,
+                "fn": 1
+              }
+            }
+          },
+          "quantity_attachment": {
+            "accuracy": 0.996078,
+            "correct": 254,
+            "total": 255
+          },
+          "budget": {
+            "exact_accuracy": 0.980952,
+            "correct": 103,
+            "gold_set": 105,
+            "spurious_when_gold_unset": 0,
+            "gold_unset": 45
+          },
+          "servings": {
+            "exact_accuracy": 0.987179,
+            "correct": 77,
+            "gold_set": 78,
+            "spurious_when_gold_unset": 0,
+            "gold_unset": 72
+          },
+          "clarification": {
+            "gold_clarifications": 27,
+            "predicted_clarifications": 39,
+            "recall": 0.925926,
+            "precision": 0.641026,
+            "type_accuracy": 0.851852,
+            "unnecessary": 14
+          },
+          "request_exact_match": {
+            "accuracy": 0.866667,
+            "correct": 130,
+            "total": 150
+          }
+        },
+        "42": {
+          "examples": 150,
+          "intent_classifier_only": {
+            "accuracy": 0.933333,
+            "macro_f1": 0.900735,
+            "per_class": {
+              "build_grocery_list": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              },
+              "plan_meal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 60
+              },
+              "revise_basket": {
+                "precision": 0.763158,
+                "recall": 0.966667,
+                "f1": 0.852941,
+                "support": 30
+              },
+              "unsupported": {
+                "precision": 0.9375,
+                "recall": 0.625,
+                "f1": 0.75,
+                "support": 24
+              }
+            },
+            "labels": [
+              "build_grocery_list",
+              "plan_meal",
+              "revise_basket",
+              "unsupported"
+            ],
+            "confusion_matrix": [
+              [
+                36,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                60,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                29,
+                1
+              ],
+              [
+                0,
+                0,
+                9,
+                15
+              ]
+            ]
+          },
+          "intent": {
+            "accuracy": 0.933333,
+            "macro_f1": 0.915821,
+            "per_class": {
+              "build_grocery_list": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              },
+              "plan_meal": {
+                "precision": 0.869565,
+                "recall": 1.0,
+                "f1": 0.930233,
+                "support": 60
+              },
+              "revise_basket": {
+                "precision": 1.0,
+                "recall": 0.966667,
+                "f1": 0.983051,
+                "support": 30
+              },
+              "unsupported": {
+                "precision": 0.9375,
+                "recall": 0.625,
+                "f1": 0.75,
+                "support": 24
+              }
+            },
+            "labels": [
+              "build_grocery_list",
+              "plan_meal",
+              "revise_basket",
+              "unsupported"
+            ],
+            "confusion_matrix": [
+              [
+                36,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                60,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                29,
+                1
+              ],
+              [
+                0,
+                9,
+                0,
+                15
+              ]
+            ]
+          },
+          "slots": {
+            "micro": {
+              "precision": 0.967143,
+              "recall": 0.981159,
+              "f1": 0.974101,
+              "tp": 677,
+              "fp": 23,
+              "fn": 13
+            },
+            "per_label": {
+              "MEAL": {
+                "precision": 0.881356,
+                "recall": 0.912281,
+                "f1": 0.896552,
+                "tp": 52,
+                "fp": 7,
+                "fn": 5
+              },
+              "PRODUCT": {
+                "precision": 0.992647,
+                "recall": 1.0,
+                "f1": 0.99631,
+                "tp": 135,
+                "fp": 1,
+                "fn": 0
+              },
+              "BUDGET": {
+                "precision": 0.976744,
+                "recall": 1.0,
+                "f1": 0.988235,
+                "tp": 84,
+                "fp": 2,
+                "fn": 0
+              },
+              "CURRENCY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 63,
+                "fp": 0,
+                "fn": 0
+              },
+              "SERVINGS": {
+                "precision": 1.0,
+                "recall": 0.964912,
+                "f1": 0.982143,
+                "tp": 55,
+                "fp": 0,
+                "fn": 2
+              },
+              "QUANTITY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 138,
+                "fp": 0,
+                "fn": 0
+              },
+              "UNIT": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 117,
+                "fp": 0,
+                "fn": 0
+              },
+              "DIET": {
+                "precision": 0.875,
+                "recall": 0.933333,
+                "f1": 0.903226,
+                "tp": 14,
+                "fp": 2,
+                "fn": 1
+              },
+              "EXCLUSION": {
+                "precision": 0.8,
+                "recall": 0.666667,
+                "f1": 0.727273,
+                "tp": 8,
+                "fp": 2,
+                "fn": 4
+              },
+              "PANTRY": {
+                "precision": 0.55,
+                "recall": 0.916667,
+                "f1": 0.6875,
+                "tp": 11,
+                "fp": 9,
+                "fn": 1
+              }
+            }
+          },
+          "quantity_attachment": {
+            "accuracy": 0.996078,
+            "correct": 254,
+            "total": 255
+          },
+          "budget": {
+            "exact_accuracy": 0.971429,
+            "correct": 102,
+            "gold_set": 105,
+            "spurious_when_gold_unset": 0,
+            "gold_unset": 45
+          },
+          "servings": {
+            "exact_accuracy": 0.974359,
+            "correct": 76,
+            "gold_set": 78,
+            "spurious_when_gold_unset": 0,
+            "gold_unset": 72
+          },
+          "clarification": {
+            "gold_clarifications": 27,
+            "predicted_clarifications": 41,
+            "recall": 0.925926,
+            "precision": 0.609756,
+            "type_accuracy": 0.851852,
+            "unnecessary": 16
+          },
+          "request_exact_match": {
+            "accuracy": 0.853333,
+            "correct": 128,
+            "total": 150
+          }
+        },
+        "7": {
+          "examples": 150,
+          "intent_classifier_only": {
+            "accuracy": 0.946667,
+            "macro_f1": 0.926898,
+            "per_class": {
+              "build_grocery_list": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              },
+              "plan_meal": {
+                "precision": 1.0,
+                "recall": 0.983333,
+                "f1": 0.991597,
+                "support": 60
+              },
+              "revise_basket": {
+                "precision": 0.805556,
+                "recall": 0.966667,
+                "f1": 0.878788,
+                "support": 30
+              },
+              "unsupported": {
+                "precision": 0.947368,
+                "recall": 0.75,
+                "f1": 0.837209,
+                "support": 24
+              }
+            },
+            "labels": [
+              "build_grocery_list",
+              "plan_meal",
+              "revise_basket",
+              "unsupported"
+            ],
+            "confusion_matrix": [
+              [
+                36,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                59,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                29,
+                1
+              ],
+              [
+                0,
+                0,
+                6,
+                18
+              ]
+            ]
+          },
+          "intent": {
+            "accuracy": 0.953333,
+            "macro_f1": 0.94316,
+            "per_class": {
+              "build_grocery_list": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36
+              },
+              "plan_meal": {
+                "precision": 0.909091,
+                "recall": 1.0,
+                "f1": 0.952381,
+                "support": 60
+              },
+              "revise_basket": {
+                "precision": 1.0,
+                "recall": 0.966667,
+                "f1": 0.983051,
+                "support": 30
+              },
+              "unsupported": {
+                "precision": 0.947368,
+                "recall": 0.75,
+                "f1": 0.837209,
+                "support": 24
+              }
+            },
+            "labels": [
+              "build_grocery_list",
+              "plan_meal",
+              "revise_basket",
+              "unsupported"
+            ],
+            "confusion_matrix": [
+              [
+                36,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                60,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                29,
+                1
+              ],
+              [
+                0,
+                6,
+                0,
+                18
+              ]
+            ]
+          },
+          "slots": {
+            "micro": {
+              "precision": 0.965763,
+              "recall": 0.981159,
+              "f1": 0.9734,
+              "tp": 677,
+              "fp": 24,
+              "fn": 13
+            },
+            "per_label": {
+              "MEAL": {
+                "precision": 0.9,
+                "recall": 0.947368,
+                "f1": 0.923077,
+                "tp": 54,
+                "fp": 6,
+                "fn": 3
+              },
+              "PRODUCT": {
+                "precision": 0.978261,
+                "recall": 1.0,
+                "f1": 0.989011,
+                "tp": 135,
+                "fp": 3,
+                "fn": 0
+              },
+              "BUDGET": {
+                "precision": 0.976471,
+                "recall": 0.988095,
+                "f1": 0.982249,
+                "tp": 83,
+                "fp": 2,
+                "fn": 1
+              },
+              "CURRENCY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 63,
+                "fp": 0,
+                "fn": 0
+              },
+              "SERVINGS": {
+                "precision": 1.0,
+                "recall": 0.982456,
+                "f1": 0.99115,
+                "tp": 56,
+                "fp": 0,
+                "fn": 1
+              },
+              "QUANTITY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "tp": 138,
+                "fp": 0,
+                "fn": 0
+              },
+              "UNIT": {
+                "precision": 0.991525,
+                "recall": 1.0,
+                "f1": 0.995745,
+                "tp": 117,
+                "fp": 1,
+                "fn": 0
+              },
+              "DIET": {
+                "precision": 0.722222,
+                "recall": 0.866667,
+                "f1": 0.787879,
+                "tp": 13,
+                "fp": 5,
+                "fn": 2
+              },
+              "EXCLUSION": {
+                "precision": 0.727273,
+                "recall": 0.666667,
+                "f1": 0.695652,
+                "tp": 8,
+                "fp": 3,
+                "fn": 4
+              },
+              "PANTRY": {
+                "precision": 0.714286,
+                "recall": 0.833333,
+                "f1": 0.769231,
+                "tp": 10,
+                "fp": 4,
+                "fn": 2
+              }
+            }
+          },
+          "quantity_attachment": {
+            "accuracy": 0.992157,
+            "correct": 253,
+            "total": 255
+          },
+          "budget": {
+            "exact_accuracy": 0.971429,
+            "correct": 102,
+            "gold_set": 105,
+            "spurious_when_gold_unset": 0,
+            "gold_unset": 45
+          },
+          "servings": {
+            "exact_accuracy": 0.987179,
+            "correct": 77,
+            "gold_set": 78,
+            "spurious_when_gold_unset": 0,
+            "gold_unset": 72
+          },
+          "clarification": {
+            "gold_clarifications": 27,
+            "predicted_clarifications": 40,
+            "recall": 0.925926,
+            "precision": 0.625,
+            "type_accuracy": 0.888889,
+            "unnecessary": 15
+          },
+          "request_exact_match": {
+            "accuracy": 0.866667,
+            "correct": 130,
+            "total": 150
+          }
+        }
+      },
+      "summary": {
+        "intent_macro_f1": {
+          "mean": 0.94742,
+          "std": 0.027704,
+          "per_seed": {
+            "13": 0.98328,
+            "42": 0.915821,
+            "7": 0.94316
+          }
+        },
+        "intent_macro_f1_classifier_only": {
+          "mean": 0.936294,
+          "std": 0.033535,
+          "per_seed": {
+            "13": 0.98125,
+            "42": 0.900735,
+            "7": 0.926898
+          }
+        },
+        "slot_micro_f1": {
+          "mean": 0.971748,
+          "std": 0.002847,
+          "per_seed": {
+            "13": 0.967742,
+            "42": 0.974101,
+            "7": 0.9734
+          }
+        },
+        "request_exact_match": {
+          "mean": 0.862222,
+          "std": 0.006286,
+          "per_seed": {
+            "13": 0.866667,
+            "42": 0.853333,
+            "7": 0.866667
+          }
+        }
+      }
+    },
+    "baseline_summary": {
+      "intent_macro_f1": 0.842017,
+      "intent_macro_f1_classifier_only": 0.787543,
+      "slot_micro_f1": 0.946816,
+      "request_exact_match": 0.773333
+    }
+  },
+  "retrieval": {
+    "queries": 100,
+    "tfidf_legacy_top10": {
+      "method": "tfidf",
+      "product_text": "legacy",
+      "num_queries": 100,
+      "recall_at_5": 0.551786,
+      "recall_at_10": 0.61,
+      "mrr": 0.562095,
+      "top1_correct_ingredient": 55,
+      "no_relevant_in_top10": 38,
+      "recall_at_k": {
+        "5": 0.551786,
+        "10": 0.61,
+        "20": 0.660714,
+        "40": 0.6825
+      },
+      "by_query_type": {
+        "brand": {
+          "num_queries": 13,
+          "recall_at_5": 0.589744,
+          "recall_at_10": 0.615385,
+          "mrr": 0.557692,
+          "top1_correct_ingredient": 7,
+          "no_relevant_in_top10": 5
+        },
+        "constrained": {
+          "num_queries": 7,
+          "recall_at_5": 0.857143,
+          "recall_at_10": 0.857143,
+          "mrr": 0.857143,
+          "top1_correct_ingredient": 6,
+          "no_relevant_in_top10": 1
+        },
+        "misspelling": {
+          "num_queries": 11,
+          "recall_at_5": 0.272727,
+          "recall_at_10": 0.431818,
+          "mrr": 0.299242,
+          "top1_correct_ingredient": 3,
+          "no_relevant_in_top10": 6
+        },
+        "near_match": {
+          "num_queries": 17,
+          "recall_at_5": 0.811625,
+          "recall_at_10": 0.882353,
+          "mrr": 0.835294,
+          "top1_correct_ingredient": 14,
+          "no_relevant_in_top10": 2
+        },
+        "synonym": {
+          "num_queries": 34,
+          "recall_at_5": 0.697479,
+          "recall_at_10": 0.772059,
+          "mrr": 0.719643,
+          "top1_correct_ingredient": 24,
+          "no_relevant_in_top10": 7
+        },
+        "transliteration": {
+          "num_queries": 18,
+          "recall_at_5": 0.055556,
+          "recall_at_10": 0.055556,
+          "mrr": 0.055556,
+          "top1_correct_ingredient": 1,
+          "no_relevant_in_top10": 17
+        }
+      }
+    },
+    "tfidf": {
+      "method": "tfidf",
+      "product_text": "display_name_ingredient",
+      "num_queries": 100,
+      "recall_at_5": 0.549286,
+      "recall_at_10": 0.61,
+      "mrr": 0.554595,
+      "top1_correct_ingredient": 54,
+      "no_relevant_in_top10": 38,
+      "recall_at_k": {
+        "5": 0.549286,
+        "10": 0.61,
+        "20": 0.6675,
+        "40": 0.6875
+      },
+      "by_query_type": {
+        "brand": {
+          "num_queries": 13,
+          "recall_at_5": 0.589744,
+          "recall_at_10": 0.615385,
+          "mrr": 0.557692,
+          "top1_correct_ingredient": 7,
+          "no_relevant_in_top10": 5
+        },
+        "constrained": {
+          "num_queries": 7,
+          "recall_at_5": 0.857143,
+          "recall_at_10": 0.857143,
+          "mrr": 0.857143,
+          "top1_correct_ingredient": 6,
+          "no_relevant_in_top10": 1
+        },
+        "misspelling": {
+          "num_queries": 11,
+          "recall_at_5": 0.272727,
+          "recall_at_10": 0.431818,
+          "mrr": 0.299242,
+          "top1_correct_ingredient": 3,
+          "no_relevant_in_top10": 6
+        },
+        "near_match": {
+          "num_queries": 17,
+          "recall_at_5": 0.811625,
+          "recall_at_10": 0.882353,
+          "mrr": 0.835294,
+          "top1_correct_ingredient": 14,
+          "no_relevant_in_top10": 2
+        },
+        "synonym": {
+          "num_queries": 34,
+          "recall_at_5": 0.690126,
+          "recall_at_10": 0.772059,
+          "mrr": 0.697584,
+          "top1_correct_ingredient": 23,
+          "no_relevant_in_top10": 7
+        },
+        "transliteration": {
+          "num_queries": 18,
+          "recall_at_5": 0.055556,
+          "recall_at_10": 0.055556,
+          "mrr": 0.055556,
+          "top1_correct_ingredient": 1,
+          "no_relevant_in_top10": 17
+        }
+      }
+    },
+    "minilm": {
+      "method": "minilm",
+      "product_text": "display_name_ingredient",
+      "num_queries": 100,
+      "recall_at_5": 0.695595,
+      "recall_at_10": 0.764167,
+      "mrr": 0.713111,
+      "top1_correct_ingredient": 70,
+      "no_relevant_in_top10": 23,
+      "recall_at_k": {
+        "5": 0.695595,
+        "10": 0.764167,
+        "20": 0.825,
+        "40": 0.850833
+      },
+      "by_query_type": {
+        "brand": {
+          "num_queries": 13,
+          "recall_at_5": 0.692308,
+          "recall_at_10": 0.826923,
+          "mrr": 0.717949,
+          "top1_correct_ingredient": 9,
+          "no_relevant_in_top10": 2
+        },
+        "constrained": {
+          "num_queries": 7,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 1.0,
+          "top1_correct_ingredient": 7,
+          "no_relevant_in_top10": 0
+        },
+        "misspelling": {
+          "num_queries": 11,
+          "recall_at_5": 0.758117,
+          "recall_at_10": 0.909091,
+          "mrr": 0.833333,
+          "top1_correct_ingredient": 9,
+          "no_relevant_in_top10": 1
+        },
+        "near_match": {
+          "num_queries": 17,
+          "recall_at_5": 0.892507,
+          "recall_at_10": 0.941176,
+          "mrr": 0.941176,
+          "top1_correct_ingredient": 16,
+          "no_relevant_in_top10": 1
+        },
+        "synonym": {
+          "num_queries": 34,
+          "recall_at_5": 0.839636,
+          "recall_at_10": 0.901961,
+          "mrr": 0.840033,
+          "top1_correct_ingredient": 28,
+          "no_relevant_in_top10": 3
+        },
+        "transliteration": {
+          "num_queries": 18,
+          "recall_at_5": 0.083333,
+          "recall_at_10": 0.111111,
+          "mrr": 0.069444,
+          "top1_correct_ingredient": 1,
+          "no_relevant_in_top10": 16
+        }
+      }
+    }
+  },
+  "track_b": {
+    "target": "test order",
+    "history": [
+      "train",
+      "validation"
+    ],
+    "rules": "training orders only",
+    "selection": {
+      "min_count": 200,
+      "min_confidence": 0.2,
+      "weight": 0.1
+    },
+    "users": {
+      "sampled": 10000,
+      "excluded_empty_target": 2587,
+      "evaluated": 7413
+    },
+    "results": {
+      "popularity": {
+        "num_users": 7413,
+        "all": {
+          "num_users": 7413,
+          "recall_at_10": 0.501938,
+          "ndcg_at_10": 0.360893
+        },
+        "repeat": {
+          "num_users": 6543,
+          "recall_at_10": 0.572923,
+          "ndcg_at_10": 0.402072
+        },
+        "new": {
+          "num_users": 3390,
+          "recall_at_10": 0.260641,
+          "ndcg_at_10": 0.135152
+        }
+      },
+      "frequency": {
+        "num_users": 7413,
+        "all": {
+          "num_users": 7413,
+          "recall_at_10": 0.703463,
+          "ndcg_at_10": 0.582231
+        },
+        "repeat": {
+          "num_users": 6543,
+          "recall_at_10": 0.903244,
+          "ndcg_at_10": 0.72386
+        },
+        "new": {
+          "num_users": 3390,
+          "recall_at_10": 0.10366,
+          "ndcg_at_10": 0.041745
+        }
+      },
+      "association": {
+        "num_users": 7413,
+        "all": {
+          "num_users": 7413,
+          "recall_at_10": 0.686484,
+          "ndcg_at_10": 0.571707
+        },
+        "repeat": {
+          "num_users": 6543,
+          "recall_at_10": 0.894685,
+          "ndcg_at_10": 0.715914
+        },
+        "new": {
+          "num_users": 3390,
+          "recall_at_10": 0.072721,
+          "ndcg_at_10": 0.029836
+        }
+      }
+    },
+    "bootstrap": {
+      "association_minus_frequency_ndcg_at_10": {
+        "mean_difference": -0.010524,
+        "ci95": [
+          -0.012234,
+          -0.008873
+        ],
+        "users": 7413
+      },
+      "association_minus_frequency_recall_at_10": {
+        "mean_difference": -0.016979,
+        "ci95": [
+          -0.020394,
+          -0.013538
+        ],
+        "users": 7413
+      },
+      "frequency_minus_popularity_ndcg_at_10": {
+        "mean_difference": 0.221338,
+        "ci95": [
+          0.214571,
+          0.228499
+        ],
+        "users": 7413
+      },
+      "frequency_minus_popularity_recall_at_10": {
+        "mean_difference": 0.201525,
+        "ci95": [
+          0.192811,
+          0.210174
+        ],
+        "users": 7413
+      }
+    }
+  }
+}

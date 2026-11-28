@@ -1,0 +1,229 @@
+{
+  "run": "E4",
+  "split": "test",
+  "description": "E3 with association-aware scoring: the history and pair terms at the frozen Phase 9 weights (configs/solver.json). Phase 11 run; frozen before any test data was read.",
+  "settings": {
+    "run": "E4",
+    "parser": "transformer",
+    "retrieval": {
+      "method": "minilm",
+      "product_text": "display_name_ingredient",
+      "top_k": 40
+    },
+    "selection": "constrained",
+    "max_turns": 3,
+    "weights": {
+      "relevance": 1.0,
+      "history": 0.1,
+      "pair": 0.1,
+      "cost": 0.25,
+      "surplus": 0.0
+    }
+  },
+  "gold_input": {
+    "scenarios": 200,
+    "success": 200,
+    "success_rate": 1.0,
+    "valid_complete_success_feasible": 1.0,
+    "feasible": {
+      "scenarios": 120,
+      "success": 120
+    },
+    "mean_coverage_feasible": 1.0,
+    "outputs_labelled_valid": 158,
+    "violations_among_valid": 0,
+    "infeasible": {
+      "scenarios": 40,
+      "detected": 40
+    },
+    "infeasible_detection_rate": 1.0,
+    "false_rejections": 0,
+    "clarification": {
+      "scenarios": 40,
+      "success_within_turns": 40,
+      "asked": 40,
+      "type_match": 40
+    },
+    "clarification_success_rate": 1.0,
+    "unnecessary_clarifications": 0,
+    "solver_timeouts": 0,
+    "statuses": {
+      "infeasible_in_scope": 42,
+      "valid": 158
+    },
+    "has_history_subset": {
+      "scenarios": 40,
+      "success": 40
+    }
+  },
+  "end_to_end": {
+    "seeds": [
+      13,
+      42,
+      7
+    ],
+    "per_seed": {
+      "13": {
+        "scenarios": 200,
+        "success": 164,
+        "success_rate": 0.82,
+        "valid_complete_success_feasible": 0.8,
+        "feasible": {
+          "scenarios": 120,
+          "success": 96
+        },
+        "mean_coverage_feasible": 0.814286,
+        "outputs_labelled_valid": 135,
+        "violations_among_valid": 3,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 32
+        },
+        "infeasible_detection_rate": 0.8,
+        "false_rejections": 7,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 36,
+          "asked": 37,
+          "type_match": 36
+        },
+        "clarification_success_rate": 0.9,
+        "unnecessary_clarifications": 23,
+        "solver_timeouts": 0,
+        "statuses": {
+          "infeasible_in_scope": 41,
+          "needs_clarification": 24,
+          "valid": 135
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 31
+        }
+      },
+      "42": {
+        "scenarios": 200,
+        "success": 164,
+        "success_rate": 0.82,
+        "valid_complete_success_feasible": 0.808333,
+        "feasible": {
+          "scenarios": 120,
+          "success": 97
+        },
+        "mean_coverage_feasible": 0.819286,
+        "outputs_labelled_valid": 136,
+        "violations_among_valid": 4,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 34
+        },
+        "infeasible_detection_rate": 0.85,
+        "false_rejections": 5,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 33,
+          "asked": 35,
+          "type_match": 33
+        },
+        "clarification_success_rate": 0.825,
+        "unnecessary_clarifications": 22,
+        "solver_timeouts": 0,
+        "statuses": {
+          "infeasible_in_scope": 40,
+          "needs_clarification": 24,
+          "valid": 136
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 32
+        }
+      },
+      "7": {
+        "scenarios": 200,
+        "success": 168,
+        "success_rate": 0.84,
+        "valid_complete_success_feasible": 0.816667,
+        "feasible": {
+          "scenarios": 120,
+          "success": 98
+        },
+        "mean_coverage_feasible": 0.830952,
+        "outputs_labelled_valid": 137,
+        "violations_among_valid": 2,
+        "infeasible": {
+          "scenarios": 40,
+          "detected": 32
+        },
+        "infeasible_detection_rate": 0.8,
+        "false_rejections": 4,
+        "clarification": {
+          "scenarios": 40,
+          "success_within_turns": 38,
+          "asked": 39,
+          "type_match": 38
+        },
+        "clarification_success_rate": 0.95,
+        "unnecessary_clarifications": 24,
+        "solver_timeouts": 0,
+        "statuses": {
+          "infeasible_in_scope": 38,
+          "needs_clarification": 25,
+          "valid": 137
+        },
+        "has_history_subset": {
+          "scenarios": 40,
+          "success": 31
+        }
+      }
+    },
+    "across_seeds": {
+      "success_rate": {
+        "mean": 0.826667,
+        "std": 0.009428,
+        "min": 0.82,
+        "max": 0.84
+      },
+      "valid_complete_success_feasible": {
+        "mean": 0.808333,
+        "std": 0.006804,
+        "min": 0.8,
+        "max": 0.816667
+      },
+      "mean_coverage_feasible": {
+        "mean": 0.821508,
+        "std": 0.006983,
+        "min": 0.814286,
+        "max": 0.830952
+      },
+      "infeasible_detection_rate": {
+        "mean": 0.816667,
+        "std": 0.02357,
+        "min": 0.8,
+        "max": 0.85
+      },
+      "clarification_success_rate": {
+        "mean": 0.891667,
+        "std": 0.05137,
+        "min": 0.825,
+        "max": 0.95
+      },
+      "violations_among_valid": {
+        "mean": 3,
+        "std": 0.816497,
+        "min": 2,
+        "max": 4
+      },
+      "false_rejections": {
+        "mean": 5.333333,
+        "std": 1.247219,
+        "min": 4,
+        "max": 7
+      },
+      "unnecessary_clarifications": {
+        "mean": 23,
+        "std": 0.816497,
+        "min": 22,
+        "max": 24
+      }
+    }
+  }
+}
