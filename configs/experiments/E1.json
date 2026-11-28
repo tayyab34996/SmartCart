@@ -1,0 +1,16 @@
+{
+  "run": "E1",
+  "description": "E0 with the transformer parser (DistilBERT, 3 seeds). Retrieval and selection as E0. Phase 11 run; frozen before any test data was read.",
+  "frozen": true,
+  "parser": {
+    "type": "transformer"
+  },
+  "retrieval": {
+    "method": "tfidf",
+    "product_text": "legacy",
+    "top_k": 10
+  },
+  "selection": "independent_cheapest",
+  "filtering": "post_hoc",
+  "max_clarification_turns": 3
+}

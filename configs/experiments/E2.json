@@ -1,0 +1,16 @@
+{
+  "run": "E2",
+  "description": "E1 with MiniLM retrieval as frozen in Phase 7 (product text display_name_ingredient, 40 candidates). Independent selection with post-hoc filtering. Phase 11 run; frozen before any test data was read.",
+  "frozen": true,
+  "parser": {
+    "type": "transformer"
+  },
+  "retrieval": {
+    "method": "minilm",
+    "product_text": "display_name_ingredient",
+    "top_k": 40
+  },
+  "selection": "independent_cheapest",
+  "filtering": "post_hoc",
+  "max_clarification_turns": 3
+}

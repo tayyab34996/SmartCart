@@ -1,0 +1,16 @@
+{
+  "run": "A4",
+  "description": "Ablation: E4 with independent selection and post-hoc filtering. The independent selector ignores the history and pair terms, so this configuration coincides with E2 by construction; it is run separately as a check. Phase 11 run; frozen before any test data was read.",
+  "frozen": true,
+  "parser": {
+    "type": "transformer"
+  },
+  "retrieval": {
+    "method": "minilm",
+    "product_text": "display_name_ingredient",
+    "top_k": 40
+  },
+  "selection": "independent_cheapest",
+  "filtering": "post_hoc",
+  "max_clarification_turns": 3
+}

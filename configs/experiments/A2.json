@@ -1,0 +1,21 @@
+{
+  "run": "A2",
+  "description": "Ablation: E4 with TF-IDF retrieval (same product text and candidate count, so only the retrieval method changes). Phase 11 run; frozen before any test data was read.",
+  "frozen": true,
+  "parser": {
+    "type": "transformer"
+  },
+  "retrieval": {
+    "method": "tfidf",
+    "product_text": "display_name_ingredient",
+    "top_k": 40
+  },
+  "selection": "constrained",
+  "filtering": "hard_rules_before_selection",
+  "weights": {
+    "history": 0.1,
+    "pair": 0.1
+  },
+  "solver_config": "configs/solver.json",
+  "max_clarification_turns": 3
+}

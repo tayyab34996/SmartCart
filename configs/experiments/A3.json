@@ -1,0 +1,21 @@
+{
+  "run": "A3",
+  "description": "Ablation: E4 with association (pair) weight 0; the history term stays. Phase 11 run; frozen before any test data was read.",
+  "frozen": true,
+  "parser": {
+    "type": "transformer"
+  },
+  "retrieval": {
+    "method": "minilm",
+    "product_text": "display_name_ingredient",
+    "top_k": 40
+  },
+  "selection": "constrained",
+  "filtering": "hard_rules_before_selection",
+  "weights": {
+    "history": 0.1,
+    "pair": 0.0
+  },
+  "solver_config": "configs/solver.json",
+  "max_clarification_turns": 3
+}

@@ -1,0 +1,131 @@
+{
+  "description": "Phase 11 (D9): shared evaluation settings for every run. Written and frozen before any test file was read. The locked files are verified against docs/benchmark_lock.md before they are read.",
+  "frozen": true,
+  "runs": [
+    "E0",
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+  ],
+  "split": "test",
+  "lock": "docs/benchmark_lock.md",
+  "data": {
+    "catalog": "data/processed/catalog.json",
+    "basket": {
+      "test": "data/benchmarks/basket_test.json",
+      "dev": "data/benchmarks/basket_dev.json"
+    },
+    "nlu": "data/annotations/nlu.jsonl",
+    "nlu_split": "data/splits/nlu_split.json",
+    "retrieval": {
+      "test": "data/benchmarks/retrieval_test.json",
+      "dev": "data/benchmarks/retrieval_dev.json"
+    }
+  },
+  "modes": [
+    "gold_input",
+    "end_to_end"
+  ],
+  "mode_notes": {
+    "gold_input": "component-isolated: the gold StructuredRequest (the resolved request for clarification scenarios, with the gold question counted as asked); the parser is not used, so it runs once even for multi-seed runs",
+    "end_to_end": "the run's parser on the scenario text, E0's simulated user (one answer, at most 3 questions); transformer runs use every seed"
+  },
+  "seeds": [
+    13,
+    42,
+    7
+  ],
+  "solver_config": "configs/solver.json",
+  "retrieval_settings_for_components": [
+    {
+      "name": "tfidf_legacy_top10",
+      "method": "tfidf",
+      "product_text": "legacy"
+    },
+    {
+      "name": "tfidf",
+      "method": "tfidf",
+      "product_text": "display_name_ingredient"
+    },
+    {
+      "name": "minilm",
+      "method": "minilm",
+      "product_text": "display_name_ingredient"
+    }
+  ],
+  "bootstrap": {
+    "unit": "scenario family (paired)",
+    "resamples": 2000,
+    "seed": 20261128,
+    "interval": "95% percentile",
+    "statistic": "difference in mean scenario success; multi-seed runs use each scenario's mean success over seeds"
+  },
+  "comparisons": [
+    [
+      "E1",
+      "E0"
+    ],
+    [
+      "E2",
+      "E1"
+    ],
+    [
+      "E3",
+      "E2"
+    ],
+    [
+      "E4",
+      "E3"
+    ],
+    [
+      "E4",
+      "E0"
+    ],
+    [
+      "A1",
+      "E4"
+    ],
+    [
+      "A2",
+      "E4"
+    ],
+    [
+      "A3",
+      "E4"
+    ],
+    [
+      "A4",
+      "E4"
+    ]
+  ],
+  "track_b": {
+    "config": "configs/associations.json",
+    "target": "each user's final order (Track B test)",
+    "history": "training and validation orders",
+    "rules": "training orders only (data/processed/rules.csv)",
+    "users": "all sampled users with a non-empty final order"
+  },
+  "outputs": {
+    "rows": "results/predictions/runs/{run}_{mode}{seed}.jsonl",
+    "run_metrics": "results/metrics/runs/{run}.json",
+    "run_latency": "results/metrics/runs/{run}_latency.json",
+    "components": "results/metrics/test_components.json",
+    "nlu_rows": "results/predictions/runs/nlu_test_{parser}{seed}.jsonl",
+    "retrieval_rows": "results/predictions/runs/retrieval_test_{name}.jsonl",
+    "summary": "results/metrics/phase11_summary.json",
+    "tables": "results/tables",
+    "figures": {
+      "parser_errors": "results/figures/14_parser_errors_test.png",
+      "retrieval": "results/figures/15_retrieval_test.png",
+      "baskets": "results/figures/16_basket_success_validity_test.png",
+      "ablations": "results/figures/17_ablations_test.png",
+      "latency": "results/figures/18_latency_test.png"
+    },
+    "dev_sanity": "data/interim/phase11_dev"
+  }
+}

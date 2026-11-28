@@ -1,0 +1,21 @@
+{
+  "run": "E3",
+  "description": "E2 with constrained selection (CP-SAT, configs/solver.json) without association-aware terms (history and pair weights 0). Phase 11 run; frozen before any test data was read.",
+  "frozen": true,
+  "parser": {
+    "type": "transformer"
+  },
+  "retrieval": {
+    "method": "minilm",
+    "product_text": "display_name_ingredient",
+    "top_k": 40
+  },
+  "selection": "constrained",
+  "filtering": "hard_rules_before_selection",
+  "weights": {
+    "history": 0.0,
+    "pair": 0.0
+  },
+  "solver_config": "configs/solver.json",
+  "max_clarification_turns": 3
+}
