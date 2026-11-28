@@ -1,0 +1,142 @@
+{
+  "description": "What the committed results were produced from. Rebuild with scripts/make_manifest.py; verify with --check.",
+  "python": "3.11 (requirements-lock.txt was tested with 3.11.9 on Windows)",
+  "environment": {
+    "lock_file": "requirements-lock.txt",
+    "lock_file_sha256": "c0e584113cfe1e400e5dbfbe4539c3822dcda706ede5743b3b35a765c9679da7",
+    "pinned_packages": 160,
+    "key_packages": {
+      "torch": "2.15.0+cpu",
+      "transformers": "5.24.1",
+      "sentence-transformers": "6.3.0",
+      "faiss-cpu": "1.16.0",
+      "scikit-learn": "1.9.1",
+      "ortools": "9.15.6755",
+      "mlxtend": "0.25.0",
+      "streamlit": "1.67.0",
+      "numpy": "2.4.6",
+      "pandas": "3.1.1",
+      "pytest": "9.2.0"
+    },
+    "torch_build": "CPU wheels from https://download.pytorch.org/whl/cpu"
+  },
+  "models": {
+    "distilbert_base": {
+      "name": "distilbert/distilbert-base-uncased",
+      "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be"
+    },
+    "minilm": {
+      "name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "distilbert_checkpoints": {
+      "path": "models/nlu/transformer/seed{seed}/{task}/model.safetensors (not on GitHub)",
+      "sha256": {
+        "seed13/intent": "caf1ed27b019e575209081a85f7796d1dc09a2f875430da11711799cd6b7cf56",
+        "seed13/slots": "8964a88fbc80951569b0d4939d542c3eeea8643ab22cacb5bf168dc449833117",
+        "seed42/intent": "9f59bb0904edfe8d86c1767e0c2a0532ea445e32d43b2fcbbf7dc68713d097ed",
+        "seed42/slots": "f4d892dc5ebeee7ca63da763fadc34f92f7fd3be6489c1510f3f4dae436816d1",
+        "seed7/intent": "ed6072907d9df476a98eb20f16c8f3d4ef3e47c5597a14d20fd0df162742f29c",
+        "seed7/slots": "e2a0afa3bd3e042a9ab991cfabc218c3780de5f3a5c7014f4fc96ab6a0ff9954"
+      }
+    }
+  },
+  "seeds": {
+    "benchmarks_and_annotations": 20261125,
+    "instacart_sample": 20261125,
+    "distilbert_training": [
+      13,
+      42,
+      7
+    ],
+    "distilbert_primary": 42,
+    "e0_linear_svc_random_state": 0,
+    "cp_sat_random_seed": 0,
+    "track_b_user_split": 20261128,
+    "phase11_transformer_seeds": [
+      13,
+      42,
+      7
+    ],
+    "phase11_bootstrap": 20261128
+  },
+  "sources": {
+    "data/raw/archive_3.zip": {
+      "dataset": "Instacart Market Basket Analysis (Kaggle)",
+      "bytes": 207073669,
+      "sha256": "c347cd7fa301c068ed391c7c77620f0e26e18f65d04cb907b6389c670db03038"
+    },
+    "data/raw/archive_4.zip": {
+      "dataset": "Food.com Recipes and Reviews, irkaal (Kaggle)",
+      "bytes": 758217627,
+      "sha256": "fa7910c9591997641448147809faa21b4bba539c01225fda2ab6b315b5f7527d"
+    }
+  },
+  "locked_test_files": {
+    "data/annotations/nlu.jsonl": "dc755469f463812a703ecc9e3ec01a6f514a734f541097c8714fa9806f9f2b5c",
+    "data/splits/nlu_split.json": "e722e2a9c27d30a53bb3ecd8b4f3dc127b7535e98ca0bab5c53fe1afb14afd75",
+    "data/splits/benchmark_groups.json": "3dd8d89ec28cae438d5cd781956dd043b68b68d171864db90726f20aaa084243",
+    "data/benchmarks/basket_test.json": "d85e50be4df87d8d9d22ae2f56a1f20a3e13b55918aa811339ec4f68af8efe64",
+    "data/benchmarks/retrieval_test.json": "ed8c38b9adc0cb3dea02aedbe17a094617e7ac6d7c2dfc9585784bc48c34e50d"
+  },
+  "inputs": {
+    "configs/app.json": "bd33ab820be092b9ceecb4d8da9b987809d24f76b293abae1d4dcc11b9a9d069",
+    "configs/associations.json": "9d0d30ff8da9fc81ed871c312c366ae06ca89415729a2c182479892928f61c60",
+    "configs/benchmarks.json": "d70f3625d2af1889d7fac47ce7765e579f436b68a010dbd4ba1b523b758c6c38",
+    "configs/catalog_build.json": "aa6c567c083d1b0ac56d1412b4c669950fd0efe407dcb5c9b805312428a5da3c",
+    "configs/data_audit.json": "8e4143c2d8215f8a98b4d3f56cd8768daf17c83a19afbc98805ef7e5c6496af9",
+    "configs/experiments/A1.json": "05df68c2204967c9c999c9953bbe2c031c18e624416ee349aa39e303d947943b",
+    "configs/experiments/A2.json": "18ca8417f8ce66bdcd616c4a1c3670231ddf8412305693ed519e5b10b77a7a41",
+    "configs/experiments/A3.json": "277fbedd7b6324fe8fd0fd6ff972880a18ce80b74cd22fd765df948970640db7",
+    "configs/experiments/A4.json": "3d35266232af754eaba1f25bd76ca84d783c4702048a7d2a9c1e0ff6ce066583",
+    "configs/experiments/E0.json": "ef12f8c7f4332e2eb9c6ffb7e64b3940d97e9aef8ce5c26866b7c9b185b623f3",
+    "configs/experiments/E1.json": "51afa5a9337a180ae4f724d83bb33395fcd82255877115aea86eddfafdc44c11",
+    "configs/experiments/E2.json": "6d1654bdc7d890b656f738f219098a17767142cf6b212c87066334130a3d1e48",
+    "configs/experiments/E3.json": "ba12e67ae3c0aed96a3b6209ae91375dee7c6e559da0a779f45db72ce8ae151d",
+    "configs/experiments/E4.json": "375de0e8bbaaa2acd4faa1c6adda1cdc9f0a9db0f7a6632266fce43023afa70d",
+    "configs/experiments/evaluation.json": "65f436dfa530de4029f473b0fd4faef759d23af11d93a1b692a8d7c95edb083b",
+    "configs/instacart_ingredient_map.csv": "7af9ac1cac8712df86986f622e60456e5dce82cce39b7eae0624216ba7be0046",
+    "configs/instacart_sample.json": "150c59b358649b9bbf9258b7b0d2b3b5a0deef54270f9cd4b1da3169a12020be",
+    "configs/nlu_transformer.json": "2dcd02bd17d6f8d228ab51694f62298b80584f840bd351a2f20809f71127c454",
+    "configs/retrieval.json": "61faa8b1620fa7cf227b559aabb769725c91fd5656091bc4bf4665deec7c82de",
+    "configs/retrieval_queries.csv": "7f50199981e8431f9261443a0adaf87a33bc0fbaf43077e50afa1c69eb7f151d",
+    "configs/solver.json": "df185d19eb14920a32272ebb24a948f4658cb4f0721d2dc2c8f0adf22a254e58",
+    "data/annotations/nlu.jsonl": "dc755469f463812a703ecc9e3ec01a6f514a734f541097c8714fa9806f9f2b5c",
+    "data/annotations/review_sample.jsonl": "8ae3905af8db1656ecac516af9958a68e7476debb6b39cb641e6ff2134de6562",
+    "data/benchmarks/basket_dev.json": "01d792f69b26e3f41164821f15967788a6d0701e16b1b76554443a36d3b7443d",
+    "data/benchmarks/basket_test.json": "d85e50be4df87d8d9d22ae2f56a1f20a3e13b55918aa811339ec4f68af8efe64",
+    "data/benchmarks/retrieval_dev.json": "da2030ed9b4b807378db85ac88ee724de733441ad6a27ab162a838ea1d0a24cd",
+    "data/benchmarks/retrieval_test.json": "ed8c38b9adc0cb3dea02aedbe17a094617e7ac6d7c2dfc9585784bc48c34e50d",
+    "data/processed/catalog.json": "1e0785e43102927f74b839491cfc0f703a5388f04aad3ce007dd0241e711a155",
+    "data/processed/ingredients.csv": "c8178ade6df5b0e3299697b50ea42fb877ba171cf5c0bf6ce2b55ce0550d9ade",
+    "data/processed/instacart_ingredient_map.csv": "d03a8bd24c319af488a3df27502c03f3bfb6af80732f01376da800b867d8d0e8",
+    "data/processed/instacart_mapping_review.csv": "a59cdd0a93b3269c6f24caaf396fc195fe0bb6a02d95de235467cc6fabc56092",
+    "data/processed/recipe_aliases.csv": "d4618e4c7fe3dccbb2fdea58626c5657ff4fc368ff892337659f906dbe5edf7c",
+    "data/processed/recipe_lines.csv": "393a2c6d646442743b41088bdc9ba632f05df72e32750c9fa280ac0116d19d23",
+    "data/processed/recipes.csv": "3814cbec7cb9cdc7f307dfb675218ad25b8f7746b37ac7956a16dc7381103f31",
+    "data/processed/rules.csv": "517e64dc845c8b7e7829c7b4205862eeece4f5adec3348b35951bb1882315ae9",
+    "data/processed/synonyms.csv": "b7a2162c41d0231a9b2524c9e0c3524f088c8e5fba89975f75ef8b19c6b9cee2",
+    "data/splits/benchmark_groups.json": "3dd8d89ec28cae438d5cd781956dd043b68b68d171864db90726f20aaa084243",
+    "data/splits/instacart_trackb.json": "d5a220f59e43043ed8033711ab463559e6e3dea9ee345c65926c37ef71d85c16",
+    "data/splits/instacart_users.json": "a9107a7c7477181712a23ece110e8c7b3131e05728505f3068ed9b42bdc57191",
+    "data/splits/nlu_split.json": "e722e2a9c27d30a53bb3ecd8b4f3dc127b7535e98ca0bab5c53fe1afb14afd75"
+  },
+  "results": {
+    "results/metrics/phase11_summary.json": "3e8da40a3cd0967e631de1e2fffe4528c01a101c643c79779ace3a4852092673",
+    "results/metrics/runs/A1.json": "caf39ea2b54ffcbd70ce644e8f1193589a05f1f791e7f83160120e5ca85336df",
+    "results/metrics/runs/A2.json": "7565a4cf22a5f0f0515298c62034372539da30498bc854971472123a6710cd97",
+    "results/metrics/runs/A3.json": "230f565025b2ebdfb01d9123596942dc3b4dc8760e8fe1aadf97f2f446683248",
+    "results/metrics/runs/A4.json": "ef762798cc0d569c00e66148c46356c289636a4632f892547396899b5133c70f",
+    "results/metrics/runs/E0.json": "9c487bd364255643f6d28d0f4def7063df1c1af5492e58ff0d51e17753de6d6c",
+    "results/metrics/runs/E1.json": "110203a8a3b709979707e1a907846105dae6f36be7ac0f6c3670ecdc241c6952",
+    "results/metrics/runs/E2.json": "719664de277cea11886e63ad57bf5dc3a06d38ac7d8c4973579e1a051dae356a",
+    "results/metrics/runs/E3.json": "ff2cbb2d94c7c85c4cf96dc3842fb8b6cff5466b593dcae3d76576b0362fa1a5",
+    "results/metrics/runs/E4.json": "eab2bcf740b761237db1128d34efe3a972cdec8da1cfc620b8672c32497195fd",
+    "results/metrics/test_components.json": "9375f8673c2a3835f3df15b8eda27b4235192013f0c7abbaee95b1110314c5c1",
+    "results/tables/baskets.md": "b0be9272940cc27b22f0f11c3f0fc7df0a657e71dd4965bba9bb926cc5c5d908",
+    "results/tables/comparisons.md": "b3573e6f2e1c2576932173197670ddc9184238e6f7a842e784b72a7a5ac87408",
+    "results/tables/nlu.md": "c88c14d59d749768bffad24433e6d7e99f92e80bdaf3b5b415c139e1a2afb5e5",
+    "results/tables/retrieval.md": "ba7b0e339e1b744b433ae3d9d643aa73e5079c366d18f78fe84300379c6ea95c",
+    "results/tables/track_b.md": "72f1e8b6c63017c46854f05d40d06a2637908e35b3e1847bf95546c066a23c32"
+  }
+}
