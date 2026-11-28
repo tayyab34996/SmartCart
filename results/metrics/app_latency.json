@@ -1,0 +1,26 @@
+{
+  "parser": "transformer",
+  "parser_note": null,
+  "machine": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.11.9",
+    "cpu_count": 4
+  },
+  "cold_load_s": 27.381,
+  "cold_load_includes": "Python start-up imports, catalog, parser, MiniLM index and the first page render",
+  "warm_request_s": {
+    "n": 18,
+    "p50": 0.192,
+    "p95": 0.585,
+    "max": 0.919
+  },
+  "warm_request_includes": "submitting a demo message: parse, select, validate, explain and re-render",
+  "warm_selection_only_s": {
+    "n": 12,
+    "p50": 0.024,
+    "p95": 0.07,
+    "max": 0.076
+  },
+  "target": "warm p95 < 5 s on the stated laptop (BUILD_PHASES section 6)",
+  "note": "machine-dependent; not part of --check"
+}

@@ -1,0 +1,367 @@
+{
+  "parser": "transformer",
+  "parser_note": null,
+  "price_note": "Prices are SIMULATED in PKR for a research prototype. They are not real shop prices, and no savings claim is made.",
+  "cases_working": 6,
+  "cases": [
+    {
+      "id": "D1_normal_feasible",
+      "title": "Normal feasible request (with a history user)",
+      "steps": [
+        {
+          "action": "parse",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Chicken Curry In A Hurry",
+            "Servings": 4,
+            "Budget": "PKR 2,500.00",
+            "History user": 2
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "valid",
+          "status_label": "Valid basket",
+          "reason": "optimal",
+          "total_cost_minor": 240700,
+          "suggested_budget_minor": null,
+          "products": [
+            "bas_plain_yogurt_250g",
+            "bas_mayonnaise_250g",
+            "bas_onion_1000g",
+            "bas_ground_ginger_50ml",
+            "bas_curry_powder_50ml",
+            "sim_chicken_500g",
+            "bas_paprika_50ml",
+            "bas_black_pepper_50ml",
+            "bas_cooked_brown_rice_500g"
+          ],
+          "summary": "Basket of 9 products, total PKR 2,407.00 of a PKR 2,500.00 budget (PKR 93.00 left).",
+          "export_csv_rows": 9,
+          "export_json_ok": true,
+          "text": "I'd like to cook chicken curry in a hurry for 4 people with a budget of 2500 rupees",
+          "user_id": 2
+        }
+      ],
+      "expected": {
+        "final_status": "valid"
+      },
+      "checks": {
+        "final_status": true
+      },
+      "works": true
+    },
+    {
+      "id": "D2_budget_revision",
+      "title": "Budget revision in words",
+      "steps": [
+        {
+          "action": "parse",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Honey Lime Chicken",
+            "Servings": 3,
+            "Budget": "PKR 3,000.00"
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "valid",
+          "status_label": "Valid basket",
+          "reason": "optimal",
+          "total_cost_minor": 219200,
+          "suggested_budget_minor": null,
+          "products": [
+            "sim_honey_250ml",
+            "sim_soy_150ml",
+            "sim_lime_100ml",
+            "bas_chicken_breast_4piece"
+          ],
+          "summary": "Basket of 4 products, total PKR 2,192.00 of a PKR 3,000.00 budget (PKR 808.00 left).",
+          "export_csv_rows": 4,
+          "export_json_ok": true,
+          "text": "Plan honey lime chicken for 3 people, budget 3000 rupees",
+          "user_id": null
+        },
+        {
+          "action": "revise",
+          "fields": {
+            "Intent": "revise_basket",
+            "Recipe": "Honey Lime Chicken",
+            "Servings": 3,
+            "Budget": "PKR 1,200.00"
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "infeasible_in_scope",
+          "status_label": "Proven infeasible within scope",
+          "reason": "budget_below_minimum_cost",
+          "total_cost_minor": null,
+          "suggested_budget_minor": 219200,
+          "products": [],
+          "summary": "No complete basket fits the PKR 1,200.00 budget. The cheapest complete basket under the same rules costs PKR 2,192.00; a budget of at least that would work. Nothing was changed in your request.",
+          "export_csv_rows": 0,
+          "export_json_ok": true,
+          "text": "Actually, can we do it for 1,200 rupees instead",
+          "changes": [
+            "Budget changed from PKR 3,000.00 to PKR 1,200.00.",
+            "Status changed from Valid basket to Proven infeasible within scope.",
+            "There is no basket under the new request; the previous basket no longer applies."
+          ]
+        }
+      ],
+      "expected": {
+        "final_status": "infeasible_in_scope",
+        "changes_mention": "budget"
+      },
+      "checks": {
+        "final_status": true,
+        "changes_mention": true
+      },
+      "works": true
+    },
+    {
+      "id": "D3_dietary_exclusion",
+      "title": "Broad vegetarian goal, recipe confirmation, then an exclusion",
+      "steps": [
+        {
+          "action": "parse",
+          "fields": {
+            "Intent": "plan_meal",
+            "Servings": 3,
+            "Budget": "PKR 2,500.00",
+            "Diet": "vegetarian"
+          },
+          "needs_clarification": true,
+          "clarification_type": "missing_recipe",
+          "clarification_prompt": "Which dish would you like? For example: scrambled eggs, garlic green beans or lime rice.",
+          "text": "Something vegetarian for dinner for 3, keep it under 2500 rupees",
+          "user_id": null
+        },
+        {
+          "action": "confirm_recipe",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Ruhrei Mennonite Scrambled Eggs",
+            "Servings": 3,
+            "Budget": "PKR 2,500.00",
+            "Diet": "vegetarian"
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "valid",
+          "status_label": "Valid basket",
+          "reason": "optimal",
+          "total_cost_minor": 72700,
+          "suggested_budget_minor": null,
+          "products": [
+            "org_white_flour_500g",
+            "org_egg_6piece",
+            "bas_salt_250ml",
+            "bas_milk_500ml",
+            "bas_butter_100g"
+          ],
+          "summary": "Basket of 5 products, total PKR 727.00 of a PKR 2,500.00 budget (PKR 1,773.00 left).",
+          "export_csv_rows": 5,
+          "export_json_ok": true,
+          "suggestions": [
+            "Ruhrei Mennonite Scrambled Eggs",
+            "Garlic Green Beans",
+            "Chipotle Copycat Lime Rice"
+          ],
+          "chosen": "Ruhrei Mennonite Scrambled Eggs"
+        },
+        {
+          "action": "edit",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Ruhrei Mennonite Scrambled Eggs",
+            "Servings": 3,
+            "Budget": "PKR 2,500.00",
+            "Diet": "vegetarian",
+            "Exclusions": "Butter"
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "valid",
+          "status_label": "Valid basket",
+          "reason": "optimal",
+          "total_cost_minor": 48700,
+          "suggested_budget_minor": null,
+          "products": [
+            "org_white_flour_500g",
+            "org_egg_6piece",
+            "bas_salt_250ml",
+            "bas_milk_500ml"
+          ],
+          "summary": "Basket of 4 products, total PKR 487.00 of a PKR 2,500.00 budget (PKR 2,013.00 left).",
+          "export_csv_rows": 4,
+          "export_json_ok": true,
+          "excluded": "butter",
+          "changes": [
+            "Exclusions added: Butter.",
+            "Line removed: Butter (SmartCart Basics Butter 100 g).",
+            "Total changed from PKR 727.00 to PKR 487.00."
+          ]
+        }
+      ],
+      "expected": {
+        "final_status": "valid",
+        "changes_mention": "removed"
+      },
+      "checks": {
+        "final_status": true,
+        "changes_mention": true
+      },
+      "works": true
+    },
+    {
+      "id": "D4_pantry_quantity",
+      "title": "Pantry quantity asked and answered",
+      "steps": [
+        {
+          "action": "parse",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Potato Soup",
+            "Servings": 4,
+            "Pantry": "Onion: None",
+            "Budget": "PKR 2,000.00"
+          },
+          "needs_clarification": true,
+          "clarification_type": "missing_pantry_quantity",
+          "clarification_prompt": "How much onion do you already have (in piece)?",
+          "text": "Get me everything for potato soup for 4 people within 2000 rupees, I already have some onion",
+          "user_id": null
+        },
+        {
+          "action": "answer",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Potato Soup",
+            "Servings": 4,
+            "Pantry": "Onion: 2.000",
+            "Budget": "PKR 2,000.00"
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "valid",
+          "status_label": "Valid basket",
+          "reason": "optimal",
+          "total_cost_minor": 184700,
+          "suggested_budget_minor": null,
+          "products": [
+            "bas_potato_1piece",
+            "bas_butter_100g",
+            "sim_flour_500g",
+            "bas_milk_1500ml",
+            "bas_chicken_bouillon_50ml",
+            "bas_salt_250ml",
+            "bas_black_pepper_50ml",
+            "sim_cheddar_250g"
+          ],
+          "summary": "Basket of 8 products, total PKR 1,847.00 of a PKR 2,000.00 budget (PKR 153.00 left).",
+          "export_csv_rows": 8,
+          "export_json_ok": true,
+          "text": "I have 2 onions"
+        }
+      ],
+      "expected": {
+        "final_status": "valid",
+        "pantry_used": true
+      },
+      "checks": {
+        "final_status": true,
+        "pantry_used": true
+      },
+      "works": true
+    },
+    {
+      "id": "D5_unfamiliar_wording",
+      "title": "Unfamiliar, chatty wording",
+      "steps": [
+        {
+          "action": "parse",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Baked Salmon",
+            "Servings": 6,
+            "Budget": "PKR 10,000.00"
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "valid",
+          "status_label": "Valid basket",
+          "reason": "optimal",
+          "total_cost_minor": 857000,
+          "suggested_budget_minor": null,
+          "products": [
+            "bas_garlic_10piece",
+            "sim_olive_oil_100ml",
+            "bas_dried_basil_50ml",
+            "bas_salt_250ml",
+            "bas_black_pepper_50ml",
+            "bas_lemon_juice_100ml",
+            "bas_parsley_50ml",
+            "bas_salmon_250g"
+          ],
+          "summary": "Basket of 8 products, total PKR 8,570.00 of a PKR 10,000.00 budget (PKR 1,430.00 left).",
+          "export_csv_rows": 8,
+          "export_json_ok": true,
+          "text": "mates coming round tonight lol, fancy doing baked salmon, there'll be 6 of us and I can't spend more than 10000",
+          "user_id": null
+        }
+      ],
+      "expected": {
+        "final_status": "valid"
+      },
+      "checks": {
+        "final_status": true
+      },
+      "works": true
+    },
+    {
+      "id": "D6_infeasible",
+      "title": "Infeasible request with a suggested budget",
+      "steps": [
+        {
+          "action": "parse",
+          "fields": {
+            "Intent": "plan_meal",
+            "Recipe": "Baked Salmon",
+            "Servings": 6,
+            "Budget": "PKR 500.00"
+          },
+          "needs_clarification": false,
+          "clarification_type": null,
+          "clarification_prompt": null,
+          "status": "infeasible_in_scope",
+          "status_label": "Proven infeasible within scope",
+          "reason": "budget_below_minimum_cost",
+          "total_cost_minor": null,
+          "suggested_budget_minor": 857000,
+          "products": [],
+          "summary": "No complete basket fits the PKR 500.00 budget. The cheapest complete basket under the same rules costs PKR 8,570.00; a budget of at least that would work. Nothing was changed in your request.",
+          "export_csv_rows": 0,
+          "export_json_ok": true,
+          "text": "Plan baked salmon for 6 people under 500 rupees",
+          "user_id": null
+        }
+      ],
+      "expected": {
+        "final_status": "infeasible_in_scope",
+        "suggested_budget": true
+      },
+      "checks": {
+        "final_status": true,
+        "suggested_budget": true
+      },
+      "works": true
+    }
+  ]
+}
