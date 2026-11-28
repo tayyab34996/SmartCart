@@ -19,8 +19,46 @@ the hard rules applied before selection) → an independent **validator** → ex
 Association rules mined from Instacart orders give optional history and pair scores, and
 are evaluated separately on next-basket ranking (Track B).
 
-The report is in [`docs/report/`](docs/report/). Progress, decisions and verification for
+**Team:** Asad Usman (23L-0740), Muhammad Ali Mahoon (23L-0531), Tayyab (23L-0576).
+
+**Where to look (course deliverables):**
+
+| Deliverable | Location |
+| --- | --- |
+| Phase 1 work (data cleaning, EDA, preprocessing, first prototypes) | [`notebooks/phase1/`](notebooks/phase1/), figures 01–08 in [`results/figures/`](results/figures/) |
+| Phase 2 models, experiments and results (notebook with all outputs) | [`notebooks/phase2/06_phase2_models_experiments_results.ipynb`](notebooks/phase2/06_phase2_models_experiments_results.ipynb) |
+| Website (Streamlit app) | [`website/app.py`](website/app.py), logic in [`src/smartcart/app/`](src/smartcart/app/) |
+| Pipeline code, training and evaluation scripts | [`src/smartcart/`](src/smartcart/), [`scripts/`](scripts/) |
+| Configs | [`configs/`](configs/), experiments in [`configs/experiments/`](configs/experiments/) |
+| Graphs and result tables | [`results/figures/`](results/figures/) (09–18 are Phase 2), [`results/tables/`](results/tables/) |
+| Final report | [`docs/report/smartcart_report.docx`](docs/report/smartcart_report.docx) (source: `smartcart_report.md`) |
+
+The full report is in [`docs/report/`](docs/report/). Progress, decisions and verification for
 every phase are in [`docs/progress.md`](docs/progress.md).
+
+## Phase 1 summary
+
+Phase 1 built the data foundation ([`notebooks/phase1/`](notebooks/phase1/)):
+
+- **Cleaning** (`01_data_cleaning.ipynb`): 100,000 Instacart order-product rows joined with
+  orders, products, aisles and departments; missing `days_since_prior_order` (first
+  orders) imputed with 0 plus an `is_first_order` flag; no duplicate line items;
+  `add_to_cart_order` outliers capped by the IQR rule; text fields normalised.
+- **EDA** (`02_exploratory_data_analysis.ipynb`, figures 01–08): 59.8% of items are
+  reorders; orders peak on Sunday and Monday and between 10:00 and 16:00;
+  days-since-prior-order spikes at 7, 14, 21 and 30 days; median basket of 8 items;
+  reordered items are added to the cart earlier; produce and dairy have the highest
+  reorder rates.
+- **Preprocessing** (`03_preprocessing_scaling.ipynb`): cyclical day and hour encodings,
+  relative cart position, an 80/20 stratified split, and Standard, MinMax and Robust
+  scaling; a logistic-regression reorder baseline reached ROC-AUC 0.672.
+- **First prototypes** (`04_intent_and_slot_extraction.ipynb`,
+  `05_semantic_product_retrieval.ipynb`): early intent/slot extraction and TF-IDF vs MiniLM
+  retrieval on a 20-product pilot catalog.
+
+Phase 2 (everything below) turned this into the full system: a 466-product catalog with
+42 recipes, 900 annotated requests and locked benchmarks, two parsers, two retrievers,
+association rules, a constrained solver, the website and the experiments.
 
 ## Results at a glance (locked test split, evaluated once)
 
@@ -44,9 +82,10 @@ Full tables: [`results/tables/`](results/tables/). Failure cases:
 | `data/processed/` | Catalog (466 products, 118 ingredients, 42 recipes), recipes, synonyms, mappings, association rules |
 | `data/annotations/`, `data/benchmarks/`, `data/splits/` | 900 annotated requests, basket and retrieval benchmarks, split manifests; test files locked in [`docs/benchmark_lock.md`](docs/benchmark_lock.md) |
 | `results/` | Predictions, metrics, report tables, figures, and `run_manifest.json` |
-| `app.py` | Streamlit interface |
+| `website/app.py` | Streamlit website (the app only draws widgets; its logic is in `src/smartcart/app/session.py`) |
 | `tests/` | Unit and integration tests (`pytest`) |
-| `notebooks/` | Early exploratory notebooks (Instacart EDA, first prototypes); not part of the reported results |
+| `notebooks/phase1/` | Phase 1: Instacart cleaning, EDA, preprocessing and scaling, first intent/slot and retrieval prototypes |
+| `notebooks/phase2/` | Phase 2: models compared, tuning, training curves, test results, comparisons and analysis (outputs visible) |
 
 ## Setup
 
@@ -141,11 +180,18 @@ The test split is locked: it was evaluated once, with frozen configurations. `--
 re-reads it only to confirm that the committed results reproduce. Do not tune anything on
 it.
 
-## The interface
+## The website
+
+The website is a Streamlit app in [`website/`](website/). It is not deployed online: the
+fine-tuned models (about 1.5 GB) are not on GitHub, so run it locally after the setup
+steps above:
 
 ```powershell
-.\.venv\Scripts\python -m streamlit run app.py
+.\.venv\Scripts\python -m streamlit run website/app.py
 ```
+
+It opens at http://localhost:8501. Without the DistilBERT checkpoints it falls back to the
+baseline parser.
 
 The first load takes about half a minute while the models load. Six demonstration
 conversations are in `configs/app.json` and can be replayed with
