@@ -5,7 +5,7 @@ author:
   - "Asad Usman (23L-0740)"
   - "Muhammad Ali Mahoon (23L-0531)"
   - "Tayyab (23L-0576)"
-date: "[SUBMISSION DATE]"
+date: "28 November 2026"
 ---
 
 > Every number in this report comes from a file in the repository produced by committed
@@ -728,9 +728,11 @@ terms could matter.
 
 # Contribution summary
 
-[TEAM — fill in each member's contribution, for example: scope and literature review;
-data and benchmarks; parsers; retrieval; associations; solver; interface; experiments;
-report.]
+| Member | Contribution |
+| --- | --- |
+| Tayyab (23L-0576) | Project setup and scope; fixes to the inherited prototype; the catalog and the 42 curated recipes; the Instacart sample, the Track B splits and the product-to-ingredient mapping |
+| Muhammad Ali Mahoon (23L-0531) | The annotated requests, basket and retrieval benchmarks and the gold feasibility checker; the E0 baseline; the DistilBERT parser |
+| Asad Usman (23L-0740) | Semantic retrieval; association rules and Track B; the CP-SAT selector and validator; the Streamlit interface; the experiments and the test evaluation; the literature review, this report, the package and the demo |
 
 # Data sources and terms
 
