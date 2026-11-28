@@ -1312,9 +1312,14 @@ with frozen configs (`docs/benchmark_lock.md`).
   five figures, ≥10 failure analyses in `docs/failure_analysis.md`, and one command per
   report table.
 
-Outstanding: the second-person annotation review (Phase 4), the owner's decision on the
-optional parser variants in `docs/nlu_failures.md` (to be made **before** Phase 11
-touches test data), and independent reviews of the recipes and the Instacart mapping.
+Decided before Phase 11 (2026-11-28; the owner delegated the choice):
+- No optional parser variant is added. Phase 11 runs E0–E4 and A1–A4 as planned (see
+  `docs/nlu_failures.md`, "Decisions before freezing").
+- The NLU (Phase 6), retrieval (Phase 7) and Track B (Phase 8) test evaluations stay
+  deferred to Phase 11, so test data is read once, with frozen configs.
+
+Outstanding: the second-person annotation review (Phase 4), and independent reviews of
+the recipes and the Instacart mapping.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open

@@ -163,7 +163,7 @@ about 4 minutes:
 | Fix the diet check (`is True` must be `== "allowed"`) | `src/smartcart/retrieval/filtering.py` | Done in Phase 7 |
 | Product text for both retrievers | `configs/retrieval.json` | Decided in Phase 7 (`display_name_ingredient`); E0 keeps the Phase 1 text until Phase 11 |
 | NLU and retrieval test-set metrics | Phase 11 | Deferred on purpose: one look at test data |
-| Optional parser variants (hybrid; snapping spans to the catalog) | `docs/nlu_failures.md` | Owner's decision before Phase 11 |
+| Optional parser variants (hybrid; snapping spans to the catalog) | `docs/nlu_failures.md` | Decided 2026-11-28: not added; Phase 11 runs E0–E4 and A1–A4 as planned |
 | Second-person review of 180 annotations | `docs/annotation_review.md` | Pending; needs a teammate |
 | Independent review of the 42 recipes, and of the 300 Instacart mapping rows | `docs/progress.md` (Phases 2–3) | Pending |
 | Team literature-matrix spreadsheet | `docs/literature/` | Pending |

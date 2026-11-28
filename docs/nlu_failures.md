@@ -111,3 +111,15 @@ mis-classified lists, because E0 only emits PRODUCT spans in lists and revisions
 
   Both would be new system variants. Neither is in the experiment plan (E0–E4, A1–A4),
   so adding one needs the owner's decision before Phase 11.
+- **Decision (2026-11-28, before any test data was read): no variant is added.** The
+  owner left the choice to the teammate building Phases 7–11, who chose to run E0–E4 and
+  A1–A4 exactly as planned. The reasons:
+  - **The plan already answers the question.** A1 (E4 with the baseline parser) measures
+    the E0 rule slots inside the full pipeline on test.
+  - **The hybrid would add little.** With the shared context rules applied, E0 is already
+    level with or ahead of DistilBERT on intent on dev (0.978 vs 0.972 ± 0.016), so the
+    hybrid would be close to the E0 parser.
+  - **No post-hoc tuning.** Both variants were designed from these dev failures, and
+    snapping would be tuned to two specific causes.
+
+  Phase 11 reports the parsers as frozen here.
