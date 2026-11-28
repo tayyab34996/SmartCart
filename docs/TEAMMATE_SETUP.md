@@ -113,6 +113,7 @@ Run these before changing anything:
 .\.venv\Scripts\python scripts/mine_rules.py --check
 .\.venv\Scripts\python scripts/evaluate_trackb.py --check
 .\.venv\Scripts\python scripts/run_solver.py --check
+.\.venv\Scripts\python scripts/run_demo_cases.py --check
 .\.venv\Scripts\python -m pytest
 ```
 
@@ -121,13 +122,16 @@ Expected results:
 - Every `--check` prints only `same` lines and exits without an error.
 - `build_index.py` (without `--check`) builds the git-ignored MiniLM index cache in
   `models\retrieval\` (Phase 7); retrieval also works without it, only slower to start.
-- `pytest` reports **230 passed** in about 5 minutes (Phase 9). pytest 9 hides the
+- `pytest` reports **241 passed** in about 7 minutes (Phase 10). pytest 9 hides the
   passed-subtest count at the default verbosity; with `-q` or `-v` the summary also shows
   **95 subtests passed**.
 - If 3 tests are skipped, the checkpoints are missing or misplaced (go back to step 1).
 
 If anything differs, do not start Phase 7. Find the setup difference first and report it
 to the teammate.
+
+To open the interface (Phase 10): `.\.venv\Scripts\python -m streamlit run app.py`. The first
+load takes about half a minute while the models load.
 
 Optional, but it reproduces the raw-data audit report (`docs/data_audit.md`), which takes
 about 4 minutes:

@@ -17,7 +17,108 @@ Each phase starts only with the project owner's permission.
 | 7 | D5 semantic retrieval | **Complete — 2026-11-28** (validation only; test evaluated in Phase 11) |
 | 8 | D6 associations and Track B | **Complete — 2026-11-28** (validation only; Track B test evaluated in Phase 11) |
 | 9 | D7 constrained solver and validator | **Complete — 2026-11-28** (dev only; test scenarios run in Phase 11) |
-| 10–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 10 is next) |
+| 10 | D8 Streamlit interface | **Complete — 2026-11-28** |
+| 11–12 | See BUILD_PHASES.md | Not started; awaiting permission (Phase 11 is next) |
+
+## Phase 10 — D8 Streamlit interface (complete, 2026-11-28)
+
+**What changed**
+
+- **`app.py`** (run with `.\.venv\Scripts\python -m streamlit run app.py`). It only draws
+  widgets; every value comes from the frozen pipeline:
+  - a prominent simulated-price banner;
+  - "What I understood": the extracted fields, including the optional history user;
+  - a clarification question with an answer box. A broad meal goal ("something
+    vegetarian") lists up to 3 feasible, cheapest-first dishes to confirm, or any other
+    dish;
+  - the status: valid basket, clarification needed, no solution found (a timeout, or no
+    basket in the pool), or proven infeasible within scope. An infeasible budget gets a
+    "use the suggested budget" button;
+  - the basket table (packs, pack size, need, bought, left over, line cost, cheapest
+    eligible), the total, budget remaining, ingredient coverage and number of products;
+  - "Why these products" (explanations from verified records) and the notes on pantry,
+    exclusions and the validator;
+  - budget, exclusion and diet edits, or a revision in words through the parser's
+    revision rules, each followed by **"What changed"**;
+  - CSV export of the basket and JSON export of the basket, trace and conversation;
+  - a sidebar: the parser (DistilBERT by default; the E0 baseline, with a note, when the
+    checkpoints are missing) and an optional shopper with purchase history.
+- **`src/smartcart/app/session.py`:** the interface logic, testable without Streamlit:
+  parse, answer, revise, recipe suggestions and confirmation, edit, run, status view,
+  basket rows, coverage, request fields, changes and exports.
+  - "What changed" compares lines only when both runs have a basket. When a change makes
+    the request infeasible, it says the previous basket no longer applies, rather than
+    listing every line as removed.
+- **`smartcart.nlu.api.get_parser`:** returns the cached parser object, used by
+  `parse_request` and the app. `evaluate_nlu.py --check` and `run_baseline.py --check`
+  confirm that nothing changed.
+- **`configs/app.json`:** the parser and fallback, the solver config, the history-user
+  list and the **six hand-written demo cases**. None of the demo texts appears in the
+  annotations or the basket benchmarks (tested).
+- **`scripts/run_demo_cases.py [--check]`:** runs each demo conversation through
+  `session` with the app's parser and writes `results/metrics/demo_cases.json`.
+- **`scripts/measure_app_latency.py`:** runs `app.py` headless (Streamlit `AppTest`) in a
+  fresh process and writes `results/metrics/app_latency.json` (machine-dependent, not
+  part of `--check`).
+
+**Verification evidence (the team's Windows machine, DistilBERT parser)**
+
+| Demo case | Steps | Final status |
+| --- | --- | --- |
+| D1 normal feasible request | parse (history user selected) | valid, PKR 2,407 of 2,500 |
+| D2 budget revision | parse → "Actually, can we do it for 1,200 rupees instead" | proven infeasible, suggested budget PKR 2,192; "what changed" names the budget |
+| D3 dietary exclusion | "Something vegetarian for dinner for 3…" → dish suggestions → confirm → exclude the dearest line | valid; butter removed, total PKR 727 → 487 |
+| D4 pantry quantity | parse → "How much onion do you already have (in piece)?" → "I have 2 onions" | valid, PKR 1,847 of 2,000 |
+| D5 unfamiliar wording | "mates coming round tonight lol, fancy doing baked salmon, there'll be 6 of us…" | valid, PKR 8,570 of 10,000 |
+| D6 infeasible request | "Plan baked salmon for 6 people under 500 rupees" | proven infeasible, suggested budget PKR 8,570 |
+
+- **All six demo cases work** (`demo_cases.json`, `cases_working: 6`). The E0 baseline
+  parser gives the same statuses, baskets and totals; the only difference is that
+  DistilBERT's dish question also lists the suggestions.
+- **Latency** (`app_latency.json`; Windows 10, 4 CPUs, Python 3.11.9, DistilBERT):
+  - cold load **27.4 s**, from process start through imports, the catalog, the parser,
+    the MiniLM index and the first page;
+  - warm request (submit a message: parse, select, validate, explain and re-render)
+    p50 **0.19 s**, p95 **0.59 s**, max 0.92 s, over 18 submissions;
+  - selection alone p95 0.07 s.
+
+  The warm p95 is far below the 5 s target. The cold load is dominated by loading
+  PyTorch and the two models once.
+- `run_demo_cases.py --check` and all ten earlier `--check` scripts pass. `pytest`:
+  **241 passed, 95 subtests** (230 before, plus 11 in `test_app.py`).
+- The new tests are in `tests/unit/test_app.py` (11). They cover:
+  - the banner and the status labels for every solver status, and the parser fallback;
+  - edits with "what changed" (including the infeasible case), recipe confirmation for a
+    broad goal, and the CSV and JSON exports;
+  - all six demo cases working, demo texts not taken from benchmark files, and the demo
+    record rebuilding with its own parser;
+  - `app.py` driven headless: banner, history user, basket table, metrics, two download
+    buttons, budget edit → proven infeasible → "use the suggested budget" → valid; a
+    clarification answer; recipe confirmation; and a revision in words ("Servings
+    changed").
+- **Completion check:** all six demo cases work, and cold-load and warm latency are
+  measured.
+
+**Findings to carry into the report**
+
+- **The interface adds no logic of its own.** Every number it shows comes from the
+  validator or the solver log, and every explanation from verified records, which keeps
+  the demo honest.
+- **Interactive use is fast once warm** (p95 0.59 s on a 4-CPU laptop). The cost is a
+  cold start of about half a minute, mostly loading PyTorch, DistilBERT and MiniLM.
+- In D2 and D6 the interface states the proven minimum budget and changes nothing until
+  the user accepts it.
+
+**Open limitations**
+
+- **The demo cases are six hand-written conversations, not a user study.** The parser's
+  robustness on real user text is measured in Phase 11 on the held-out test templates,
+  and it remains a known risk (`docs/nlu_failures.md`).
+- **The history user only changes "what I understood".** The history and pair terms
+  cannot change product selection (Phase 8).
+- The app runs locally for one user; there is no deployment or authentication.
+- Latency was measured headless with `AppTest`. A browser adds rendering time that is
+  not included.
 
 ## Phase 9 — D7 constrained solver and validator (complete, 2026-11-28)
 
@@ -1181,27 +1282,39 @@ ready while its required quantities or units remain unresolved.
 
 ## Next task (awaiting permission)
 
-**Phase 10 — D8 Streamlit interface** (`app.py`, run with `streamlit run app.py`).
+**Phase 11 — D9 experiments.** This is the phase that reads the locked test sets, once,
+with frozen configs (`docs/benchmark_lock.md`).
 
-- Show the request, the extracted fields and any clarification question. Let the user
-  confirm a recipe for broad meal goals.
-- Show the products, pack quantities, line costs, total, remaining budget and ingredient
-  coverage, with explanations from `smartcart.explanations.explain` (verified records only).
-- Support budget and exclusion edits, re-run selection with
-  `smartcart.optimization.cpsat.select_basket` (`configs/solver.json`), and explain what
-  changed.
-- Export the validated basket and its trace as CSV and JSON.
-- Show a prominent simulated-price banner and clear statuses: valid, clarification
-  needed, no solution found (`solver_timeout`, `no_basket_in_candidate_pool`), and proven
-  infeasible within scope (`infeasible_in_scope`, with the suggested budget).
-- Optionally select a user with history (`history_score` needs `data/interim/instacart/`).
-- Completion check: all six demo cases work (normal feasible request, budget revision,
-  dietary exclusion, pantry quantity, unfamiliar wording, infeasible request), and cold
-  load and warm latency are measured.
+- `scripts/evaluate.py --config configs/experiments/<RUN>.json` for E0–E4 and A1–A4
+  (BUILD_PHASES Phase 11), each in two modes:
+  - component-isolated: the gold StructuredRequest, and a frozen candidate pool for the
+    selector comparison;
+  - end-to-end: predicted input.
+- Building blocks are in place:
+  - parsers: `smartcart.nlu.api.get_parser` (baseline, transformer × 3 seeds);
+  - retrieval: `retrieve_candidates` (tfidf/minilm, the frozen product text, k = 40;
+    E0 keeps its legacy text and top 10);
+  - selection: `optimization.cpsat.select_basket` (E3/E4), or E0's independent
+    selection with post-hoc filtering (E0, A4);
+  - scoring: `pipeline/constrained.score_scenario` (only `infeasible_in_scope` detects
+    infeasibility; timeouts are never infeasible).
+- Expected from the dev results, to be checked on test:
+  - E3 ≈ E2 except for diet scenarios;
+  - E3 = E4 and A3 = E4 on selection (the association terms are inactive);
+  - A2 shows the retrieval effect only where the pool matters.
+- Test-set results deferred from earlier phases:
+  - NLU test metrics for both parsers (Phase 6);
+  - `retrieval_test.json` for TF-IDF and MiniLM (Phase 7);
+  - Track B test orders, with history = training + validation orders (Phase 8);
+  - `basket_test.json` (200 scenarios) for every run.
+- Rows to `results/predictions/runs/<RUN>_<mode>.jsonl` and metrics per the plan's
+  section 8, with 3 seeds (mean and spread) and paired bootstrap over families. Also the
+  five figures, ≥10 failure analyses in `docs/failure_analysis.md`, and one command per
+  report table.
 
 Outstanding: the second-person annotation review (Phase 4), the owner's decision on the
-optional parser variants in `docs/nlu_failures.md`, and independent reviews of the
-recipes and the Instacart mapping.
+optional parser variants in `docs/nlu_failures.md` (to be made **before** Phase 11
+touches test data), and independent reviews of the recipes and the Instacart mapping.
 Completion criteria are in [BUILD_PHASES.md](BUILD_PHASES.md).
 
 After each phase, record what changed, the verification evidence, the open
